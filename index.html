@@ -1060,46 +1060,39 @@
       box-shadow: 0 20px 52px rgba(30,58,110,.14), 0 2px 8px rgba(0,0,0,.06);
     }
 
-    /* ── Header: dark navy with photo texture ─────────────── */
+    /* ── Header: vivid photo ─────────────────────────────── */
     .svc2-hd {
-      position: relative; height: 148px; overflow: hidden;
-      flex-shrink: 0;
-      background: var(--sky);
-    }
-
-    /* Subtle grid overlay on navy header */
-    .svc2-hd::before {
-      content: ""; position: absolute; inset: 0; z-index: 1;
-      background-image:
-        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 24px 24px;
+      position: relative; height: 210px; overflow: hidden;
+      flex-shrink: 0; background: #0d1a2e;
     }
 
     /* Red top accent line */
-    .svc2-hd::after {
+    .svc2-hd::before {
       content: ""; position: absolute; top: 0; left: 0; right: 0;
-      height: 3px; background: var(--red); z-index: 3;
+      height: 4px; background: var(--red); z-index: 5;
     }
+    .svc2-hd::after { content: none; }
 
     .svc2-hd img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover;
-      filter: saturate(.75) brightness(.55);
-      transition: filter .5s, transform .55s cubic-bezier(.25,.46,.45,.94);
+      filter: saturate(1.05) brightness(.72) contrast(1.05);
+      transition: filter .55s ease, transform .6s cubic-bezier(.25,.46,.45,.94);
     }
     .svc2:hover .svc2-hd img {
-      filter: saturate(.9) brightness(.65);
-      transform: scale(1.05);
+      filter: saturate(1.15) brightness(.82) contrast(1.08);
+      transform: scale(1.06);
     }
 
+    /* Gradient only at bottom — let photo breathe at top */
     .svc2-hd-overlay {
       position: absolute; inset: 0; z-index: 2;
       background: linear-gradient(
         to bottom,
-        rgba(14,26,52,.52) 0%,
-        rgba(14,26,52,.72) 60%,
-        rgba(14,26,52,.88) 100%
+        rgba(0,0,0,.08)   0%,
+        rgba(0,0,0,.12)   40%,
+        rgba(14,26,52,.72) 75%,
+        rgba(14,26,52,.92) 100%
       );
     }
 
@@ -1212,6 +1205,117 @@
     .svc2-wide .svc2-bd h3 { font-size: 22px; }
     .svc2-wide .svc2-desc { font-size: 15px; }
     .svc2-wide .svc2-feats li { font-size: 13.5px; }
+
+    /* ── SERVICE DETAIL MODAL ────────────────────────────── */
+    .svc-modal {
+      position: fixed; inset: 0; z-index: 300;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .svc-modal[hidden] { display: none; }
+
+    .svc-modal-bd {
+      position: absolute; inset: 0;
+      background: rgba(4,10,22,.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      animation: mBdIn .25s ease both;
+    }
+
+    .svc-modal-box {
+      position: relative; z-index: 1;
+      width: min(820px, 100%);
+      background: #ffffff;
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      max-height: 90vh; overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08);
+      animation: mBoxIn .32s cubic-bezier(.25,.46,.45,.94) both;
+    }
+
+    .svc-modal-photo {
+      position: relative; min-height: 360px; overflow: hidden;
+      background: #0d1a2e;
+    }
+    .svc-modal-photo img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(1.0) brightness(.7);
+    }
+    .svc-modal-photo-ov {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 30%, rgba(6,14,28,.7) 100%);
+    }
+    .svc-modal-photo-num {
+      position: absolute; bottom: 10px; left: 18px;
+      font-family: var(--font-head); font-size: 100px; line-height: 1;
+      color: rgba(255,255,255,.12); pointer-events: none;
+    }
+
+    .svc-modal-close {
+      position: absolute; top: 14px; right: 14px; z-index: 6;
+      width: 38px; height: 38px;
+      background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.22);
+      color: #eef3ff; font-size: 20px; line-height: 1;
+      display: grid; place-items: center;
+      cursor: pointer !important; transition: background .2s, transform .2s;
+    }
+    .svc-modal-close:hover { background: var(--red); transform: scale(1.1); }
+
+    .svc-modal-body {
+      padding: 38px 34px 32px; overflow-y: auto;
+      display: flex; flex-direction: column;
+      border-left: 4px solid var(--red);
+    }
+
+    .svc-modal-tag {
+      font-family: var(--font-label); font-size: 10px; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+    }
+
+    .svc-modal-title {
+      font-family: var(--font-head); font-size: 28px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--sky); line-height: 1.1;
+    }
+
+    .svc-modal-desc {
+      margin-top: 14px; color: rgba(17,24,39,.74);
+      font-size: 15px; line-height: 1.78; font-weight: 400;
+    }
+
+    .svc-modal-feats {
+      margin-top: 20px; padding-top: 18px;
+      border-top: 1px solid rgba(30,58,110,.12);
+      list-style: none; display: grid; gap: 9px;
+    }
+    .svc-modal-feats li {
+      display: flex; align-items: flex-start; gap: 11px;
+      color: rgba(17,24,39,.72); font-size: 14px; line-height: 1.5; font-weight: 400;
+    }
+    .svc-modal-feats li::before {
+      content: ""; flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--red); margin-top: 4px;
+      box-shadow: 0 0 8px rgba(220,38,38,.4);
+    }
+
+    .svc-modal-actions {
+      margin-top: auto; padding-top: 24px;
+      display: flex; flex-wrap: wrap; gap: 12px;
+    }
+
+    @keyframes mBdIn  { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes mBoxIn {
+      from { opacity: 0; transform: translateY(28px) scale(.96); }
+      to   { opacity: 1; transform: translateY(0)   scale(1); }
+    }
+
+    @media (max-width: 640px) {
+      .svc-modal-box { grid-template-columns: 1fr; }
+      .svc-modal-photo { min-height: 180px; }
+    }
+
+    /* Make cards clickable */
+    .svc2 { cursor: pointer !important; }
 
     /* ── WHY NIAMS SECTION ───────────────────────────────── */
     .why-section {
@@ -2881,6 +2985,76 @@
     // Init after DOM load
     initParticles();
     initGlobe();
+
+    // Service card modal
+    (function() {
+      var modal = document.getElementById('svc-modal');
+      var modalImg = document.getElementById('svc-modal-img');
+      var modalNum = document.getElementById('svc-modal-num');
+      var modalTitle = document.getElementById('svc-modal-title');
+      var modalDesc = document.getElementById('svc-modal-desc');
+      var modalFeats = document.getElementById('svc-modal-feats');
+
+      function openModal(card) {
+        var img = card.querySelector('.svc2-hd img');
+        var num = card.querySelector('.svc2-ghost-num');
+        var title = card.querySelector('h3');
+        var desc = card.querySelector('.svc2-desc');
+        var feats = card.querySelectorAll('.svc2-feats li');
+        modalImg.src = img ? img.src : '';
+        modalImg.alt = img ? (img.alt || '') : '';
+        modalNum.textContent = num ? num.textContent : '';
+        modalTitle.textContent = title ? title.textContent : '';
+        modalDesc.textContent = desc ? desc.textContent : '';
+        modalFeats.innerHTML = '';
+        feats.forEach(function(li) {
+          var newLi = document.createElement('li');
+          newLi.textContent = li.textContent.trim();
+          modalFeats.appendChild(newLi);
+        });
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.svc2').forEach(function(card) {
+        card.addEventListener('click', function() { openModal(card); });
+      });
+
+      document.querySelector('.svc-modal-close').addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeModal();
+      });
+      document.querySelector('.svc-modal-bd').addEventListener('click', closeModal);
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+    })();
   </script>
+
+  <!-- Service Detail Modal -->
+  <div id="svc-modal" class="svc-modal" role="dialog" aria-modal="true" aria-labelledby="svc-modal-title" hidden>
+    <div class="svc-modal-bd"></div>
+    <div class="svc-modal-box">
+      <div class="svc-modal-photo">
+        <img id="svc-modal-img" src="" alt="">
+        <div class="svc-modal-photo-ov"></div>
+        <span class="svc-modal-photo-num" id="svc-modal-num"></span>
+        <button class="svc-modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="svc-modal-body">
+        <div class="svc-modal-tag">NIAMS Services</div>
+        <h3 class="svc-modal-title" id="svc-modal-title"></h3>
+        <p class="svc-modal-desc" id="svc-modal-desc"></p>
+        <ul class="svc-modal-feats" id="svc-modal-feats"></ul>
+        <div class="svc-modal-actions">
+          <a href="tel:18006426779" class="btn btn-red">Call Now — 1800-NIAMS-911</a>
+          <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

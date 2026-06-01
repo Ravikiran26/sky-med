@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIAMS – NL International Air Medical Services | NL Curantis International</title>
+  <meta name="description" content="NIAMS deploys ICU-equipped aircraft and specialist medical crews across India and internationally. 24/7 air ambulance, medical escort, and critical care transport under NL Curantis International Pvt Ltd.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:  #f0f4f8;
+      --panel: #ffffff;
+      --red:   #dc2626;
+      --red2:  #ef4444;
+      --sky:   #1e3a6e;
+      --skylt: #2563eb;
+      --white: #111827;
+      --muted: #6b7280;
+      --green: #16a34a;
+      --font-head:  "Bebas Neue", sans-serif;
+      --font-label: "Space Mono", monospace;
+      --font-body:  "Barlow", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; background: var(--navy); }
+
+    body {
+      min-height: 100vh;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(30,58,110,.26), transparent 36rem),
+        radial-gradient(circle at 80% 18%, rgba(224,40,40,.14), transparent 28rem),
+        radial-gradient(circle at 10% 80%, rgba(30,58,110,.12), transparent 28rem),
+        var(--navy);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: -1;
+      background-image:
+        linear-gradient(rgba(30,58,110,.11) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,58,110,.09) 1px, transparent 1px);
+      background-size: 74px 74px;
+      animation: gridDrift 22s linear infinite;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.9), rgba(0,0,0,.12));
+    }
+
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: -1;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.36'/%3E%3C/svg%3E");
+      opacity: .08; mix-blend-mode: multiply;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, .btn { border: 0; cursor: pointer; font-family: var(--font-label); letter-spacing: 2.2px; text-transform: uppercase; }
+
+    #particles { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
+
+    .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--red2);
+      font-family: var(--font-label);
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+    }
+
+    .section { position: relative; padding: 112px 0; }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 400; letter-spacing: 5px;
+      line-height: .92; text-transform: uppercase;
+    }
+
+    .section-copy {
+      max-width: 620px; margin-top: 18px;
+      color: var(--muted); font-size: 17px; line-height: 1.65;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background .3s, border-color .3s, backdrop-filter .3s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav.scrolled, .nav.open {
+      background: rgba(240,244,248,.92);
+      border-bottom-color: rgba(30,58,110,.18);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-inner {
+      height: 82px; display: flex;
+      align-items: center; justify-content: space-between; gap: 28px;
+    }
+
+    .brand { display: inline-flex; align-items: center; gap: 14px; min-width: max-content; }
+
+    .brand-mark {
+      width: 42px; height: 42px;
+      display: grid; place-items: center;
+      background: var(--red);
+      box-shadow: 0 0 28px rgba(224,40,40,.45);
+      position: relative; flex-shrink: 0;
+    }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; background: #eef3ff; }
+    .brand-mark::before { width: 22px; height: 6px; }
+    .brand-mark::after  { width: 6px;  height: 22px; }
+
+    .brand-text { display: flex; flex-direction: column; gap: 1px; }
+
+    .brand-name { font-family: var(--font-head); font-size: 32px; letter-spacing: 5px; line-height: 1; color: #eef3ff; }
+    .nav.scrolled .brand-name { color: var(--white); }
+
+    .brand-sub { font-family: var(--font-label); font-size: 8px; letter-spacing: 2.4px; color: var(--muted); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 34px;
+      color: rgba(238,243,255,.82);
+      font-family: var(--font-label); font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+      transition: color .3s;
+    }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: #eef3ff; }
+    .nav.scrolled .nav-links { color: rgba(17,24,39,.75); }
+    .nav.scrolled .nav-links a:hover { color: var(--sky); }
+
+    .emergency-nav {
+      padding: 13px 20px;
+      font-family: var(--font-label); font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color: #eef3ff; min-width: max-content;
+      animation: redPulse 1.8s ease-in-out infinite;
+    }
+
+    .hamburger {
+      display: none; width: 42px; height: 42px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      color: #eef3ff; position: relative; cursor: pointer;
+    }
+    .hamburger span, .hamburger::before, .hamburger::after {
+      content: ""; position: absolute; left: 11px; width: 18px; height: 1px; background: #eef3ff;
+    }
+    .nav.scrolled .hamburger {
+      background: rgba(30,58,110,.06); border-color: rgba(30,58,110,.18);
+    }
+    .nav.scrolled .hamburger span,
+    .nav.scrolled .hamburger::before,
+    .nav.scrolled .hamburger::after { background: var(--sky); }
+    .hamburger::before { top: 13px; }
+    .hamburger span    { top: 20px; }
+    .hamburger::after  { top: 27px; }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh; display: grid; align-items: center;
+      padding: 110px 0 80px; overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(ellipse at 18% 60%, rgba(220,38,38,.18), transparent 44rem),
+        radial-gradient(ellipse at 85% 20%, rgba(30,58,110,.22), transparent 36rem),
+        linear-gradient(155deg, #0a1628 0%, #111e38 45%, #1a0c0c 100%);
+    }
+
+    .hero::after {
+      content: "+";
+      position: absolute; right: 5%; bottom: -4%; z-index: 0;
+      font-family: var(--font-head); font-size: clamp(300px, 38vw, 580px);
+      line-height: 1; letter-spacing: -20px;
+      color: rgba(255,255,255,.025);
+      pointer-events: none; user-select: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr);
+      gap: 64px; align-items: center; position: relative; z-index: 1;
+    }
+
+    .hero-title {
+      margin-top: 18px;
+      font-family: var(--font-head);
+      font-size: clamp(56px, 8vw, 108px);
+      font-weight: 400; letter-spacing: 3px;
+      line-height: .88; max-width: 760px; text-transform: uppercase;
+      color: #eef3ff;
+    }
+
+    .word { display: block; overflow: hidden; }
+    .word-inner { display: block; }
+
+    .hero-sub {
+      max-width: 560px; margin-top: 24px;
+      color: rgba(238,243,255,.68); font-size: 17px; line-height: 1.65;
+    }
+
+    .hero-sub strong { color: #eef3ff; font-weight: 500; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 34px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 54px; padding: 0 26px; font-size: 11px;
+      border: 1px solid transparent;
+      transition: transform .2s, border-color .2s, background .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-red {
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color: #eef3ff; box-shadow: 0 0 30px rgba(224,40,40,.36);
+    }
+    .btn-red:hover { box-shadow: 0 0 46px rgba(255,68,68,.54); }
+
+    .btn-ghost {
+      color: #eef3ff; border-color: rgba(238,243,255,.32);
+      background: rgba(238,243,255,.06);
+    }
+    .btn-ghost:hover { border-color: rgba(238,243,255,.6); background: rgba(238,243,255,.12); }
+
+    .btn-green {
+      color: #091e1c; background: var(--green);
+      box-shadow: 0 0 28px rgba(61,220,132,.28);
+    }
+    .btn-green:hover { box-shadow: 0 0 44px rgba(61,220,132,.46); }
+
+    .status-bar {
+      width: min(100%, 660px); margin-top: 28px;
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      color: rgba(238,243,255,.75);
+      font-family: var(--font-label); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(8px);
+    }
+
+    .status-sep { width: 1px; height: 14px; background: rgba(255,255,255,.22); }
+
+    .dot {
+      width: 9px; height: 9px; border-radius: 50%; display: inline-block;
+      background: var(--green); box-shadow: 0 0 14px var(--green);
+      animation: blink 1.1s steps(2,end) infinite;
+    }
+
+    /* ── HERO VISUAL ─────────────────────────────────────── */
+    .hero-visual {
+      position: relative; min-height: 560px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 0 80px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.06);
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(30,58,110,.5), transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(220,38,38,.2), transparent 45%),
+        #0d1a2e;
+    }
+
+    .hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.7) saturate(.9);
+    }
+
+    .hero-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(150deg, rgba(0,0,0,.55) 0%, rgba(30,58,110,.18) 55%, rgba(0,0,0,.65) 100%);
+    }
+
+    .hero-visual::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; z-index: 3;
+      background: linear-gradient(to bottom, transparent, var(--red) 30%, var(--red) 70%, transparent);
+    }
+
+    .hv-badge {
+      position: absolute; z-index: 3;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px;
+      background: rgba(0,0,0,.72);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-family: var(--font-label);
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #eef3ff;
+    }
+
+    .hv-b1 { top: 24px; left: 20px; color: var(--green); border-color: rgba(61,220,132,.3); }
+    .hv-b2 { top: 50%; right: 20px; transform: translateY(-50%); flex-direction: column; align-items: flex-start; gap: 3px; }
+    .hv-b3 { bottom: 70px; left: 20px; gap: 8px; }
+
+    .hv-num {
+      font-family: var(--font-head); font-size: 40px;
+      letter-spacing: 2px; color: var(--red2); line-height: 1;
+    }
+    .hv-unit { font-size: 9px; color: var(--muted); letter-spacing: 1.8px; }
+
+    .hv-cross {
+      width: 16px; height: 16px; flex-shrink: 0;
+      background: var(--red);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 0h4v6h6v4h-6v6H6v-6H0V6h6z'/%3E%3C/svg%3E") center/cover;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 0h4v6h6v4h-6v6H6v-6H0V6h6z'/%3E%3C/svg%3E") center/cover;
+    }
+
+    .hv-bottom-strip {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      display: flex;
+      background: rgba(0,0,0,.78);
+      border-top: 1px solid rgba(255,255,255,.15);
+    }
+
+    .hv-stat {
+      flex: 1; padding: 13px 16px; text-align: center;
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted);
+      border-right: 1px solid rgba(255,255,255,.12);
+      color: rgba(200,215,240,.7);
+    }
+    .hv-stat:last-child { border-right: 0; }
+    .hv-stat strong {
+      display: block; font-family: var(--font-head); font-size: 22px;
+      letter-spacing: 2px; color: #eef3ff;
+      font-weight: 400; line-height: 1.1; margin-bottom: 2px;
+    }
+
+    /* ── RADAR (kept for keyframes, hidden) ──────────────── */
+    .radar-wrap {
+      position: relative; min-height: 540px;
+      display: grid; place-items: center;
+    }
+
+    .radar {
+      width: min(42vw, 480px); aspect-ratio: 1; border-radius: 50%;
+      position: relative;
+      background:
+        repeating-radial-gradient(circle, transparent 0 21%, rgba(30,58,110,.2) 21.5% 22%, transparent 22.5% 43%),
+        radial-gradient(circle, rgba(30,58,110,.14), transparent 70%);
+      border: 1px solid rgba(30,58,110,.32);
+      box-shadow: 0 0 80px rgba(30,58,110,.22), inset 0 0 60px rgba(30,58,110,.07);
+      overflow: hidden;
+    }
+
+    .radar-cross {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .radar-cross::before, .radar-cross::after {
+      content: ""; position: absolute; background: rgba(30,58,110,.13);
+    }
+    .radar-cross::before { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); }
+    .radar-cross::after  { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
+
+    .radar-sweep {
+      position: absolute; inset: 0; border-radius: 50%;
+      background: conic-gradient(from 0deg, rgba(30,58,110,.72), rgba(30,58,110,.08) 42deg, transparent 72deg);
+      animation: radarSweep 4.5s linear infinite;
+    }
+
+    .radar-center {
+      position: absolute; width: 16px; height: 16px;
+      left: calc(50% - 8px); top: calc(50% - 8px);
+      border-radius: 50%; background: var(--red2);
+      box-shadow: 0 0 24px var(--red2);
+      animation: redPulse 1.3s ease-in-out infinite; z-index: 2;
+    }
+
+    .blip {
+      position: absolute; width: 9px; height: 9px; border-radius: 50%;
+      background: var(--skylt); box-shadow: 0 0 18px var(--skylt);
+      animation: blip 3.2s ease-in-out infinite;
+    }
+    .b1 { left: 24%; top: 35%; animation-delay: .2s; }
+    .b2 { right: 25%; top: 58%; animation-delay: 1.1s; }
+    .b3 { left: 56%; top: 22%; animation-delay: 2s; }
+
+    .plane-layer { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+
+    .plane-path { stroke: rgba(30,58,110,.28); stroke-width: 1.5; stroke-dasharray: 5 10; fill: none; }
+
+    .plane { filter: drop-shadow(0 0 12px rgba(17,24,39,.75)); }
+
+    /* ── HERO SCROLL CUE ─────────────────────────────────── */
+    .hero-scroll-cue {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      z-index: 2; pointer-events: none;
+      font-family: var(--font-label); font-size: 9px; letter-spacing: 3px;
+      color: rgba(238,243,255,.35); text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(238,243,255,.35), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: .4; transform: scaleY(1); }
+      50%       { opacity: 1;  transform: scaleY(1.15); }
+    }
+
+    /* ── STATS ───────────────────────────────────────────── */
+    .stats-panel {
+      position: relative;
+      background: #ffffff;
+      border-top: 3px solid var(--red);
+      border-bottom: 1px solid rgba(30,58,110,.14);
+      box-shadow: 0 -4px 40px rgba(0,0,0,.12);
+    }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+
+    .stat {
+      padding: 44px 24px; text-align: center;
+      border-left: 1px solid rgba(30,58,110,.14);
+    }
+    .stat:first-child { border-left: 0; }
+
+    .stat-number {
+      font-family: var(--font-head);
+      font-size: clamp(52px, 6vw, 72px);
+      line-height: .9; letter-spacing: 3px; color: var(--white);
+    }
+
+    .stat-accent { color: var(--red2); }
+
+    .stat-label {
+      margin-top: 12px; color: var(--muted);
+      font-family: var(--font-label); font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* ── TICKER ──────────────────────────────────────────── */
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid rgba(30,58,110,.18);
+      border-bottom: 1px solid rgba(30,58,110,.18);
+      background: rgba(240,244,248,.82);
+    }
+
+    .ticker-track {
+      width: max-content; display: flex; align-items: center;
+      animation: marquee 30s linear infinite;
+    }
+
+    .ticker-item {
+      padding: 18px 20px; white-space: nowrap;
+      color: rgba(17,24,39,.78);
+      font-family: var(--font-label); font-size: 11px; letter-spacing: 2.8px; text-transform: uppercase;
+    }
+
+    .diamond {
+      width: 8px; height: 8px; transform: rotate(45deg); flex-shrink: 0;
+      background: var(--red); box-shadow: 0 0 14px rgba(224,40,40,.65);
+    }
+
+    /* ── SERVICES ────────────────────────────────────────── */
+    .services-grid {
+      margin-top: 54px; display: grid;
+      grid-template-columns: repeat(3,1fr); gap: 22px;
+    }
+
+    .service-card {
+      display: flex; flex-direction: column;
+      overflow: hidden; position: relative;
+      background: #ffffff;
+      border: 1px solid rgba(30,58,110,.10);
+      box-shadow: 0 4px 28px rgba(30,58,110,.09);
+      transition: transform .32s cubic-bezier(.25,.46,.45,.94), box-shadow .32s;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 64px rgba(30,58,110,.16), 0 4px 12px rgba(0,0,0,.08);
+    }
+
+    /* Photo header */
+    .svc-header {
+      position: relative; height: 200px; overflow: hidden;
+      background: linear-gradient(135deg, #0d1a2e 0%, #1a1020 100%);
+      flex-shrink: 0;
+    }
+    .svc-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(.7) brightness(.72);
+      transition: transform .55s cubic-bezier(.25,.46,.45,.94), filter .55s;
+    }
+    .service-card:hover .svc-photo {
+      transform: scale(1.08); filter: saturate(.9) brightness(.82);
+    }
+    .svc-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.08) 0%, rgba(0,0,0,.58) 100%);
+    }
+    .svc-num {
+      position: absolute; top: 12px; right: 16px;
+      font-family: var(--font-head); font-size: 72px;
+      line-height: 1; letter-spacing: 2px;
+      color: rgba(255,255,255,.12); pointer-events: none;
+    }
+    .svc-icon-wrap {
+      position: absolute; bottom: -22px; left: 24px; z-index: 3;
+      width: 50px; height: 50px;
+      background: var(--red);
+      display: grid; place-items: center;
+      box-shadow: 0 8px 28px rgba(220,38,38,.45);
+      transition: background .25s;
+    }
+    .service-card:hover .svc-icon-wrap { background: #b91c1c; }
+    .svc-icon { width: 26px; height: 26px; display: block; stroke: #eef3ff; }
+
+    /* Text body */
+    .svc-body {
+      padding: 38px 26px 24px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .service-card h3 {
+      font-family: var(--font-head);
+      font-size: 20px; font-weight: 400; letter-spacing: 2.5px;
+      line-height: 1.1; text-transform: uppercase; color: var(--sky);
+    }
+    .service-card p {
+      margin-top: 10px; color: var(--muted);
+      font-size: 14.5px; line-height: 1.7; flex: 1;
+    }
+    .learn {
+      display: inline-flex; align-items: center; gap: 7px; margin-top: 18px;
+      color: var(--red); font-family: var(--font-label);
+      font-size: 10px; letter-spacing: 2.2px; text-transform: uppercase;
+      transition: gap .22s, color .22s;
+    }
+    .learn::after { content: "→"; transition: transform .22s; }
+    .service-card:hover .learn { gap: 12px; color: #b91c1c; }
+    .service-card:hover .learn::after { transform: translateX(4px); }
+
+    /* ── TIMELINE ────────────────────────────────────────── */
+    .timeline { position: relative; margin-top: 64px; }
+
+    .timeline::before {
+      content: ""; position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 2px; transform: translateX(-50%);
+      background: linear-gradient(to bottom, var(--skylt), var(--red), var(--sky));
+      box-shadow: 0 0 24px rgba(30,58,110,.32);
+    }
+
+    .timeline-row {
+      display: grid; grid-template-columns: 1fr 88px 1fr;
+      align-items: center; margin-bottom: 32px;
+    }
+    .timeline-row:last-child { margin-bottom: 0; }
+
+    .timeline-card {
+      padding: 28px 30px; min-height: 158px;
+      background: #ffffff; border: 1px solid rgba(30,58,110,.12);
+      box-shadow: 0 2px 20px rgba(30,58,110,.07), 0 1px 4px rgba(0,0,0,.05);
+    }
+    .timeline-card.left  { grid-column: 1; text-align: right; }
+    .timeline-card.right { grid-column: 3; }
+
+    .node {
+      grid-column: 2; justify-self: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--red2);
+      box-shadow: 0 0 0 8px rgba(224,40,40,.1), 0 0 28px rgba(255,68,68,.75);
+      z-index: 2; flex-shrink: 0;
+    }
+
+    .step {
+      color: var(--skylt); font-family: var(--font-label);
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    .timeline-card h3 {
+      margin-top: 10px; font-family: var(--font-head);
+      font-size: 21px; font-weight: 400; letter-spacing: 1.8px;
+      line-height: 1.1; text-transform: uppercase;
+    }
+
+    .timeline-card p {
+      margin-top: 10px; color: rgba(17,24,39,.62); font-size: 15px; line-height: 1.65;
+    }
+
+    /* ── FLEET ───────────────────────────────────────────── */
+    .fleet-grid {
+      margin-top: 52px; display: grid;
+      grid-template-columns: repeat(3,1fr); gap: 18px;
+    }
+
+    /* Legacy .fleet-card kept for potential fallback, hidden by flip card */
+    .fleet-card {
+      padding: 30px; position: relative; overflow: hidden;
+      background: rgba(255,255,255,.82); border: 1px solid rgba(30,58,110,.13);
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+    }
+    .fleet-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(30,58,110,.55);
+      box-shadow: 0 0 48px rgba(30,58,110,.2);
+    }
+
+    .craft { font-size: 50px; filter: drop-shadow(0 0 16px rgba(30,58,110,.3)); line-height: 1; }
+
+    .badge {
+      position: absolute; top: 26px; right: 24px;
+      padding: 7px 13px; border-radius: 999px;
+      color: #eef3ff; background: var(--red);
+      font-family: var(--font-label); font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase;
+    }
+
+    .fleet-card h3 {
+      margin-top: 22px; font-family: var(--font-head);
+      font-size: 30px; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase;
+    }
+
+    .fleet-card p {
+      margin-top: 12px; color: rgba(17,24,39,.62); font-size: 16px; line-height: 1.6;
+    }
+
+    .specs {
+      display: grid; gap: 10px; margin-top: 22px; padding-top: 20px;
+      border-top: 1px solid rgba(30,58,110,.12);
+      color: rgba(17,24,39,.76);
+      font-family: var(--font-label); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    }
+    .specs span { display: flex; align-items: center; gap: 8px; }
+    .specs span::before {
+      content: ""; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--skylt); opacity: .7; flex-shrink: 0;
+    }
+
+    /* ── FLIP CARDS ──────────────────────────────────────── */
+    .fleet-flip { perspective: 1200px; cursor: pointer; }
+    .card-inner {
+      position: relative; width: 100%; min-height: 420px;
+      transform-style: preserve-3d;
+      transition: transform .75s cubic-bezier(.4,0,.2,1);
+    }
+    .fleet-flip:hover .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back {
+      position: absolute; inset: 0; backface-visibility: hidden;
+      -webkit-backface-visibility: hidden; padding: 30px;
+      background: #ffffff; border: 1px solid rgba(30,58,110,.12);
+      box-shadow: 0 4px 24px rgba(30,58,110,.09);
+    }
+    .card-back {
+      transform: rotateY(180deg);
+      background: #f0f6ff; border-color: rgba(30,58,110,.28);
+      display: flex; flex-direction: column;
+    }
+    .card-front .badge { position: absolute; top: 22px; right: 22px; }
+    .aircraft-svg-wrap { margin: 20px 0 16px; }
+    .aircraft-svg-wrap svg { width: 100%; max-height: 100px; display: block; }
+    .card-front h3 {
+      font-family: var(--font-head); font-size: 24px;
+      font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .card-front p {
+      margin-top: 10px; color: rgba(17,24,39,.62);
+      font-size: 15px; line-height: 1.65;
+    }
+    .card-back-title {
+      font-family: var(--font-head); font-size: 22px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--skylt); margin-bottom: 16px;
+    }
+    .equip-list {
+      list-style: none; display: grid; gap: 9px; flex: 1;
+      color: rgba(17,24,39,.78); font-size: 14px; font-family: var(--font-body);
+    }
+    .equip-list li { display: flex; align-items: center; gap: 8px; }
+    .equip-list li::before {
+      content: ""; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--skylt); flex-shrink: 0; opacity: .8;
+    }
+    .book-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-top: 20px; padding: 13px 20px;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color: #eef3ff; font-family: var(--font-label);
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: box-shadow .2s;
+    }
+    .book-btn:hover { box-shadow: 0 0 32px rgba(255,68,68,.5); }
+
+    /* ── ICU SECTION ─────────────────────────────────────── */
+    .icu-diagram-wrap {
+      margin-top: 48px; overflow-x: auto;
+    }
+    .icu-diagram {
+      width: 100%; max-width: 900px; display: block; margin: 0 auto;
+      min-width: 640px;
+    }
+    .callout-line {
+      fill: none; stroke: rgba(30,58,110,.65); stroke-width: 1.5;
+      stroke-dasharray: 120; stroke-dashoffset: 120;
+    }
+    .callout-label {
+      fill: var(--white); font-family: var(--font-label);
+      font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase;
+      opacity: 0;
+    }
+    .callout-sub {
+      fill: var(--muted); font-family: var(--font-body);
+      font-size: 9px; opacity: 0;
+    }
+    .callout-dot { fill: var(--red2); }
+
+    /* ── COVERAGE ────────────────────────────────────────── */
+    .coverage-grid {
+      display: grid; grid-template-columns: 1.45fr .9fr;
+      gap: 24px; align-items: stretch; margin-top: 54px;
+    }
+
+    .map-panel {
+      min-height: 520px; position: relative;
+      background: rgba(255,255,255,.66); border: 1px solid rgba(30,58,110,.15); overflow: hidden;
+    }
+
+    .map-panel canvas { width: 100%; height: 100%; display: block; }
+
+    .globe-tooltip {
+      position: absolute; pointer-events: none;
+      background: rgba(240,244,248,.92); border: 1px solid rgba(30,58,110,.44);
+      color: var(--white); font-family: var(--font-label);
+      font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+      padding: 7px 13px; transform: translate(-50%, -130%);
+      opacity: 0; transition: opacity .2s; white-space: nowrap;
+    }
+    .globe-tooltip.visible { opacity: 1; }
+
+    .coverage-label {
+      position: absolute; left: 24px; bottom: 22px;
+      color: var(--green); font-family: var(--font-label);
+      font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px;
+      z-index: 2;
+    }
+
+    .coverage-copy {
+      padding: 38px; display: flex; flex-direction: column; justify-content: center;
+      background: #ffffff; border: 1px solid rgba(30,58,110,.12);
+      box-shadow: 0 2px 20px rgba(30,58,110,.07);
+    }
+
+    .coverage-copy h3 {
+      font-family: var(--font-head);
+      font-size: clamp(48px, 6vw, 80px);
+      line-height: .9; letter-spacing: 4px; font-weight: 400; text-transform: uppercase;
+    }
+
+    .coverage-list {
+      display: grid; gap: 16px; margin-top: 28px;
+      list-style: none; color: rgba(17,24,39,.72); font-size: 18px;
+    }
+    .coverage-list li { display: flex; align-items: center; gap: 12px; }
+    .coverage-list span {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      background: var(--red2); box-shadow: 0 0 12px var(--red2);
+    }
+
+    .route {
+      fill: none; stroke: rgba(30,58,110,.48);
+      stroke-width: 1.5; stroke-dasharray: 6 10;
+      animation: routeDash 5s linear infinite;
+    }
+
+    .pin {
+      fill: var(--red2); filter: drop-shadow(0 0 8px rgba(255,68,68,.85));
+      animation: pinPulse 1.8s ease-in-out infinite;
+    }
+    .pin:nth-of-type(2) { animation-delay: .2s; }
+    .pin:nth-of-type(3) { animation-delay: .4s; }
+    .pin:nth-of-type(4) { animation-delay: .6s; }
+    .pin:nth-of-type(5) { animation-delay: .8s; }
+    .pin:nth-of-type(6) { animation-delay: 1s; }
+
+    /* ── ROUTE MAP ───────────────────────────────────────── */
+    .route-map { margin-top: 40px; }
+    .route-map-title {
+      font-family: var(--font-label); font-size: 11px; letter-spacing: 3px;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 14px;
+    }
+    .route-map-panel {
+      background: rgba(255,255,255,.66); border: 1px solid rgba(30,58,110,.14); padding: 20px;
+    }
+    .rmap-svg { width: 100%; display: block; }
+    .rmap-india { fill: rgba(30,58,110,.09); stroke: rgba(30,58,110,.45); stroke-width: 2.5; }
+    .rline {
+      fill: none; stroke: rgba(30,58,110,.65); stroke-width: 2;
+      stroke-dasharray: 8 6; stroke-linecap: round;
+    }
+    .rcity-dot { fill: var(--red2); filter: url(#rcityGlow); }
+    .rcity-label {
+      fill: rgba(17,24,39,.85); font-family: var(--font-label);
+      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0;
+    }
+
+    /* ── CTA ─────────────────────────────────────────────── */
+    .cta {
+      position: relative; overflow: hidden; text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(224,40,40,.22), transparent 34rem),
+        linear-gradient(180deg, rgba(224,40,40,.14) 0%, var(--navy) 100%);
+      border-top: 1px solid rgba(224,40,40,.24);
+      border-bottom: 1px solid rgba(224,40,40,.24);
+    }
+
+    .sonar-rings {
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%,-50%); pointer-events: none;
+    }
+
+    .ring {
+      position: absolute; width: 200px; height: 200px;
+      border-radius: 50%; border: 1px solid rgba(255,68,68,.3);
+      left: -100px; top: -100px;
+      animation: sonar 3.6s ease-out infinite;
+    }
+    .ring:nth-child(2) { animation-delay: .9s; }
+    .ring:nth-child(3) { animation-delay: 1.8s; }
+    .ring:nth-child(4) { animation-delay: 2.7s; }
+
+    .cta-content { position: relative; z-index: 2; }
+
+    .cta h2 {
+      margin-top: 18px; font-family: var(--font-head);
+      font-size: clamp(36px, 5.5vw, 68px);
+      line-height: .92; letter-spacing: 5px; font-weight: 400; text-transform: uppercase;
+    }
+
+    .phone {
+      display: block; margin-top: 20px;
+      color: var(--red2); font-family: var(--font-head);
+      font-size: clamp(30px, 5vw, 60px);
+      line-height: .95; letter-spacing: 3px;
+      animation: glowText 1.8s ease-in-out infinite;
+    }
+
+    .cta-actions {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 16px; margin-top: 34px;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    .footer {
+      padding: 60px 0 0;
+      background: rgba(255,255,255,.88);
+      border-top: 1px solid rgba(30,58,110,.14);
+    }
+
+    .footer-grid {
+      display: grid; grid-template-columns: 1.3fr repeat(3,1fr);
+      gap: 36px; padding-bottom: 52px;
+    }
+
+    .footer p, .footer a, .footer li {
+      color: rgba(17,24,39,.56); font-size: 15px; line-height: 1.75;
+    }
+    .footer a:hover { color: var(--sky); transition: color .2s; }
+
+    .footer h4 {
+      margin-bottom: 18px; color: var(--white);
+      font-family: var(--font-label); font-size: 10px;
+      letter-spacing: 2.4px; text-transform: uppercase;
+    }
+
+    .footer ul { display: grid; gap: 10px; list-style: none; }
+
+    .footer-dgca {
+      display: inline-block; margin-top: 14px; padding: 6px 12px;
+      border: 1px solid rgba(61,220,132,.34);
+      color: var(--green) !important;
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    .social { display: flex; gap: 10px; margin-top: 18px; }
+    .social a {
+      width: 36px; height: 36px; display: grid; place-items: center;
+      border: 1px solid rgba(30,58,110,.18); color: var(--skylt);
+      font-family: var(--font-label); font-size: 11px;
+      transition: border-color .2s, color .2s;
+    }
+    .social a:hover { border-color: rgba(30,58,110,.5); color: var(--sky); }
+
+    .bottom-bar {
+      padding: 20px 0; border-top: 1px solid rgba(30,58,110,.13);
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      color: rgba(17,24,39,.42);
+      font-family: var(--font-label); font-size: 10px;
+      letter-spacing: 1.2px; text-transform: uppercase;
+    }
+
+    .bottom-bar-status { display: flex; align-items: center; gap: 8px; }
+
+    /* ── FLOATING ────────────────────────────────────────── */
+    .floating { position: fixed; right: 20px; bottom: 22px; z-index: 90; display: grid; gap: 10px; }
+
+    .float-btn {
+      min-width: 164px; height: 48px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      color: #eef3ff; font-family: var(--font-label);
+      font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; border: none;
+    }
+
+    .float-call {
+      background: var(--red);
+      box-shadow: 0 0 30px rgba(224,40,40,.42);
+      animation: redPulse 1.6s ease-in-out infinite;
+    }
+
+    .float-whatsapp {
+      background: #16b967; color: #03120a;
+      box-shadow: 0 0 22px rgba(61,220,132,.28);
+    }
+
+    /* ── KEYFRAMES ───────────────────────────────────────── */
+    @keyframes gridDrift {
+      from { background-position: 0 0, 0 0; }
+      to   { background-position: 0 -148px, 0 -148px; }
+    }
+
+    @keyframes redPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(224,40,40,.3); }
+      50%       { box-shadow: 0 0 44px rgba(255,68,68,.68); }
+    }
+
+    @keyframes blink { 50% { opacity: .2; } }
+
+    @keyframes radarSweep { to { transform: rotate(360deg); } }
+
+    @keyframes blip {
+      0%, 100% { opacity: .14; transform: scale(.75); }
+      45%       { opacity: 1;   transform: scale(1.3); }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @keyframes routeDash { to { stroke-dashoffset: -100; } }
+
+    @keyframes pinPulse {
+      0%, 100% { opacity: .7; transform: scale(1); }
+      50%       { opacity: 1; transform: scale(1.45); }
+    }
+
+    @keyframes sonar {
+      0%   { opacity: .65; transform: scale(.35); }
+      100% { opacity: 0;   transform: scale(6.5); }
+    }
+
+    @keyframes glowText {
+      0%, 100% { text-shadow: 0 0 18px rgba(255,68,68,.32); }
+      50%       { text-shadow: 0 0 46px rgba(255,68,68,.74); }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 920px) {
+      .nav-inner { height: 70px; }
+      .hamburger { display: block; }
+
+      .nav-links {
+        position: fixed; left: 16px; right: 16px; top: 76px;
+        display: none; padding: 22px;
+        background: rgba(10,22,40,.96);
+        border: 1px solid rgba(255,255,255,.12);
+        backdrop-filter: blur(16px);
+        flex-direction: column; align-items: flex-start; gap: 18px;
+        color: rgba(238,243,255,.85);
+      }
+      .nav.open .nav-links { display: flex; }
+      .emergency-nav { display: none; }
+
+      .hero-grid, .footer-grid { grid-template-columns: 1fr; }
+
+      .hero { min-height: auto; padding-top: 108px; }
+      .hero-visual { display: none; }
+      .radar-wrap { display: none; }
+      #particles { display: none; }
+
+      .services-grid, .fleet-grid, .stats-grid { grid-template-columns: 1fr; }
+
+      .stat, .stat:first-child { border-left: 0; border-top: 1px solid rgba(30,58,110,.14); }
+      .stat:first-child { border-top: 0; }
+
+      .timeline::before { left: 9px; }
+      .timeline-row { grid-template-columns: 26px 1fr; gap: 14px; }
+      .node { grid-column: 1; }
+      .timeline-card.left, .timeline-card.right { grid-column: 2; text-align: left; }
+
+      .coverage-grid { grid-template-columns: 1fr; }
+      .map-panel { min-height: 380px; }
+
+      .fleet-grid { grid-template-columns: 1fr; }
+      .card-inner { min-height: 380px; }
+    }
+
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .section { padding: 72px 0; }
+      .brand-name { font-size: 26px; }
+      .brand-sub { display: none; }
+      .hero-sub, .section-copy { font-size: 17px; }
+
+      .hero-actions, .cta-actions { display: grid; }
+      .btn { width: 100%; }
+
+      .status-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .status-sep { display: none; }
+
+      .section-title, .cta h2, .phone { letter-spacing: 3px; }
+
+      .fleet-card, .timeline-card, .coverage-copy { padding: 22px; }
+      .svc-body { padding: 34px 20px 20px; }
+
+      .floating { right: 12px; bottom: 14px; }
+      .float-btn { min-width: 48px; width: 48px; padding: 0; font-size: 0; gap: 0; }
+      .float-btn .btn-label { display: none; }
+      .float-btn .btn-icon { font-size: 20px; }
+
+      .bottom-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+      .gallery-item:first-child { grid-row: 1; grid-column: 1 / 3; }
+      .fleet-photo-wrap { height: 150px; }
+    }
+
+    /* ── PHOTO ENHANCEMENTS ──────────────────────────────── */
+
+    /* Service card photo enhancements are now in the main .service-card block above */
+
+    /* Fleet card — photo header replacing SVG wireframe */
+    .fleet-photo-wrap {
+      position: relative; height: 178px;
+      margin: -30px -30px 20px; overflow: hidden;
+    }
+    .fleet-photo-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(.88) brightness(.78);
+      transition: transform .55s, filter .55s;
+    }
+    .fleet-flip:hover .fleet-photo-wrap img {
+      transform: scale(1.06); filter: saturate(1) brightness(.86);
+    }
+    .fleet-photo-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(170deg, rgba(0,0,0,.12) 0%, rgba(0,0,0,.92) 85%);
+    }
+    .fleet-photo-wrap .badge {
+      position: absolute; top: 14px; right: 14px;
+    }
+    /* Remove the old absolute badge positioning for card-front now that it's inside the wrap */
+    .card-front > .badge { display: none; }
+
+    /* Photo gallery section */
+    .gallery-section { padding: 40px 0 104px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.65fr 1fr 1fr;
+      grid-template-rows: 246px 246px;
+      gap: 6px; margin-top: 48px;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(.82) brightness(.8);
+      transition: transform .55s, filter .55s;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.06); filter: saturate(1) brightness(.9);
+    }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 48px 20px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,.88) 0%, transparent 100%);
+    }
+    .gallery-caption .cap-tag {
+      display: block; color: var(--red2);
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .gallery-caption .cap-title {
+      font-family: var(--font-head); font-size: 22px;
+      letter-spacing: 2px; text-transform: uppercase; color: #eef3ff;
+    }
+    .gallery-item:first-child .cap-title { font-size: 32px; }
+
+    @media (max-width: 920px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px 220px;
+      }
+      .gallery-item:first-child { grid-row: 1; grid-column: 1 / 3; }
+      .fleet-photo-wrap { height: 155px; margin: -24px -24px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="shell nav-inner">
+      <a href="#top" class="brand" aria-label="NIAMS home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">NIAMS</span>
+          <span class="brand-sub">NL Curantis International</span>
+        </span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#fleet">Fleet</a>
+        <a href="#process">How It Works</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="emergency-nav btn" href="tel:18006426779">&#9889; Emergency</a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false"><span></span></button>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">24/7 Critical Care Aviation</div>
+          <h1 class="hero-title" aria-label="When lives depend on speed">
+            <span class="word"><span class="word-inner">WHEN</span></span>
+            <span class="word"><span class="word-inner">LIVES</span></span>
+            <span class="word"><span class="word-inner">DEPEND</span></span>
+            <span class="word"><span class="word-inner">ON SPEED</span></span>
+          </h1>
+          <p class="hero-sub">NIAMS deploys ICU-equipped aircraft and specialist medical crews across India and internationally — under <strong>NL Curantis International Pvt Ltd</strong>.</p>
+          <div class="hero-actions">
+            <a href="tel:18006426779" class="btn btn-red">Request Transfer</a>
+            <a href="#services" class="btn btn-ghost">Learn More</a>
+          </div>
+          <div class="status-bar">
+            <span class="dot"></span>
+            <span>2 Aircraft Airborne</span>
+            <span class="status-sep"></span>
+            <span>Avg Response 18 min</span>
+            <span class="status-sep"></span>
+            <span>All Systems Operational</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img class="hero-img"
+               src="hero-helicopter.png"
+               alt="NIAMS air ambulance helicopter on hospital rooftop helipad"
+               onerror="this.style.opacity='0'">
+          <div class="hero-img-overlay"></div>
+
+          <!-- Badge: Live status -->
+          <div class="hv-badge hv-b1">
+            <span class="dot"></span>
+            <span>24/7 Airborne Response</span>
+          </div>
+
+          <!-- Badge: Response time -->
+          <div class="hv-badge hv-b2">
+            <span class="hv-num">18</span>
+            <span class="hv-unit">min avg response</span>
+          </div>
+
+          <!-- Badge: ICU equipped -->
+          <div class="hv-badge hv-b3">
+            <span class="hv-cross" aria-hidden="true"></span>
+            <span>ICU Equipped Aircraft</span>
+          </div>
+
+          <!-- Bottom stats strip -->
+          <div class="hv-bottom-strip" aria-hidden="true">
+            <div class="hv-stat"><strong>1800+</strong>Missions</div>
+            <div class="hv-stat"><strong>32+</strong>Cities</div>
+            <div class="hv-stat"><strong>99.8%</strong>Success</div>
+          </div>
+        </div>
+      </div>
+      <!-- Scroll cue -->
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span>SCROLL</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-panel" id="stats">
+      <div class="shell stats-grid">
+        <div class="stat">
+          <div class="stat-number"><span data-count="1800">0</span><span class="stat-accent">+</span></div>
+          <div class="stat-label">Missions Completed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number"><span data-count="18">0</span> <span class="stat-accent">min</span></div>
+          <div class="stat-label">Avg Response Time</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number"><span data-count="32">0</span><span class="stat-accent">+</span></div>
+          <div class="stat-label">Cities Covered</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number"><span data-count="99.8" data-decimal="1">0</span><span class="stat-accent">%</span></div>
+          <div class="stat-label">Success Rate</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS MARQUEE -->
+    <section class="ticker" aria-label="Certifications and accreditations">
+      <div class="ticker-track">
+        <span class="ticker-item">DGCA Licensed</span><span class="diamond"></span>
+        <span class="ticker-item">CAMTS Accredited</span><span class="diamond"></span>
+        <span class="ticker-item">EURAMI Certified</span><span class="diamond"></span>
+        <span class="ticker-item">ISO 9001:2015</span><span class="diamond"></span>
+        <span class="ticker-item">NABH Compliant</span><span class="diamond"></span>
+        <span class="ticker-item">24/7 Operations</span><span class="diamond"></span>
+        <span class="ticker-item">Bed to Bed Transfer</span><span class="diamond"></span>
+        <!-- duplicate for seamless loop -->
+        <span class="ticker-item">DGCA Licensed</span><span class="diamond"></span>
+        <span class="ticker-item">CAMTS Accredited</span><span class="diamond"></span>
+        <span class="ticker-item">EURAMI Certified</span><span class="diamond"></span>
+        <span class="ticker-item">ISO 9001:2015</span><span class="diamond"></span>
+        <span class="ticker-item">NABH Compliant</span><span class="diamond"></span>
+        <span class="ticker-item">24/7 Operations</span><span class="diamond"></span>
+        <span class="ticker-item">Bed to Bed Transfer</span><span class="diamond"></span>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="shell">
+        <div class="eyebrow">Mission-Ready Medical Aviation</div>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-copy">Aircraft, ICU teams, and logistics command coordinated as one emergency response system — across India and globally.</p>
+        <div class="services-grid">
+
+          <article class="service-card" data-num="01">
+            <div class="svc-header">
+              <img class="svc-photo" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=75" alt="Air ambulance helicopter in flight" loading="lazy" onerror="this.style.opacity='0'">
+              <div class="svc-overlay"></div>
+              <div class="svc-num">01</div>
+              <div class="svc-icon-wrap">
+                <svg class="svc-icon" viewBox="0 0 40 40" fill="none" stroke="#eef3ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 22 C10 14 26 10 38 20"/><path d="M38 20 L28 16 M38 20 L28 24"/>
+                  <path d="M16 14 L16 28 M10 21 L22 21"/>
+                </svg>
+              </div>
+            </div>
+            <div class="svc-body">
+              <h3>Air Ambulance Services</h3>
+              <p>Rapid ICU-equipped aircraft deployment for trauma, cardiac, stroke, and all critical care transfers.</p>
+              <span class="learn">Learn More</span>
+            </div>
+          </article>
+
+          <article class="service-card" data-num="02">
+            <div class="svc-header">
+              <img class="svc-photo" src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=700&q=75" alt="Medical escort professional accompanying patient" loading="lazy" onerror="this.style.opacity='0'">
+              <div class="svc-overlay"></div>
+              <div class="svc-num">02</div>
+              <div class="svc-icon-wrap">
+                <svg class="svc-icon" viewBox="0 0 40 40" fill="none" stroke="#eef3ff" stroke-width="1.6" stroke-linecap="round">
+                  <circle cx="20" cy="10" r="6"/>
+                  <path d="M9 36 C9 26 31 26 31 36"/>
+                  <path d="M27 16 L34 16 M30 12 L30 20"/>
+                </svg>
+              </div>
+            </div>
+            <div class="svc-body">
+              <h3>Medical Escort Services</h3>
+              <p>Certified medical personnel accompanying patients on commercial or charter flights with full monitoring.</p>
+              <span class="learn">Learn More</span>
+            </div>
+          </article>
+
+          <article class="service-card" data-num="03">
+            <div class="svc-header">
+              <img class="svc-photo" src="https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=700&q=75" alt="Advanced life support ground ambulance" loading="lazy" onerror="this.style.opacity='0'">
+              <div class="svc-overlay"></div>
+              <div class="svc-num">03</div>
+              <div class="svc-icon-wrap">
+                <svg class="svc-icon" viewBox="0 0 40 40" fill="none" stroke="#eef3ff" stroke-width="1.6" stroke-linecap="round">
+                  <rect x="4" y="14" width="32" height="16" rx="2"/>
+                  <circle cx="12" cy="32" r="3"/><circle cx="28" cy="32" r="3"/>
+                  <path d="M16 20 L24 20 M20 16 L20 24"/>
+                </svg>
+              </div>
+            </div>
+            <div class="svc-body">
+              <h3>Ground Ambulance Coordination</h3>
+              <p>Seamless first-mile and last-mile ground ambulance integration ensuring full bed-to-bed continuity.</p>
+              <span class="learn">Learn More</span>
+            </div>
+          </article>
+
+          <article class="service-card" data-num="04">
+            <div class="svc-header">
+              <img class="svc-photo" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=75" alt="International medical repatriation flight" loading="lazy" onerror="this.style.opacity='0'">
+              <div class="svc-overlay"></div>
+              <div class="svc-num">04</div>
+              <div class="svc-icon-wrap">
+                <svg class="svc-icon" viewBox="0 0 40 40" fill="none" stroke="#eef3ff" stroke-width="1.6" stroke-linecap="round">
+                  <circle cx="20" cy="20" r="14"/>
+                  <path d="M6 20 L34 20 M20 6 C13 13 13 27 20 34 C27 27 27 13 20 6"/>
+                </svg>
+              </div>
+            </div>
+            <div class="svc-body">
+              <h3>International Repatriation</h3>
+              <p>Domestic and international patient return flights with full documentation, customs, and escort.</p>
+              <span class="learn">Learn More</span>
+            </div>
+          </article>
+
+          <article class="service-card" data-num="05">
+            <div class="svc-header">
+              <img class="svc-photo" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=75" alt="Critical organ transport with cold-chain logistics" loading="lazy" onerror="this.style.opacity='0'">
+              <div class="svc-overlay"></div>
+              <div class="svc-num">05</div>
+              <div class="svc-icon-wrap">
+                <svg class="svc-icon" viewBox="0 0 40 40" fill="none" stroke="#eef3ff" stroke-width="1.6" stroke-linecap="round">
+                  <path d="M20 34 C8 26 4 16 4 13 A9 9 0 0 1 20 10 A9 9 0 0 1 36 13 C36 16 32 26 20 34 Z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="svc-body">
+              <h3>Organ Transport</h3>
+              <p>Time-critical organ relay with route priority, cold-chain logistics, and clinical chain-of-custody.</p>
+              <span class="learn">Learn More</span>
+            </div>
+          </article>
+
+          <article class="service-card" data-num="06">
+            <div class="svc-header">
+              <img class="svc-photo" src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=700&q=75" alt="24/7 emergency command and dispatch operations" loading="lazy" onerror="this.style.opacity='0'">
+              <div class="svc-overlay"></div>
+              <div class="svc-num">06</div>
+              <div class="svc-icon-wrap">
+                <svg class="svc-icon" viewBox="0 0 40 40" fill="none" stroke="#eef3ff" stroke-width="1.6" stroke-linecap="round">
+                  <circle cx="20" cy="24" r="12"/>
+                  <path d="M20 17 L20 24 L26 24"/>
+                  <path d="M20 4 L20 8 M5 12 L9 15 M35 12 L31 15"/>
+                  <path d="M9 36 L13 32 M31 36 L27 32"/>
+                </svg>
+              </div>
+            </div>
+            <div class="svc-body">
+              <h3>24/7 Emergency Response</h3>
+              <p>Round-the-clock command centre, rapid clinical triage, and immediate dispatch across all bases.</p>
+              <span class="learn">Learn More</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section class="gallery-section">
+      <div class="shell">
+        <div class="eyebrow">Operations In Frame</div>
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-copy">From rooftop helipads to international airports — every critical care scenario, managed with precision.</p>
+      </div>
+      <div class="shell">
+        <div class="gallery-grid">
+
+          <!-- Large: air ambulance in flight -->
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1696243144263-76fbba9f8d18?fm=jpg&q=80&w=960&auto=format&fit=crop" alt="NIAMS medical helicopter alongside ambulance at emergency scene" loading="lazy" onerror="this.style.opacity='0'">
+            <div class="gallery-caption">
+              <span class="cap-tag">Air Ambulance</span>
+              <span class="cap-title">Rapid Deployment, Every Mission</span>
+            </div>
+          </div>
+
+          <!-- Top-right 1: in-flight ICU care -->
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="In-flight ICU critical care monitoring" loading="lazy" onerror="this.style.opacity='0'">
+            <div class="gallery-caption">
+              <span class="cap-tag">In-Flight ICU</span>
+              <span class="cap-title">Airborne Critical Care</span>
+            </div>
+          </div>
+
+          <!-- Top-right 2: medical escort -->
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=600&q=80" alt="Medical escort professional with patient on flight" loading="lazy" onerror="this.style.opacity='0'">
+            <div class="gallery-caption">
+              <span class="cap-tag">Medical Escort</span>
+              <span class="cap-title">Expert Pilots & Crew</span>
+            </div>
+          </div>
+
+          <!-- Bottom-right 1: ground ambulance -->
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=600&q=80" alt="Ground ambulance coordination for bed-to-bed transfer" loading="lazy" onerror="this.style.opacity='0'">
+            <div class="gallery-caption">
+              <span class="cap-tag">Ground Transfer</span>
+              <span class="cap-title">Bed-to-Bed Continuity</span>
+            </div>
+          </div>
+
+          <!-- Bottom-right 2: medical team -->
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=600&q=80" alt="Specialist medical team providing patient care" loading="lazy" onerror="this.style.opacity='0'">
+            <div class="gallery-caption">
+              <span class="cap-tag">Medical Team</span>
+              <span class="cap-title">Specialist Crew On Board</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="process">
+      <div class="shell">
+        <div class="eyebrow">Under 20 Minutes</div>
+        <h2 class="section-title">From Your Call<br>To Landing</h2>
+        <p class="section-copy">Four precision steps from your call to patient handover at the receiving hospital.</p>
+        <div class="timeline">
+
+          <div class="timeline-row">
+            <article class="timeline-card left">
+              <span class="step">Step 01</span>
+              <h3>Emergency Call Received</h3>
+              <p>Call triaged and patient clinically assessed within 60 seconds by our 24/7 command centre.</p>
+            </article>
+            <span class="node"></span>
+          </div>
+
+          <div class="timeline-row">
+            <span class="node"></span>
+            <article class="timeline-card right">
+              <span class="step">Step 02</span>
+              <h3>Aircraft &amp; Medical Team Deployed</h3>
+              <p>Nearest aircraft scrambled with the right specialist medical crew for the patient's condition.</p>
+            </article>
+          </div>
+
+          <div class="timeline-row">
+            <article class="timeline-card left">
+              <span class="step">Step 03</span>
+              <h3>In-Flight ICU Critical Care</h3>
+              <p>Full critical care monitoring, ventilation support, and clinical intervention throughout the flight.</p>
+            </article>
+            <span class="node"></span>
+          </div>
+
+          <div class="timeline-row">
+            <span class="node"></span>
+            <article class="timeline-card right">
+              <span class="step">Step 04</span>
+              <h3>Bed to Bed Hospital Handover</h3>
+              <p>Seamless hospital handover with complete vitals report and receiving clinical team coordination.</p>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FLEET — 3D Flip Cards -->
+    <section class="section" id="fleet">
+      <div class="shell">
+        <div class="eyebrow">ICU-Equipped Aircraft</div>
+        <h2 class="section-title">Our Fleet</h2>
+        <p class="section-copy">Three aircraft categories covering every range requirement — from local trauma to intercontinental repatriation.</p>
+        <div class="fleet-grid">
+
+          <!-- Card 1: Helicopter -->
+          <div class="fleet-flip">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="fleet-photo-wrap">
+                  <img src="https://images.unsplash.com/photo-1629155514090-072270d9c981?fm=jpg&q=80&w=720&auto=format&fit=crop" alt="Medical helicopter ready for air ambulance mission" loading="lazy" onerror="this.style.opacity='0'">
+                  <div class="fleet-photo-gradient"></div>
+                  <span class="badge">0 – 300 km</span>
+                </div>
+                <h3>Helicopter</h3>
+                <p>Local emergencies and trauma response. Lands where fixed-wing aircraft cannot.</p>
+              </div>
+              <div class="card-back">
+                <div class="card-back-title">Equipment</div>
+                <ul class="equip-list">
+                  <li>Transport Ventilator</li>
+                  <li>Cardiac Defibrillator</li>
+                  <li>Pulse Oximeter</li>
+                  <li>IV Drug Pump</li>
+                  <li>Oxygen Supply</li>
+                  <li>Trauma Kit</li>
+                  <li>Neonatal Optional</li>
+                </ul>
+                <a href="tel:18006426779" class="book-btn">Book This Aircraft</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Turbo Prop -->
+          <div class="fleet-flip">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="fleet-photo-wrap">
+                  <img src="https://images.unsplash.com/photo-1544396821-4dd40b938ad3?auto=format&fit=crop&w=720&q=80" alt="Turboprop aircraft configured for medical transport" loading="lazy" onerror="this.style.opacity='0'">
+                  <div class="fleet-photo-gradient"></div>
+                  <span class="badge">300 – 1500 km</span>
+                </div>
+                <h3>Turbo Prop</h3>
+                <p>Inter-city transfers with short-runway capability and full ICU configuration.</p>
+              </div>
+              <div class="card-back">
+                <div class="card-back-title">Equipment</div>
+                <ul class="equip-list">
+                  <li>ICU Ventilator</li>
+                  <li>12-Lead Monitor</li>
+                  <li>Defibrillator / AED</li>
+                  <li>Dual IV Pumps</li>
+                  <li>Portable O2 Cylinders</li>
+                  <li>Suction Unit</li>
+                  <li>Blood Analyser</li>
+                </ul>
+                <a href="tel:18006426779" class="book-btn">Book This Aircraft</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: ICU Jet -->
+          <div class="fleet-flip">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="fleet-photo-wrap">
+                  <img src="https://images.unsplash.com/photo-1569154941061-e231b4aa8eff?auto=format&fit=crop&w=720&q=80" alt="ICU medical jet for long-range international patient transport" loading="lazy" onerror="this.style.opacity='0'">
+                  <div class="fleet-photo-gradient"></div>
+                  <span class="badge">1500 km+</span>
+                </div>
+                <h3>ICU Jet</h3>
+                <p>International repatriation and long-range medical missions with pressurised ICU cabin.</p>
+              </div>
+              <div class="card-back">
+                <div class="card-back-title">Equipment</div>
+                <ul class="equip-list">
+                  <li>Advanced ICU Ventilator</li>
+                  <li>Multi-Param Monitor</li>
+                  <li>Defibrillator</li>
+                  <li>Infusion Pumps x4</li>
+                  <li>Pressurised O2</li>
+                  <li>Neonatal Incubator Option</li>
+                  <li>Intercontinental Range</li>
+                </ul>
+                <a href="tel:18006426779" class="book-btn">Book This Aircraft</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ICU EQUIPMENT SECTION -->
+    <section class="section" id="icu">
+      <div class="shell">
+        <div class="eyebrow">Airborne Critical Care</div>
+        <h2 class="section-title">Our Airborne ICU</h2>
+        <p class="section-copy">Every NIAMS aircraft is equipped to ICU standards — ensuring uninterrupted critical care from departure to hospital handover.</p>
+        <div class="icu-diagram-wrap">
+          <svg class="icu-diagram" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" aria-label="NIAMS aircraft ICU interior diagram">
+            <defs>
+              <filter id="icu-glow">
+                <feGaussianBlur stdDeviation="2" result="blur"/>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+              </filter>
+            </defs>
+            <!-- Fuselage outline -->
+            <path d="M80,60 Q50,60 40,110 Q50,160 80,160 L820,160 Q850,160 860,110 Q850,60 820,60 Z"
+                  fill="rgba(30,58,110,0.06)" stroke="rgba(30,58,110,0.4)" stroke-width="2"/>
+            <!-- Floor line -->
+            <line x1="80" y1="150" x2="820" y2="150" stroke="rgba(30,58,110,0.2)" stroke-width="1"/>
+
+            <!-- 1. Patient Stretcher — dot at (420,140), label below -->
+            <circle class="callout-dot" cx="420" cy="140" r="5"/>
+            <path id="cl1" class="callout-line" d="M420,140 L420,195"/>
+            <text class="callout-label" x="420" y="208" text-anchor="middle">Patient Stretcher</text>
+
+            <!-- 2. Ventilator Station — dot at (200,120), label upper-left -->
+            <circle class="callout-dot" cx="200" cy="120" r="5"/>
+            <path id="cl2" class="callout-line" d="M200,120 L100,50"/>
+            <text class="callout-label" x="95" y="44" text-anchor="end">Ventilator Station</text>
+
+            <!-- 3. Cardiac Monitor — dot at (340,100), label upper-left -->
+            <circle class="callout-dot" cx="340" cy="100" r="5"/>
+            <path id="cl3" class="callout-line" d="M340,100 L280,38"/>
+            <text class="callout-label" x="275" y="32" text-anchor="end">Cardiac Monitor</text>
+
+            <!-- 4. IV Drug Pumps — dot at (480,90), label upper -->
+            <circle class="callout-dot" cx="480" cy="90" r="5"/>
+            <path id="cl4" class="callout-line" d="M480,90 L510,35"/>
+            <text class="callout-label" x="510" y="28" text-anchor="middle">IV Drug Pumps</text>
+
+            <!-- 5. Defibrillator — dot at (560,120), label upper-right -->
+            <circle class="callout-dot" cx="560" cy="120" r="5"/>
+            <path id="cl5" class="callout-line" d="M560,120 L650,48"/>
+            <text class="callout-label" x="655" y="42" text-anchor="start">Defibrillator</text>
+
+            <!-- 6. Oxygen Supply — dot at (260,130), label below-left -->
+            <circle class="callout-dot" cx="260" cy="130" r="5"/>
+            <path id="cl6" class="callout-line" d="M260,130 L170,195"/>
+            <text class="callout-label" x="165" y="208" text-anchor="end">Oxygen Supply</text>
+
+            <!-- 7. Medical Team Position — dot at (680,130), label below-right -->
+            <circle class="callout-dot" cx="680" cy="130" r="5"/>
+            <path id="cl7" class="callout-line" d="M680,130 L760,190"/>
+            <text class="callout-label" x="765" y="205" text-anchor="start">Medical Team</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- COVERAGE -->
+    <section class="section" id="coverage">
+      <div class="shell">
+        <div class="eyebrow">Network Command</div>
+        <h2 class="section-title">Coverage</h2>
+        <p class="section-copy">32+ cities served across India with international operations on request.</p>
+        <div class="coverage-grid">
+          <!-- Three.js Globe replaces old SVG map -->
+          <div class="map-panel" id="globe-wrap">
+            <canvas id="globe-canvas"></canvas>
+            <div id="globe-tooltip" class="globe-tooltip"></div>
+            <div class="coverage-label"><span class="dot"></span> Live Network</div>
+          </div>
+          <div class="coverage-copy">
+            <h3>Nationwide<br>Network</h3>
+            <ul class="coverage-list">
+              <li><span></span>32+ Cities Served</li>
+              <li><span></span>International Operations</li>
+              <li><span></span>Delhi &middot; Mumbai &middot; Bangalore</li>
+              <li><span></span>Chennai &middot; Kolkata &middot; Hyderabad</li>
+              <li><span></span>Dedicated Standby Aircraft</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Route Map -->
+        <div class="route-map" id="route-map">
+          <p class="route-map-title">Active Flight Routes</p>
+          <div class="route-map-panel">
+            <svg id="rmap" viewBox="0 0 760 560" class="rmap-svg" aria-label="NIAMS India route network">
+              <defs>
+                <filter id="rcityGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <!-- India outline -->
+              <path class="rmap-india" d="M361 46l36 38 42 10 20 44 42 38-5 48 38 39-12 45 50 34 2 44-46 7-16 39-56 2-30 51-56-23-40 20-45-40-52 2-27-44-58-9-10-50-42-36 15-44-32-48 32-38 1-56 45-25 13-44 58-4 34-49z"/>
+              <!-- Route lines: Delhi(372,150) Mumbai(246,330) Chennai(392,428) Kolkata(462,326) Hyderabad(403,348) Bangalore(380,390) -->
+              <!-- Delhi → Mumbai -->
+              <path class="rline" d="M372,150 C330,210 280,270 246,330"/>
+              <!-- Delhi → Kolkata -->
+              <path class="rline" d="M372,150 C400,210 440,268 462,326"/>
+              <!-- Mumbai → Bangalore -->
+              <path class="rline" d="M246,330 C280,350 330,375 380,390"/>
+              <!-- Mumbai → Chennai -->
+              <path class="rline" d="M246,330 C290,360 340,400 392,428"/>
+              <!-- Kolkata → Hyderabad -->
+              <path class="rline" d="M462,326 C445,334 425,340 403,348"/>
+              <!-- Bangalore → Chennai -->
+              <path class="rline" d="M380,390 C382,402 386,416 392,428"/>
+              <!-- City dots -->
+              <circle class="rcity-dot" cx="372" cy="150" r="7"/>
+              <circle class="rcity-dot" cx="246" cy="330" r="7"/>
+              <circle class="rcity-dot" cx="392" cy="428" r="7"/>
+              <circle class="rcity-dot" cx="462" cy="326" r="7"/>
+              <circle class="rcity-dot" cx="403" cy="348" r="7"/>
+              <circle class="rcity-dot" cx="380" cy="390" r="7"/>
+              <!-- City labels -->
+              <text class="rcity-label" x="372" y="138" text-anchor="middle">Delhi</text>
+              <text class="rcity-label" x="230" y="326" text-anchor="end">Mumbai</text>
+              <text class="rcity-label" x="392" y="444" text-anchor="middle">Chennai</text>
+              <text class="rcity-label" x="477" y="322" text-anchor="start">Kolkata</text>
+              <text class="rcity-label" x="418" y="344" text-anchor="start">Hyderabad</text>
+              <text class="rcity-label" x="364" y="407" text-anchor="end">Bangalore</text>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EMERGENCY CTA -->
+    <section class="section cta" id="contact">
+      <div class="sonar-rings" aria-hidden="true">
+        <span class="ring"></span>
+        <span class="ring"></span>
+        <span class="ring"></span>
+        <span class="ring"></span>
+      </div>
+      <div class="shell cta-content">
+        <div class="eyebrow">Available 24 / 7 / 365</div>
+        <h2>Don't Wait<br>Call Now</h2>
+        <a class="phone" href="tel:18006426779">1800-NIAMS-911</a>
+        <div class="cta-actions">
+          <a href="tel:18006426779" class="btn btn-red">Call Emergency Line</a>
+          <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us Now</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <a href="#top" class="brand" aria-label="NIAMS home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">
+              <span class="brand-name">NIAMS</span>
+              <span class="brand-sub">NL Curantis International</span>
+            </span>
+          </a>
+          <p style="margin-top:18px; max-width:270px; line-height:1.7">ICU-equipped air ambulance command across India and internationally.</p>
+          <span class="footer-dgca">DGCA Licensed</span>
+          <div class="social">
+            <a href="#" aria-label="LinkedIn">IN</a>
+            <a href="#" aria-label="Twitter / X">X</a>
+            <a href="#" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Air Ambulance</a></li>
+            <li><a href="#services">Medical Escort</a></li>
+            <li><a href="#services">Ground Coordination</a></li>
+            <li><a href="#services">International Repatriation</a></li>
+            <li><a href="#services">Organ Transport</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#fleet">Our Fleet</a></li>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#coverage">Coverage</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>Emergency: 1800-NIAMS-911</p>
+          <p>ops@nlcurantis.in</p>
+          <p style="margin-top:10px">NL Curantis International<br>Pvt Ltd, India</p>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <span>&copy; 2025 NL Curantis International Pvt Ltd. All rights reserved.</span>
+        <span class="bottom-bar-status"><span class="dot"></span> All systems operational</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating" aria-label="Emergency contact buttons">
+    <a class="float-btn float-call" href="tel:18006426779">
+      <span class="btn-icon">&#9993;</span>
+      <span class="btn-label">Emergency Call</span>
+    </a>
+    <a class="float-btn float-whatsapp" href="https://wa.me/918006426779">
+      <span class="btn-icon">&#9993;</span>
+      <span class="btn-label">WhatsApp</span>
+    </a>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    // ── Nav scroll + hamburger ──────────────────────────────
+    const nav       = document.getElementById("nav");
+    const hamburger = document.getElementById("hamburger");
+    const navLinks  = document.getElementById("navLinks");
+
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", window.scrollY > 16);
+    });
+
+    hamburger.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", String(open));
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // ── GSAP animations ────────────────────────────────────
+    if (window.gsap) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero title: each word-inner slides up from y:80
+      gsap.from(".hero-title .word-inner", {
+        y: 80, opacity: 0, duration: 1.1,
+        stagger: 0.13, ease: "power4.out"
+      });
+
+      // Hero supporting elements fade in
+      gsap.from(".hero .eyebrow, .hero-sub, .hero-actions, .status-bar", {
+        y: 30, opacity: 0, duration: 0.9,
+        stagger: 0.12, delay: 0.42, ease: "power3.out"
+      });
+
+      // Plane animation across radar: bottom-left to top-right, 25s cycle
+      gsap.set("#plane", { x: 76, y: 476, rotation: -42, transformOrigin: "50% 50%" });
+      gsap.to("#plane", {
+        duration: 25, repeat: -1, ease: "none",
+        keyframes: [
+          { x: 170, y: 340, rotation: -47, duration: 0.28 },
+          { x: 272, y: 282, rotation: -36, duration: 0.22 },
+          { x: 486, y:  86, rotation: -42, duration: 0.36 },
+          { opacity: 0,                    duration: 0.04 },
+          { x: 76,  y: 476, opacity: 0,   duration: 0.06 },
+          { opacity: 1,                    duration: 0.04 }
+        ]
+      });
+
+      // Service cards stagger reveal
+      gsap.utils.toArray(".service-card").forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: "top 88%" },
+          y: 54, opacity: 0, duration: 0.85,
+          delay: i * 0.07, ease: "power3.out"
+        });
+      });
+
+      // Timeline cards slide in from sides
+      gsap.utils.toArray(".timeline-card.left").forEach(card => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: "top 82%" },
+          x: -90, opacity: 0, duration: 0.9, ease: "power3.out"
+        });
+      });
+
+      gsap.utils.toArray(".timeline-card.right").forEach(card => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: "top 82%" },
+          x: 90, opacity: 0, duration: 0.9, ease: "power3.out"
+        });
+      });
+
+      // Fleet flip cards reveal
+      gsap.from(".fleet-flip", {
+        scrollTrigger: { trigger: ".fleet-grid", start: "top 82%" },
+        y: 50, opacity: 0, duration: 0.85, stagger: 0.13, ease: "power3.out"
+      });
+
+      // Stats cards
+      gsap.from(".stat", {
+        scrollTrigger: { trigger: ".stats-panel", start: "top 80%" },
+        y: 30, opacity: 0, duration: 0.7, stagger: 0.1, ease: "power3.out"
+      });
+
+      // ICU diagram callout animations with ScrollTrigger
+      ScrollTrigger.create({
+        trigger: "#icu",
+        start: "top 70%",
+        once: true,
+        onEnter: function() {
+          // Animate callout lines (stroke-dashoffset)
+          const lines = document.querySelectorAll(".callout-line");
+          lines.forEach(function(line, i) {
+            const len = line.getTotalLength ? line.getTotalLength() : 120;
+            line.style.strokeDasharray = len;
+            line.style.strokeDashoffset = len;
+            gsap.to(line, {
+              strokeDashoffset: 0,
+              duration: 0.7,
+              delay: i * 0.18,
+              ease: "power2.out"
+            });
+          });
+          // Animate callout labels
+          const labels = document.querySelectorAll(".callout-label");
+          labels.forEach(function(label, i) {
+            gsap.to(label, {
+              opacity: 1,
+              duration: 0.5,
+              delay: lines.length * 0.18 + i * 0.12,
+              ease: "power2.out"
+            });
+          });
+        }
+      });
+
+      // Route map animation
+      ScrollTrigger.create({
+        trigger: "#route-map",
+        start: "top 80%",
+        once: true,
+        onEnter: function() {
+          const rlines = document.querySelectorAll(".rline");
+          rlines.forEach(function(line, i) {
+            gsap.fromTo(line,
+              { strokeDashoffset: 500 },
+              { strokeDashoffset: 0, duration: 1.2, delay: i * 0.3, ease: "power2.out" }
+            );
+          });
+          const rlabels = document.querySelectorAll(".rcity-label");
+          rlabels.forEach(function(label, i) {
+            gsap.to(label, {
+              opacity: 1,
+              duration: 0.5,
+              delay: rlines.length * 0.3 + i * 0.15,
+              ease: "power2.out"
+            });
+          });
+        }
+      });
+    }
+
+    // ── Counter animation ───────────────────────────────────
+    const statsSection = document.getElementById("stats");
+    const counters     = document.querySelectorAll("[data-count]");
+    let counted = false;
+
+    new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting || counted) return;
+      counted = true;
+      counters.forEach(counter => {
+        const target   = Number(counter.dataset.count);
+        const decimals = Number(counter.dataset.decimal || 0);
+        const duration = 1800;
+        const start    = performance.now();
+
+        (function update(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased    = 1 - Math.pow(1 - progress, 3);
+          counter.textContent = (target * eased).toFixed(decimals);
+          if (progress < 1) requestAnimationFrame(update);
+        })(performance.now());
+      });
+    }, { threshold: 0.3 }).observe(statsSection);
+
+    // ── Three.js Globe ──────────────────────────────────────
+    function initGlobe() {
+      if (!window.THREE) return;
+
+      const wrap    = document.getElementById("globe-wrap");
+      const canvas  = document.getElementById("globe-canvas");
+      const tooltip = document.getElementById("globe-tooltip");
+
+      const scene    = new THREE.Scene();
+      const camera   = new THREE.PerspectiveCamera(45, wrap.offsetWidth / wrap.offsetHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+
+      renderer.setSize(wrap.offsetWidth, wrap.offsetHeight);
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+
+      camera.position.z = 16;
+
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0x1a3a6a, 0.8);
+      scene.add(ambientLight);
+      const dirLight = new THREE.DirectionalLight(0x2563eb, 1.2);
+      dirLight.position.set(5, 3, 5);
+      scene.add(dirLight);
+
+      // Globe group
+      const globeGroup = new THREE.Group();
+      scene.add(globeGroup);
+
+      // Main sphere — dark navy
+      const sphereGeo = new THREE.SphereGeometry(5, 64, 64);
+      const sphereMat = new THREE.MeshPhongMaterial({
+        color: 0xd6e8f8,
+        emissive: 0x5b8fc8,
+        shininess: 28,
+        transparent: true,
+        opacity: 0.92
+      });
+      const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+      globeGroup.add(sphere);
+
+      // Wireframe sphere
+      const wireGeo = new THREE.SphereGeometry(5.02, 24, 24);
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: 0x2563eb,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.18
+      });
+      const wireSphere = new THREE.Mesh(wireGeo, wireMat);
+      globeGroup.add(wireSphere);
+
+      // Glow sphere
+      const glowGeo = new THREE.SphereGeometry(5.8, 32, 32);
+      const glowMat = new THREE.MeshBasicMaterial({
+        color: 0x1e3a6e,
+        side: THREE.BackSide,
+        transparent: true,
+        opacity: 0.06
+      });
+      const glowSphere = new THREE.Mesh(glowGeo, glowMat);
+      globeGroup.add(glowSphere);
+
+      // Helper: lat/lng → 3D position
+      function latLngTo3D(lat, lng, r) {
+        const phi   = (90 - lat) * Math.PI / 180;
+        const theta = (lng + 180) * Math.PI / 180;
+        return new THREE.Vector3(
+          -r * Math.sin(phi) * Math.cos(theta),
+           r * Math.cos(phi),
+           r * Math.sin(phi) * Math.sin(theta)
+        );
+      }
+
+      // Cities
+      const cities = [
+        { name: "Delhi",     lat: 28.6, lng: 77.2  },
+        { name: "Mumbai",    lat: 19.0, lng: 72.8  },
+        { name: "Bangalore", lat: 12.9, lng: 77.5  },
+        { name: "Chennai",   lat: 13.0, lng: 80.2  },
+        { name: "Kolkata",   lat: 22.5, lng: 88.3  },
+        { name: "Hyderabad", lat: 17.3, lng: 78.4  },
+        { name: "Dubai",     lat: 25.2, lng: 55.2  },
+        { name: "London",    lat: 51.5, lng: -0.1  },
+        { name: "Singapore", lat:  1.3, lng: 103.8 }
+      ];
+
+      const cityMeshes = [];
+
+      cities.forEach(function(city) {
+        const pos = latLngTo3D(city.lat, city.lng, 5.12);
+
+        // Visible red dot
+        const dotGeo = new THREE.SphereGeometry(0.08, 12, 12);
+        const dotMat = new THREE.MeshBasicMaterial({ color: 0xff4444 });
+        const dotMesh = new THREE.Mesh(dotGeo, dotMat);
+        dotMesh.position.copy(pos);
+        globeGroup.add(dotMesh);
+
+        // Invisible larger sphere for raycasting
+        const rcGeo = new THREE.SphereGeometry(0.22, 8, 8);
+        const rcMat = new THREE.MeshBasicMaterial({ visible: false, transparent: true, opacity: 0 });
+        const rcMesh = new THREE.Mesh(rcGeo, rcMat);
+        rcMesh.position.copy(pos);
+        rcMesh.userData.city = city.name;
+        globeGroup.add(rcMesh);
+        cityMeshes.push(rcMesh);
+      });
+
+      // Arc routes
+      const routes = [
+        ["Delhi",  "Dubai"],
+        ["Delhi",  "London"],
+        ["Mumbai", "Dubai"],
+        ["Bangalore", "Singapore"],
+        ["Kolkata",   "Singapore"]
+      ];
+
+      function getCityPos(name) {
+        const c = cities.find(function(x) { return x.name === name; });
+        return c ? latLngTo3D(c.lat, c.lng, 5.12) : null;
+      }
+
+      routes.forEach(function(route) {
+        const p1 = getCityPos(route[0]);
+        const p2 = getCityPos(route[1]);
+        if (!p1 || !p2) return;
+
+        const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+        const dist = p1.distanceTo(p2);
+        mid.normalize().multiplyScalar(5.05 + dist * 0.35);
+
+        const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
+        const points = curve.getPoints(60);
+        const arcGeo = new THREE.BufferGeometry().setFromPoints(points);
+        const arcMat = new THREE.LineBasicMaterial({
+          color: 0x2563eb,
+          transparent: true,
+          opacity: 0.55
+        });
+        const arcLine = new THREE.Line(arcGeo, arcMat);
+        globeGroup.add(arcLine);
+      });
+
+      // Auto-rotate state
+      let autoRotate = true;
+
+      wrap.addEventListener("mouseenter", function() { autoRotate = false; });
+      wrap.addEventListener("mouseleave", function() { autoRotate = true; });
+
+      // Raycaster for city clicks
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+
+      wrap.addEventListener("click", function(e) {
+        const rect = wrap.getBoundingClientRect();
+        mouse.x =  ((e.clientX - rect.left) / wrap.offsetWidth)  * 2 - 1;
+        mouse.y = -((e.clientY - rect.top)  / wrap.offsetHeight) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(cityMeshes);
+
+        if (intersects.length > 0) {
+          const hit = intersects[0].object;
+          const cityName = hit.userData.city;
+
+          // Project world position to screen
+          const worldPos = hit.position.clone();
+          globeGroup.localToWorld(worldPos);
+          worldPos.project(camera);
+
+          const screenX = (worldPos.x + 1) / 2 * wrap.offsetWidth;
+          const screenY = (1 - (worldPos.y + 1) / 2) * wrap.offsetHeight;
+
+          tooltip.textContent  = cityName;
+          tooltip.style.left   = screenX + "px";
+          tooltip.style.top    = screenY + "px";
+          tooltip.classList.add("visible");
+
+          clearTimeout(tooltip._hideTimer);
+          tooltip._hideTimer = setTimeout(function() {
+            tooltip.classList.remove("visible");
+          }, 2000);
+        }
+      });
+
+      // Resize handler
+      function resizeGlobe() {
+        if (!wrap.offsetWidth) return;
+        renderer.setSize(wrap.offsetWidth, wrap.offsetHeight);
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+        camera.aspect = wrap.offsetWidth / wrap.offsetHeight;
+        camera.updateProjectionMatrix();
+      }
+      window.addEventListener("resize", resizeGlobe);
+
+      // Render loop
+      (function animateGlobe() {
+        if (autoRotate) {
+          globeGroup.rotation.y += 0.0025;
+        }
+        renderer.render(scene, camera);
+        requestAnimationFrame(animateGlobe);
+      })();
+    }
+
+    // ── Three.js particle field ─────────────────────────────
+    function initParticles() {
+      if (!window.THREE || window.matchMedia("(max-width: 920px)").matches) return;
+
+      const canvas   = document.getElementById("particles");
+      const scene    = new THREE.Scene();
+      const camera   = new THREE.PerspectiveCamera(72, innerWidth / innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      const geo      = new THREE.BufferGeometry();
+      const COUNT    = 600;
+      const pos      = new Float32Array(COUNT * 3);
+      const col      = new Float32Array(COUNT * 3);
+
+      for (let i = 0; i < COUNT; i++) {
+        const j   = i * 3;
+        pos[j]    = (Math.random() - 0.5) * 44;
+        pos[j+1]  = (Math.random() - 0.5) * 30;
+        pos[j+2]  = (Math.random() - 0.5) * 28;
+        const blu = Math.random() > 0.45;
+        col[j]    = blu ? 0.14 : 0.88;
+        col[j+1]  = blu ? 0.36 : 0.15;
+        col[j+2]  = blu ? 0.87 : 0.22;
+      }
+
+      geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+      geo.setAttribute("color",    new THREE.BufferAttribute(col, 3));
+
+      const mat = new THREE.PointsMaterial({
+        size: 0.065, transparent: true, opacity: 0.28,
+        vertexColors: true, blending: THREE.NormalBlending, depthWrite: false
+      });
+
+      const points = new THREE.Points(geo, mat);
+      scene.add(points);
+      camera.position.z = 13;
+
+      function resize() {
+        renderer.setSize(innerWidth, innerHeight, false);
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+        camera.aspect = innerWidth / innerHeight;
+        camera.updateProjectionMatrix();
+      }
+
+      (function animate() {
+        points.rotation.y += 0.00065;
+        points.rotation.x += 0.00022;
+        points.position.y  = Math.sin(Date.now() * 0.00021) * 0.42;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      })();
+
+      resize();
+      window.addEventListener("resize", resize);
+    }
+
+    // Init after DOM load
+    initParticles();
+    initGlobe();
+  </script>
+</body>
+</html>

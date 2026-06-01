@@ -1031,162 +1031,173 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    /* ── SERVICES SECTION — dark command-board ───────────── */
+    /* ── SERVICES SECTION ────────────────────────────────── */
     #services {
-      background:
-        radial-gradient(ellipse at 18% 65%, rgba(220,38,38,.09), transparent 36rem),
-        radial-gradient(ellipse at 84% 18%, rgba(30,58,110,.17), transparent 32rem),
-        linear-gradient(160deg, #040c18 0%, #080f20 55%, #0e0816 100%);
+      background: #f0f4f9;
     }
-    #services .section-title { color: #eef3ff; }
-    #services .eyebrow       { color: var(--red2); }
-    #services .section-copy  { color: rgba(238,243,255,.52); }
-    #services .svc-tabs-nav  { border-bottom-color: rgba(255,255,255,.09); margin-top: 44px; }
-    #services .svc-tab       { color: rgba(238,243,255,.35); }
-    #services .svc-tab:hover:not(.active) { color: rgba(238,243,255,.7); }
-    #services .svc-tab.active { color: #eef3ff; border-bottom-color: var(--red); }
-    #services .svc-tab svg   { opacity: .5; }
-    #services .svc-tab.active svg { opacity: 1; }
-    #services .svc-tab-count { background: rgba(255,255,255,.07); color: rgba(238,243,255,.4); }
-    #services .svc-tab.active .svc-tab-count { background: rgba(220,38,38,.24); color: #eef3ff; }
+    #services .svc-tabs-nav  { border-bottom-color: rgba(30,58,110,.16); margin-top: 44px; }
+    #services .svc-tab       { color: var(--muted); }
+    #services .svc-tab:hover:not(.active) { color: var(--sky); }
+    #services .svc-tab.active { color: var(--sky); border-bottom-color: var(--sky); }
+    #services .svc-tab-count { background: rgba(30,58,110,.08); color: var(--muted); }
+    #services .svc-tab.active .svc-tab-count { background: rgba(30,58,110,.15); color: var(--sky); }
 
-    /* ── SVC2 CARD — full-bleed dark photo ───────────────── */
+    /* ── SVC2 CARD — classic two-tone ────────────────────── */
     .svc2 {
-      position: relative; display: block;
-      height: 390px; overflow: hidden;
-      background: #06101c;
-      border: 1px solid rgba(255,255,255,.07);
-      border-left: 3px solid rgba(220,38,38,.55);
-      transition: transform .32s cubic-bezier(.25,.46,.45,.94),
-                  box-shadow .32s, border-left-color .28s;
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden; height: auto;
+      background: #ffffff;
+      border: 1px solid rgba(30,58,110,.11);
+      box-shadow: 0 2px 20px rgba(30,58,110,.07);
+      transition: transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
     }
     .svc2:hover {
-      transform: translateY(-5px);
-      border-left-color: var(--red);
-      box-shadow: 0 0 0 1px rgba(220,38,38,.32),
-                  0 28px 64px rgba(0,0,0,.75);
+      transform: translateY(-7px);
+      box-shadow: 0 20px 52px rgba(30,58,110,.14), 0 2px 8px rgba(0,0,0,.06);
     }
 
-    /* Photo fills entire card */
+    /* ── Header: dark navy with photo texture ─────────────── */
     .svc2-hd {
-      position: absolute; inset: 0; height: 100%;
-      background: #06101c;
+      position: relative; height: 148px; overflow: hidden;
+      flex-shrink: 0;
+      background: var(--sky);
     }
+
+    /* Subtle grid overlay on navy header */
+    .svc2-hd::before {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Red top accent line */
+    .svc2-hd::after {
+      content: ""; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--red); z-index: 3;
+    }
+
     .svc2-hd img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      filter: saturate(.4) brightness(.3);
-      transition: transform .65s cubic-bezier(.25,.46,.45,.94), filter .5s;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(.2) brightness(.18);
+      mix-blend-mode: luminosity;
+      transition: filter .5s;
     }
-    .svc2:hover .svc2-hd img {
-      transform: scale(1.07);
-      filter: saturate(.62) brightness(.45);
-    }
+    .svc2:hover .svc2-hd img { filter: saturate(.28) brightness(.24); }
+
     .svc2-hd-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(4,12,24,.98) 0%,
-        rgba(4,12,24,.75) 40%,
-        rgba(4,12,24,.2)  72%,
-        transparent 100%
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(135deg,
+        rgba(30,58,110,.88) 0%,
+        rgba(14,26,52,.96) 100%
       );
     }
 
-    /* Giant ghost number — atmospheric */
+    /* Service number — bold red, prominent */
     .svc2-ghost-num {
-      position: absolute; top: -14px; right: 6px;
-      font-family: var(--font-head); font-size: 130px;
-      line-height: 1; letter-spacing: -2px;
-      color: rgba(255,255,255,.045); pointer-events: none; user-select: none;
-      transition: opacity .3s;
+      position: absolute; bottom: 10px; right: 16px; z-index: 4;
+      font-family: var(--font-head); font-size: 72px;
+      line-height: 1; letter-spacing: -1px;
+      color: rgba(255,255,255,.09);
+      pointer-events: none; user-select: none;
     }
-    .svc2:hover .svc2-ghost-num { opacity: .7; }
 
-    /* Icon — top-left corner */
+    /* Number badge — top-left, always readable */
+    .svc2-hd::before {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Icon — top-left, transparent border style */
     .svc2-ico {
-      position: absolute; top: 22px; left: 22px; z-index: 4;
-      width: 38px; height: 38px;
-      background: var(--red);
+      position: absolute; top: 18px; left: 20px; z-index: 5;
+      width: 40px; height: 40px; bottom: auto;
+      background: rgba(220,38,38,.85);
+      border: none;
+      box-shadow: 0 3px 14px rgba(220,38,38,.45);
       display: grid; place-items: center;
-      box-shadow: 0 4px 18px rgba(220,38,38,.55);
       transition: background .25s, box-shadow .25s;
     }
     .svc2:hover .svc2-ico {
-      background: #b91c1c;
-      box-shadow: 0 4px 24px rgba(220,38,38,.8);
+      background: var(--red);
+      box-shadow: 0 4px 20px rgba(220,38,38,.7);
     }
     .svc2-ico svg {
-      width: 18px; height: 18px; stroke: #eef3ff; fill: none;
+      width: 20px; height: 20px; stroke: #fff; fill: none;
       stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
     }
 
-    /* Content — pinned to bottom */
+    /* Service title in the header — white, Bebas */
+    /* Title lives in .svc2-bd but we style it prominently */
+
+    /* ── Body: white, all content always visible ──────────── */
     .svc2-bd {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 20px 22px 22px; z-index: 3;
-      display: flex; flex-direction: column;
+      position: static;
+      padding: 22px 22px 20px;
+      flex: 1; display: flex; flex-direction: column;
+      background: #ffffff;
+      border-top: none;
     }
 
     .svc2-bd h3 {
       font-family: var(--font-head);
-      font-size: 19px; font-weight: 400; letter-spacing: 2.5px;
-      line-height: 1.1; text-transform: uppercase;
-      color: #eef3ff;
-      text-shadow: 0 2px 16px rgba(0,0,0,.7);
+      font-size: 18px; font-weight: 400;
+      letter-spacing: 2.5px; line-height: 1.15;
+      text-transform: uppercase;
+      color: var(--sky);
     }
+    .svc2:hover .svc2-bd h3 { color: var(--red); transition: color .25s; }
 
-    /* Desc: hidden → revealed on hover */
+    /* Description — always visible, readable */
     .svc2-desc {
-      color: rgba(238,243,255,.68);
-      font-size: 13px; line-height: 1.65;
-      max-height: 0; overflow: hidden; opacity: 0; margin-top: 0;
-      transition: max-height .38s ease, opacity .32s ease, margin-top .3s ease;
+      margin-top: 9px;
+      color: rgba(17,24,39,.68);
+      font-size: 13.5px; line-height: 1.7;
+      flex: 1;
+      max-height: none; overflow: visible; opacity: 1;
     }
-    .svc2:hover .svc2-desc { max-height: 80px; opacity: 1; margin-top: 8px; }
 
-    /* Features: hidden → revealed on hover */
+    /* Features list — always visible */
     .svc2-feats {
-      list-style: none; display: grid; gap: 4px;
-      max-height: 0; overflow: hidden; opacity: 0; margin-top: 0; padding-top: 0;
-      border-top: 1px solid rgba(255,255,255,.0);
-      transition: max-height .42s ease .05s, opacity .36s ease .05s,
-                  margin-top .35s ease .05s, padding-top .35s ease .05s,
-                  border-color .3s ease .05s;
-    }
-    .svc2:hover .svc2-feats {
-      max-height: 160px; opacity: 1;
-      margin-top: 10px; padding-top: 10px;
-      border-top-color: rgba(255,255,255,.12);
+      list-style: none; display: grid; gap: 6px;
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid rgba(30,58,110,.1);
+      max-height: none; overflow: visible; opacity: 1;
     }
     .svc2-feats li {
-      display: flex; align-items: flex-start; gap: 8px;
-      color: rgba(238,243,255,.55); font-size: 12.5px; line-height: 1.45;
+      display: flex; align-items: flex-start; gap: 9px;
+      color: rgba(17,24,39,.64); font-size: 13px; line-height: 1.5;
     }
     .svc2-feats li::before {
       content: ""; flex-shrink: 0;
       width: 5px; height: 5px; border-radius: 50%;
-      background: var(--red2); margin-top: 5px;
-      box-shadow: 0 0 6px rgba(255,68,68,.5);
+      background: var(--red); margin-top: 5px;
     }
 
-    /* CTA: fades + slides up on hover */
+    /* CTA — always visible */
     .svc2-cta {
       display: inline-flex; align-items: center; gap: 7px;
-      color: var(--red2); font-family: var(--font-label);
+      margin-top: 16px;
+      color: var(--sky); font-family: var(--font-label);
       font-size: 10px; letter-spacing: 2.2px; text-transform: uppercase;
-      opacity: 0; transform: translateY(7px); margin-top: 0;
-      transition: opacity .28s .08s, transform .28s .08s, gap .2s, margin-top .28s .08s;
+      opacity: 1; transform: none;
+      transition: gap .22s, color .22s;
     }
-    .svc2-cta::after { content: "→"; transition: transform .2s; }
-    .svc2:hover .svc2-cta { opacity: 1; transform: translateY(0); gap: 12px; margin-top: 12px; }
+    .svc2-cta::after { content: "→"; transition: transform .22s; }
+    .svc2:hover .svc2-cta { gap: 12px; color: var(--red); }
     .svc2:hover .svc2-cta::after { transform: translateX(4px); }
 
-    /* Concierge — taller, same full-bleed style */
-    .svc2.svc2-wide { height: 360px; }
-    .svc2-wide .svc2-bd { padding: 24px 32px 26px; }
-    .svc2-wide .svc2-bd h3 { font-size: 26px; letter-spacing: 3px; }
-    .svc2-wide .svc2-desc { font-size: 14.5px; }
+    /* Concierge wide card */
+    .svc2.svc2-wide { height: auto; }
+    .svc2-wide .svc2-hd { height: 160px; }
+    .svc2-wide .svc2-bd { padding: 26px 28px 24px; }
+    .svc2-wide .svc2-bd h3 { font-size: 22px; }
+    .svc2-wide .svc2-desc { font-size: 15px; }
     .svc2-wide .svc2-feats li { font-size: 13.5px; }
 
     /* ── WHY NIAMS SECTION ───────────────────────────────── */
@@ -1290,8 +1301,7 @@
       .svc-panel-grid,
       .svc-panel-grid.cols-2 { grid-template-columns: 1fr 1fr; }
 
-      .svc2 { height: 340px; }
-      .svc2.svc2-wide { height: 340px; }
+      .svc2-hd { height: 130px; }
 
       .why-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -1328,9 +1338,6 @@
 
       .svc-panel-grid,
       .svc-panel-grid.cols-2 { grid-template-columns: 1fr; }
-
-      .svc2 { height: 300px; }
-      .svc2.svc2-wide { height: 300px; }
 
       .svc-tab { font-size: 10px; padding: 12px 14px; letter-spacing: 1.6px; }
       .svc-tab-count { width: 18px; height: 18px; font-size: 9px; }

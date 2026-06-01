@@ -39,7 +39,11 @@
         radial-gradient(circle at 10% 80%, rgba(30,58,110,.12), transparent 28rem),
         var(--navy);
       overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect x='3' y='9' width='26' height='3' rx='1.5' fill='%23dc2626'/%3E%3Ccircle cx='16' cy='10.5' r='2.8' fill='%231e3a6e'/%3E%3Crect x='14.5' y='12.8' width='3' height='3.2' fill='%231e3a6e'/%3E%3Crect x='5' y='16' width='20' height='9' rx='3.5' fill='%231e3a6e'/%3E%3Cellipse cx='7' cy='20.5' rx='3.5' ry='3.2' fill='%232a4e90'/%3E%3Crect x='25' y='18.5' width='11' height='3' rx='1.5' fill='%231e3a6e'/%3E%3Crect x='34' y='15.5' width='3' height='8' rx='1.5' fill='%23dc2626'/%3E%3Crect x='8.5' y='25' width='2' height='4' fill='%231e3a6e'/%3E%3Crect x='18.5' y='25' width='2' height='4' fill='%231e3a6e'/%3E%3Crect x='6.5' y='28' width='16' height='2' rx='1' fill='%231e3a6e'/%3E%3Crect x='13' y='18' width='6' height='2' fill='white'/%3E%3Crect x='15' y='16.5' width='2' height='5' fill='white'/%3E%3C/svg%3E") 16 20, auto;
     }
+
+    a, button, [role="button"], .btn, .float-btn, .svc-tab,
+    .svc2-cta, .learn, .book-btn, .hamburger { cursor: pointer; }
 
     body::before {
       content: "";
@@ -1081,28 +1085,34 @@
     .svc2-hd img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover;
-      filter: saturate(.2) brightness(.18);
-      mix-blend-mode: luminosity;
-      transition: filter .5s;
+      filter: saturate(.75) brightness(.55);
+      transition: filter .5s, transform .55s cubic-bezier(.25,.46,.45,.94);
     }
-    .svc2:hover .svc2-hd img { filter: saturate(.28) brightness(.24); }
+    .svc2:hover .svc2-hd img {
+      filter: saturate(.9) brightness(.65);
+      transform: scale(1.05);
+    }
 
     .svc2-hd-overlay {
       position: absolute; inset: 0; z-index: 2;
-      background: linear-gradient(135deg,
-        rgba(30,58,110,.88) 0%,
-        rgba(14,26,52,.96) 100%
+      background: linear-gradient(
+        to bottom,
+        rgba(14,26,52,.52) 0%,
+        rgba(14,26,52,.72) 60%,
+        rgba(14,26,52,.88) 100%
       );
     }
 
-    /* Service number — bold red, prominent */
+    /* Service number — prominent in header */
     .svc2-ghost-num {
-      position: absolute; bottom: 10px; right: 16px; z-index: 4;
-      font-family: var(--font-head); font-size: 72px;
-      line-height: 1; letter-spacing: -1px;
-      color: rgba(255,255,255,.09);
+      position: absolute; bottom: -8px; right: 14px; z-index: 4;
+      font-family: var(--font-head); font-size: 88px;
+      line-height: 1; letter-spacing: -2px;
+      color: rgba(255,255,255,.14);
       pointer-events: none; user-select: none;
+      transition: color .3s;
     }
+    .svc2:hover .svc2-ghost-num { color: rgba(255,255,255,.22); }
 
     /* Number badge — top-left, always readable */
     .svc2-hd::before {
@@ -1146,37 +1156,40 @@
 
     .svc2-bd h3 {
       font-family: var(--font-head);
-      font-size: 18px; font-weight: 400;
+      font-size: 20px; font-weight: 400;
       letter-spacing: 2.5px; line-height: 1.15;
       text-transform: uppercase;
       color: var(--sky);
+      transition: color .25s;
     }
-    .svc2:hover .svc2-bd h3 { color: var(--red); transition: color .25s; }
+    .svc2:hover .svc2-bd h3 { color: var(--red); }
 
-    /* Description — always visible, readable */
+    /* Description — always visible */
     .svc2-desc {
-      margin-top: 9px;
-      color: rgba(17,24,39,.68);
-      font-size: 13.5px; line-height: 1.7;
+      margin-top: 10px;
+      color: rgba(17,24,39,.76);
+      font-size: 14px; line-height: 1.72; font-weight: 400;
       flex: 1;
       max-height: none; overflow: visible; opacity: 1;
     }
 
     /* Features list — always visible */
     .svc2-feats {
-      list-style: none; display: grid; gap: 6px;
+      list-style: none; display: grid; gap: 7px;
       margin-top: 14px; padding-top: 14px;
       border-top: 1px solid rgba(30,58,110,.1);
       max-height: none; overflow: visible; opacity: 1;
     }
     .svc2-feats li {
-      display: flex; align-items: flex-start; gap: 9px;
-      color: rgba(17,24,39,.64); font-size: 13px; line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 10px;
+      color: rgba(17,24,39,.7); font-size: 13.5px;
+      line-height: 1.5; font-weight: 400;
     }
     .svc2-feats li::before {
       content: ""; flex-shrink: 0;
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--red); margin-top: 5px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red); margin-top: 4px;
+      box-shadow: 0 0 6px rgba(220,38,38,.35);
     }
 
     /* CTA — always visible */
@@ -1185,7 +1198,7 @@
       margin-top: 16px;
       color: var(--sky); font-family: var(--font-label);
       font-size: 10px; letter-spacing: 2.2px; text-transform: uppercase;
-      opacity: 1; transform: none;
+      opacity: 1; transform: none; font-weight: 700;
       transition: gap .22s, color .22s;
     }
     .svc2-cta::after { content: "→"; transition: transform .22s; }

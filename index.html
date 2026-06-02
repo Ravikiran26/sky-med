@@ -10,15 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy:  #f0f4f8;
-      --panel: #ffffff;
-      --red:   #dc2626;
-      --red2:  #ef4444;
-      --sky:   #1e3a6e;
-      --skylt: #2563eb;
-      --white: #111827;
-      --muted: #6b7280;
-      --green: #16a34a;
+      --navy:  #04111f;
+      --panel: #071628;
+      --red:   #e02828;
+      --red2:  #ff4444;
+      --sky:   #1565c8;
+      --skylt: #4a9eff;
+      --white: #eef3ff;
+      --muted: #6a8aaa;
+      --green: #3ddc84;
       --font-head:  "Bebas Neue", sans-serif;
       --font-label: "Space Mono", monospace;
       --font-body:  "Barlow", sans-serif;
@@ -101,8 +101,8 @@
     }
 
     .nav.scrolled, .nav.open {
-      background: rgba(240,244,248,.92);
-      border-bottom-color: rgba(30,58,110,.18);
+      background: rgba(4,17,31,.96);
+      border-bottom-color: rgba(255,255,255,.1);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
@@ -140,7 +140,7 @@
     }
     .nav-links a { transition: color .2s; }
     .nav-links a:hover { color: #eef3ff; }
-    .nav.scrolled .nav-links { color: rgba(17,24,39,.75); }
+    .nav.scrolled .nav-links { color: rgba(238,243,255,.75); }
     .nav.scrolled .nav-links a:hover { color: var(--sky); }
 
     .emergency-nav {
@@ -161,11 +161,11 @@
       content: ""; position: absolute; left: 11px; width: 18px; height: 1px; background: #eef3ff;
     }
     .nav.scrolled .hamburger {
-      background: rgba(30,58,110,.06); border-color: rgba(30,58,110,.18);
+      background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.15);
     }
     .nav.scrolled .hamburger span,
     .nav.scrolled .hamburger::before,
-    .nav.scrolled .hamburger::after { background: var(--sky); }
+    .nav.scrolled .hamburger::after { background: #eef3ff; }
     .hamburger::before { top: 13px; }
     .hamburger span    { top: 20px; }
     .hamburger::after  { top: 27px; }
@@ -418,9 +418,9 @@
     /* ── STATS ───────────────────────────────────────────── */
     .stats-panel {
       position: relative;
-      background: #ffffff;
+      background: var(--panel);
       border-top: 3px solid var(--red);
-      border-bottom: 1px solid rgba(30,58,110,.14);
+      border-bottom: 1px solid rgba(255,255,255,.08);
       box-shadow: 0 -4px 40px rgba(0,0,0,.12);
     }
 
@@ -428,7 +428,7 @@
 
     .stat {
       padding: 44px 24px; text-align: center;
-      border-left: 1px solid rgba(30,58,110,.14);
+      border-left: 1px solid rgba(255,255,255,.08);
     }
     .stat:first-child { border-left: 0; }
 
@@ -448,9 +448,9 @@
     /* ── TICKER ──────────────────────────────────────────── */
     .ticker {
       overflow: hidden;
-      border-top: 1px solid rgba(30,58,110,.18);
-      border-bottom: 1px solid rgba(30,58,110,.18);
-      background: rgba(240,244,248,.82);
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(7,22,40,.95);
     }
 
     .ticker-track {
@@ -460,7 +460,7 @@
 
     .ticker-item {
       padding: 18px 20px; white-space: nowrap;
-      color: rgba(17,24,39,.78);
+      color: rgba(238,243,255,.72);
       font-family: var(--font-label); font-size: 11px; letter-spacing: 2.8px; text-transform: uppercase;
     }
 
@@ -478,14 +478,14 @@
     .service-card {
       display: flex; flex-direction: column;
       overflow: hidden; position: relative;
-      background: #ffffff;
-      border: 1px solid rgba(30,58,110,.10);
-      box-shadow: 0 4px 28px rgba(30,58,110,.09);
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 4px 28px rgba(0,0,0,.25);
       transition: transform .32s cubic-bezier(.25,.46,.45,.94), box-shadow .32s;
     }
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 24px 64px rgba(30,58,110,.16), 0 4px 12px rgba(0,0,0,.08);
+      box-shadow: 0 24px 64px rgba(0,0,0,.45), 0 4px 12px rgba(0,0,0,.2);
     }
 
     /* Photo header */
@@ -566,8 +566,8 @@
 
     .timeline-card {
       padding: 28px 30px; min-height: 158px;
-      background: #ffffff; border: 1px solid rgba(30,58,110,.12);
-      box-shadow: 0 2px 20px rgba(30,58,110,.07), 0 1px 4px rgba(0,0,0,.05);
+      background: var(--panel); border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 2px 20px rgba(0,0,0,.25), 0 1px 4px rgba(0,0,0,.1);
     }
     .timeline-card.left  { grid-column: 1; text-align: right; }
     .timeline-card.right { grid-column: 3; }
@@ -592,7 +592,7 @@
     }
 
     .timeline-card p {
-      margin-top: 10px; color: rgba(17,24,39,.62); font-size: 15px; line-height: 1.65;
+      margin-top: 10px; color: rgba(238,243,255,.62); font-size: 15px; line-height: 1.65;
     }
 
     /* ── FLEET ───────────────────────────────────────────── */
@@ -604,7 +604,7 @@
     /* Legacy .fleet-card kept for potential fallback, hidden by flip card */
     .fleet-card {
       padding: 30px; position: relative; overflow: hidden;
-      background: rgba(255,255,255,.82); border: 1px solid rgba(30,58,110,.13);
+      background: var(--panel); border: 1px solid rgba(255,255,255,.08);
       transition: border-color .25s, box-shadow .25s, transform .25s;
     }
     .fleet-card:hover {
@@ -628,13 +628,13 @@
     }
 
     .fleet-card p {
-      margin-top: 12px; color: rgba(17,24,39,.62); font-size: 16px; line-height: 1.6;
+      margin-top: 12px; color: rgba(238,243,255,.65); font-size: 16px; line-height: 1.6;
     }
 
     .specs {
       display: grid; gap: 10px; margin-top: 22px; padding-top: 20px;
-      border-top: 1px solid rgba(30,58,110,.12);
-      color: rgba(17,24,39,.76);
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: rgba(238,243,255,.76);
       font-family: var(--font-label); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
     }
     .specs span { display: flex; align-items: center; gap: 8px; }
@@ -654,12 +654,12 @@
     .card-front, .card-back {
       position: absolute; inset: 0; backface-visibility: hidden;
       -webkit-backface-visibility: hidden; padding: 30px;
-      background: #ffffff; border: 1px solid rgba(30,58,110,.12);
-      box-shadow: 0 4px 24px rgba(30,58,110,.09);
+      background: var(--panel); border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 4px 24px rgba(0,0,0,.3);
     }
     .card-back {
       transform: rotateY(180deg);
-      background: #f0f6ff; border-color: rgba(30,58,110,.28);
+      background: #091828; border-color: rgba(255,255,255,.12);
       display: flex; flex-direction: column;
     }
     .card-front .badge { position: absolute; top: 22px; right: 22px; }
@@ -670,7 +670,7 @@
       font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
     }
     .card-front p {
-      margin-top: 10px; color: rgba(17,24,39,.62);
+      margin-top: 10px; color: rgba(238,243,255,.65);
       font-size: 15px; line-height: 1.65;
     }
     .card-back-title {
@@ -680,7 +680,7 @@
     }
     .equip-list {
       list-style: none; display: grid; gap: 9px; flex: 1;
-      color: rgba(17,24,39,.78); font-size: 14px; font-family: var(--font-body);
+      color: rgba(238,243,255,.78); font-size: 14px; font-family: var(--font-body);
     }
     .equip-list li { display: flex; align-items: center; gap: 8px; }
     .equip-list li::before {
@@ -729,15 +729,15 @@
 
     .map-panel {
       min-height: 520px; position: relative;
-      background: rgba(255,255,255,.66); border: 1px solid rgba(30,58,110,.15); overflow: hidden;
+      background: rgba(7,22,40,.8); border: 1px solid rgba(255,255,255,.08); overflow: hidden;
     }
 
     .map-panel canvas { width: 100%; height: 100%; display: block; }
 
     .globe-tooltip {
       position: absolute; pointer-events: none;
-      background: rgba(240,244,248,.92); border: 1px solid rgba(30,58,110,.44);
-      color: var(--white); font-family: var(--font-label);
+      background: rgba(4,17,31,.95); border: 1px solid rgba(74,158,255,.4);
+      color: #eef3ff; font-family: var(--font-label);
       font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
       padding: 7px 13px; transform: translate(-50%, -130%);
       opacity: 0; transition: opacity .2s; white-space: nowrap;
@@ -754,8 +754,8 @@
 
     .coverage-copy {
       padding: 38px; display: flex; flex-direction: column; justify-content: center;
-      background: #ffffff; border: 1px solid rgba(30,58,110,.12);
-      box-shadow: 0 2px 20px rgba(30,58,110,.07);
+      background: var(--panel); border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 2px 20px rgba(0,0,0,.25);
     }
 
     .coverage-copy h3 {
@@ -766,7 +766,7 @@
 
     .coverage-list {
       display: grid; gap: 16px; margin-top: 28px;
-      list-style: none; color: rgba(17,24,39,.72); font-size: 18px;
+      list-style: none; color: rgba(238,243,255,.72); font-size: 18px;
     }
     .coverage-list li { display: flex; align-items: center; gap: 12px; }
     .coverage-list span {
@@ -797,17 +797,17 @@
       color: var(--muted); text-transform: uppercase; margin-bottom: 14px;
     }
     .route-map-panel {
-      background: rgba(255,255,255,.66); border: 1px solid rgba(30,58,110,.14); padding: 20px;
+      background: rgba(7,22,40,.8); border: 1px solid rgba(255,255,255,.08); padding: 20px;
     }
     .rmap-svg { width: 100%; display: block; }
-    .rmap-india { fill: rgba(30,58,110,.09); stroke: rgba(30,58,110,.45); stroke-width: 2.5; }
+    .rmap-india { fill: rgba(74,158,255,.08); stroke: rgba(74,158,255,.35); stroke-width: 2.5; }
     .rline {
       fill: none; stroke: rgba(30,58,110,.65); stroke-width: 2;
       stroke-dasharray: 8 6; stroke-linecap: round;
     }
     .rcity-dot { fill: var(--red2); filter: url(#rcityGlow); }
     .rcity-label {
-      fill: rgba(17,24,39,.85); font-family: var(--font-label);
+      fill: rgba(238,243,255,.85); font-family: var(--font-label);
       font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0;
     }
 
@@ -860,8 +860,8 @@
     /* ── FOOTER ──────────────────────────────────────────── */
     .footer {
       padding: 60px 0 0;
-      background: rgba(255,255,255,.88);
-      border-top: 1px solid rgba(30,58,110,.14);
+      background: #020c17;
+      border-top: 1px solid rgba(255,255,255,.08);
     }
 
     .footer-grid {
@@ -870,7 +870,7 @@
     }
 
     .footer p, .footer a, .footer li {
-      color: rgba(17,24,39,.56); font-size: 15px; line-height: 1.75;
+      color: rgba(238,243,255,.52); font-size: 15px; line-height: 1.75;
     }
     .footer a:hover { color: var(--sky); transition: color .2s; }
 
@@ -893,16 +893,16 @@
     .social { display: flex; gap: 10px; margin-top: 18px; }
     .social a {
       width: 36px; height: 36px; display: grid; place-items: center;
-      border: 1px solid rgba(30,58,110,.18); color: var(--skylt);
+      border: 1px solid rgba(255,255,255,.12); color: var(--skylt);
       font-family: var(--font-label); font-size: 11px;
       transition: border-color .2s, color .2s;
     }
-    .social a:hover { border-color: rgba(30,58,110,.5); color: var(--sky); }
+    .social a:hover { border-color: rgba(74,158,255,.5); color: var(--sky); }
 
     .bottom-bar {
-      padding: 20px 0; border-top: 1px solid rgba(30,58,110,.13);
+      padding: 20px 0; border-top: 1px solid rgba(255,255,255,.08);
       display: flex; align-items: center; justify-content: space-between; gap: 18px;
-      color: rgba(17,24,39,.42);
+      color: rgba(238,243,255,.35);
       font-family: var(--font-label); font-size: 10px;
       letter-spacing: 1.2px; text-transform: uppercase;
     }
@@ -975,7 +975,7 @@
     /* ── SERVICES TABS ──────────────────────────────────── */
     .svc-tabs-nav {
       display: flex; flex-wrap: nowrap; overflow-x: auto;
-      border-bottom: 2px solid rgba(30,58,110,.12);
+      border-bottom: 2px solid rgba(255,255,255,.1);
       gap: 0; margin-top: 52px;
       scrollbar-width: none;
     }
@@ -1003,7 +1003,7 @@
     .svc-tab-count {
       display: inline-flex; align-items: center; justify-content: center;
       width: 20px; height: 20px; border-radius: 50%;
-      background: rgba(30,58,110,.10);
+      background: rgba(255,255,255,.08);
       font-size: 10px; letter-spacing: 0;
       color: var(--muted);
       transition: background .22s, color .22s;
@@ -1036,27 +1036,27 @@
 
     /* ── SERVICES SECTION ────────────────────────────────── */
     #services {
-      background: #f0f4f9;
+      background: var(--navy);
     }
-    #services .svc-tabs-nav  { border-bottom-color: rgba(30,58,110,.16); margin-top: 44px; }
+    #services .svc-tabs-nav  { border-bottom-color: rgba(255,255,255,.1); margin-top: 44px; }
     #services .svc-tab       { color: var(--muted); }
     #services .svc-tab:hover:not(.active) { color: var(--sky); }
     #services .svc-tab.active { color: var(--sky); border-bottom-color: var(--sky); }
-    #services .svc-tab-count { background: rgba(30,58,110,.08); color: var(--muted); }
-    #services .svc-tab.active .svc-tab-count { background: rgba(30,58,110,.15); color: var(--sky); }
+    #services .svc-tab-count { background: rgba(255,255,255,.06); color: var(--muted); }
+    #services .svc-tab.active .svc-tab-count { background: rgba(74,158,255,.15); color: var(--sky); }
 
     /* ── SVC2 CARD — classic two-tone ────────────────────── */
     .svc2 {
       display: flex; flex-direction: column;
       position: relative; overflow: hidden; height: auto;
-      background: #ffffff;
-      border: 1px solid rgba(30,58,110,.11);
-      box-shadow: 0 2px 20px rgba(30,58,110,.07);
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 2px 20px rgba(0,0,0,.2);
       transition: transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
     }
     .svc2:hover {
       transform: translateY(-7px);
-      box-shadow: 0 20px 52px rgba(30,58,110,.14), 0 2px 8px rgba(0,0,0,.06);
+      box-shadow: 0 20px 52px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.3);
     }
 
     /* ── Header: vivid photo ─────────────────────────────── */
@@ -1142,7 +1142,7 @@
       position: static;
       padding: 22px 22px 20px;
       flex: 1; display: flex; flex-direction: column;
-      background: #ffffff;
+      background: var(--panel);
       border-top: none;
     }
 
@@ -1151,7 +1151,7 @@
       font-size: 20px; font-weight: 400;
       letter-spacing: 2.5px; line-height: 1.15;
       text-transform: uppercase;
-      color: var(--sky);
+      color: var(--skylt);
       transition: color .25s;
     }
     .svc2:hover .svc2-bd h3 { color: var(--red); }
@@ -1159,7 +1159,7 @@
     /* Description — always visible */
     .svc2-desc {
       margin-top: 10px;
-      color: rgba(17,24,39,.76);
+      color: rgba(238,243,255,.72);
       font-size: 14px; line-height: 1.72; font-weight: 400;
       flex: 1;
       max-height: none; overflow: visible; opacity: 1;
@@ -1169,12 +1169,12 @@
     .svc2-feats {
       list-style: none; display: grid; gap: 7px;
       margin-top: 14px; padding-top: 14px;
-      border-top: 1px solid rgba(30,58,110,.1);
+      border-top: 1px solid rgba(255,255,255,.1);
       max-height: none; overflow: visible; opacity: 1;
     }
     .svc2-feats li {
       display: flex; align-items: flex-start; gap: 10px;
-      color: rgba(17,24,39,.7); font-size: 13.5px;
+      color: rgba(238,243,255,.68); font-size: 13.5px;
       line-height: 1.5; font-weight: 400;
     }
     .svc2-feats li::before {
@@ -1224,7 +1224,7 @@
     .svc-modal-box {
       position: relative; z-index: 1;
       width: min(820px, 100%);
-      background: #ffffff;
+      background: var(--panel);
       display: grid; grid-template-columns: 1fr 1.4fr;
       max-height: 90vh; overflow: hidden;
       box-shadow: 0 40px 100px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08);
@@ -1264,6 +1264,7 @@
       padding: 38px 34px 32px; overflow-y: auto;
       display: flex; flex-direction: column;
       border-left: 4px solid var(--red);
+      background: var(--panel);
     }
 
     .svc-modal-tag {
@@ -1274,22 +1275,22 @@
     .svc-modal-title {
       font-family: var(--font-head); font-size: 28px; font-weight: 400;
       letter-spacing: 2px; text-transform: uppercase;
-      color: var(--sky); line-height: 1.1;
+      color: var(--skylt); line-height: 1.1;
     }
 
     .svc-modal-desc {
-      margin-top: 14px; color: rgba(17,24,39,.74);
+      margin-top: 14px; color: rgba(238,243,255,.72);
       font-size: 15px; line-height: 1.78; font-weight: 400;
     }
 
     .svc-modal-feats {
       margin-top: 20px; padding-top: 18px;
-      border-top: 1px solid rgba(30,58,110,.12);
+      border-top: 1px solid rgba(255,255,255,.1);
       list-style: none; display: grid; gap: 9px;
     }
     .svc-modal-feats li {
       display: flex; align-items: flex-start; gap: 11px;
-      color: rgba(17,24,39,.72); font-size: 14px; line-height: 1.5; font-weight: 400;
+      color: rgba(238,243,255,.68); font-size: 14px; line-height: 1.5; font-weight: 400;
     }
     .svc-modal-feats li::before {
       content: ""; flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
@@ -1374,6 +1375,232 @@
     .why-section .section-title { color: #eef3ff; }
     .why-section .section-copy  { color: rgba(238,243,255,.55); }
 
+    /* ── ABOUT SECTION ──────────────────────────────────── */
+    #about { background: var(--navy); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center; margin-top: 0;
+    }
+    .about-body {
+      margin-top: 18px; color: var(--muted);
+      font-size: 16px; line-height: 1.75;
+    }
+    .about-pillars {
+      display: flex; gap: 36px; margin-top: 38px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .about-pillar { display: flex; flex-direction: column; gap: 5px; }
+    .pillar-num {
+      font-family: var(--font-head); font-size: 42px; line-height: 1;
+      letter-spacing: 2px; color: var(--red2);
+    }
+    .pillar-label {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+    }
+    .about-visual { position: relative; }
+    .about-main-photo {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      filter: saturate(.9) brightness(.78);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .about-cert-strip {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px;
+    }
+    .about-cert-badge {
+      padding: 7px 14px;
+      border: 1px solid rgba(74,158,255,.28);
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--skylt);
+    }
+
+    /* ── TESTIMONIALS ────────────────────────────────────── */
+    .testi-section {
+      padding: 112px 0; position: relative;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(224,40,40,.06), transparent 30rem),
+        var(--navy);
+    }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 22px; margin-top: 52px;
+    }
+    .testi-card {
+      padding: 32px 28px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.08);
+      border-top: 3px solid var(--red);
+      display: flex; flex-direction: column;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .testi-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    }
+    .testi-stars {
+      display: flex; gap: 3px; margin-bottom: 18px;
+      color: var(--red2); font-size: 16px;
+    }
+    .testi-text {
+      color: rgba(238,243,255,.78); font-size: 15px;
+      line-height: 1.78; flex: 1;
+      font-style: italic;
+    }
+    .testi-text::before { content: '\201C'; }
+    .testi-text::after  { content: '\201D'; }
+    .testi-divider {
+      width: 40px; height: 2px;
+      background: var(--red); margin: 22px 0;
+    }
+    .testi-name {
+      font-family: var(--font-label); font-size: 10px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--skylt); margin-bottom: 4px;
+    }
+    .testi-detail {
+      color: var(--muted); font-size: 12px;
+    }
+
+    /* ── FAQ ─────────────────────────────────────────────── */
+    .faq-section {
+      padding: 112px 0;
+      background: var(--panel);
+    }
+    .faq-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 52px; align-items: start;
+    }
+    .faq-item {
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+    .faq-item[open] { border-color: rgba(224,40,40,.35); }
+    .faq-q {
+      padding: 20px 24px;
+      font-family: var(--font-label); font-size: 11px;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--white); cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      list-style: none; user-select: none;
+      transition: color .2s, background .2s;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::after {
+      content: '+'; flex-shrink: 0;
+      font-family: var(--font-head); font-size: 22px;
+      color: var(--red); transition: transform .3s;
+    }
+    .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+    .faq-item[open] .faq-q { color: var(--red2); background: rgba(224,40,40,.05); }
+    .faq-a {
+      padding: 0 24px 22px;
+      color: var(--muted); font-size: 15px; line-height: 1.75;
+    }
+
+    /* ── CONTACT FORM ────────────────────────────────────── */
+    .contact-section {
+      padding: 112px 0;
+      background: var(--navy);
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1.2fr 1fr;
+      gap: 64px; margin-top: 52px; align-items: start;
+    }
+    .contact-form {
+      display: grid; gap: 16px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%; padding: 14px 18px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--white); font-family: var(--font-body);
+      font-size: 15px; outline: none;
+      transition: border-color .22s;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: var(--muted); }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus { border-color: rgba(224,40,40,.55); }
+    .contact-form select {
+      appearance: none; -webkit-appearance: none;
+      cursor: pointer; color: var(--white);
+    }
+    .contact-form select option { background: var(--panel); color: var(--white); }
+    .contact-form textarea { min-height: 130px; resize: vertical; }
+    .contact-submit {
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color: #eef3ff; font-family: var(--font-label);
+      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+      border: none; cursor: pointer; width: 100%;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .contact-submit:hover {
+      box-shadow: 0 0 40px rgba(224,40,40,.45);
+      transform: translateY(-2px);
+    }
+    .contact-info-panel { display: flex; flex-direction: column; gap: 28px; }
+    .contact-info-item {
+      display: flex; gap: 18px; align-items: flex-start;
+    }
+    .contact-info-ic {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(224,40,40,.12);
+      border: 1px solid rgba(224,40,40,.28);
+      display: grid; place-items: center;
+    }
+    .contact-info-ic svg { width: 20px; height: 20px; stroke: var(--red2); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-info-label {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 5px;
+    }
+    .contact-info-value {
+      color: var(--white); font-size: 15px; line-height: 1.6;
+    }
+    .contact-info-value a { color: var(--skylt); transition: color .2s; }
+    .contact-info-value a:hover { color: var(--red2); }
+    .contact-map-note {
+      margin-top: 10px; padding: 18px 22px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: var(--panel);
+    }
+    .contact-map-note p {
+      font-size: 14px; color: var(--muted); line-height: 1.6;
+    }
+
+    /* ── PARTNER LOGOS ───────────────────────────────────── */
+    .partners-section {
+      padding: 56px 0;
+      background: var(--panel);
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .partners-label {
+      text-align: center; margin-bottom: 36px;
+      font-family: var(--font-label); font-size: 10px;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--muted);
+    }
+    .partners-row {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: center; gap: 12px;
+    }
+    .partner-badge {
+      padding: 12px 24px;
+      border: 1px solid rgba(255,255,255,.1);
+      font-family: var(--font-label); font-size: 11px;
+      letter-spacing: 2.2px; text-transform: uppercase;
+      color: rgba(238,243,255,.45);
+      transition: border-color .25s, color .25s;
+    }
+    .partner-badge:hover { border-color: rgba(74,158,255,.35); color: rgba(238,243,255,.72); }
+
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 920px) {
       .nav-inner { height: 70px; }
@@ -1400,7 +1627,7 @@
 
       .services-grid, .fleet-grid, .stats-grid { grid-template-columns: 1fr; }
 
-      .stat, .stat:first-child { border-left: 0; border-top: 1px solid rgba(30,58,110,.14); }
+      .stat, .stat:first-child { border-left: 0; border-top: 1px solid rgba(255,255,255,.08); }
       .stat:first-child { border-top: 0; }
 
       .timeline::before { left: 9px; }
@@ -1420,6 +1647,11 @@
       .svc2-hd { height: 130px; }
 
       .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 44px; }
+      .testi-grid { grid-template-columns: 1fr 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+      .form-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 620px) {
@@ -1459,6 +1691,7 @@
       .svc-tab-count { width: 18px; height: 18px; font-size: 9px; }
 
       .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .testi-grid { grid-template-columns: 1fr; }
     }
 
     /* ── PHOTO ENHANCEMENTS ──────────────────────────────── */
@@ -1548,11 +1781,12 @@
         </span>
       </a>
       <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#fleet">Fleet</a>
-        <a href="#process">How It Works</a>
         <a href="#coverage">Coverage</a>
-        <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact-form">Contact</a>
       </div>
       <a class="emergency-nav btn" href="tel:18006426779">&#9889; Emergency</a>
       <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false"><span></span></button>
@@ -1666,6 +1900,62 @@
         <span class="ticker-item">NABH Compliant</span><span class="diamond"></span>
         <span class="ticker-item">24/7 Operations</span><span class="diamond"></span>
         <span class="ticker-item">Bed to Bed Transfer</span><span class="diamond"></span>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="shell">
+        <div class="about-grid">
+          <div class="about-copy">
+            <div class="eyebrow">About NIAMS</div>
+            <h2 class="section-title">India's Premier<br>Air Medical Service</h2>
+            <p class="section-copy">NL International Air Medical Services (NIAMS), operating under NL Curantis International Pvt Ltd, is India's trusted partner for critical care air transport — combining aviation precision with hospital-grade medical capability.</p>
+            <p class="about-body">From life-threatening trauma to complex neonatal transfers, our DGCA-licensed fleet and specialist medical crews have safely completed 1,800+ missions across 32+ Indian cities and international destinations. We operate our own aircraft — no brokers, no delays.</p>
+            <div class="about-pillars">
+              <div class="about-pillar">
+                <span class="pillar-num">1800+</span>
+                <span class="pillar-label">Missions Completed</span>
+              </div>
+              <div class="about-pillar">
+                <span class="pillar-num">32+</span>
+                <span class="pillar-label">Cities Covered</span>
+              </div>
+              <div class="about-pillar">
+                <span class="pillar-num">24/7</span>
+                <span class="pillar-label">Operations Centre</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-visual">
+            <img class="about-main-photo"
+              src="https://images.unsplash.com/photo-1629155514090-072270d9c981?auto=format&fit=crop&w=800&q=80"
+              alt="NIAMS air ambulance helicopter ready for mission" loading="lazy">
+            <div class="about-cert-strip">
+              <span class="about-cert-badge">DGCA Licensed</span>
+              <span class="about-cert-badge">ISO 9001:2015</span>
+              <span class="about-cert-badge">NABH Compliant</span>
+              <span class="about-cert-badge">CAMTS Accredited</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS / TRUST LOGOS -->
+    <section class="partners-section">
+      <div class="shell">
+        <p class="partners-label">Recognised &amp; Partnered With</p>
+        <div class="partners-row">
+          <span class="partner-badge">DGCA India</span>
+          <span class="partner-badge">AIIMS Delhi</span>
+          <span class="partner-badge">Apollo Hospitals</span>
+          <span class="partner-badge">Fortis Healthcare</span>
+          <span class="partner-badge">Medanta</span>
+          <span class="partner-badge">Max Healthcare</span>
+          <span class="partner-badge">Narayana Health</span>
+          <span class="partner-badge">NABH</span>
+        </div>
       </div>
     </section>
 
@@ -2151,6 +2441,42 @@
       </div>
     </section>
 
+    <!-- TESTIMONIALS -->
+    <section class="testi-section" id="testimonials">
+      <div class="shell">
+        <div class="eyebrow">Patient Stories</div>
+        <h2 class="section-title">Trusted When It Matters Most</h2>
+        <p class="section-copy">Families and hospitals across India have relied on NIAMS at their most critical moments.</p>
+        <div class="testi-grid">
+
+          <div class="testi-card">
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testi-text">Our father suffered a massive cardiac arrest in Jaipur. NIAMS had a fully equipped aircraft and cardiologist on site within 35 minutes. He was at AIIMS Delhi in 90 minutes flat. The clinical team never stopped monitoring him for a single second.</p>
+            <div class="testi-divider"></div>
+            <p class="testi-name">Sharma Family</p>
+            <p class="testi-detail">Cardiac Emergency — Jaipur to New Delhi</p>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testi-text">As a hospital administrator, I've coordinated dozens of inter-hospital transfers. NIAMS is the only air ambulance provider I trust unconditionally. Their clinical handover protocols are the most thorough I've encountered in 18 years of healthcare operations.</p>
+            <div class="testi-divider"></div>
+            <p class="testi-name">Senior Administrator</p>
+            <p class="testi-detail">Multi-Specialty Hospital, Bengaluru</p>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testi-text">My mother needed urgent repatriation from Dubai after a stroke. NIAMS coordinated everything — embassy documentation, airline stretcher approval, ground ambulances at both ends. Not once did we feel alone in that process.</p>
+            <div class="testi-divider"></div>
+            <p class="testi-name">NRI Family</p>
+            <p class="testi-detail">International Repatriation — Dubai to Mumbai</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- HOW IT WORKS -->
     <section class="section" id="process">
       <div class="shell">
@@ -2429,6 +2755,129 @@
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="shell">
+        <div class="eyebrow">Common Questions</div>
+        <h2 class="section-title">Frequently Asked<br>Questions</h2>
+        <p class="section-copy">Everything you need to know before making the call.</p>
+        <div class="faq-grid">
+
+          <details class="faq-item">
+            <summary class="faq-q">How quickly can NIAMS deploy an aircraft?</summary>
+            <div class="faq-a">Our average deployment time is 18 minutes from call confirmation to aircraft wheels-up. Our 24/7 command centre triages every call immediately and scrambles the nearest available aircraft with the right medical crew for your patient's condition.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">What medical conditions can be transported?</summary>
+            <div class="faq-a">We transport all critical care conditions including cardiac emergencies, stroke, multi-trauma, respiratory failure, neonatal and pediatric critical illness, post-surgical transfers, and patients requiring ECMO support. Our medical directors assess each case individually.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Does health insurance cover air ambulance services?</summary>
+            <div class="faq-a">Many health insurance policies in India now cover air ambulance transport. We assist with all insurance documentation and work directly with TPA desks. We recommend calling us immediately — we handle the paperwork while the aircraft is en route.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">What cities and regions does NIAMS cover?</summary>
+            <div class="faq-a">We cover 32+ cities across India including Delhi, Mumbai, Bangalore, Chennai, Kolkata, Hyderabad, Pune, Ahmedabad, and all major Tier-2 cities. International operations are available on request for repatriation to and from any country.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">What medical staff are on board?</summary>
+            <div class="faq-a">Every NIAMS mission is staffed with a minimum of one flight physician and one flight nurse or paramedic. For specialist transfers (neonatal, ECMO, organ retrieval), we deploy condition-specific teams including neonatologists, perfusionists, and retrieval surgeons.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">How do I request an air ambulance?</summary>
+            <div class="faq-a">Call our 24/7 emergency line: 1800-NIAMS-911. Have ready: patient name, current location, diagnosis/condition, receiving hospital if known. Our team handles everything else — aircraft, crew, ground ambulances, documentation, and hospital coordination.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">What equipment is on board every aircraft?</summary>
+            <div class="faq-a">All NIAMS aircraft carry: ICU-grade ventilator, 12-lead cardiac monitor and defibrillator, IV infusion pumps, portable oxygen, suction unit, full drug kit, and trauma supplies. Specialist equipment (neonatal incubator, ECMO circuit, portable ultrasound) is added based on the clinical requirement.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Can NIAMS assist with non-emergency medical travel?</summary>
+            <div class="faq-a">Yes. Through our Concierge Medical Travel service, we assist with hospital selection, specialist appointments, premium medical transport, accommodation, visa coordination, and post-treatment repatriation — a complete end-to-end service for planned medical journeys.</div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="contact-section" id="contact-form">
+      <div class="shell">
+        <div class="eyebrow">Non-Emergency Enquiries</div>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-copy">For non-emergency queries, corporate tie-ups, hospital partnerships, and concierge travel planning.</p>
+        <div class="contact-grid">
+          <form class="contact-form" onsubmit="handleContactForm(event)">
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Full Name" required>
+              <input type="tel" name="phone" placeholder="Phone Number" required>
+            </div>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <select name="enquiry" required>
+              <option value="" disabled selected>Type of Enquiry</option>
+              <option>Air Ambulance Transfer</option>
+              <option>Medical Repatriation</option>
+              <option>Corporate / Hospital Partnership</option>
+              <option>Event Medical Coverage</option>
+              <option>Concierge Medical Travel</option>
+              <option>Insurance Query</option>
+              <option>Other</option>
+            </select>
+            <textarea name="message" placeholder="Describe your requirement or question..."></textarea>
+            <button type="submit" class="contact-submit">Send Enquiry</button>
+          </form>
+          <div class="contact-info-panel">
+            <div class="contact-info-item">
+              <div class="contact-info-ic">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.45-.45a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <p class="contact-info-label">24/7 Emergency Line</p>
+                <p class="contact-info-value"><a href="tel:18006426779">1800-NIAMS-911</a></p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-ic">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <p class="contact-info-label">Operations Email</p>
+                <p class="contact-info-value"><a href="mailto:ops@nlcurantis.in">ops@nlcurantis.in</a></p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-ic">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p class="contact-info-label">Registered Office</p>
+                <p class="contact-info-value">NL Curantis International Pvt Ltd<br>India</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-ic">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor" stroke="none"/></svg>
+              </div>
+              <div>
+                <p class="contact-info-label">WhatsApp</p>
+                <p class="contact-info-value"><a href="https://wa.me/918006426779">+91 800 642 6779</a></p>
+              </div>
+            </div>
+            <div class="contact-map-note">
+              <p>For life-threatening emergencies, do not use this form. Call <strong style="color:#ff4444">1800-NIAMS-911</strong> immediately — our command centre is staffed 24/7/365.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- EMERGENCY CTA -->
     <section class="section cta" id="contact">
       <div class="sonar-rings" aria-hidden="true">
@@ -2465,9 +2914,8 @@
           <p style="margin-top:18px; max-width:270px; line-height:1.7">ICU-equipped air ambulance command across India and internationally.</p>
           <span class="footer-dgca">DGCA Licensed</span>
           <div class="social">
-            <a href="#" aria-label="LinkedIn">IN</a>
-            <a href="#" aria-label="Twitter / X">X</a>
-            <a href="#" aria-label="YouTube">YT</a>
+            <a href="https://wa.me/918006426779" aria-label="WhatsApp">WA</a>
+            <a href="mailto:ops@nlcurantis.in" aria-label="Email">EM</a>
           </div>
         </div>
         <div>
@@ -2982,6 +3430,15 @@
 
       resize();
       window.addEventListener("resize", resize);
+    }
+
+    function handleContactForm(e) {
+      e.preventDefault();
+      var btn = e.target.querySelector('.contact-submit');
+      btn.textContent = 'Enquiry Sent — We\'ll Contact You Shortly';
+      btn.style.background = 'var(--green)';
+      btn.style.color = '#03120a';
+      btn.disabled = true;
     }
 
     // Init after DOM load

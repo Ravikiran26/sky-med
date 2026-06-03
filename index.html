@@ -170,6 +170,87 @@
     .hamburger span    { top: 20px; }
     .hamburger::after  { top: 27px; }
 
+    /* ── NAV DROPDOWN ────────────────────────────────────── */
+    .nav-item {
+      position: relative;
+      display: flex; align-items: center;
+    }
+    .nav-item > a {
+      display: flex; align-items: center; gap: 5px;
+    }
+    .nav-caret {
+      width: 10px; height: 6px; flex-shrink: 0;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform .22s ease;
+    }
+    .nav-item:hover .nav-caret,
+    .nav-item.open .nav-caret { transform: rotate(180deg); }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 22px);
+      left: 50%; transform: translateX(-50%) translateY(-6px);
+      width: 700px;
+      background: rgba(4,17,31,.98);
+      border: 1px solid rgba(255,255,255,.1);
+      border-top: 2px solid var(--red);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 28px 28px 24px;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 0;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 200;
+      box-shadow: 0 28px 64px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04);
+    }
+    .nav-item:hover .nav-dropdown,
+    .nav-item:focus-within .nav-dropdown {
+      opacity: 1; pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-col {
+      display: flex; flex-direction: column;
+      padding: 0 20px 0 0;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .dropdown-col:last-child { border-right: none; padding-right: 0; padding-left: 20px; }
+    .dropdown-col:first-child { padding-left: 0; }
+    .dropdown-col:not(:first-child) { padding-left: 20px; }
+
+    .dropdown-cat {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--red2); margin-bottom: 12px; padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .dropdown-cat-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--red); flex-shrink: 0;
+      box-shadow: 0 0 6px var(--red);
+    }
+
+    .nav-dropdown a {
+      font-family: var(--font-body); font-size: 13px;
+      letter-spacing: .2px; text-transform: none;
+      color: rgba(238,243,255,.58);
+      padding: 6px 0; line-height: 1.45;
+      transition: color .16s, padding-left .16s;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .nav-dropdown a::before {
+      content: "›"; flex-shrink: 0; margin-top: -1px;
+      color: var(--red); opacity: 0;
+      transition: opacity .16s;
+    }
+    .nav-dropdown a:hover {
+      color: #eef3ff; padding-left: 4px;
+    }
+    .nav-dropdown a:hover::before { opacity: 1; }
+
     /* ── HERO ────────────────────────────────────────────── */
     .hero {
       min-height: 100vh; display: grid; align-items: center;
@@ -1603,6 +1684,29 @@
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 920px) {
+      /* Mobile: hide hover dropdown, show tap-toggle inline */
+      .nav-dropdown {
+        position: static; transform: none;
+        width: 100%; opacity: 1; pointer-events: auto;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.08);
+        border-top: 2px solid var(--red);
+        backdrop-filter: none; box-shadow: none;
+        padding: 14px 16px;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        display: none;
+        transition: none;
+        margin-top: 10px;
+      }
+      .nav-item.open .nav-dropdown { display: grid; }
+      .nav-item { flex-direction: column; align-items: flex-start; width: 100%; }
+      .nav-item > a { width: 100%; justify-content: space-between; }
+      .dropdown-col { border-right: none; padding: 0 !important; }
+      .nav-dropdown a { font-size: 12px; padding: 5px 0; }
+    }
+
+    @media (max-width: 920px) {
       .nav-inner { height: 70px; }
       .hamburger { display: block; }
 
@@ -1782,7 +1886,47 @@
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
-        <a href="#services">Services</a>
+
+        <!-- Services mega dropdown -->
+        <div class="nav-item" id="navServices">
+          <a href="#services">
+            Services
+            <svg class="nav-caret" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+          </a>
+          <div class="nav-dropdown">
+
+            <div class="dropdown-col">
+              <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Air Transport</span>
+              <a href="#services" data-tab="tab-air">Domestic Air Ambulance</a>
+              <a href="#services" data-tab="tab-air">International Repatriation</a>
+              <a href="#services" data-tab="tab-air">Air Medical Escort</a>
+              <a href="#services" data-tab="tab-air">Stretcher Service</a>
+              <a href="#services" data-tab="tab-air">Business Class Transfer</a>
+            </div>
+
+            <div class="dropdown-col">
+              <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Specialized Medical</span>
+              <a href="#services" data-tab="tab-med">Neonatal &amp; Pediatric</a>
+              <a href="#services" data-tab="tab-med">ECMO Initiation &amp; Air Lift</a>
+              <a href="#services" data-tab="tab-med">Organ Retrieval</a>
+              <a href="#services" data-tab="tab-med">HEMS</a>
+            </div>
+
+            <div class="dropdown-col">
+              <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Ground &amp; Response</span>
+              <a href="#services" data-tab="tab-gnd">Critical Care Ground</a>
+              <a href="#services" data-tab="tab-gnd">Event Medical Coverage</a>
+              <a href="#services" data-tab="tab-gnd">Disaster Response</a>
+            </div>
+
+            <div class="dropdown-col">
+              <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Concierge</span>
+              <a href="#services" data-tab="tab-con">Concierge Medical Travel</a>
+            </div>
+
+          </div>
+        </div><!-- /.nav-item -->
+
         <a href="#fleet">Fleet</a>
         <a href="#coverage">Coverage</a>
         <a href="#faq">FAQ</a>
@@ -3002,21 +3146,51 @@
     });
 
     // ── Services tab switching ──────────────────────────────
+    function switchTab(tabId) {
+      var tabs   = document.querySelectorAll('.svc-tab');
+      var panels = document.querySelectorAll('.svc-panel');
+      tabs.forEach(function(t) {
+        var match = t.dataset.tab === tabId;
+        t.classList.toggle('active', match);
+        t.setAttribute('aria-selected', String(match));
+      });
+      panels.forEach(function(p) {
+        p.classList.toggle('active', p.id === tabId);
+      });
+    }
+
     (function() {
       var tabs   = document.querySelectorAll(".svc-tab");
-      var panels = document.querySelectorAll(".svc-panel");
       tabs.forEach(function(tab) {
         tab.addEventListener("click", function() {
-          var target = tab.dataset.tab;
-          tabs.forEach(function(t) {
-            t.classList.toggle("active", t === tab);
-            t.setAttribute("aria-selected", String(t === tab));
-          });
-          panels.forEach(function(p) {
-            p.classList.toggle("active", p.id === target);
-          });
+          switchTab(tab.dataset.tab);
         });
       });
+    })();
+
+    // ── Nav dropdown: link click switches tab + closes nav ──
+    (function() {
+      document.querySelectorAll('.nav-dropdown a[data-tab]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          var tabId = link.dataset.tab;
+          // close mobile nav if open
+          document.getElementById('nav').classList.remove('open');
+          document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+          // switch to correct tab after scroll
+          setTimeout(function() { switchTab(tabId); }, 400);
+        });
+      });
+
+      // Mobile: tap Services to toggle dropdown
+      var navItem = document.getElementById('navServices');
+      if (navItem) {
+        navItem.querySelector('a').addEventListener('click', function(e) {
+          if (window.innerWidth <= 920) {
+            e.preventDefault();
+            navItem.classList.toggle('open');
+          }
+        });
+      }
     })();
 
     // ── GSAP animations ────────────────────────────────────

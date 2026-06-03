@@ -191,14 +191,14 @@
       position: absolute;
       top: calc(100% + 22px);
       left: 50%; transform: translateX(-50%) translateY(-6px);
-      width: 700px;
+      width: 860px;
       background: rgba(4,17,31,.98);
       border: 1px solid rgba(255,255,255,.1);
       border-top: 2px solid var(--red);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       padding: 28px 28px 24px;
-      display: grid; grid-template-columns: repeat(4,1fr);
+      display: grid; grid-template-columns: repeat(5,1fr);
       gap: 0;
       opacity: 0; pointer-events: none;
       transition: opacity .2s ease, transform .2s ease;
@@ -1286,113 +1286,142 @@
     .svc2-wide .svc2-desc { font-size: 15px; }
     .svc2-wide .svc2-feats li { font-size: 13.5px; }
 
-    /* ── SERVICE DETAIL MODAL ────────────────────────────── */
+    /* ── SERVICE DETAIL MODAL (full-page style) ─────────── */
     .svc-modal {
       position: fixed; inset: 0; z-index: 300;
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px;
+      display: flex; align-items: stretch; justify-content: flex-end;
     }
     .svc-modal[hidden] { display: none; }
 
     .svc-modal-bd {
       position: absolute; inset: 0;
-      background: rgba(4,10,22,.88);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      animation: mBdIn .25s ease both;
+      background: rgba(2,8,18,.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      animation: mBdIn .28s ease both;
     }
 
     .svc-modal-box {
       position: relative; z-index: 1;
-      width: min(820px, 100%);
+      width: min(900px, 100%);
       background: var(--panel);
-      display: grid; grid-template-columns: 1fr 1.4fr;
-      max-height: 90vh; overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08);
-      animation: mBoxIn .32s cubic-bezier(.25,.46,.45,.94) both;
+      display: grid; grid-template-columns: 340px 1fr;
+      max-height: 100vh; overflow: hidden;
+      box-shadow: -24px 0 80px rgba(0,0,0,.7);
+      animation: mBoxIn .38s cubic-bezier(.25,.46,.45,.94) both;
     }
 
     .svc-modal-photo {
-      position: relative; min-height: 360px; overflow: hidden;
-      background: #0d1a2e;
+      position: relative; overflow: hidden;
+      background: #060e1c; display: flex;
+      flex-direction: column; justify-content: flex-end;
     }
     .svc-modal-photo img {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover;
-      filter: saturate(1.0) brightness(.7);
+      object-fit: cover; filter: brightness(.55) saturate(.9);
     }
     .svc-modal-photo-ov {
       position: absolute; inset: 0;
-      background: linear-gradient(to right, transparent 30%, rgba(6,14,28,.7) 100%);
+      background: linear-gradient(to bottom, rgba(0,0,0,.05) 0%, rgba(4,17,31,.9) 100%);
+    }
+    .svc-modal-photo-content {
+      position: relative; z-index: 2; padding: 32px;
+    }
+    .svc-modal-cat {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--red2); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .svc-modal-cat::before {
+      content: ""; width: 18px; height: 1px; background: var(--red);
     }
     .svc-modal-photo-num {
-      position: absolute; bottom: 10px; left: 18px;
-      font-family: var(--font-head); font-size: 100px; line-height: 1;
-      color: rgba(255,255,255,.12); pointer-events: none;
+      font-family: var(--font-head); font-size: 110px; line-height: .9;
+      letter-spacing: -2px; color: rgba(255,255,255,.07);
     }
 
     .svc-modal-close {
-      position: absolute; top: 14px; right: 14px; z-index: 6;
-      width: 38px; height: 38px;
-      background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.22);
-      color: #eef3ff; font-size: 20px; line-height: 1;
+      position: absolute; top: 20px; right: 20px; z-index: 10;
+      width: 42px; height: 42px;
+      background: rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.22);
+      color: #eef3ff; font-size: 22px; line-height: 1;
       display: grid; place-items: center;
       cursor: pointer !important; transition: background .2s, transform .2s;
     }
-    .svc-modal-close:hover { background: var(--red); transform: scale(1.1); }
+    .svc-modal-close:hover { background: var(--red); transform: scale(1.05); }
 
     .svc-modal-body {
-      padding: 38px 34px 32px; overflow-y: auto;
-      display: flex; flex-direction: column;
-      border-left: 4px solid var(--red);
-      background: var(--panel);
+      overflow-y: auto; display: flex; flex-direction: column;
+      background: var(--panel); border-left: 3px solid var(--red);
+    }
+    .svc-modal-body-inner {
+      padding: 48px 44px 40px; flex: 1; display: flex; flex-direction: column;
     }
 
     .svc-modal-tag {
-      font-family: var(--font-label); font-size: 10px; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+      font-family: var(--font-label); font-size: 9px; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 12px;
     }
-
     .svc-modal-title {
-      font-family: var(--font-head); font-size: 28px; font-weight: 400;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--skylt); line-height: 1.1;
+      font-family: var(--font-head); font-size: clamp(22px, 2.8vw, 34px);
+      font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+      color: #eef3ff; line-height: 1.05;
     }
-
     .svc-modal-desc {
       margin-top: 14px; color: rgba(238,243,255,.72);
-      font-size: 15px; line-height: 1.78; font-weight: 400;
+      font-size: 15px; line-height: 1.82; font-weight: 400;
+    }
+    .svc-modal-desc + .svc-modal-desc { margin-top: 10px; }
+
+    .svc-modal-section {
+      margin-top: 24px; padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .svc-modal-section-heading {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--skylt); margin-bottom: 14px;
+    }
+    .svc-modal-list {
+      list-style: none; display: grid; gap: 8px;
+    }
+    .svc-modal-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      color: rgba(238,243,255,.68); font-size: 14px; line-height: 1.5;
+    }
+    .svc-modal-list li::before {
+      content: ""; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red); margin-top: 5px;
+      box-shadow: 0 0 7px rgba(224,40,40,.4);
     }
 
-    .svc-modal-feats {
-      margin-top: 20px; padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,.1);
-      list-style: none; display: grid; gap: 9px;
+    .svc-modal-highlight {
+      margin-top: 22px; padding: 18px 22px;
+      background: rgba(224,40,40,.07);
+      border: 1px solid rgba(224,40,40,.22);
+      border-left: 3px solid var(--red);
     }
-    .svc-modal-feats li {
-      display: flex; align-items: flex-start; gap: 11px;
-      color: rgba(238,243,255,.68); font-size: 14px; line-height: 1.5; font-weight: 400;
-    }
-    .svc-modal-feats li::before {
-      content: ""; flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--red); margin-top: 4px;
-      box-shadow: 0 0 8px rgba(220,38,38,.4);
+    .svc-modal-highlight p {
+      color: rgba(238,243,255,.85); font-size: 14px; line-height: 1.75;
     }
 
     .svc-modal-actions {
-      margin-top: auto; padding-top: 24px;
+      margin-top: auto; padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.08);
       display: flex; flex-wrap: wrap; gap: 12px;
     }
 
     @keyframes mBdIn  { from { opacity: 0; } to { opacity: 1; } }
     @keyframes mBoxIn {
-      from { opacity: 0; transform: translateY(28px) scale(.96); }
-      to   { opacity: 1; transform: translateY(0)   scale(1); }
+      from { opacity: 0; transform: translateX(60px); }
+      to   { opacity: 1; transform: translateX(0); }
     }
 
-    @media (max-width: 640px) {
-      .svc-modal-box { grid-template-columns: 1fr; }
-      .svc-modal-photo { min-height: 180px; }
+    @media (max-width: 768px) {
+      .svc-modal-box { grid-template-columns: 1fr; width: 100%; }
+      .svc-modal-photo { min-height: 200px; max-height: 200px; }
+      .svc-modal-body-inner { padding: 28px 22px 24px; }
     }
 
     /* Make cards clickable */
@@ -1924,6 +1953,13 @@
               <a href="#services" data-tab="tab-con">Concierge Medical Travel</a>
             </div>
 
+            <div class="dropdown-col">
+              <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Case Management</span>
+              <a href="#services" data-tab="tab-case">Bed Search &amp; Admission</a>
+              <a href="#services" data-tab="tab-case">Hospital Coordination</a>
+              <a href="#services" data-tab="tab-case">Insurance Support</a>
+            </div>
+
           </div>
         </div><!-- /.nav-item -->
 
@@ -2136,6 +2172,12 @@
             <span class="svc-tab-count">1</span>
           </button>
 
+          <button class="svc-tab" role="tab" aria-selected="false" aria-controls="tab-case" data-tab="tab-case">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+            Case Management
+            <span class="svc-tab-count">1</span>
+          </button>
+
         </nav>
 
         <!-- Tab Panels -->
@@ -2145,7 +2187,7 @@
           <div class="svc-panel active" id="tab-air" role="tabpanel">
             <div class="svc-panel-grid">
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-domestic">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=75" alt="Domestic air ambulance helicopter in flight" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2166,7 +2208,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-intl">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1569154941061-e231b4aa8eff?auto=format&fit=crop&w=700&q=75" alt="International air ambulance jet for repatriation" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2187,7 +2229,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-escort">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=700&q=75" alt="Medical escort professional on commercial flight" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2208,7 +2250,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-stretcher">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=75" alt="Commercial airline stretcher service configuration" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2229,7 +2271,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-bizclass">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1544396821-4dd40b938ad3?auto=format&fit=crop&w=700&q=75" alt="Business class medical transfer premium cabin" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2257,7 +2299,7 @@
           <div class="svc-panel" id="tab-med" role="tabpanel">
             <div class="svc-panel-grid cols-2">
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-neonatal">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=700&q=75" alt="Neonatal and pediatric critical care transport" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2278,7 +2320,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-ecmo">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&w=700&q=75" alt="ECMO initiation and critical care air transport" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2299,7 +2341,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-organ">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=700&q=75" alt="Organ retrieval and transplant logistics coordination" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2320,7 +2362,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-hems">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1629155514090-072270d9c981?auto=format&fit=crop&w=700&q=75" alt="Helicopter emergency medical services HEMS" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2348,7 +2390,7 @@
           <div class="svc-panel" id="tab-gnd" role="tabpanel">
             <div class="svc-panel-grid">
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-ground">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=700&q=75" alt="Critical care ground ambulance with ALS equipment" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2369,7 +2411,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-event">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1531973968078-9bb02785f13d?auto=format&fit=crop&w=700&q=75" alt="Event medical coverage and on-site emergency team" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2390,7 +2432,7 @@
                 </div>
               </article>
 
-              <article class="svc2">
+              <article class="svc2" data-svc-id="svc-disaster">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=700&q=75" alt="Disaster response and mass casualty operations" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2418,7 +2460,7 @@
           <div class="svc-panel" id="tab-con" role="tabpanel">
             <div class="svc-panel-grid cols-2">
 
-              <article class="svc2 svc2-wide">
+              <article class="svc2 svc2-wide" data-svc-id="svc-concierge">
                 <div class="svc2-hd">
                   <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=75" alt="Concierge medical travel services premium care" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
@@ -2435,6 +2477,34 @@
                     <li>Hospital selection & specialist liaison</li>
                     <li>Visa, accommodation & ground logistics</li>
                     <li>Post-treatment repatriation planning</li>
+                  </ul>
+                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- CASE MANAGEMENT -->
+          <div class="svc-panel" id="tab-case" role="tabpanel">
+            <div class="svc-panel-grid cols-2">
+
+              <article class="svc2 svc2-wide" data-svc-id="svc-case">
+                <div class="svc2-hd">
+                  <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=700&q=75" alt="Case management and hospital admission assistance" loading="lazy" onerror="this.style.opacity='0'">
+                  <div class="svc2-hd-overlay"></div>
+                  <span class="svc2-ghost-num">01</span>
+                  <div class="svc2-ico">
+                    <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+                  </div>
+                </div>
+                <div class="svc2-bd">
+                  <h3>Case Management &amp; Bed Search</h3>
+                  <p class="svc2-desc">Personalized bed search, hospital admission coordination, and patient navigation services across Hyderabad's leading multi-specialty hospitals.</p>
+                  <ul class="svc2-feats">
+                    <li>Real-time ICU &amp; HDU bed search</li>
+                    <li>Case-specific specialist consultations</li>
+                    <li>Insurance &amp; corporate coordination</li>
                   </ul>
                   <a href="#contact" class="svc2-cta">Learn More →</a>
                 </div>
@@ -3619,32 +3689,152 @@
     initParticles();
     initGlobe();
 
-    // Service card modal
+    // ── Service data store ─────────────────────────────────
+    var SVC_DATA = {
+      'svc-domestic': {
+        num: '01', cat: 'Air Transport',
+        img: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+        title: 'Domestic Air Ambulance',
+        desc: ['When every minute matters, our dedicated air ambulance service provides rapid and safe transportation for critically ill and injured patients across India. Equipped with ICU-grade medical equipment and staffed by experienced flight physicians, nurses, and paramedics, we ensure uninterrupted critical care from bedside to destination.'],
+        sections: [{ heading: 'Key Features', items: ['ICU-configured aircraft', 'Bed-to-bed patient transfer', 'Ventilator support', 'Cardiac monitoring', 'Critical care medications', '24/7 emergency activation'] }]
+      },
+      'svc-intl': {
+        num: '02', cat: 'Air Transport',
+        img: 'https://images.unsplash.com/photo-1569154941061-e231b4aa8eff?auto=format&fit=crop&w=1200&q=80',
+        title: 'International Air Ambulance & Medical Repatriation',
+        desc: ['We provide worldwide medical evacuation and repatriation services, ensuring patients receive seamless transfers between countries with complete medical and logistical coordination.'],
+        sections: [{ heading: 'Services Include', items: ['International patient evacuation', 'Medical repatriation', 'Embassy and visa assistance', 'Airport clearances', 'Ground ambulance coordination', 'Hospital-to-hospital transfers'] }]
+      },
+      'svc-escort': {
+        num: '03', cat: 'Air Transport',
+        img: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=1200&q=80',
+        title: 'Commercial Air Medical Escort',
+        desc: ['For patients who are medically stable but require professional supervision during travel, our medical escort service offers safe transportation on scheduled commercial flights.', 'A dedicated physician, critical care nurse, or paramedic accompanies the patient throughout the journey, providing continuous monitoring and medical assistance.'],
+        sections: [{ heading: 'Ideal For', items: ['Post-surgical patients', 'Elderly patients', 'Oncology patients', 'Rehabilitation transfers', 'Long-distance medical travel'] }]
+      },
+      'svc-stretcher': {
+        num: '04', cat: 'Air Transport',
+        img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+        title: 'Commercial Airline Stretcher Service',
+        desc: ['For patients unable to sit upright during travel, we arrange stretcher transfers on commercial airlines.', 'Our team coordinates airline approvals, medical documentation, airport handling, and inflight medical supervision to ensure a seamless transfer experience.'],
+        sections: [{ heading: 'Service Includes', items: ['Airline stretcher arrangements', 'Medical escort team', 'Airport medical assistance', 'Oxygen support', 'Continuous patient monitoring'] }]
+      },
+      'svc-bizclass': {
+        num: '05', cat: 'Air Transport',
+        img: 'https://images.unsplash.com/photo-1544396821-4dd40b938ad3?auto=format&fit=crop&w=1200&q=80',
+        title: 'Business Class Medical Transfers',
+        desc: ['Designed for patients who do not require a dedicated air ambulance but need additional comfort and medical supervision.', 'Patients travel in premium cabin seating with professional medical escort support, ensuring safety, privacy, and comfort throughout the journey.'],
+        sections: [{ heading: 'Suitable For', items: ['Orthopedic patients', 'Oncology patients', 'Elderly travelers', 'Post-discharge medical travel'] }]
+      },
+      'svc-neonatal': {
+        num: '01', cat: 'Specialized Medical',
+        img: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1200&q=80',
+        title: 'Neonatal & Pediatric Critical Care Transport',
+        desc: ['Our specialized neonatal and pediatric transport teams are trained to transfer critically ill infants and children safely between healthcare facilities.'],
+        sections: [{ heading: 'Capabilities', items: ['Neonatal transport incubators', 'Pediatric ventilator support', 'Pediatric critical care specialists', 'Advanced monitoring systems'] }]
+      },
+      'svc-ecmo': {
+        num: '02', cat: 'Specialized Medical',
+        img: 'https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&w=1200&q=80',
+        title: 'ECMO Initiation & Air Lift',
+        desc: ['We provide highly specialized Extracorporeal Membrane Oxygenation (ECMO) transport services for critically ill patients requiring advanced life support during transfer.', 'Our ECMO retrieval team consists of experienced intensivists, perfusionists, flight physicians, and critical care nurses.'],
+        sections: [{ heading: 'Supported Cases', items: ['Severe respiratory failure', 'Cardiac failure', 'Lung transplantation', 'Cardiac transplantation'] }]
+      },
+      'svc-organ': {
+        num: '03', cat: 'Specialized Medical',
+        img: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1200&q=80',
+        title: 'Organ Retrieval & Transplant Logistics',
+        desc: ['Time-sensitive transportation solutions for organ procurement and transplant programs.', 'We coordinate rapid movement of organs, transplant teams, and essential medical equipment between donor and recipient centers.'],
+        sections: [{ heading: 'Organs Supported', items: ['Heart', 'Liver', 'Kidneys', 'Lungs'] }]
+      },
+      'svc-hems': {
+        num: '04', cat: 'Specialized Medical',
+        img: 'https://images.unsplash.com/photo-1629155514090-072270d9c981?auto=format&fit=crop&w=1200&q=80',
+        title: 'Helicopter Emergency Medical Services (HEMS)',
+        desc: ['Rapid helicopter-based emergency response for trauma, cardiac emergencies, remote area evacuations, and disaster response operations.'],
+        sections: [{ heading: 'Mission Types', items: ['Accident scene response', 'Rural emergency retrieval', 'Inter-facility transfer', 'Disaster management support'] }]
+      },
+      'svc-ground': {
+        num: '01', cat: 'Ground & Response',
+        img: 'https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=1200&q=80',
+        title: 'Critical Care Ground Ambulance',
+        desc: ['Advanced Life Support (ALS) and Critical Care Ambulances providing seamless bedside-to-aircraft and aircraft-to-hospital transfers.'],
+        sections: [{ heading: 'Equipment', items: ['Ventilator', 'Defibrillator', 'Infusion pumps', 'Emergency medications', 'Advanced airway management systems'] }]
+      },
+      'svc-event': {
+        num: '02', cat: 'Ground & Response',
+        img: 'https://images.unsplash.com/photo-1531973968078-9bb02785f13d?auto=format&fit=crop&w=1200&q=80',
+        title: 'Event Medical Coverage',
+        desc: ['Comprehensive medical standby services for corporate events, sports events, public gatherings, industrial projects, and VIP movements.'],
+        sections: [{ heading: 'Coverage Includes', items: ['Ambulances', 'Emergency physicians', 'Paramedics', 'Medical command centers', 'Air evacuation planning'] }]
+      },
+      'svc-disaster': {
+        num: '03', cat: 'Ground & Response',
+        img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80',
+        title: 'Disaster Response & Mass Casualty Support',
+        desc: ['Rapid deployment medical teams capable of supporting disaster zones, humanitarian missions, industrial accidents, and large-scale emergencies.'],
+        sections: [{ heading: 'Capabilities', items: ['Emergency medical response', 'Aeromedical evacuation', 'Mobile medical units', 'Multi-patient transportation'] }]
+      },
+      'svc-concierge': {
+        num: '01', cat: 'Concierge',
+        img: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+        title: 'Concierge Medical Travel Services',
+        desc: ['A premium service designed for international patients requiring complete medical travel coordination.'],
+        sections: [{ heading: 'Includes', items: ['Medical travel planning', 'Hospital appointment coordination', 'Ground transportation', 'Accommodation support', 'Dedicated case manager'] }]
+      },
+      'svc-case': {
+        num: '01', cat: 'Case Management',
+        img: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=1200&q=80',
+        title: 'Case Management, Bed Search & Hospital Admission Assistance',
+        desc: [
+          'At NIAMS, we understand that finding the right hospital and securing a timely admission can be challenging, especially during medical emergencies and complex healthcare situations.',
+          'Our dedicated Case Management Team provides personalized bed search, hospital admission coordination, and patient navigation services, primarily across Hyderabad\'s leading multi-specialty, tertiary care, and super-specialty hospitals.',
+          'We work closely with patients, families, referring physicians, hospitals, insurance providers, and healthcare partners to identify the most appropriate healthcare facility based on the patient\'s clinical condition, specialty requirements, treatment goals, and financial considerations.'
+        ],
+        sections: [{ heading: 'Our Services Include', items: ['Real-time hospital bed search and availability assistance', 'ICU, HDU, NICU, PICU, and specialty bed coordination', 'Hospital admission and appointment facilitation', 'Medical records review and transfer coordination', 'Physician-to-physician communication support', 'Domestic and international patient referrals', 'Medical repatriation and transfer planning', 'Insurance and corporate case coordination', 'Second opinion and specialist referral assistance', 'End-to-end patient navigation and case management'] }],
+        highlight: 'We provide case-specific consultations to the topmost doctors in all hospitals in Hyderabad. Our objective is to ensure every patient receives timely access to the right healthcare facility, specialist team, and level of care.'
+      }
+    };
+
+    // ── Service card modal ─────────────────────────────────
     (function() {
-      var modal = document.getElementById('svc-modal');
-      var modalImg = document.getElementById('svc-modal-img');
-      var modalNum = document.getElementById('svc-modal-num');
-      var modalTitle = document.getElementById('svc-modal-title');
-      var modalDesc = document.getElementById('svc-modal-desc');
-      var modalFeats = document.getElementById('svc-modal-feats');
+      var modal   = document.getElementById('svc-modal');
+      var mImg    = document.getElementById('svc-modal-img');
+      var mCat    = document.getElementById('svc-modal-cat');
+      var mNum    = document.getElementById('svc-modal-num');
+      var mTitle  = document.getElementById('svc-modal-title');
+      var mContent= document.getElementById('svc-modal-content');
+
+      function buildContent(data) {
+        var html = '';
+        data.desc.forEach(function(p) {
+          html += '<p class="svc-modal-desc">' + p + '</p>';
+        });
+        data.sections.forEach(function(sec) {
+          html += '<div class="svc-modal-section">';
+          html += '<p class="svc-modal-section-heading">' + sec.heading + '</p>';
+          html += '<ul class="svc-modal-list">';
+          sec.items.forEach(function(item) {
+            html += '<li>' + item + '</li>';
+          });
+          html += '</ul></div>';
+        });
+        if (data.highlight) {
+          html += '<div class="svc-modal-highlight"><p>' + data.highlight + '</p></div>';
+        }
+        return html;
+      }
 
       function openModal(card) {
-        var img = card.querySelector('.svc2-hd img');
-        var num = card.querySelector('.svc2-ghost-num');
-        var title = card.querySelector('h3');
-        var desc = card.querySelector('.svc2-desc');
-        var feats = card.querySelectorAll('.svc2-feats li');
-        modalImg.src = img ? img.src : '';
-        modalImg.alt = img ? (img.alt || '') : '';
-        modalNum.textContent = num ? num.textContent : '';
-        modalTitle.textContent = title ? title.textContent : '';
-        modalDesc.textContent = desc ? desc.textContent : '';
-        modalFeats.innerHTML = '';
-        feats.forEach(function(li) {
-          var newLi = document.createElement('li');
-          newLi.textContent = li.textContent.trim();
-          modalFeats.appendChild(newLi);
-        });
+        var id   = card.dataset.svcId;
+        var data = SVC_DATA[id];
+        if (!data) return;
+        mImg.src     = data.img;
+        mImg.alt     = data.title;
+        mCat.textContent = data.cat;
+        mNum.textContent = data.num;
+        mTitle.textContent = data.title;
+        mContent.innerHTML = buildContent(data);
         modal.hidden = false;
         document.body.style.overflow = 'hidden';
       }
@@ -3675,17 +3865,21 @@
       <div class="svc-modal-photo">
         <img id="svc-modal-img" src="" alt="">
         <div class="svc-modal-photo-ov"></div>
-        <span class="svc-modal-photo-num" id="svc-modal-num"></span>
+        <div class="svc-modal-photo-content">
+          <div class="svc-modal-cat" id="svc-modal-cat"></div>
+          <div class="svc-modal-photo-num" id="svc-modal-num"></div>
+        </div>
         <button class="svc-modal-close" aria-label="Close">&times;</button>
       </div>
       <div class="svc-modal-body">
-        <div class="svc-modal-tag">NIAMS Services</div>
-        <h3 class="svc-modal-title" id="svc-modal-title"></h3>
-        <p class="svc-modal-desc" id="svc-modal-desc"></p>
-        <ul class="svc-modal-feats" id="svc-modal-feats"></ul>
-        <div class="svc-modal-actions">
-          <a href="tel:18006426779" class="btn btn-red">Call Now — 1800-NIAMS-911</a>
-          <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us</a>
+        <div class="svc-modal-body-inner">
+          <div class="svc-modal-tag">NIAMS Services</div>
+          <h2 class="svc-modal-title" id="svc-modal-title"></h2>
+          <div id="svc-modal-content"></div>
+          <div class="svc-modal-actions">
+            <a href="tel:18006426779" class="btn btn-red">Call Now — 1800-NIAMS-911</a>
+            <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us</a>
+          </div>
         </div>
       </div>
     </div>

@@ -10,15 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy:  #071422;
-      --panel: #0c1f35;
-      --red:   #e02828;
-      --red2:  #ff4444;
-      --sky:   #1565c8;
-      --skylt: #4a9eff;
-      --white: #eef3ff;
-      --muted: #6a8aaa;
-      --green: #3ddc84;
+      --navy:  #07121e;
+      --panel: #0d1e33;
+      --red:   #c0392b;
+      --red2:  #d9534f;
+      --sky:   #1565c0;
+      --skylt: #2196f3;
+      --white: #ecf3ff;
+      --muted: #7b99b8;
+      --green: #00b894;
       --font-head:  "Bebas Neue", sans-serif;
       --font-label: "Space Mono", monospace;
       --font-body:  "Barlow", sans-serif;
@@ -73,7 +73,7 @@
 
     .eyebrow {
       display: inline-block;
-      color: var(--red2);
+      color: var(--skylt);
       font-family: var(--font-label);
       font-size: 13px; font-weight: 700;
       letter-spacing: 3px; text-transform: uppercase;
@@ -194,7 +194,7 @@
       width: 860px;
       background: rgba(4,17,31,.98);
       border: 1px solid rgba(255,255,255,.1);
-      border-top: 2px solid var(--red);
+      border-top: 2px solid var(--sky);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       padding: 28px 28px 24px;
@@ -519,7 +519,7 @@
       line-height: .9; letter-spacing: 3px; color: var(--white);
     }
 
-    .stat-accent { color: var(--red2); }
+    .stat-accent { color: var(--skylt); }
 
     .stat-label {
       margin-top: 12px; color: var(--muted);
@@ -803,7 +803,7 @@
       fill: var(--muted); font-family: var(--font-body);
       font-size: 9px; opacity: 0;
     }
-    .callout-dot { fill: var(--red2); }
+    .callout-dot { fill: var(--skylt); }
 
     /* ── COVERAGE ────────────────────────────────────────── */
     .coverage-grid {
@@ -889,7 +889,7 @@
       fill: none; stroke: rgba(30,58,110,.65); stroke-width: 2;
       stroke-dasharray: 8 6; stroke-linecap: round;
     }
-    .rcity-dot { fill: var(--red2); filter: url(#rcityGlow); }
+    .rcity-dot { fill: var(--skylt); filter: url(#rcityGlow); }
     .rcity-label {
       fill: rgba(238,243,255,.85); font-family: var(--font-label);
       font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0;
@@ -1150,10 +1150,10 @@
       flex-shrink: 0; background: #0d1a2e;
     }
 
-    /* Red top accent line */
+    /* Blue top accent line */
     .svc2-hd::before {
       content: ""; position: absolute; top: 0; left: 0; right: 0;
-      height: 4px; background: var(--red); z-index: 5;
+      height: 4px; background: var(--sky); z-index: 5;
     }
     .svc2-hd::after { content: none; }
 
@@ -1204,15 +1204,15 @@
     .svc2-ico {
       position: absolute; top: 18px; left: 20px; z-index: 5;
       width: 40px; height: 40px; bottom: auto;
-      background: rgba(220,38,38,.85);
+      background: rgba(21,101,192,.9);
       border: none;
-      box-shadow: 0 3px 14px rgba(220,38,38,.45);
+      box-shadow: 0 3px 14px rgba(21,101,192,.4);
       display: grid; place-items: center;
       transition: background .25s, box-shadow .25s;
     }
     .svc2:hover .svc2-ico {
-      background: var(--red);
-      box-shadow: 0 4px 20px rgba(220,38,38,.7);
+      background: var(--sky);
+      box-shadow: 0 4px 20px rgba(21,101,192,.65);
     }
     .svc2-ico svg {
       width: 20px; height: 20px; stroke: #fff; fill: none;
@@ -1239,7 +1239,7 @@
       color: var(--skylt);
       transition: color .25s;
     }
-    .svc2:hover .svc2-bd h3 { color: var(--red); }
+    .svc2:hover .svc2-bd h3 { color: var(--skylt); }
 
     /* Description — always visible */
     .svc2-desc {
@@ -1265,8 +1265,8 @@
     .svc2-feats li::before {
       content: ""; flex-shrink: 0;
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--red); margin-top: 4px;
-      box-shadow: 0 0 6px rgba(220,38,38,.35);
+      background: var(--skylt); margin-top: 4px;
+      box-shadow: 0 0 6px rgba(33,150,243,.35);
     }
 
     /* CTA — always visible */
@@ -1279,7 +1279,7 @@
       transition: gap .22s, color .22s;
     }
     .svc2-cta::after { content: "→"; transition: transform .22s; }
-    .svc2:hover .svc2-cta { gap: 12px; color: var(--red); }
+    .svc2:hover .svc2-cta { gap: 12px; color: var(--skylt); }
     .svc2:hover .svc2-cta::after { transform: translateX(4px); }
 
     /* Concierge wide card */
@@ -1334,11 +1334,11 @@
     .svc-modal-cat {
       font-family: var(--font-label); font-size: 9px;
       letter-spacing: 3px; text-transform: uppercase;
-      color: var(--red2); margin-bottom: 10px;
+      color: var(--skylt); margin-bottom: 10px;
       display: flex; align-items: center; gap: 8px;
     }
     .svc-modal-cat::before {
-      content: ""; width: 18px; height: 1px; background: var(--red);
+      content: ""; width: 18px; height: 1px; background: var(--skylt);
     }
     .svc-modal-photo-num {
       font-family: var(--font-head); font-size: 110px; line-height: .9;
@@ -1357,7 +1357,7 @@
 
     .svc-modal-body {
       overflow-y: auto; display: flex; flex-direction: column;
-      background: var(--panel); border-left: 3px solid var(--red);
+      background: var(--panel); border-left: 3px solid var(--sky);
     }
     .svc-modal-body-inner {
       padding: 48px 44px 40px; flex: 1; display: flex; flex-direction: column;
@@ -1365,7 +1365,7 @@
 
     .svc-modal-tag {
       font-family: var(--font-label); font-size: 9px; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--red); margin-bottom: 12px;
+      text-transform: uppercase; color: var(--skylt); margin-bottom: 12px;
     }
     .svc-modal-title {
       font-family: var(--font-head); font-size: clamp(22px, 2.8vw, 34px);
@@ -1396,15 +1396,15 @@
     }
     .svc-modal-list li::before {
       content: ""; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--red); margin-top: 5px;
-      box-shadow: 0 0 7px rgba(224,40,40,.4);
+      background: var(--skylt); margin-top: 5px;
+      box-shadow: 0 0 7px rgba(33,150,243,.35);
     }
 
     .svc-modal-highlight {
       margin-top: 22px; padding: 18px 22px;
-      background: rgba(224,40,40,.07);
-      border: 1px solid rgba(224,40,40,.22);
-      border-left: 3px solid var(--red);
+      background: rgba(21,101,192,.07);
+      border: 1px solid rgba(21,101,192,.22);
+      border-left: 3px solid var(--sky);
     }
     .svc-modal-highlight p {
       color: rgba(238,243,255,.85); font-size: 14px; line-height: 1.75;
@@ -1455,16 +1455,16 @@
     }
     .why-card:hover {
       background: rgba(255,255,255,.07);
-      border-color: rgba(220,38,38,.22);
+      border-color: rgba(21,101,192,.3);
       transform: translateY(-4px);
     }
 
     .why-ic {
       width: 40px; height: 40px; flex-shrink: 0;
-      border: 1px solid rgba(220,38,38,.45);
+      border: 1px solid rgba(33,150,243,.4);
       display: grid; place-items: center; margin-bottom: 16px;
     }
-    .why-ic svg { width: 20px; height: 20px; stroke: var(--red2); fill: none;
+    .why-ic svg { width: 20px; height: 20px; stroke: var(--skylt); fill: none;
       stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
     .why-card h4 {
@@ -1486,7 +1486,7 @@
     }
 
     /* Override eyebrow and section-title colour inside dark why-section */
-    .why-section .eyebrow { color: var(--red2); }
+    .why-section .eyebrow { color: var(--skylt); }
     .why-section .section-title { color: #eef3ff; }
     .why-section .section-copy  { color: rgba(238,243,255,.55); }
 
@@ -1507,7 +1507,7 @@
     .about-pillar { display: flex; flex-direction: column; gap: 5px; }
     .pillar-num {
       font-family: var(--font-head); font-size: 42px; line-height: 1;
-      letter-spacing: 2px; color: var(--red2);
+      letter-spacing: 2px; color: var(--skylt);
     }
     .pillar-label {
       font-family: var(--font-label); font-size: 9px;
@@ -1546,7 +1546,7 @@
       padding: 32px 28px;
       background: var(--panel);
       border: 1px solid rgba(255,255,255,.08);
-      border-top: 3px solid var(--red);
+      border-top: 3px solid var(--sky);
       border-radius: 8px;
       display: flex; flex-direction: column;
       transition: transform .3s, box-shadow .3s;
@@ -1558,7 +1558,7 @@
     }
     .testi-stars {
       display: flex; gap: 3px; margin-bottom: 18px;
-      color: var(--red2); font-size: 16px;
+      color: #f0a500; font-size: 16px;
     }
     .testi-text {
       color: rgba(238,243,255,.78); font-size: 15px;
@@ -1569,7 +1569,7 @@
     .testi-text::after  { content: '\201D'; }
     .testi-divider {
       width: 40px; height: 2px;
-      background: var(--red); margin: 22px 0;
+      background: var(--sky); margin: 22px 0;
     }
     .testi-name {
       font-family: var(--font-label); font-size: 10px;

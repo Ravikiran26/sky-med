@@ -225,106 +225,95 @@
     .hero {
       min-height: 100vh; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 140px 0 80px; overflow: hidden;
+      padding: 140px 0 100px; overflow: hidden;
       position: relative;
-      background: linear-gradient(180deg, #f0f7ff 0%, #eef4fb 60%, #e8f2ff 100%);
-      border-bottom: 1px solid rgba(21,101,192,.1);
+      background:
+        url('https://images.unsplash.com/photo-1629155514090-072270d9c981?auto=format&fit=crop&w=1920&q=90')
+        center 55% / cover no-repeat;
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
+    /* Cinematic dark overlay — stronger at edges, slightly lighter centre so aircraft shows through */
     .hero::before {
       content: "";
       position: absolute; inset: 0; z-index: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(21,101,192,.06), transparent 55%),
-        radial-gradient(ellipse at 80% 30%, rgba(21,101,192,.05), transparent 50%);
+        linear-gradient(135deg,
+          rgba(4,12,28,.90) 0%,
+          rgba(6,22,52,.75) 40%,
+          rgba(4,12,28,.82) 100%);
       pointer-events: none;
     }
 
-    .hero::after { display: none; }
+    /* Subtle blue vignette top + bottom */
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(4,12,28,.55) 0%,
+          transparent 28%,
+          transparent 72%,
+          rgba(4,12,28,.68) 100%);
+      pointer-events: none;
+    }
 
     .hero-grid {
       display: flex; flex-direction: column;
       align-items: center; text-align: center;
-      position: relative; z-index: 1;
+      position: relative; z-index: 2;
       width: 100%;
     }
+
+    .hero .eyebrow { color: rgba(148,197,255,.9); }
 
     .hero-title {
       margin-top: 20px;
       font-family: var(--font-head);
-      font-size: clamp(58px, 8.5vw, 114px);
+      font-size: clamp(60px, 9vw, 118px);
       font-weight: 400; letter-spacing: 3px;
-      line-height: .94; text-transform: uppercase;
-      color: #0d1e35;
+      line-height: .92; text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 2px 40px rgba(4,12,28,.4);
     }
 
     .word { display: block; overflow: hidden; }
     .word-inner { display: block; }
 
     .hero-sub {
-      max-width: 580px; margin: 26px auto 0;
-      color: #3d5a7a; font-size: 18px; line-height: 1.75;
+      max-width: 600px; margin: 28px auto 0;
+      color: rgba(210,228,255,.82); font-size: 18px; line-height: 1.78;
     }
 
-    .hero-sub strong { color: #0d1e35; font-weight: 500; }
+    .hero-sub strong { color: #ffffff; font-weight: 500; }
 
-    .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 36px; }
+    .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 38px; }
 
     /* ── HERO CHIPS ──────────────────────────────────────── */
     .hero-chips {
       display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 10px; margin-top: 30px;
+      gap: 10px; margin-top: 32px;
     }
 
     .hero-chip {
-      display: inline-flex; align-items: center; gap: 6px;
+      display: inline-flex; align-items: center; gap: 7px;
       padding: 8px 18px;
-      background: rgba(255,255,255,.85);
-      border: 1px solid rgba(21,101,192,.18);
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.22);
       border-radius: 100px;
       font-family: var(--font-label); font-size: 10px;
       letter-spacing: 1.6px; text-transform: uppercase;
-      color: var(--sky);
-      box-shadow: 0 2px 8px rgba(21,101,192,.07);
+      color: rgba(215,232,255,.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .hero-chip::before {
-      content: "✓"; color: var(--sky); font-size: 11px;
+      content: "✓"; color: #4ade80; font-size: 12px; font-weight: 700;
     }
 
-    /* ── HERO BANNER IMAGE ───────────────────────────────── */
-    .hero-banner {
-      position: relative; margin-top: 56px;
-      width: 100%; max-width: 1180px;
-      height: 360px; overflow: hidden;
-      border-radius: 14px;
-      box-shadow: 0 24px 64px rgba(15,41,75,.16), 0 4px 12px rgba(15,41,75,.08);
-      border: 1px solid rgba(21,101,192,.1);
-    }
-
-    .hero-banner img {
-      width: 100%; height: 100%; object-fit: cover;
-      object-position: center 60%;
-    }
-
-    .hero-banner-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(13,29,53,.28) 0%, transparent 55%);
-    }
-
-    .hero-banner-tag {
-      position: absolute; bottom: 20px; right: 24px;
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 16px;
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(21,101,192,.15);
-      border-radius: 6px;
-      backdrop-filter: blur(12px);
-      font-family: var(--font-label); font-size: 10px;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: #0d1e35;
-      box-shadow: 0 2px 12px rgba(15,41,75,.1);
-    }
+    /* ── HERO BANNER ─────────────────────────────────────── */
+    .hero-banner { display: none; }
 
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
@@ -347,10 +336,12 @@
     .btn-ghost:hover { border-color: rgba(15,30,48,.45); background: rgba(15,30,48,.08); }
 
     .btn-sky {
-      color: var(--sky); border-color: rgba(21,101,192,.35);
-      background: rgba(21,101,192,.06);
+      color: #ffffff; border-color: rgba(255,255,255,.45);
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
-    .btn-sky:hover { border-color: var(--sky); background: rgba(21,101,192,.1); }
+    .btn-sky:hover { border-color: rgba(255,255,255,.85); background: rgba(255,255,255,.18); }
 
     .btn-green {
       color: #091e1c; background: var(--green);
@@ -361,15 +352,16 @@
     .status-bar {
       display: inline-flex; align-items: center; gap: 18px; flex-wrap: wrap;
       justify-content: center;
-      margin-top: 28px; padding: 13px 24px;
-      color: #3d5a7a;
+      margin-top: 32px; padding: 13px 26px;
+      color: rgba(200,220,255,.82);
       font-family: var(--font-label); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
-      background: rgba(255,255,255,.8); border: 1px solid rgba(21,101,192,.15);
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
       border-radius: 100px;
-      box-shadow: 0 2px 12px rgba(21,101,192,.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
 
-    .status-sep { width: 1px; height: 14px; background: rgba(21,101,192,.2); }
+    .status-sep { width: 1px; height: 14px; background: rgba(255,255,255,.22); }
 
     .dot {
       width: 9px; height: 9px; border-radius: 50%; display: inline-block;
@@ -515,13 +507,13 @@
     .hero-scroll-cue {
       position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 10px;
-      z-index: 2; pointer-events: none;
+      z-index: 3; pointer-events: none;
       font-family: var(--font-label); font-size: 9px; letter-spacing: 3px;
-      color: rgba(21,101,192,.38); text-transform: uppercase;
+      color: rgba(200,220,255,.45); text-transform: uppercase;
     }
     .scroll-line {
       width: 1px; height: 50px;
-      background: linear-gradient(to bottom, rgba(21,101,192,.38), transparent);
+      background: linear-gradient(to bottom, rgba(200,220,255,.45), transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
     @keyframes scrollPulse {
@@ -1799,10 +1791,9 @@
 
       .footer-grid { grid-template-columns: 1fr; }
 
-      .hero { min-height: auto; padding-top: 108px; padding-bottom: 40px; }
+      .hero { min-height: 100svh; padding-top: 108px; padding-bottom: 60px; }
       .hero-grid { padding: 0 4px; }
-      .hero-title { font-size: clamp(52px, 14vw, 80px); }
-      .hero-banner { height: 240px; margin-top: 36px; }
+      .hero-title { font-size: clamp(52px, 13vw, 80px); }
       .radar-wrap { display: none; }
 
       .services-grid, .fleet-grid, .stats-grid { grid-template-columns: 1fr; }
@@ -2274,19 +2265,6 @@
             <span>Avg Wheels-Up 18 min</span>
             <span class="status-sep"></span>
             <span>DGCA Licensed · ISO 9001:2015</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Hero image banner -->
-      <div class="shell">
-        <div class="hero-banner">
-          <img src="https://images.unsplash.com/photo-1629155514090-072270d9c981?auto=format&fit=crop&w=1400&q=80"
-               alt="NIAMS air ambulance helicopter on hospital rooftop helipad" loading="eager">
-          <div class="hero-banner-overlay"></div>
-          <div class="hero-banner-tag">
-            <span class="dot"></span>
-            <span>Fleet On Standby · India &amp; International</span>
           </div>
         </div>
       </div>

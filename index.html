@@ -226,25 +226,55 @@
       min-height: 72vh; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       padding: 130px 0 110px;
-      position: relative;
-      background:
-        url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1920&q=90')
-        center center / cover no-repeat;
+      position: relative; overflow: hidden;
     }
 
-    /* Light overlay — shows aircraft clearly, ICATT style */
-    .hero::before {
-      content: "";
+    .hero::before { display: none; }
+    .hero::after  { display: none; }
+
+    /* ── HERO SLIDER ─────────────────────────────────────── */
+    .hero-slides {
       position: absolute; inset: 0; z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+
+    /* Overlay sits above slides, below content */
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(to bottom,
-        rgba(6,18,42,.25) 0%,
-        rgba(6,18,42,.40) 45%,
-        rgba(6,18,42,.62) 100%
+        rgba(6,18,42,.20) 0%,
+        rgba(6,18,42,.38) 45%,
+        rgba(6,18,42,.65) 100%
       );
       pointer-events: none;
     }
 
-    .hero::after { display: none; }
+    /* Slide indicator dots */
+    .hero-dots {
+      position: absolute; bottom: 30px; left: 50%;
+      transform: translateX(-50%); z-index: 5;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .hero-dot {
+      width: 10px; height: 10px; border-radius: 50%; padding: 0;
+      background: rgba(255,255,255,.38); border: 2px solid rgba(255,255,255,.5);
+      cursor: pointer;
+      transition: background .35s ease, transform .35s ease, box-shadow .35s ease;
+    }
+    .hero-dot.active {
+      background: #ffffff;
+      transform: scale(1.3);
+      box-shadow: 0 0 10px rgba(255,255,255,.55);
+      border-color: transparent;
+    }
 
     /* ── HERO INNER ──────────────────────────────────────── */
     .hero-inner {
@@ -2281,6 +2311,18 @@
 
     <!-- HERO -->
     <section class="hero">
+
+      <!-- Background photo slider — replace images with client photos when ready -->
+      <div class="hero-slides" aria-hidden="true">
+        <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1920&q=85')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1629155514090-072270d9c981?auto=format&fit=crop&w=1920&q=85')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1920&q=85')"></div>
+      </div>
+
+      <!-- Dark gradient overlay -->
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <!-- Content -->
       <div class="shell">
         <div class="hero-inner">
           <div class="hero-grid">
@@ -2295,11 +2337,13 @@
         </div>
       </div>
 
-      <!-- Scroll cue -->
-      <div class="hero-scroll-cue" aria-hidden="true">
-        <span>SCROLL</span>
-        <div class="scroll-line"></div>
+      <!-- Slide indicator dots -->
+      <div class="hero-dots" role="tablist" aria-label="Hero slideshow">
+        <button class="hero-dot active" aria-label="Slide 1" role="tab" aria-selected="true"></button>
+        <button class="hero-dot" aria-label="Slide 2" role="tab" aria-selected="false"></button>
+        <button class="hero-dot" aria-label="Slide 3" role="tab" aria-selected="false"></button>
       </div>
+
     </section>
 
     <!-- QUOTE CARD — overlaps hero/stats (ICATT signature) -->
@@ -3551,6 +3595,39 @@
     })();
 
     // ── GSAP animations ────────────────────────────────────
+    // ── HERO PHOTO SLIDER ────────────────────────────────
+    (function() {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots   = document.querySelectorAll('.hero-dot');
+      if (!slides.length) return;
+
+      let current = 0, timer;
+
+      function goTo(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        dots[current].setAttribute('aria-selected', 'false');
+        current = ((n % slides.length) + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        dots[current].setAttribute('aria-selected', 'true');
+      }
+
+      function start() {
+        timer = setInterval(function() { goTo(current + 1); }, 5500);
+      }
+
+      dots.forEach(function(dot, i) {
+        dot.addEventListener('click', function() {
+          clearInterval(timer);
+          goTo(i);
+          start();
+        });
+      });
+
+      start();
+    })();
+
     if (window.gsap) {
       gsap.registerPlugin(ScrollTrigger);
 

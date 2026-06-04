@@ -277,11 +277,11 @@
     .hero .eyebrow { color: rgba(148,197,255,.88); }
 
     .hero-title {
-      margin-top: 18px;
+      margin-top: 16px;
       font-family: var(--font-head);
-      font-size: clamp(52px, 7.5vw, 100px);
-      font-weight: 400; letter-spacing: 3px;
-      line-height: .94; text-transform: uppercase;
+      font-size: clamp(44px, 5.4vw, 76px);
+      font-weight: 400; letter-spacing: 4px;
+      line-height: 1.07; text-transform: uppercase;
       color: #ffffff;
     }
 
@@ -289,13 +289,13 @@
     .word-inner { display: block; }
 
     .hero-sub {
-      max-width: 520px; margin: 22px 0 0;
-      color: rgba(200,220,255,.78); font-size: 17px; line-height: 1.78;
+      max-width: 500px; margin: 20px 0 0;
+      color: rgba(200,220,255,.78); font-size: 16px; line-height: 1.72;
     }
 
-    .hero-sub strong { color: #ffffff; font-weight: 500; }
+    .hero-sub strong { color: #ffffff; font-weight: 500; white-space: nowrap; }
 
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
 
     /* ── HERO CHIPS ──────────────────────────────────────── */
     .hero-chips {
@@ -2289,14 +2289,12 @@
 
           <!-- LEFT: text content -->
           <div class="hero-grid">
-            <div class="eyebrow">India's Premier Air Ambulance Service</div>
+            <div class="eyebrow">24/7 Critical Care Aviation &nbsp;·&nbsp; India &amp; International</div>
             <h1 class="hero-title" aria-label="When lives depend on speed">
-              <span class="word"><span class="word-inner">WHEN</span></span>
-              <span class="word"><span class="word-inner">LIVES</span></span>
-              <span class="word"><span class="word-inner">DEPEND</span></span>
-              <span class="word"><span class="word-inner">ON SPEED</span></span>
+              <span class="word"><span class="word-inner">WHEN LIVES</span></span>
+              <span class="word"><span class="word-inner">DEPEND ON SPEED</span></span>
             </h1>
-            <p class="hero-sub">NIAMS deploys ICU-equipped aircraft and specialist medical crews across India and internationally — under <strong>NL Curantis International Pvt Ltd</strong>.</p>
+            <p class="hero-sub">ICU-equipped aircraft. Specialist critical care crews.<br>24/7 across India and internationally — by <strong>NL Curantis International</strong>.</p>
             <div class="hero-actions">
               <a href="tel:18006426779" class="btn btn-red">&#9889; Request Emergency Transfer</a>
               <a href="#services" class="btn btn-sky">Explore Services</a>
@@ -2307,12 +2305,6 @@
               <span class="hero-chip">18 Min Response</span>
               <span class="hero-chip">Doctor-Led Teams</span>
               <span class="hero-chip">Bed-to-Bed Transfer</span>
-            </div>
-            <div class="status-bar">
-              <span class="dot"></span>
-              <span>24/7 Standby · India &amp; International</span>
-              <span class="status-sep"></span>
-              <span>DGCA Licensed · ISO 9001:2015</span>
             </div>
           </div>
 
@@ -3580,14 +3572,14 @@
     if (window.gsap) {
       gsap.registerPlugin(ScrollTrigger);
 
-      // Hero title: each word-inner slides up from y:80
+      // Hero title: each line slides up (2 lines now)
       gsap.from(".hero-title .word-inner", {
-        y: 80, opacity: 0, duration: 1.1,
-        stagger: 0.13, ease: "power4.out"
+        y: 70, opacity: 0, duration: 1.0,
+        stagger: 0.18, ease: "power4.out"
       });
 
       // Hero supporting elements fade in
-      gsap.from(".hero .eyebrow, .hero-sub, .hero-actions, .hero-chips, .status-bar", {
+      gsap.from(".hero .eyebrow, .hero-sub, .hero-actions, .hero-chips", {
         y: 30, opacity: 0, duration: 0.9,
         stagger: 0.12, delay: 0.42, ease: "power3.out"
       });

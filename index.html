@@ -1909,6 +1909,228 @@
       .gallery-item:first-child { grid-row: 1; grid-column: 1 / 3; }
       .fleet-photo-wrap { height: 155px; margin: -24px -24px 16px; }
     }
+
+    /* ═══════════════════════════════════════════════════════
+       LIGHT CLINICAL THEME
+       Hero · Nav · Stats bar · Ticker · Emergency CTA · Footer
+       remain dark. Everything else is clean white / soft blue-white.
+       ═══════════════════════════════════════════════════════ */
+
+    /* ── Shared light-section tokens ───────────────────────── */
+    #about, .partners-section, #services, .why-section,
+    .testi-section, #process, #fleet, #icu, #coverage,
+    .faq-section, .contact-section {
+      --lt-head:   #1a2d4f;
+      --lt-body:   #3d5a7a;
+      --lt-muted:  #7a96b5;
+      --lt-border: rgba(21,101,192,.12);
+      --lt-card:   #ffffff;
+      --lt-bg-alt: #f0f6ff;
+    }
+
+    /* ── About ──────────────────────────────────────────────── */
+    #about { background: #ffffff; }
+    #about .eyebrow           { color: var(--skylt); }
+    #about .section-title     { color: #1a2d4f; }
+    #about .section-copy      { color: #3d5a7a; }
+    #about .about-body        { color: #3d5a7a; }
+    #about .pillar-num        { color: var(--sky); }
+    #about .pillar-label      { color: #7a96b5; }
+    #about .about-pillars     { border-top-color: rgba(21,101,192,.12); }
+    #about .about-cert-badge  {
+      background: rgba(21,101,192,.07);
+      border: 1px solid rgba(21,101,192,.18);
+      color: var(--sky);
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 4px;
+    }
+
+    /* ── Partners ───────────────────────────────────────────── */
+    .partners-section {
+      background: #f0f6ff;
+      border-top: 1px solid rgba(21,101,192,.1);
+      border-bottom: 1px solid rgba(21,101,192,.1);
+    }
+    .partners-label { color: #7a96b5; }
+    .partner-badge {
+      background: #ffffff; color: #1a2d4f;
+      border: 1px solid rgba(21,101,192,.15);
+      box-shadow: 0 1px 4px rgba(21,101,192,.06);
+    }
+
+    /* ── Services ───────────────────────────────────────────── */
+    #services                 { background: #f0f6ff; }
+    #services .eyebrow        { color: var(--skylt); }
+    #services .section-title  { color: #1a2d4f; }
+    #services .section-copy   { color: #3d5a7a; }
+    #services .svc-tab        { color: #7a96b5; }
+    #services .svc-tab.active { color: var(--sky); border-bottom-color: var(--sky); }
+    #services .svc-tab:hover:not(.active) { color: var(--sky); }
+    #services .svc-tabs-nav   { border-bottom-color: rgba(21,101,192,.12); }
+    #services .svc-tab-count  { background: rgba(0,0,0,.06); color: #7a96b5; }
+    #services .svc-tab.active .svc-tab-count { background: rgba(21,101,192,.1); color: var(--sky); }
+
+    .svc2 {
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.1);
+      box-shadow: 0 2px 14px rgba(15,41,75,.06), 0 1px 3px rgba(15,41,75,.04);
+    }
+    .svc2:hover {
+      box-shadow: 0 10px 36px rgba(21,101,192,.14), 0 2px 8px rgba(15,41,75,.06);
+      border-color: rgba(21,101,192,.25);
+    }
+    .svc2-bd h3           { color: #1a2d4f; }
+    .svc2:hover .svc2-bd h3 { color: var(--sky); }
+    .svc2-desc            { color: #3d5a7a; }
+    .svc2-feats li        { color: #4a6a88; }
+    .svc2-feats           { border-top-color: rgba(0,0,0,.07); }
+
+    /* ── Why Choose ─────────────────────────────────────────── */
+    .why-section              { background: #ffffff; }
+    .why-section .section-title { color: #1a2d4f; }
+    .why-section .section-copy  { color: #3d5a7a; }
+    .why-card {
+      background: #f7fbff;
+      border: 1px solid rgba(21,101,192,.1);
+    }
+    .why-card:hover {
+      background: #ffffff;
+      border-color: rgba(21,101,192,.28);
+      box-shadow: 0 4px 22px rgba(21,101,192,.1);
+    }
+    .why-card h4  { color: #1a2d4f; }
+    .why-card p   { color: #3d5a7a; }
+    .why-tagline  { color: rgba(26,45,79,.1); }
+
+    /* ── Testimonials ───────────────────────────────────────── */
+    .testi-section            { background: #f0f6ff; }
+    .testi-section .eyebrow   { color: var(--skylt); }
+    .testi-section .section-title { color: #1a2d4f; }
+    .testi-section .section-copy  { color: #3d5a7a; }
+    .testi-card {
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.1);
+      border-top: 3px solid var(--sky);
+      box-shadow: 0 2px 14px rgba(15,41,75,.06);
+    }
+    .testi-card:hover { box-shadow: 0 10px 32px rgba(21,101,192,.12); }
+    .testi-text   { color: #3d5a7a; }
+    .testi-name   { color: var(--sky); }
+    .testi-detail { color: #7a96b5; }
+
+    /* ── Process / How It Works ─────────────────────────────── */
+    #process              { background: #ffffff; }
+    #process .eyebrow     { color: var(--skylt); }
+    #process .section-title { color: #1a2d4f; }
+    #process .section-copy  { color: #3d5a7a; }
+    .timeline-card {
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.12);
+      box-shadow: 0 2px 14px rgba(15,41,75,.05);
+    }
+    .timeline-card h3   { color: #1a2d4f; }
+    .timeline-card p    { color: #3d5a7a; }
+    .step               { color: var(--sky); }
+    .timeline-line      { background: rgba(21,101,192,.18); }
+
+    /* ── Fleet ──────────────────────────────────────────────── */
+    #fleet              { background: #f0f6ff; }
+    #fleet .eyebrow     { color: var(--skylt); }
+    #fleet .section-title { color: #1a2d4f; }
+    #fleet .section-copy  { color: #3d5a7a; }
+    .card-front {
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.12);
+      box-shadow: 0 2px 14px rgba(15,41,75,.06);
+    }
+    .card-back {
+      background: #1a2d4f;
+      border: 1px solid rgba(21,101,192,.2);
+    }
+    .card-front h3 { color: #1a2d4f; }
+    .card-front p  { color: #3d5a7a; }
+
+    /* ── ICU Section ────────────────────────────────────────── */
+    #icu              { background: #ffffff; }
+    #icu .eyebrow     { color: var(--skylt); }
+    #icu .section-title { color: #1a2d4f; }
+    #icu .section-copy  { color: #3d5a7a; }
+    .callout-label    { fill: #3d5a7a; }
+    .callout-line     { stroke: rgba(21,101,192,.3); }
+
+    /* ── Coverage ───────────────────────────────────────────── */
+    #coverage             { background: #f0f6ff; }
+    #coverage .eyebrow    { color: var(--skylt); }
+    #coverage .section-title { color: #1a2d4f; }
+    #coverage .section-copy  { color: #3d5a7a; }
+    #coverage .coverage-copy h3 { color: #1a2d4f; }
+    .coverage-list li     { color: #3d5a7a; }
+    .map-panel {
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.12);
+    }
+    .route-map-title      { color: #1a2d4f; }
+    .route-map-panel {
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.1);
+    }
+    .coverage-label       { color: #3d5a7a; }
+
+    /* ── FAQ ────────────────────────────────────────────────── */
+    .faq-section          { background: #ffffff; }
+    .faq-section .eyebrow { color: var(--skylt); }
+    .faq-section .section-title { color: #1a2d4f; }
+    .faq-section .section-copy  { color: #3d5a7a; }
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.1);
+    }
+    .faq-item[open]       { border-color: rgba(21,101,192,.3); }
+    .faq-q                { color: #1a2d4f; }
+    .faq-item[open] .faq-q { color: var(--sky); background: rgba(21,101,192,.05); }
+    .faq-a                { color: #3d5a7a; }
+
+    /* ── Contact ────────────────────────────────────────────── */
+    .contact-section      { background: #f0f6ff; }
+    .contact-section .eyebrow { color: var(--skylt); }
+    .contact-section .section-title { color: #1a2d4f; }
+    .contact-section .section-copy  { color: #3d5a7a; }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.15);
+      color: #1a2d4f;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: #9ab0c9; }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus { border-color: var(--sky); }
+    .contact-form select  { color: #1a2d4f; }
+    .contact-info-label   { color: #7a96b5; }
+    .contact-info-value   { color: #1a2d4f; }
+    .contact-info-value a { color: var(--sky); }
+    .contact-info-ic {
+      background: rgba(21,101,192,.08);
+      border: 1px solid rgba(21,101,192,.2);
+    }
+
+    /* ── Service Modal (light) ──────────────────────────────── */
+    .svc-modal-box        { background: #ffffff; }
+    .svc-modal-body       { background: #ffffff; border-left: 3px solid var(--sky); }
+    .svc-modal-title      { color: #1a2d4f; }
+    .svc-modal-desc       { color: #3d5a7a; }
+    .svc-modal-section    { border-top-color: rgba(21,101,192,.1); }
+    .svc-modal-list li    { color: #3d5a7a; }
+    .svc-modal-highlight  {
+      background: rgba(21,101,192,.06);
+      border: 1px solid rgba(21,101,192,.18);
+      border-left: 3px solid var(--sky);
+    }
+    .svc-modal-highlight p { color: #1a2d4f; }
+    .svc-modal-bd         { background: rgba(0,0,0,.5); }
   </style>
 </head>
 <body>

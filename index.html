@@ -1506,145 +1506,154 @@
     .svc2-wide .svc2-feats li { font-size: 13.5px; }
 
     /* ── SERVICE DETAIL MODAL (full-page style) ─────────── */
+    /* ── Service Detail Page ───────────────────────────────── */
     .svc-modal {
       position: fixed; inset: 0; z-index: 300;
-      display: flex; align-items: stretch; justify-content: flex-end;
+      overflow-y: auto; background: #f4f8ff;
+      animation: mPageIn .3s ease both;
     }
     .svc-modal[hidden] { display: none; }
+    .svc-modal-bd { display: none; }
 
-    .svc-modal-bd {
-      position: absolute; inset: 0;
-      background: rgba(2,8,18,.88);
+    @keyframes mPageIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sticky top nav */
+    .svc-modal-nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.96);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      animation: mBdIn .28s ease both;
+      border-bottom: 1px solid rgba(21,101,192,.12);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px; gap: 16px;
+    }
+    .svc-modal-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-label); font-size: 10px;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--sky); background: none; border: none;
+      cursor: pointer; transition: color .2s; padding: 0;
+    }
+    .svc-modal-back:hover { color: var(--red); }
+    .svc-modal-back svg { transition: transform .2s; }
+    .svc-modal-back:hover svg { transform: translateX(-3px); }
+    .svc-modal-nav-brand {
+      font-family: var(--font-head); font-size: 20px;
+      letter-spacing: 3px; color: #0d2952;
     }
 
-    .svc-modal-box {
-      position: relative; z-index: 1;
-      width: min(900px, 100%);
-      background: var(--panel);
-      display: grid; grid-template-columns: 340px 1fr;
-      max-height: 100vh; overflow: hidden;
-      box-shadow: -24px 0 80px rgba(0,0,0,.7);
-      animation: mBoxIn .38s cubic-bezier(.25,.46,.45,.94) both;
-    }
-
+    /* Hero image */
     .svc-modal-photo {
-      position: relative; overflow: hidden;
-      background: #060e1c; display: flex;
-      flex-direction: column; justify-content: flex-end;
+      position: relative; width: 100%; height: 420px; overflow: hidden;
+      background: #060e1c;
     }
     .svc-modal-photo img {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; filter: brightness(.55) saturate(.9);
+      object-fit: cover; filter: brightness(.55) saturate(.85);
     }
     .svc-modal-photo-ov {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,.05) 0%, rgba(4,17,31,.9) 100%);
+      background: linear-gradient(to bottom, rgba(4,17,31,.15) 0%, rgba(4,17,31,.88) 100%);
     }
     .svc-modal-photo-content {
-      position: relative; z-index: 2; padding: 32px;
+      position: absolute; bottom: 0; left: 0; right: 0;
+      z-index: 2; padding: 40px min(60px, 5vw);
+      display: flex; align-items: flex-end; justify-content: space-between;
     }
     .svc-modal-cat {
       font-family: var(--font-label); font-size: 9px;
       letter-spacing: 3px; text-transform: uppercase;
-      color: var(--skylt); margin-bottom: 10px;
+      color: var(--skylt); margin-bottom: 12px;
       display: flex; align-items: center; gap: 8px;
     }
     .svc-modal-cat::before {
       content: ""; width: 18px; height: 1px; background: var(--skylt);
     }
+    .svc-modal-title {
+      font-family: var(--font-head);
+      font-size: clamp(26px, 4vw, 52px);
+      font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+      color: #ffffff; line-height: 1.05; max-width: 800px;
+    }
     .svc-modal-photo-num {
-      font-family: var(--font-head); font-size: 110px; line-height: .9;
-      letter-spacing: -2px; color: rgba(255,255,255,.07);
+      font-family: var(--font-head); font-size: 130px; line-height: 1;
+      letter-spacing: -4px; color: rgba(255,255,255,.08);
+      flex-shrink: 0; align-self: flex-end;
     }
 
-    .svc-modal-close {
-      position: absolute; top: 20px; right: 20px; z-index: 10;
-      width: 42px; height: 42px;
-      background: rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.22);
-      color: #eef3ff; font-size: 22px; line-height: 1;
-      display: grid; place-items: center;
-      cursor: pointer !important; transition: background .2s, transform .2s;
-    }
-    .svc-modal-close:hover { background: var(--red); transform: scale(1.05); }
-
-    .svc-modal-body {
-      overflow-y: auto; display: flex; flex-direction: column;
-      background: var(--panel); border-left: 3px solid var(--sky);
-    }
+    /* Content body */
+    .svc-modal-body { background: #f4f8ff; }
     .svc-modal-body-inner {
-      padding: 48px 44px 40px; flex: 1; display: flex; flex-direction: column;
+      max-width: 960px; margin: 0 auto;
+      padding: 56px min(60px, 5vw) 80px;
     }
-
     .svc-modal-tag {
       font-family: var(--font-label); font-size: 9px; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--skylt); margin-bottom: 12px;
-    }
-    .svc-modal-title {
-      font-family: var(--font-head); font-size: clamp(22px, 2.8vw, 34px);
-      font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
-      color: #eef3ff; line-height: 1.05;
+      text-transform: uppercase; color: var(--sky); margin-bottom: 20px;
+      display: none;
     }
     .svc-modal-desc {
-      margin-top: 14px; color: rgba(238,243,255,.72);
-      font-size: 15px; line-height: 1.82; font-weight: 400;
+      font-size: 16px; line-height: 1.85; color: #2d4a6a; font-weight: 400;
     }
-    .svc-modal-desc + .svc-modal-desc { margin-top: 10px; }
+    .svc-modal-desc + .svc-modal-desc { margin-top: 14px; }
 
+    /* Two-column sections grid */
+    .svc-modal-sections-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 36px;
+    }
     .svc-modal-section {
-      margin-top: 24px; padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,.08);
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.12);
+      border-top: 3px solid var(--sky);
+      border-radius: 0 0 8px 8px;
+      padding: 24px 24px 20px;
     }
     .svc-modal-section-heading {
       font-family: var(--font-label); font-size: 9px;
       letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--skylt); margin-bottom: 14px;
+      color: var(--sky); margin-bottom: 16px;
     }
-    .svc-modal-list {
-      list-style: none; display: grid; gap: 8px;
-    }
+    .svc-modal-list { list-style: none; display: grid; gap: 9px; }
     .svc-modal-list li {
       display: flex; align-items: flex-start; gap: 10px;
-      color: rgba(238,243,255,.68); font-size: 14px; line-height: 1.5;
+      color: #3d5a7a; font-size: 14px; line-height: 1.5;
     }
     .svc-modal-list li::before {
       content: ""; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--skylt); margin-top: 5px;
-      box-shadow: 0 0 7px rgba(33,150,243,.35);
+      background: var(--sky); margin-top: 5px;
     }
 
     .svc-modal-highlight {
-      margin-top: 22px; padding: 18px 22px;
-      background: rgba(21,101,192,.07);
-      border: 1px solid rgba(21,101,192,.22);
-      border-left: 3px solid var(--sky);
+      margin-top: 28px; padding: 22px 28px;
+      background: #ffffff;
+      border: 1px solid rgba(21,101,192,.18);
+      border-left: 4px solid var(--sky);
+      border-radius: 0 8px 8px 0;
     }
     .svc-modal-highlight p {
-      color: rgba(238,243,255,.85); font-size: 14px; line-height: 1.75;
+      color: #1a2d4f; font-size: 15px; line-height: 1.8;
     }
 
     .svc-modal-actions {
-      margin-top: auto; padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      display: flex; flex-wrap: wrap; gap: 12px;
-    }
-
-    @keyframes mBdIn  { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes mBoxIn {
-      from { opacity: 0; transform: translateX(60px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    @media (max-width: 768px) {
-      .svc-modal-box { grid-template-columns: 1fr; width: 100%; }
-      .svc-modal-photo { min-height: 200px; max-height: 200px; }
-      .svc-modal-body-inner { padding: 28px 22px 24px; }
+      margin-top: 40px; padding-top: 32px;
+      border-top: 1px solid rgba(21,101,192,.12);
+      display: flex; flex-wrap: wrap; gap: 14px;
     }
 
     /* Make cards clickable */
     .svc2 { cursor: pointer !important; }
+
+    @media (max-width: 768px) {
+      .svc-modal-photo { height: 260px; }
+      .svc-modal-photo-num { display: none; }
+      .svc-modal-sections-wrap { grid-template-columns: 1fr; }
+      .svc-modal-nav { padding: 12px 20px; }
+      .svc-modal-body-inner { padding: 32px 20px 60px; }
+    }
 
     /* ── WHY NIAMS SECTION ───────────────────────────────── */
     .why-section {
@@ -2346,20 +2355,7 @@
       border: 1px solid rgba(21,101,192,.2);
     }
 
-    /* ── Service Modal (light) ──────────────────────────────── */
-    .svc-modal-box        { background: #ffffff; }
-    .svc-modal-body       { background: #ffffff; border-left: 3px solid var(--sky); }
-    .svc-modal-title      { color: #1a2d4f; }
-    .svc-modal-desc       { color: #3d5a7a; }
-    .svc-modal-section    { border-top-color: rgba(21,101,192,.1); }
-    .svc-modal-list li    { color: #3d5a7a; }
-    .svc-modal-highlight  {
-      background: rgba(21,101,192,.06);
-      border: 1px solid rgba(21,101,192,.18);
-      border-left: 3px solid var(--sky);
-    }
-    .svc-modal-highlight p { color: #1a2d4f; }
-    .svc-modal-bd         { background: rgba(0,0,0,.5); }
+    /* Service detail page — light theme already set in component CSS */
   </style>
 </head>
 <body>
@@ -4424,15 +4420,19 @@
         data.desc.forEach(function(p) {
           html += '<p class="svc-modal-desc">' + p + '</p>';
         });
-        data.sections.forEach(function(sec) {
-          html += '<div class="svc-modal-section">';
-          html += '<p class="svc-modal-section-heading">' + sec.heading + '</p>';
-          html += '<ul class="svc-modal-list">';
-          sec.items.forEach(function(item) {
-            html += '<li>' + item + '</li>';
+        if (data.sections && data.sections.length) {
+          html += '<div class="svc-modal-sections-wrap">';
+          data.sections.forEach(function(sec) {
+            html += '<div class="svc-modal-section">';
+            html += '<p class="svc-modal-section-heading">' + sec.heading + '</p>';
+            html += '<ul class="svc-modal-list">';
+            sec.items.forEach(function(item) {
+              html += '<li>' + item + '</li>';
+            });
+            html += '</ul></div>';
           });
-          html += '</ul></div>';
-        });
+          html += '</div>';
+        }
         if (data.highlight) {
           html += '<div class="svc-modal-highlight"><p>' + data.highlight + '</p></div>';
         }
@@ -4443,13 +4443,14 @@
         var id   = card.dataset.svcId;
         var data = SVC_DATA[id];
         if (!data) return;
-        mImg.src     = data.img;
-        mImg.alt     = data.title;
-        mCat.textContent = data.cat;
-        mNum.textContent = data.num;
-        mTitle.textContent = data.title;
-        mContent.innerHTML = buildContent(data);
-        modal.hidden = false;
+        mImg.src             = data.img;
+        mImg.alt             = data.title;
+        mCat.textContent     = data.cat;
+        mNum.textContent     = data.num;
+        mTitle.textContent   = data.title;
+        mContent.innerHTML   = buildContent(data);
+        modal.hidden         = false;
+        modal.scrollTop      = 0;
         document.body.style.overflow = 'hidden';
       }
 
@@ -4466,38 +4467,45 @@
         link.addEventListener('click', function(e) { e.preventDefault(); });
       });
 
-      document.querySelector('.svc-modal-close').addEventListener('click', function(e) {
-        e.stopPropagation();
-        closeModal();
-      });
-      document.querySelector('.svc-modal-bd').addEventListener('click', closeModal);
+      document.querySelector('.svc-modal-back').addEventListener('click', closeModal);
       document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
     })();
 
   </script>
 
-  <!-- Service Detail Modal -->
-  <div id="svc-modal" class="svc-modal" role="dialog" aria-modal="true" aria-labelledby="svc-modal-title" hidden>
+  <!-- Service Detail Page -->
+  <div id="svc-modal" class="svc-modal" role="main" aria-labelledby="svc-modal-title" hidden>
     <div class="svc-modal-bd"></div>
-    <div class="svc-modal-box">
-      <div class="svc-modal-photo">
-        <img id="svc-modal-img" src="" alt="">
-        <div class="svc-modal-photo-ov"></div>
-        <div class="svc-modal-photo-content">
+
+    <!-- Sticky back nav -->
+    <nav class="svc-modal-nav">
+      <button class="svc-modal-back" aria-label="Back to services">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M10 3L5 8l5 5"/></svg>
+        Back to Services
+      </button>
+      <span class="svc-modal-nav-brand">NIAMS</span>
+    </nav>
+
+    <!-- Hero image -->
+    <div class="svc-modal-photo">
+      <img id="svc-modal-img" src="" alt="">
+      <div class="svc-modal-photo-ov"></div>
+      <div class="svc-modal-photo-content">
+        <div>
           <div class="svc-modal-cat" id="svc-modal-cat"></div>
-          <div class="svc-modal-photo-num" id="svc-modal-num"></div>
+          <h1 class="svc-modal-title" id="svc-modal-title"></h1>
         </div>
-        <button class="svc-modal-close" aria-label="Close">&times;</button>
+        <div class="svc-modal-photo-num" id="svc-modal-num"></div>
       </div>
-      <div class="svc-modal-body">
-        <div class="svc-modal-body-inner">
-          <div class="svc-modal-tag">NIAMS Services</div>
-          <h2 class="svc-modal-title" id="svc-modal-title"></h2>
-          <div id="svc-modal-content"></div>
-          <div class="svc-modal-actions">
-            <a href="tel:18006426779" class="btn btn-red">Call Now — 1800-NIAMS-911</a>
-            <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us</a>
-          </div>
+    </div>
+
+    <!-- Content -->
+    <div class="svc-modal-body">
+      <div class="svc-modal-body-inner">
+        <div id="svc-modal-content"></div>
+        <div class="svc-modal-actions">
+          <a href="tel:18006426779" class="btn btn-red">&#9889; Call Now — 1800-NIAMS-911</a>
+          <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us</a>
         </div>
       </div>
     </div>

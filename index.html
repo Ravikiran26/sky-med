@@ -3665,6 +3665,44 @@
     </a>
   </div>
 
+  <!-- Service Detail Page — must be in DOM before scripts run -->
+  <div id="svc-modal" class="svc-modal" role="main" aria-labelledby="svc-modal-title" hidden>
+    <div class="svc-modal-bd"></div>
+
+    <!-- Sticky back nav -->
+    <nav class="svc-modal-nav">
+      <button class="svc-modal-back" aria-label="Back to services">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M10 3L5 8l5 5"/></svg>
+        Back to Services
+      </button>
+      <span class="svc-modal-nav-brand">NIAMS</span>
+    </nav>
+
+    <!-- Hero image -->
+    <div class="svc-modal-photo">
+      <img id="svc-modal-img" src="" alt="">
+      <div class="svc-modal-photo-ov"></div>
+      <div class="svc-modal-photo-content">
+        <div>
+          <div class="svc-modal-cat" id="svc-modal-cat"></div>
+          <h1 class="svc-modal-title" id="svc-modal-title"></h1>
+        </div>
+        <div class="svc-modal-photo-num" id="svc-modal-num"></div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="svc-modal-body">
+      <div class="svc-modal-body-inner">
+        <div id="svc-modal-content"></div>
+        <div class="svc-modal-actions">
+          <a href="tel:18006426779" class="btn btn-red">&#9889; Call Now — 1800-NIAMS-911</a>
+          <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -4472,43 +4510,5 @@
     })();
 
   </script>
-
-  <!-- Service Detail Page -->
-  <div id="svc-modal" class="svc-modal" role="main" aria-labelledby="svc-modal-title" hidden>
-    <div class="svc-modal-bd"></div>
-
-    <!-- Sticky back nav -->
-    <nav class="svc-modal-nav">
-      <button class="svc-modal-back" aria-label="Back to services">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M10 3L5 8l5 5"/></svg>
-        Back to Services
-      </button>
-      <span class="svc-modal-nav-brand">NIAMS</span>
-    </nav>
-
-    <!-- Hero image -->
-    <div class="svc-modal-photo">
-      <img id="svc-modal-img" src="" alt="">
-      <div class="svc-modal-photo-ov"></div>
-      <div class="svc-modal-photo-content">
-        <div>
-          <div class="svc-modal-cat" id="svc-modal-cat"></div>
-          <h1 class="svc-modal-title" id="svc-modal-title"></h1>
-        </div>
-        <div class="svc-modal-photo-num" id="svc-modal-num"></div>
-      </div>
-    </div>
-
-    <!-- Content -->
-    <div class="svc-modal-body">
-      <div class="svc-modal-body-inner">
-        <div id="svc-modal-content"></div>
-        <div class="svc-modal-actions">
-          <a href="tel:18006426779" class="btn btn-red">&#9889; Call Now — 1800-NIAMS-911</a>
-          <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us</a>
-        </div>
-      </div>
-    </div>
-  </div>
 </body>
 </html>

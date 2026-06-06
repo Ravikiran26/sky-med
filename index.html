@@ -159,7 +159,7 @@
 
     .nav-dropdown {
       position: absolute;
-      top: calc(100% + 22px);
+      top: 100%;
       left: 50%; transform: translateX(-50%) translateY(-6px);
       width: 860px;
       background: rgba(255,255,255,.99);
@@ -167,13 +167,21 @@
       border-top: 2px solid var(--sky);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      padding: 28px 28px 24px;
+      padding: 22px 28px 24px;
+      padding-top: 28px;
       display: grid; grid-template-columns: repeat(5,1fr);
       gap: 0;
       opacity: 0; pointer-events: none;
       transition: opacity .2s ease, transform .2s ease;
       z-index: 200;
       box-shadow: 0 16px 40px rgba(15,41,75,.12), 0 1px 3px rgba(15,41,75,.06);
+    }
+    /* Invisible bridge fills gap between nav link and dropdown panel */
+    .nav-dropdown::before {
+      content: '';
+      position: absolute;
+      top: -22px; left: 0; right: 0;
+      height: 22px;
     }
     .nav-item:hover .nav-dropdown,
     .nav-item:focus-within .nav-dropdown {

@@ -2698,7 +2698,7 @@
                     <li>Bed-to-bed patient transfer</li>
                     <li>24/7 emergency activation</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2719,7 +2719,7 @@
                     <li>Airport clearances &amp; ground coordination</li>
                     <li>Hospital-to-hospital transfers</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2740,7 +2740,7 @@
                     <li>Oncology &amp; rehabilitation transfers</li>
                     <li>Long-distance medical travel</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2761,7 +2761,7 @@
                     <li>Airport medical assistance</li>
                     <li>Oxygen support &amp; continuous monitoring</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2782,7 +2782,7 @@
                     <li>Elderly &amp; post-discharge travellers</li>
                     <li>Discreet medical escort support</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2810,7 +2810,7 @@
                     <li>Pediatric ventilator support</li>
                     <li>Pediatric critical care specialists</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2831,7 +2831,7 @@
                     <li>Lung &amp; cardiac transplantation support</li>
                     <li>Portable ECMO circuit on board</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2852,7 +2852,7 @@
                     <li>Surgical retrieval team transport</li>
                     <li>Cold-chain integrity guaranteed</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2873,7 +2873,7 @@
                     <li>Inter-facility helicopter transfer</li>
                     <li>Disaster management support</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2901,7 +2901,7 @@
                     <li>Infusion pumps &amp; emergency medications</li>
                     <li>Advanced airway management</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2922,7 +2922,7 @@
                     <li>Medical command centres</li>
                     <li>Air evacuation planning</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2943,7 +2943,7 @@
                     <li>Aeromedical evacuation</li>
                     <li>Multi-patient transportation</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2971,7 +2971,7 @@
                     <li>Hospital appointment coordination</li>
                     <li>Dedicated case manager</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -2999,7 +2999,7 @@
                     <li>Case-specific specialist consultations</li>
                     <li>Insurance &amp; corporate coordination</li>
                   </ul>
-                  <a href="#contact" class="svc2-cta">Learn More →</a>
+                  <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
               </article>
 
@@ -4366,6 +4366,10 @@
 
       document.querySelectorAll('.svc2').forEach(function(card) {
         card.addEventListener('click', function() { openModal(card); });
+      });
+
+      document.querySelectorAll('.svc2-cta').forEach(function(link) {
+        link.addEventListener('click', function(e) { e.preventDefault(); });
       });
 
       document.querySelector('.svc-modal-close').addEventListener('click', function(e) {

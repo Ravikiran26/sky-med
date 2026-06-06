@@ -335,31 +335,84 @@
     }
 
     .hero-quote-card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 34px 44px;
-      box-shadow: 0 20px 60px rgba(8,24,60,.18), 0 4px 14px rgba(8,24,60,.08);
-      display: flex; align-items: center; gap: 44px;
+      border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(4,17,31,.22), 0 4px 16px rgba(4,17,31,.1);
+      display: flex;
+      overflow: hidden;
     }
 
-    .hqc-header { flex-shrink: 0; max-width: 240px; }
-
-    .hqc-title {
-      font-family: var(--font-body); font-weight: 700;
-      font-size: 21px; color: #0d2952; line-height: 1.3;
+    /* ── Left: brand trust panel ── */
+    .hqc-left {
+      background: #04111f;
+      border-left: 4px solid var(--red);
+      padding: 36px 36px 32px;
+      min-width: 268px; max-width: 268px;
+      display: flex; flex-direction: column; gap: 18px;
     }
 
-    .hqc-sub {
-      font-size: 13px; color: var(--muted); margin-top: 7px; line-height: 1.55;
+    .hqc-live {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; color: var(--green); text-transform: uppercase;
     }
 
-    .hqc-form {
-      flex: 1; display: flex; gap: 12px; align-items: stretch;
+    .hqc-live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+      animation: hqc-pulse 1.6s ease-in-out infinite;
     }
+
+    @keyframes hqc-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(61,220,132,.55); }
+      50%      { box-shadow: 0 0 0 7px rgba(61,220,132,0); }
+    }
+
+    .hqc-left-title {
+      font-family: var(--font-head);
+      font-size: 30px; letter-spacing: 1px;
+      color: #eef3ff; line-height: 1.15;
+    }
+
+    .hqc-trust { display: flex; flex-direction: column; gap: 9px; flex: 1; }
+
+    .hqc-trust-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 12.5px; color: #6a8aaa; line-height: 1.4;
+    }
+
+    .hqc-trust-ico {
+      color: var(--red); font-size: 13px;
+      font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    .hqc-left-phone {
+      font-family: var(--font-head);
+      font-size: 19px; letter-spacing: 1px;
+      color: #eef3ff; text-decoration: none;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 16px;
+      transition: color .2s;
+    }
+    .hqc-left-phone:hover { color: var(--red); }
+
+    /* ── Right: form panel ── */
+    .hqc-right {
+      flex: 1; background: #ffffff;
+      padding: 32px 36px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+
+    .hqc-form-intro {
+      font-size: 13px; color: #6a8aaa; margin: 0; line-height: 1.5;
+    }
+
+    .hqc-form { display: flex; flex-direction: column; gap: 11px; }
+
+    .hqc-row { display: flex; gap: 11px; }
 
     .hqc-input {
       flex: 1; height: 50px; padding: 0 16px;
-      border: 1.5px solid rgba(21,101,192,.2);
+      border: 1.5px solid rgba(21,101,192,.18);
       border-radius: 8px;
       font-family: var(--font-body); font-size: 14px; color: #0d1e35;
       background: #f5f9ff; outline: none;
@@ -371,16 +424,27 @@
     }
     .hqc-input::placeholder { color: #9ab2c8; }
 
+    .hqc-select {
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%236a8aaa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 36px; color: #9ab2c8;
+    }
+    .hqc-select.filled,
+    .hqc-select:not(:invalid) { color: #0d1e35; }
+
     .hqc-btn {
-      height: 50px; padding: 0 28px; flex-shrink: 0;
-      background: #0d2952; color: #ffffff; border-radius: 8px; border: 0;
-      font-family: var(--font-body); font-size: 14px; font-weight: 600;
-      letter-spacing: .3px; white-space: nowrap; cursor: pointer;
+      width: 100%; height: 52px;
+      background: var(--red); color: #ffffff; border: 0;
+      border-radius: 8px;
+      font-family: var(--font-label); font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer;
       transition: background .2s, transform .2s, box-shadow .2s;
     }
     .hqc-btn:hover {
-      background: var(--sky); transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(21,101,192,.32);
+      background: #c01f1f; transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(224,40,40,.35);
     }
 
     .btn {
@@ -1105,8 +1169,18 @@
     }
 
     .float-whatsapp {
-      background: #16b967; color: #03120a;
-      box-shadow: 0 0 22px rgba(61,220,132,.28);
+      background: #25d366; color: #fff;
+      min-width: 58px; width: 58px; height: 58px;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      animation: waPulse 2s ease-in-out infinite;
+    }
+    .float-whatsapp .btn-label { display: none; }
+    .float-whatsapp .btn-icon svg { width: 28px; height: 28px; }
+
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.4); }
+      50%      { box-shadow: 0 4px 32px rgba(37,211,102,.75), 0 0 0 8px rgba(37,211,102,.08); }
     }
 
     /* ── KEYFRAMES ───────────────────────────────────────── */
@@ -1862,11 +1936,20 @@
       .hero { min-height: 60vh; padding-top: 108px; padding-bottom: 80px; }
       .hero-title { font-size: clamp(32px, 9vw, 54px); }
       .hero-sub { font-size: 16px; }
-      .hero-quote-card { flex-direction: column; gap: 24px; padding: 28px 24px; }
-      .hqc-header { max-width: 100%; }
-      .hqc-form { flex-direction: column; }
+      .hero-quote-card { flex-direction: column; }
+      .hqc-left {
+        min-width: unset; max-width: unset;
+        flex-direction: row; flex-wrap: wrap;
+        align-items: center; gap: 12px;
+        padding: 20px 24px;
+        border-left: none; border-top: 4px solid var(--red);
+      }
+      .hqc-left-title { font-size: 22px; width: 100%; }
+      .hqc-trust { display: none; }
+      .hqc-left-phone { border-top: none; padding-top: 0; font-size: 16px; }
+      .hqc-right { padding: 20px 24px; }
+      .hqc-row { flex-direction: column; }
       .hqc-input { width: 100%; }
-      .hqc-btn { width: 100%; }
       .stats-panel { padding-top: 24px; }
       .radar-wrap { display: none; }
 
@@ -1918,8 +2001,8 @@
       .svc-body { padding: 34px 20px 20px; }
 
       .floating { right: 12px; bottom: 14px; }
-      .float-btn { min-width: 48px; width: 48px; padding: 0; font-size: 0; gap: 0; }
-      .float-btn .btn-label { display: none; }
+      .float-call { min-width: 48px; width: 48px; padding: 0; font-size: 0; gap: 0; }
+      .float-call .btn-label { display: none; }
       .float-btn .btn-icon { font-size: 20px; }
 
       .bottom-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -2346,20 +2429,62 @@
 
     </section>
 
-    <!-- QUOTE CARD — overlaps hero/stats (ICATT signature) -->
+    <!-- QUOTE CARD — overlaps hero/stats -->
     <div class="hero-quote-wrap">
       <div class="shell">
         <div class="hero-quote-card">
-          <div class="hqc-header">
-            <div class="hqc-title">Get Air Ambulance Quote Now!</div>
-            <p class="hqc-sub">Our team responds within minutes — 24/7 nationwide &amp; international</p>
+
+          <!-- Left: trust panel -->
+          <div class="hqc-left">
+            <div class="hqc-live">
+              <span class="hqc-live-dot"></span>
+              Responding Now
+            </div>
+            <div class="hqc-left-title">Request a<br>Mission<br>Assessment</div>
+            <div class="hqc-trust">
+              <div class="hqc-trust-row">
+                <span class="hqc-trust-ico">&#9889;</span>
+                Immediate callback on submission
+              </div>
+              <div class="hqc-trust-row">
+                <span class="hqc-trust-ico">&#43;</span>
+                Doctor-led crew on every mission
+              </div>
+              <div class="hqc-trust-row">
+                <span class="hqc-trust-ico">&#9992;</span>
+                Own fleet &mdash; no brokers, no delays
+              </div>
+            </div>
+            <a href="tel:18006426779" class="hqc-left-phone">1800-NIAMS-911</a>
           </div>
-          <form class="hqc-form" action="#" onsubmit="return false;">
-            <input class="hqc-input" type="text" placeholder="Your Name" required>
-            <input class="hqc-input" type="tel" placeholder="Phone Number" required>
-            <input class="hqc-input" type="text" placeholder="From City / Hospital" required>
-            <button class="hqc-btn" type="submit">Get Quote Now</button>
-          </form>
+
+          <!-- Right: form panel -->
+          <div class="hqc-right">
+            <p class="hqc-form-intro">Tell us who needs help &mdash; we coordinate everything else.</p>
+            <form class="hqc-form" action="#" onsubmit="return false;">
+              <div class="hqc-row">
+                <input class="hqc-input" type="text" placeholder="Patient Name" required>
+                <input class="hqc-input" type="tel" placeholder="Your Phone Number" required>
+              </div>
+              <div class="hqc-row">
+                <input class="hqc-input" type="text" placeholder="From City / Hospital" required>
+                <select class="hqc-input hqc-select" required>
+                  <option value="" disabled selected>Type of Transfer</option>
+                  <option>Cardiac Emergency</option>
+                  <option>Trauma / Accident</option>
+                  <option>Neonatal / Pediatric</option>
+                  <option>ICU Transfer</option>
+                  <option>International Repatriation</option>
+                  <option>ECMO Transport</option>
+                  <option>Organ Retrieval</option>
+                  <option>Planned Transfer</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <button class="hqc-btn" type="submit">Request Mission Assessment &rarr;</button>
+            </form>
+          </div>
+
         </div>
       </div>
     </div>
@@ -2368,20 +2493,20 @@
     <section class="stats-panel" id="stats">
       <div class="shell stats-grid">
         <div class="stat">
-          <div class="stat-number"><span data-count="1800">0</span><span class="stat-accent">+</span></div>
-          <div class="stat-label">Missions Completed</div>
+          <div class="stat-number"><span class="stat-accent">24/7</span></div>
+          <div class="stat-label">Command Centre Active</div>
         </div>
         <div class="stat">
           <div class="stat-number"><span data-count="18">0</span> <span class="stat-accent">min</span></div>
-          <div class="stat-label">Avg Response Time</div>
+          <div class="stat-label">Dispatch Commitment</div>
         </div>
         <div class="stat">
           <div class="stat-number"><span data-count="32">0</span><span class="stat-accent">+</span></div>
           <div class="stat-label">Cities Covered</div>
         </div>
         <div class="stat">
-          <div class="stat-number"><span data-count="99.8" data-decimal="1">0</span><span class="stat-accent">%</span></div>
-          <div class="stat-label">Success Rate</div>
+          <div class="stat-number"><span class="stat-accent">Doctor</span></div>
+          <div class="stat-label">Led Every Mission</div>
         </div>
       </div>
     </section>
@@ -2389,27 +2514,27 @@
     <!-- CERTIFICATIONS MARQUEE -->
     <section class="ticker" aria-label="Certifications and accreditations">
       <div class="ticker-track">
-        <span class="ticker-item">DGCA Licensed</span><span class="diamond"></span>
-        <span class="ticker-item">CAMTS Accredited</span><span class="diamond"></span>
-        <span class="ticker-item">EURAMI Certified</span><span class="diamond"></span>
-        <span class="ticker-item">ISO 9001:2015</span><span class="diamond"></span>
-        <span class="ticker-item">NABH Compliant</span><span class="diamond"></span>
         <span class="ticker-item">Doctor-Led Missions</span><span class="diamond"></span>
         <span class="ticker-item">Bed-to-Bed Transfer</span><span class="diamond"></span>
         <span class="ticker-item">Flying ICU Standard</span><span class="diamond"></span>
         <span class="ticker-item">24/7 Command Centre</span><span class="diamond"></span>
         <span class="ticker-item">No Hidden Charges</span><span class="diamond"></span>
+        <span class="ticker-item">Air Medical Experts</span><span class="diamond"></span>
+        <span class="ticker-item">Own Fleet — No Brokers</span><span class="diamond"></span>
+        <span class="ticker-item">International Repatriation</span><span class="diamond"></span>
+        <span class="ticker-item">ECMO Capable</span><span class="diamond"></span>
+        <span class="ticker-item">Neonatal Transport</span><span class="diamond"></span>
         <!-- duplicate for seamless loop -->
-        <span class="ticker-item">DGCA Licensed</span><span class="diamond"></span>
-        <span class="ticker-item">CAMTS Accredited</span><span class="diamond"></span>
-        <span class="ticker-item">EURAMI Certified</span><span class="diamond"></span>
-        <span class="ticker-item">ISO 9001:2015</span><span class="diamond"></span>
-        <span class="ticker-item">NABH Compliant</span><span class="diamond"></span>
         <span class="ticker-item">Doctor-Led Missions</span><span class="diamond"></span>
         <span class="ticker-item">Bed-to-Bed Transfer</span><span class="diamond"></span>
         <span class="ticker-item">Flying ICU Standard</span><span class="diamond"></span>
         <span class="ticker-item">24/7 Command Centre</span><span class="diamond"></span>
         <span class="ticker-item">No Hidden Charges</span><span class="diamond"></span>
+        <span class="ticker-item">Air Medical Experts</span><span class="diamond"></span>
+        <span class="ticker-item">Own Fleet — No Brokers</span><span class="diamond"></span>
+        <span class="ticker-item">International Repatriation</span><span class="diamond"></span>
+        <span class="ticker-item">ECMO Capable</span><span class="diamond"></span>
+        <span class="ticker-item">Neonatal Transport</span><span class="diamond"></span>
       </div>
     </section>
 
@@ -2420,13 +2545,9 @@
           <div class="about-copy">
             <div class="eyebrow">About NIAMS</div>
             <h2 class="section-title">India's Premier<br>Air Medical Service</h2>
-            <p class="section-copy">NL International Air Medical Services (NIAMS), operating under NL Curantis International Pvt Ltd, is India's dedicated aeromedical transport provider — combining DGCA-licensed aviation with hospital-grade critical care on every mission.</p>
-            <p class="about-body">From cardiac emergencies and trauma to neonatal transfers and international repatriation, our specialist flight physicians, nurses, and paramedics have safely completed 1,800+ missions across 32+ Indian cities and international destinations. We operate our own fleet — no brokers, no sub-contractors, no delays.</p>
+            <p class="section-copy">NL International Air Medical Services (NIAMS), operating under NL Curantis International Pvt Ltd, is India's dedicated aeromedical transport provider — combining certified aviation with hospital-grade critical care on every mission.</p>
+            <p class="about-body">From cardiac emergencies and trauma to neonatal transfers and international repatriation, our team of flight physicians, critical care nurses, and paramedics — trained in aeromedical transport — are fully equipped and ready to respond across 32+ Indian cities and international destinations. We operate our own fleet — no brokers, no sub-contractors, no delays.</p>
             <div class="about-pillars">
-              <div class="about-pillar">
-                <span class="pillar-num">1800+</span>
-                <span class="pillar-label">Missions Completed</span>
-              </div>
               <div class="about-pillar">
                 <span class="pillar-num">32+</span>
                 <span class="pillar-label">Cities Covered</span>
@@ -2435,6 +2556,10 @@
                 <span class="pillar-num">24/7</span>
                 <span class="pillar-label">Operations Centre</span>
               </div>
+              <div class="about-pillar">
+                <span class="pillar-num">Air Med</span>
+                <span class="pillar-label">Expert Founders</span>
+              </div>
             </div>
           </div>
           <div class="about-visual">
@@ -2442,10 +2567,10 @@
               src="https://images.unsplash.com/photo-1629155514090-072270d9c981?auto=format&fit=crop&w=800&q=80"
               alt="NIAMS air ambulance helicopter ready for mission" loading="lazy">
             <div class="about-cert-strip">
-              <span class="about-cert-badge">DGCA Licensed</span>
-              <span class="about-cert-badge">ISO 9001:2015</span>
-              <span class="about-cert-badge">NABH Compliant</span>
-              <span class="about-cert-badge">CAMTS Accredited</span>
+              <span class="about-cert-badge">Air Medical Experts</span>
+              <span class="about-cert-badge">Own Fleet</span>
+              <span class="about-cert-badge">No Brokers</span>
+              <span class="about-cert-badge">24/7 Operations</span>
             </div>
           </div>
         </div>
@@ -2457,7 +2582,7 @@
       <div class="shell">
         <p class="partners-label">Recognised &amp; Partnered With</p>
         <div class="partners-row">
-          <span class="partner-badge">DGCA India</span>
+          <span class="partner-badge">Air Medical Certified</span>
           <span class="partner-badge">AIIMS Delhi</span>
           <span class="partner-badge">Apollo Hospitals</span>
           <span class="partner-badge">Fortis Healthcare</span>
@@ -2988,34 +3113,14 @@
     <section class="testi-section" id="testimonials">
       <div class="shell">
         <div class="eyebrow">Patient Stories</div>
-        <h2 class="section-title">Trusted When It Matters Most</h2>
-        <p class="section-copy">Families and hospitals across India have relied on NIAMS at their most critical moments.</p>
-        <div class="testi-grid">
-
-          <div class="testi-card">
-            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi-text">Our father suffered a massive cardiac arrest in Jaipur. NIAMS had a fully equipped aircraft and cardiologist on site within 35 minutes. He was at AIIMS Delhi in 90 minutes flat. The clinical team never stopped monitoring him for a single second.</p>
-            <div class="testi-divider"></div>
-            <p class="testi-name">Sharma Family</p>
-            <p class="testi-detail">Cardiac Emergency — Jaipur to New Delhi</p>
+        <h2 class="section-title">Be Among Our First</h2>
+        <p class="section-copy">We are newly operational and building our record — one safe transfer at a time. Your family's story could be the first we share here.</p>
+        <div style="text-align:center; padding: 48px 0;">
+          <div style="display:inline-block; background:rgba(21,101,200,0.08); border:1px solid rgba(21,101,200,0.2); border-radius:16px; padding:40px 56px; max-width:560px;">
+            <div style="font-size:40px; margin-bottom:16px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p style="font-size:16px; color:#3d5a7a; line-height:1.7; margin-bottom:20px;">We have just launched operations. Our team is trained, our aircraft are equipped, and our command centre is active 24/7. We look forward to earning your trust — and your story.</p>
+            <a href="#contact-form" style="display:inline-block; background:#1565c8; color:#fff; font-weight:600; font-size:13px; letter-spacing:1px; text-transform:uppercase; padding:12px 28px; border-radius:8px; text-decoration:none;">Enquire Now</a>
           </div>
-
-          <div class="testi-card">
-            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi-text">As a hospital administrator, I've coordinated dozens of inter-hospital transfers. NIAMS is the only air ambulance provider I trust unconditionally. Their clinical handover protocols are the most thorough I've encountered in 18 years of healthcare operations.</p>
-            <div class="testi-divider"></div>
-            <p class="testi-name">Senior Administrator</p>
-            <p class="testi-detail">Multi-Specialty Hospital, Bengaluru</p>
-          </div>
-
-          <div class="testi-card">
-            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi-text">My mother needed urgent repatriation from Dubai after a stroke. NIAMS coordinated everything — embassy documentation, airline stretcher approval, ground ambulances at both ends. Not once did we feel alone in that process.</p>
-            <div class="testi-divider"></div>
-            <p class="testi-name">NRI Family</p>
-            <p class="testi-detail">International Repatriation — Dubai to Mumbai</p>
-          </div>
-
         </div>
       </div>
     </section>
@@ -3457,10 +3562,14 @@
             </span>
           </a>
           <p style="margin-top:18px; max-width:270px; line-height:1.7">ICU-equipped air ambulance command across India and internationally.</p>
-          <span class="footer-dgca">DGCA Licensed</span>
+          <span class="footer-dgca">Air Medical Service</span>
           <div class="social">
-            <a href="https://wa.me/918006426779" aria-label="WhatsApp">WA</a>
-            <a href="mailto:ops@nlcurantis.in" aria-label="Email">EM</a>
+            <a href="https://wa.me/918006426779" aria-label="WhatsApp" style="border-color:rgba(37,211,102,.3); color:#25d366;">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="mailto:ops@nlcurantis.in" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            </a>
           </div>
         </div>
         <div>
@@ -3645,6 +3754,10 @@
       gsap.from(".hero-quote-card", {
         y: 36, opacity: 0, duration: 0.9,
         delay: 0.65, ease: "power3.out"
+      });
+
+      document.querySelectorAll('.hqc-select').forEach(sel => {
+        sel.addEventListener('change', () => sel.classList.toggle('filled', sel.value !== ''));
       });
 
       // Plane animation across radar: bottom-left to top-right, 25s cycle

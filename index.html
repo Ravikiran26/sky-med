@@ -385,25 +385,63 @@
       font-weight: 700; flex-shrink: 0; margin-top: 1px;
     }
 
+    .hqc-left-sub {
+      font-size: 12.5px; color: #6a8aaa; line-height: 1.5; margin: 0;
+    }
+
     .hqc-left-phone {
       font-family: var(--font-head);
-      font-size: 19px; letter-spacing: 1px;
+      font-size: 22px; letter-spacing: 1px;
       color: #eef3ff; text-decoration: none;
       border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 16px;
+      padding-top: 14px;
       transition: color .2s;
     }
     .hqc-left-phone:hover { color: var(--red); }
 
-    /* ── Right: form panel ── */
+    .hqc-wa-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600;
+      color: #25d366; text-decoration: none;
+      margin-top: 4px;
+      transition: opacity .2s;
+    }
+    .hqc-wa-link:hover { opacity: .75; }
+
+    /* ── OR divider ── */
+    .hqc-or-divider {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; padding: 0 4px; flex-shrink: 0;
+    }
+    .hqc-or-line {
+      width: 1px; flex: 1;
+      background: rgba(21,101,192,.15);
+    }
+    .hqc-or-label {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; color: #9ab2c8;
+      background: #fff; padding: 4px 0;
+    }
+
+    /* ── Right: callback form panel ── */
     .hqc-right {
       flex: 1; background: #ffffff;
       padding: 32px 36px;
-      display: flex; flex-direction: column; gap: 14px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+
+    .hqc-right-heading {
+      font-family: var(--font-head); font-size: 24px;
+      letter-spacing: 1px; color: #0d2952;
     }
 
     .hqc-form-intro {
       font-size: 13px; color: #6a8aaa; margin: 0; line-height: 1.5;
+    }
+
+    .hqc-reassure {
+      font-size: 11.5px; color: #9ab2c8; margin: 0; line-height: 1.4;
     }
 
     .hqc-form { display: flex; flex-direction: column; gap: 11px; }
@@ -1939,16 +1977,15 @@
       .hero-quote-card { flex-direction: column; }
       .hqc-left {
         min-width: unset; max-width: unset;
-        flex-direction: row; flex-wrap: wrap;
-        align-items: center; gap: 12px;
-        padding: 20px 24px;
+        padding: 24px 24px 20px;
         border-left: none; border-top: 4px solid var(--red);
       }
-      .hqc-left-title { font-size: 22px; width: 100%; }
-      .hqc-trust { display: none; }
-      .hqc-left-phone { border-top: none; padding-top: 0; font-size: 16px; }
-      .hqc-right { padding: 20px 24px; }
-      .hqc-row { flex-direction: column; }
+      .hqc-left-title { font-size: 24px; }
+      .hqc-left-sub { display: none; }
+      .hqc-or-divider { flex-direction: row; padding: 0 24px; height: 32px; }
+      .hqc-or-line { width: auto; height: 1px; flex: 1; }
+      .hqc-or-label { padding: 0 10px; }
+      .hqc-right { padding: 16px 24px 24px; }
       .hqc-input { width: 100%; }
       .stats-panel { padding-top: 24px; }
       .radar-wrap { display: none; }
@@ -2434,55 +2471,49 @@
       <div class="shell">
         <div class="hero-quote-card">
 
-          <!-- Left: trust panel -->
+          <!-- Left: emergency call path -->
           <div class="hqc-left">
             <div class="hqc-live">
               <span class="hqc-live-dot"></span>
-              Responding Now
+              Available Now — 24/7
             </div>
-            <div class="hqc-left-title">Request a<br>Mission<br>Assessment</div>
-            <div class="hqc-trust">
-              <div class="hqc-trust-row">
-                <span class="hqc-trust-ico">&#9889;</span>
-                Immediate callback on submission
-              </div>
-              <div class="hqc-trust-row">
-                <span class="hqc-trust-ico">&#43;</span>
-                Doctor-led crew on every mission
-              </div>
-              <div class="hqc-trust-row">
-                <span class="hqc-trust-ico">&#9992;</span>
-                Own fleet &mdash; no brokers, no delays
-              </div>
-            </div>
+            <div class="hqc-left-title">In an<br>Emergency?<br>Call Directly.</div>
+            <p class="hqc-left-sub">Don't fill a form. Call or WhatsApp us — our medical team picks up instantly.</p>
             <a href="tel:18006426779" class="hqc-left-phone">1800-NIAMS-911</a>
+            <a href="https://wa.me/918006426779" class="hqc-wa-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp Us
+            </a>
           </div>
 
-          <!-- Right: form panel -->
+          <!-- Divider with OR label -->
+          <div class="hqc-or-divider">
+            <div class="hqc-or-line"></div>
+            <span class="hqc-or-label">OR</span>
+            <div class="hqc-or-line"></div>
+          </div>
+
+          <!-- Right: planned transfer callback form -->
           <div class="hqc-right">
-            <p class="hqc-form-intro">Tell us who needs help &mdash; we coordinate everything else.</p>
+            <div class="hqc-right-heading">Planning a Transfer?</div>
+            <p class="hqc-form-intro">Leave your number — we'll call you back within minutes.</p>
             <form class="hqc-form" action="#" onsubmit="return false;">
-              <div class="hqc-row">
-                <input class="hqc-input" type="text" placeholder="Patient Name" required>
-                <input class="hqc-input" type="tel" placeholder="Your Phone Number" required>
-              </div>
-              <div class="hqc-row">
-                <input class="hqc-input" type="text" placeholder="From City / Hospital" required>
-                <select class="hqc-input hqc-select" required>
-                  <option value="" disabled selected>Type of Transfer</option>
-                  <option>Cardiac Emergency</option>
-                  <option>Trauma / Accident</option>
-                  <option>Neonatal / Pediatric</option>
-                  <option>ICU Transfer</option>
-                  <option>International Repatriation</option>
-                  <option>ECMO Transport</option>
-                  <option>Organ Retrieval</option>
-                  <option>Planned Transfer</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <button class="hqc-btn" type="submit">Request Mission Assessment &rarr;</button>
+              <input class="hqc-input" type="tel" placeholder="Your Phone Number" required>
+              <select class="hqc-input hqc-select" required>
+                <option value="" disabled selected>Type of Transfer</option>
+                <option>Cardiac Emergency</option>
+                <option>Trauma / Accident</option>
+                <option>Neonatal / Pediatric</option>
+                <option>ICU Transfer</option>
+                <option>International Repatriation</option>
+                <option>ECMO Transport</option>
+                <option>Organ Retrieval</option>
+                <option>Planned Transfer</option>
+                <option>Other</option>
+              </select>
+              <button class="hqc-btn" type="submit">Request Callback &rarr;</button>
             </form>
+            <p class="hqc-reassure">&#128274; Your details are private. We respond within minutes.</p>
           </div>
 
         </div>
@@ -2497,8 +2528,8 @@
           <div class="stat-label">Command Centre Active</div>
         </div>
         <div class="stat">
-          <div class="stat-number"><span data-count="18">0</span> <span class="stat-accent">min</span></div>
-          <div class="stat-label">Dispatch Commitment</div>
+          <div class="stat-number"><span class="stat-accent">Bed</span></div>
+          <div class="stat-label">to Bed Coordination</div>
         </div>
         <div class="stat">
           <div class="stat-number"><span data-count="32">0</span><span class="stat-accent">+</span></div>

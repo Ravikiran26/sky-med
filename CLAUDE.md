@@ -1,6 +1,8 @@
-# NIAMS – Sky-Med Project
+# REACT Air Ambulance – Sky-Med Project
 
-Single-page marketing website for **NIAMS (NL International Air Medical Services)**, operating under **NL Curantis International Pvt Ltd**.
+Single-page marketing website for **REACT (Rapid Emergency Aerocare Team)**, operating under **NL Curantis International Pvt Ltd**.
+
+Domain: **reactairambulance.com**
 
 ## Project structure
 
@@ -14,8 +16,9 @@ sky-med/
 | Token | Value |
 |-------|-------|
 | Company | NL Curantis International Pvt Ltd |
-| Brand | NIAMS |
-| Emergency line | 1800-NIAMS-911 |
+| Brand | REACT (Rapid Emergency Aerocare Team) |
+| Domain | reactairambulance.com |
+| Emergency line | 1800-NIAMS-911 (to be updated) |
 | WhatsApp | https://wa.me/918006426779 |
 | Email | ops@nlcurantis.in |
 

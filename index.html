@@ -107,7 +107,10 @@
 
     .brand-text { display: flex; flex-direction: column; gap: 1px; }
 
-    .brand-logo { height: 44px; width: auto; display: block; }
+    .brand-logo {
+      height: 44px; width: auto; display: block;
+      background: #fff; border-radius: 6px; padding: 4px 10px;
+    }
     .brand-name { font-family: var(--font-head); font-size: 32px; letter-spacing: 5px; line-height: 1; color: #0f1e30; }
     .brand-sub { font-family: var(--font-label); font-size: 8px; letter-spacing: 2.4px; color: var(--muted); }
 
@@ -2324,7 +2327,7 @@
   <nav class="nav" id="nav">
     <div class="shell nav-inner">
       <a href="#top" class="brand" aria-label="REACT Air Ambulance home">
-        <img src="react-logo.svg" alt="REACT Air Ambulance" class="brand-logo" height="44">
+        <img src="react-logo.png" alt="REACT Air Ambulance" class="brand-logo" height="44">
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
@@ -3558,7 +3561,7 @@
       <div class="footer-grid">
         <div>
           <a href="#top" class="brand" aria-label="REACT Air Ambulance home">
-            <img src="react-logo.svg" alt="REACT Air Ambulance" class="brand-logo" height="44">
+            <img src="react-logo.png" alt="REACT Air Ambulance" class="brand-logo" height="44">
           </a>
           <p style="margin-top:18px; max-width:270px; line-height:1.7">ICU-equipped air ambulance command across India and internationally.</p>
           <span class="footer-dgca">Air Medical Service</span>

@@ -403,8 +403,11 @@
     }
     @media (max-width: 540px) {
       .qq-row { grid-template-columns: 1fr; }
-      .qq-wrap { margin-top: -32px; }
-      .qq-card { padding: 28px 20px 24px; }
+      .qq-wrap { margin-top: 0; }
+      .qq-card { padding: 28px 16px 24px; }
+      .qq-heading { font-size: 20px; }
+      .qq-input { height: 48px; font-size: 15px; }
+      .qq-btn { height: 48px; font-size: 14px; }
     }
 
     .btn {
@@ -1967,9 +1970,11 @@
 
       .footer-grid { grid-template-columns: 1fr; }
 
-      .hero { min-height: 50vh; padding: 100px 0 90px; }
-      .hero-title { font-size: clamp(28px, 8vw, 44px); }
-      .hero-sub { font-size: 15px; }
+      .hero { min-height: 52vh; padding: 80px 16px 60px; }
+      .hero-title { font-size: clamp(26px, 7.5vw, 42px); line-height: 1.15; }
+      .hero-sub { font-size: 15px; max-width: 100%; }
+      .hero-inner { padding: 0; }
+      .hero-slide { background-position: center center !important; }
       .stats-panel { padding-top: 24px; }
       .radar-wrap { display: none; }
 
@@ -2008,7 +2013,7 @@
       .section { padding: 72px 0; }
       .brand-name { font-size: 26px; }
       .brand-sub { display: none; }
-      .hero-sub, .section-copy { font-size: 17px; }
+      .hero-sub { font-size: 15px; } .section-copy { font-size: 17px; }
 
       .hero-actions, .cta-actions { display: grid; }
       .btn { width: 100%; }

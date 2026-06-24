@@ -234,17 +234,18 @@
     .nav-dropdown a:hover::before { opacity: 1; }
 
     /* ── HERO ────────────────────────────────────────────── */
+    /* ── HERO — FULL-WIDTH PHOTO ─────────────────────────── */
     .hero {
-      min-height: 72vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 130px 0 130px;
-      position: relative; overflow: hidden;
+      min-height: 68vh;
+      padding: 120px 0 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero::before { display: none; }
-    .hero::after  { display: none; }
-
-    /* ── HERO SLIDER ─────────────────────────────────────── */
+    /* Photo slideshow — full bleed background */
     .hero-slides {
       position: absolute; inset: 0; z-index: 0;
     }
@@ -253,181 +254,157 @@
       position: absolute; inset: 0;
       background-size: cover; background-position: center center;
       opacity: 0;
-      transition: opacity 1.5s ease-in-out;
+      transition: opacity 1.6s ease-in-out;
     }
     .hero-slide.active { opacity: 1; }
 
-    /* Overlay sits above slides, below content */
+    /* Very light overlay — photo stays prominent, like ICATT */
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to bottom,
-        rgba(6,18,42,.20) 0%,
-        rgba(6,18,42,.38) 45%,
-        rgba(6,18,42,.65) 100%
+      background: linear-gradient(
+        to bottom,
+        rgba(4,17,31,.20) 0%,
+        rgba(4,17,31,.35) 70%,
+        rgba(4,17,31,.50) 100%
       );
       pointer-events: none;
     }
 
-    /* Slide indicator dots */
+    /* Slide dots — bottom center */
     .hero-dots {
-      position: absolute; bottom: 30px; left: 50%;
+      position: absolute; bottom: 28px; left: 50%;
       transform: translateX(-50%); z-index: 5;
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 8px;
     }
 
     .hero-dot {
-      width: 10px; height: 10px; border-radius: 50%; padding: 0;
-      background: rgba(255,255,255,.38); border: 2px solid rgba(255,255,255,.5);
+      width: 8px; height: 8px; border-radius: 50%; padding: 0;
+      background: rgba(255,255,255,.40); border: 1.5px solid rgba(255,255,255,.6);
       cursor: pointer;
-      transition: background .35s ease, transform .35s ease, box-shadow .35s ease;
+      transition: background .3s, transform .3s;
     }
     .hero-dot.active {
-      background: #ffffff;
-      transform: scale(1.3);
-      box-shadow: 0 0 10px rgba(255,255,255,.55);
+      background: #ffffff; transform: scale(1.4);
       border-color: transparent;
+      box-shadow: 0 0 8px rgba(255,255,255,.5);
     }
 
-    /* ── HERO INNER ──────────────────────────────────────── */
+    /* Content — centered, minimal */
     .hero-inner {
+      position: relative; z-index: 2;
       display: flex; flex-direction: column;
       align-items: center; text-align: center;
-      width: 100%; position: relative; z-index: 2;
-      max-width: 860px; margin: 0 auto;
+      max-width: 820px; padding: 0 24px;
     }
 
     .hero-grid { width: 100%; }
 
-    .hero .eyebrow {
-      color: rgba(210,232,255,.92);
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.22);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 7px 22px; border-radius: 100px;
-      display: inline-block;
-    }
-
     .hero-title {
-      margin-top: 24px;
       font-family: var(--font-body);
       font-weight: 700;
-      font-size: clamp(38px, 5.5vw, 74px);
-      letter-spacing: -0.5px; line-height: 1.12;
-      text-transform: none; color: #ffffff;
-      text-shadow: 0 2px 28px rgba(4,10,24,.30);
+      font-size: clamp(34px, 4.2vw, 62px);
+      letter-spacing: -0.3px; line-height: 1.1;
+      color: #ffffff;
+      text-shadow: 0 2px 16px rgba(4,17,31,.5);
     }
-
-    .word { display: inline; overflow: visible; }
-    .word-inner { display: inline; }
 
     .hero-sub {
-      max-width: 620px; margin: 18px auto 0;
-      color: rgba(220,236,255,.88); font-size: 19px;
-      line-height: 1.65; font-style: italic;
+      margin: 16px auto 0; max-width: 580px;
+      color: rgba(255,255,255,.88); font-size: 18px;
+      line-height: 1.6;
     }
-
-    .hero-sub strong { color: #ffffff; font-weight: 600; font-style: normal; }
 
     .hero-actions {
       display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 14px; margin-top: 34px;
+      gap: 14px; margin-top: 32px;
     }
 
-    /* hidden in ICATT style */
+    /* hide unused elements */
+    .hero::before { display: none; }
+    .hero::after  { display: none; }
+    .hero-left  { display: none; }
+    .hero-right { display: none; }
+    .hero-photo-vignette { display: none; }
+    .hero-photo-badge { display: none; }
+    .hero-trust { display: none; }
     .hero-chips { display: none; }
     .hero-chip  { display: none; }
     .hero-float { display: none; }
     .hero-banner { display: none; }
+    .word { display: inline; }
+    .word-inner { display: inline; }
 
     /* ── QUICK QUOTE ─────────────────────────────────────── */
+    /* ── QUICK QUOTE — ICATT drop-down style ────────────── */
     .qq-wrap {
       position: relative; z-index: 10;
-      margin-top: -72px; padding-bottom: 0;
+      margin-top: 0px;
+      padding-bottom: 0;
     }
     .qq-card {
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.07);
-      border-top: 3px solid var(--red);
-      border-radius: 0 0 12px 12px;
-      padding: 36px 48px 32px;
-      box-shadow: 0 24px 64px rgba(4,17,31,.55), 0 4px 20px rgba(224,40,40,.08);
+      background: #ffffff;
+      border-radius: 14px 14px 10px 10px;
+      padding: 44px 52px 40px;
+      box-shadow: 0 -2px 0 0 transparent,
+                  0 8px 40px rgba(4,17,31,.14),
+                  0 2px 8px rgba(4,17,31,.06);
+      text-align: center;
+    }
+    .qq-heading {
+      font-family: var(--font-body);
+      font-size: 26px; font-weight: 700;
+      color: #0d2952; margin-bottom: 6px;
+    }
+    .qq-sub {
+      font-size: 14px; color: #6a8aaa; margin-bottom: 24px;
+    }
+    .qq-row {
       display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 0 48px;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 12px;
       align-items: center;
     }
-    .qq-label-col {
-      border-right: 1px solid rgba(255,255,255,.08);
-      padding-right: 48px;
-    }
-    .qq-eyebrow {
-      font-family: var(--font-label); font-size: 9px;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--red2); margin-bottom: 6px;
-    }
-    .qq-title {
-      font-family: var(--font-head); font-size: 32px; letter-spacing: 2px;
-      color: var(--white); line-height: 1.05; margin: 0; white-space: nowrap;
-    }
-    .qq-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .qq-field {
-      display: flex; flex-direction: column; gap: 5px;
-    }
-    .qq-field label {
-      font-family: var(--font-label); font-size: 8px;
-      letter-spacing: 2px; text-transform: uppercase; color: #4a6a8a;
-    }
     .qq-input {
-      height: 46px; padding: 0 16px;
-      border: 1.5px solid #b0c4d8;
-      border-radius: 6px;
-      font-family: var(--font-body); font-size: 14px; color: #0d2952;
-      background: #f4f8fd; outline: none;
+      height: 52px; padding: 0 18px;
+      border: 1.5px solid #cdd8e8;
+      border-radius: 8px;
+      font-family: var(--font-body); font-size: 15px; color: #0d2952;
+      background: #f8fafc; outline: none;
       transition: border-color .2s, box-shadow .2s;
     }
     .qq-input:focus {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(224,40,40,.12);
+      border-color: #1565c0;
+      box-shadow: 0 0 0 3px rgba(21,101,192,.12);
     }
-    .qq-input::placeholder { color: #8aa5c0; }
-    .qq-cta-col {
-      border-left: 1px solid rgba(255,255,255,.08);
-      padding-left: 48px;
-      display: flex; flex-direction: column; gap: 10px; align-items: center;
-    }
+    .qq-input::placeholder { color: #9ab0c8; }
     .qq-btn {
-      width: 160px; height: 48px;
-      background: linear-gradient(135deg, var(--red), #b01818);
-      color: #fff; border: 0; border-radius: 6px;
-      font-family: var(--font-label); font-size: 10px;
-      letter-spacing: 2.5px; text-transform: uppercase;
+      height: 52px; padding: 0 28px;
+      background: #0d2952;
+      color: #fff; border: 0; border-radius: 8px;
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      white-space: nowrap;
       cursor: pointer;
-      transition: box-shadow .2s, transform .2s;
+      transition: background .2s, transform .2s, box-shadow .2s;
     }
     .qq-btn:hover {
-      box-shadow: 0 8px 28px rgba(224,40,40,.45);
-      transform: translateY(-2px);
+      background: #1565c0;
+      box-shadow: 0 6px 24px rgba(21,101,192,.35);
+      transform: translateY(-1px);
     }
-    @media (max-width: 1100px) {
-      .qq-card {
-        grid-template-columns: 1fr;
-        gap: 24px; text-align: center;
-        padding: 32px 32px 28px;
-        border-radius: 12px;
-      }
-      .qq-label-col { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 20px; }
-      .qq-cta-col { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.08); padding-top: 20px; }
-      .qq-form { grid-template-columns: 1fr 1fr; }
-      .qq-btn { width: 100%; }
-      .qq-wrap { margin-top: -40px; }
+    /* hide old label/cta cols */
+    .qq-label-col { display: none; }
+    .qq-cta-col   { display: none; }
+    .qq-eyebrow   { display: none; }
+    .qq-title     { display: none; }
+    .qq-form      { display: none; }
+    @media (max-width: 900px) {
+      .qq-row { grid-template-columns: 1fr 1fr; }
+      .qq-btn { grid-column: 1 / -1; }
     }
-    @media (max-width: 620px) {
-      .qq-form { grid-template-columns: 1fr; }
+    @media (max-width: 540px) {
+      .qq-row { grid-template-columns: 1fr; }
+      .qq-wrap { margin-top: -32px; }
+      .qq-card { padding: 28px 20px 24px; }
     }
 
     .btn {
@@ -1990,9 +1967,9 @@
 
       .footer-grid { grid-template-columns: 1fr; }
 
-      .hero { min-height: 60vh; padding-top: 108px; padding-bottom: 80px; }
-      .hero-title { font-size: clamp(32px, 9vw, 54px); }
-      .hero-sub { font-size: 16px; }
+      .hero { min-height: 50vh; padding: 100px 0 90px; }
+      .hero-title { font-size: clamp(28px, 8vw, 44px); }
+      .hero-sub { font-size: 15px; }
       .stats-panel { padding-top: 24px; }
       .radar-wrap { display: none; }
 
@@ -2384,7 +2361,7 @@
         <a href="#faq">FAQ</a>
         <a href="#contact-form">Contact</a>
       </div>
-      <a class="emergency-nav btn" href="tel:18006426779">&#9889; Emergency</a>
+      <a class="emergency-nav btn" href="tel:9849994108">&#9889; Emergency</a>
       <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false"><span></span></button>
     </div>
   </nav>
@@ -2394,32 +2371,25 @@
     <!-- HERO -->
     <section class="hero">
 
-      <!-- Background photo slider — replace images with client photos when ready -->
+      <!-- Full-bleed photo slider -->
       <div class="hero-slides" aria-hidden="true">
-        <div class="hero-slide active" style="background-image:url('turbo-prop.jpg')"></div>
-        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1629155514090-072270d9c981?auto=format&fit=crop&w=1920&q=85')"></div>
-        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1920&q=85')"></div>
+        <div class="hero-slide active" style="background-image:url('hero-main.jpg'); background-position: center 50%;"></div>
+        <div class="hero-slide" style="background-image:url('hero-slide2-web.jpg'); background-position: center 55%;"></div>
+        <div class="hero-slide" style="background-image:url('hero-slide1-web.jpg'); background-position: center 40%;"></div>
       </div>
 
-      <!-- Dark gradient overlay -->
+      <!-- Light overlay so photo stays visible -->
       <div class="hero-overlay" aria-hidden="true"></div>
 
-      <!-- Content -->
-      <div class="shell">
-        <div class="hero-inner">
-          <div class="hero-grid">
-            <div class="eyebrow">24/7 Critical Care Aviation &nbsp;·&nbsp; India &amp; International</div>
-            <h1 class="hero-title">Life-Saving Air Care, Wherever You Are</h1>
-            <p class="hero-sub">Trusted, Timely, and World-Class Aeromedical Transfers — by <strong>NL Curantis International</strong>.</p>
-            <div class="hero-actions">
-              <a href="tel:18006426779" class="btn btn-red">&#9889; Request Emergency Transfer</a>
-              <a href="#services" class="btn btn-sky">Explore Our Services</a>
-            </div>
-          </div>
+      <!-- Minimal centered content -->
+      <div class="hero-inner">
+        <div class="hero-grid">
+          <h1 class="hero-title">Life-Saving Air Care,<br>Wherever You Are</h1>
+          <p class="hero-sub">Trusted, Timely, and World-Class Aeromedical Transfers — by <strong>NL Curantis International</strong>.</p>
         </div>
       </div>
 
-      <!-- Slide indicator dots -->
+      <!-- Slide dots -->
       <div class="hero-dots" role="tablist" aria-label="Hero slideshow">
         <button class="hero-dot active" aria-label="Slide 1" role="tab" aria-selected="true"></button>
         <button class="hero-dot" aria-label="Slide 2" role="tab" aria-selected="false"></button>
@@ -2432,38 +2402,16 @@
     <div class="qq-wrap">
       <div class="shell">
         <div class="qq-card">
-
-          <!-- Left: label -->
-          <div class="qq-label-col">
-            <p class="qq-eyebrow">Free Quote</p>
-            <h3 class="qq-title">Request<br>A Transfer</h3>
-          </div>
-
-          <!-- Centre: form fields -->
-          <form id="qq-form-el" class="qq-form" onsubmit="handleQuickQuote(event)">
-            <div class="qq-field">
-              <label for="qq-name">Patient Name</label>
-              <input id="qq-name" class="qq-input" type="text" name="name" placeholder="Full name" required>
-            </div>
-            <div class="qq-field">
-              <label for="qq-phone">Contact Number</label>
-              <input id="qq-phone" class="qq-input" type="tel" name="phone" placeholder="+91 98765 43210" required>
-            </div>
-            <div class="qq-field">
-              <label for="qq-from">Pickup City</label>
-              <input id="qq-from" class="qq-input" type="text" name="from" placeholder="From city / hospital">
-            </div>
-            <div class="qq-field">
-              <label for="qq-to">Destination City</label>
-              <input id="qq-to" class="qq-input" type="text" name="to" placeholder="To city / hospital">
+          <h2 class="qq-heading">Get Air Ambulance Quote Now!</h2>
+          <p class="qq-sub">We're here to get you the help you need</p>
+          <form id="qq-form-el" onsubmit="handleQuickQuote(event)">
+            <div class="qq-row">
+              <input class="qq-input" type="text"  name="name"  placeholder="Name"         required>
+              <input class="qq-input" type="tel"   name="phone" placeholder="Phone Number"  required>
+              <input class="qq-input" type="text"  name="msg"   placeholder="Message / City">
+              <button class="qq-btn" type="submit">Get Now</button>
             </div>
           </form>
-
-          <!-- Right: CTA -->
-          <div class="qq-cta-col">
-            <button class="qq-btn" type="submit" form="qq-form-el">Request Quote</button>
-          </div>
-
         </div>
       </div>
     </div>
@@ -3183,7 +3131,7 @@
                   <li>Advanced Trauma Kit</li>
                   <li>Neonatal Incubator (on request)</li>
                 </ul>
-                <a href="tel:18006426779" class="book-btn">Request This Aircraft</a>
+                <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
               </div>
             </div>
           </div>
@@ -3211,7 +3159,7 @@
                   <li>Suction Unit &amp; Airway Kit</li>
                   <li>Point-of-Care Blood Analyser</li>
                 </ul>
-                <a href="tel:18006426779" class="book-btn">Request This Aircraft</a>
+                <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
               </div>
             </div>
           </div>
@@ -3239,7 +3187,7 @@
                   <li>Neonatal Incubator (on request)</li>
                   <li>Intercontinental Range Capability</li>
                 </ul>
-                <a href="tel:18006426779" class="book-btn">Request This Aircraft</a>
+                <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
               </div>
             </div>
           </div>
@@ -3418,7 +3366,7 @@
 
           <details class="faq-item">
             <summary class="faq-q">How do I request an air ambulance?</summary>
-            <div class="faq-a">Call our 24/7 emergency line: 1800-NIAMS-911. Have ready: patient name, current location, diagnosis/condition, receiving hospital if known. Our team handles everything else — aircraft, crew, ground ambulances, documentation, and hospital coordination.</div>
+            <div class="faq-a">Call our 24/7 emergency line: 9849994108. Have ready: patient name, current location, diagnosis/condition, receiving hospital if known. Our team handles everything else — aircraft, crew, ground ambulances, documentation, and hospital coordination.</div>
           </details>
 
           <details class="faq-item">
@@ -3446,16 +3394,16 @@
           <p class="contact-desc">Whether it's a planned medical transfer or an urgent enquiry, our team responds within minutes — day or night.</p>
 
           <div class="contact-cards">
-            <a href="tel:18006426779" class="contact-card">
+            <a href="tel:9849994108" class="contact-card">
               <div class="contact-card-icon">
                 <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.45-.45a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
               </div>
               <div>
                 <div class="contact-card-label">24/7 Emergency Line</div>
-                <div class="contact-card-value">1800-NIAMS-911</div>
+                <div class="contact-card-value">9849994108</div>
               </div>
             </a>
-            <a href="https://wa.me/918006426779" class="contact-card">
+            <a href="https://wa.me/919849994108" class="contact-card">
               <div class="contact-card-icon wa">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" stroke="none"/></svg>
               </div>
@@ -3525,7 +3473,7 @@
               <p class="contact-privacy">&#128274; Your details are private and only shared with our medical team.</p>
             </form>
             <div class="contact-emergency-note">
-              <p>For life-threatening emergencies, <strong style="color:var(--red2)">do not use this form.</strong> Call <strong style="color:#ff4444">1800-NIAMS-911</strong> immediately — our command centre is staffed 24/7/365.</p>
+              <p>For life-threatening emergencies, <strong style="color:var(--red2)">do not use this form.</strong> Call <strong style="color:#ff4444">9849994108</strong> immediately — our command centre is staffed 24/7/365.</p>
             </div>
           </div>
         </div>
@@ -3544,11 +3492,11 @@
       <div class="shell cta-content">
         <div class="eyebrow">Available 24 / 7 / 365</div>
         <h2>Every Second<br>Counts — Call Now</h2>
-        <a class="phone" href="tel:18006426779">1800-NIAMS-911</a>
+        <a class="phone" href="tel:9849994108">9849994108</a>
         <p style="color:rgba(238,243,255,.55);font-size:15px;margin-top:10px;font-family:var(--font-body)">Have ready: patient location, condition &amp; receiving hospital if known. We handle everything else.</p>
         <div class="cta-actions">
-          <a href="tel:18006426779" class="btn btn-red">Call Emergency Line</a>
-          <a href="https://wa.me/918006426779" class="btn btn-green">WhatsApp Us Now</a>
+          <a href="tel:9849994108" class="btn btn-red">Call Emergency Line</a>
+          <a href="https://wa.me/919849994108" class="btn btn-green">WhatsApp Us Now</a>
         </div>
       </div>
     </section>
@@ -3566,7 +3514,7 @@
           <p style="margin-top:18px; max-width:270px; line-height:1.7">ICU-equipped air ambulance command across India and internationally.</p>
           <span class="footer-dgca">Air Medical Service</span>
           <div class="social">
-            <a href="https://wa.me/918006426779" aria-label="WhatsApp" style="border-color:rgba(37,211,102,.3); color:#25d366;">
+            <a href="https://wa.me/919849994108" aria-label="WhatsApp" style="border-color:rgba(37,211,102,.3); color:#25d366;">
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
             <a href="mailto:ops@nlcurantis.in" aria-label="Email">
@@ -3604,7 +3552,7 @@
         </div>
         <div>
           <h4>Contact</h4>
-          <p><a href="tel:18006426779">Emergency: 1800-NIAMS-911</a></p>
+          <p><a href="tel:9849994108">Emergency: 9849994108</a></p>
           <p><a href="mailto:ops@nlcurantis.in">ops@nlcurantis.in</a></p>
           <p style="margin-top:10px">NL Curantis International Pvt Ltd<br>India</p>
         </div>
@@ -3618,7 +3566,7 @@
 
   <!-- FLOATING BUTTONS -->
   <div class="floating" aria-label="WhatsApp contact">
-    <a class="float-btn float-whatsapp" href="https://wa.me/918006426779">
+    <a class="float-btn float-whatsapp" href="https://wa.me/919849994108">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       </span>
@@ -3663,7 +3611,7 @@
     <!-- Sticky bottom bar — always visible while scrolling -->
     <div class="svc-modal-sticky">
       <span class="svc-sticky-phone-label">Emergency Line</span>
-      <a href="tel:18006426779" class="svc-sticky-phone-num">1800-NIAMS-911</a>
+      <a href="tel:9849994108" class="svc-sticky-phone-num">9849994108</a>
     </div>
   </div>
 
@@ -4221,7 +4169,7 @@
           { heading: 'Aircraft & Equipment', items: ['ICU-configured dedicated aircraft', 'Transport ventilator with full settings', 'Cardiac monitor with 12-lead ECG & defibrillator', 'IV infusion pumps & syringe drivers', 'Medical oxygen supply', 'Advanced airway management kit', 'Emergency drug kit'] },
           { heading: 'Mission Coordination', items: ['24/7 emergency activation', 'Bed-to-bed patient transfer', 'Ground ambulance at origin and destination', 'Pre-flight medical assessment', 'Receiving hospital notification & handover', 'Full documentation and medical records transfer'] }
         ],
-        highlight: 'We cover 32+ cities across India — from metro hospitals to Tier-2 towns. No mission is too remote. Call 1800-NIAMS-911 for immediate activation.'
+        highlight: 'We cover 32+ cities across India — from metro hospitals to Tier-2 towns. No mission is too remote. Call 9849994108 for immediate activation.'
       },
       'svc-intl': {
         num: '02', cat: 'Air Transport',

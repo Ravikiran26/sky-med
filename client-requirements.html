@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIAMS Website – Client Requirements</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #04111f;
+      --blue: #1565c8;
+      --red: #c0392b;
+      --text: #1a1a2e;
+      --muted: #5a6a7a;
+      --border: #d0dae8;
+      --bg-light: #f4f8ff;
+      --bg-white: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5pt;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* ── Cover Page ── */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 64px;
+      background: var(--navy);
+      color: #fff;
+      page-break-after: always;
+    }
+
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cover-logo-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--red);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .cover-logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #eef3ff;
+    }
+
+    .cover-logo-sub {
+      font-size: 10px;
+      color: #6a8aaa;
+      letter-spacing: 1px;
+    }
+
+    .cover-center {
+      text-align: center;
+    }
+
+    .cover-tag {
+      display: inline-block;
+      background: rgba(21,101,200,0.25);
+      border: 1px solid rgba(21,101,200,0.5);
+      color: #4a9eff;
+      font-size: 9pt;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .cover-title {
+      font-size: 38pt;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #eef3ff;
+      margin-bottom: 16px;
+    }
+
+    .cover-title span { color: #4a9eff; }
+
+    .cover-sub {
+      font-size: 13pt;
+      color: #6a8aaa;
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .cover-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+    }
+
+    .cover-footer-item { font-size: 9pt; color: #6a8aaa; }
+    .cover-footer-item strong { color: #eef3ff; display: block; font-size: 10pt; margin-bottom: 2px; }
+
+    /* ── Page layout ── */
+    .page {
+      padding: 52px 64px;
+      background: #fff;
+      page-break-after: always;
+    }
+
+    .page:last-child { page-break-after: auto; }
+
+    /* ── Page header ── */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--navy);
+      padding-bottom: 12px;
+      margin-bottom: 32px;
+    }
+
+    .page-header-left { font-size: 9pt; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    .page-header-right { font-size: 9pt; color: var(--muted); }
+
+    .page-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-logo-box {
+      width: 24px;
+      height: 24px;
+      background: var(--red);
+      border-radius: 5px;
+    }
+
+    .page-logo-name {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 1px;
+    }
+
+    /* ── Section headings ── */
+    .section-label {
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+
+    h1.page-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    h2.section-title {
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      margin-top: 28px;
+    }
+
+    h3.sub-title {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    p.lead {
+      font-size: 11pt;
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 600px;
+    }
+
+    p { margin-bottom: 8px; color: var(--text); }
+
+    /* ── Status table ── */
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 9.5pt;
+    }
+
+    .status-table thead tr {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .status-table thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .status-table tbody tr:nth-child(even) { background: var(--bg-light); }
+    .status-table tbody tr:hover { background: #e8f0ff; }
+
+    .status-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 10px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .badge-done { background: #e6f9ef; color: #1a7a45; }
+    .badge-high { background: #fff0f0; color: #c0392b; }
+    .badge-medium { background: #fff8e6; color: #b07c00; }
+    .badge-low { background: #f0f4ff; color: #2c5282; }
+
+    /* ── Cards ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+
+    .card-icon { font-size: 18px; margin-bottom: 8px; }
+    .card h3 { font-size: 10pt; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+    .card p { font-size: 9pt; color: var(--muted); margin: 0; line-height: 1.5; }
+
+    /* ── Content list ── */
+    .content-list {
+      list-style: none;
+      margin: 10px 0 0 0;
+      padding: 0;
+    }
+
+    .content-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 9.5pt;
+    }
+
+    .content-list li:last-child { border-bottom: none; }
+
+    .content-list li::before {
+      content: "•";
+      color: var(--blue);
+      font-weight: 700;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    /* ── Two column ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 12px;
+    }
+
+    .col-block {
+      background: var(--bg-light);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+    }
+
+    .col-block h3 {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .col-block ul {
+      padding-left: 16px;
+      margin: 0;
+    }
+
+    .col-block ul li {
+      font-size: 9pt;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      margin-top: 14px;
+      position: relative;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .timeline-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 40px;
+    }
+
+    .timeline-dot {
+      width: 32px;
+      height: 32px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 10pt;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .timeline-line {
+      width: 2px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 4px;
+    }
+
+    .timeline-content {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    .timeline-content h3 {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .timeline-content p {
+      font-size: 9pt;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .timeline-content .duration {
+      display: inline-block;
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--blue);
+      background: #e8f0ff;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    /* ── Info box ── */
+    .info-box {
+      background: #fff8e6;
+      border: 1px solid #f0c040;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: 9.5pt;
+      color: #7a5500;
+    }
+
+    .info-box strong { color: #5a3c00; }
+
+    .alert-box {
+      background: #fff0f0;
+      border: 1px solid #f0a0a0;
+      border-left: 4px solid var(--red);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: 9.5pt;
+      color: #7a1a1a;
+    }
+
+    .success-box {
+      background: #e6f9ef;
+      border: 1px solid #a0d8b0;
+      border-left: 4px solid #1a7a45;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: 9.5pt;
+      color: #1a4a2a;
+    }
+
+    /* ── Signature ── */
+    .signature-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .sig-box {
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    .sig-box .sig-label { font-size: 9pt; color: var(--muted); margin-bottom: 32px; }
+    .sig-box .sig-name { font-size: 10pt; font-weight: 600; color: var(--navy); }
+    .sig-box .sig-role { font-size: 9pt; color: var(--muted); }
+    .sig-box .sig-date { font-size: 9pt; color: var(--muted); margin-top: 4px; }
+
+    /* ── Print ── */
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page { padding: 40px 52px; }
+      .cover { padding: 48px 52px; }
+    }
+
+    @page {
+      margin: 0;
+      size: A4;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     COVER PAGE
+═══════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-logo">
+    <div class="cover-logo-icon">✈</div>
+    <div>
+      <div class="cover-logo-text">NIAMS</div>
+      <div class="cover-logo-sub">NL Curantis International Pvt Ltd</div>
+    </div>
+  </div>
+
+  <div class="cover-center">
+    <div class="cover-tag">Website Requirement Document</div>
+    <div class="cover-title">Content &amp; Asset<br><span>Requirements</span></div>
+    <div class="cover-sub">What we need from you to complete and launch the NIAMS website</div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-footer-item">
+      <strong>Prepared for</strong>
+      NL Curantis International Pvt Ltd
+    </div>
+    <div class="cover-footer-item" style="text-align:center;">
+      <strong>Project</strong>
+      NIAMS Marketing Website
+    </div>
+    <div class="cover-footer-item" style="text-align:right;">
+      <strong>Date</strong>
+      June 2026
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 1 — What Is Already Built
+═══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-logo">
+      <div class="page-logo-box"></div>
+      <div class="page-logo-name">NIAMS</div>
+    </div>
+    <div class="page-header-right">Website Requirement Document · Page 1 of 4</div>
+  </div>
+
+  <div class="section-label">Current Status</div>
+  <h1 class="page-title">What Is Already Built</h1>
+  <p class="lead">The website structure and design are fully complete. All sections below are live and functional — only real content needs to be filled in.</p>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Description</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Navigation Bar</strong></td>
+        <td>Fixed header with logo, all page links, services mega-dropdown, mobile hamburger menu, pulsing Emergency button</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Hero Section</strong></td>
+        <td>Auto-sliding 3-photo carousel with overlay, tagline animation, quote request card, emergency call button</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Stats Bar</strong></td>
+        <td>Animated counters — 1800+ missions, 18 min response, 32+ cities, 99.8% success rate</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Certifications Ticker</strong></td>
+        <td>Infinite scrolling marquee showing certifications and accreditations</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>About NIAMS</strong></td>
+        <td>Company introduction, mission statement, founding story with image</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Partner / Hospital Logos</strong></td>
+        <td>Trust logo strip showing hospital and airline partner logos</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Services (5 Tabs)</strong></td>
+        <td>Air Transport · Specialized Medical · Ground &amp; Response · Concierge · Case Management — each with full detail cards</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Photo Gallery</strong></td>
+        <td>5-image grid showing aircraft, crew, in-flight ICU care, and ground operations</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Why Choose NIAMS</strong></td>
+        <td>6 key differentiators with icons — response time, crew quality, fleet, coverage, certifications, 24/7 ops</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Testimonials</strong></td>
+        <td>Sliding patient/family testimonial cards with name, city, and star rating</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>How It Works</strong></td>
+        <td>4-step illustrated process — Call → Assessment → Dispatch → Transport</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fleet Section</strong></td>
+        <td>3 interactive flip-cards: Helicopter · Turbo Prop · ICU Jet with specs on reverse</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>ICU Equipment Diagram</strong></td>
+        <td>Annotated aircraft cross-section showing 7 medical equipment positions</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Coverage Map</strong></td>
+        <td>India SVG map with animated flight routes between 6 major cities</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>FAQ</strong></td>
+        <td>8 accordion-style frequently asked questions with answers</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Contact Form</strong></td>
+        <td>Full inquiry form — name, phone, email, origin, destination, medical condition, message</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Emergency CTA</strong></td>
+        <td>Full-width section with sonar animation, phone number, Call + WhatsApp buttons</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Footer</strong></td>
+        <td>4-column layout — logo, services, quick links, contact info. DGCA badge, green status dot</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td><strong>Floating Buttons</strong></td>
+        <td>Always-visible Emergency Call (red) + WhatsApp (green) buttons on all pages</td>
+        <td><span class="badge badge-done">Complete</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="success-box">
+    <strong>Summary:</strong> The entire website structure, design system, animations, and layout are 100% complete. What remains is replacing placeholder content with real photos, logos, and verified text from your team.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 2 — What We Need From You (Content)
+═══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-logo">
+      <div class="page-logo-box"></div>
+      <div class="page-logo-name">NIAMS</div>
+    </div>
+    <div class="page-header-right">Website Requirement Document · Page 2 of 4</div>
+  </div>
+
+  <div class="section-label">Client Deliverables</div>
+  <h1 class="page-title">What We Need From You</h1>
+  <p class="lead">The items below must be provided by your team. Without these, the website will launch with placeholder content.</p>
+
+  <h2 class="section-title">🔴 High Priority — Required Before Launch</h2>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Details</th>
+        <th>Format</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Hero Photos (3 images)</strong></td>
+        <td>Real air ambulance photos — aircraft in flight, in-flight ICU care, crew loading patient. These are the first thing every visitor sees.</td>
+        <td>JPG/PNG, min 1920×1080px, landscape</td>
+      </tr>
+      <tr>
+        <td><strong>Gallery Photos (5 images)</strong></td>
+        <td>Operations photos: aircraft exterior, cockpit, medical cabin, ground crew, hospital handover</td>
+        <td>JPG/PNG, min 800×600px each</td>
+      </tr>
+      <tr>
+        <td><strong>Company Logo</strong></td>
+        <td>NIAMS and/or NL Curantis official logo — used in navbar and footer</td>
+        <td>SVG or PNG with transparent background</td>
+      </tr>
+      <tr>
+        <td><strong>DGCA Certificate</strong></td>
+        <td>Certificate number or scan to display in footer trust badge and certifications ticker</td>
+        <td>Certificate number (text) + scan (PDF/JPG)</td>
+      </tr>
+      <tr>
+        <td><strong>Partner / Hospital Logos</strong></td>
+        <td>Logos of hospitals, airlines, or insurance companies you are affiliated with (min 4–6 logos)</td>
+        <td>PNG with transparent background</td>
+      </tr>
+      <tr>
+        <td><strong>Patient Testimonials (min 3)</strong></td>
+        <td>Real quotes from families or patients. Must include: quote text, full name, city, and the service used. With their permission.</td>
+        <td>Text document</td>
+      </tr>
+      <tr>
+        <td><strong>Verified Stats</strong></td>
+        <td>Confirm accuracy of: total missions completed, average response time, number of cities served, success rate percentage</td>
+        <td>Email or text confirmation</td>
+      </tr>
+      <tr>
+        <td><strong>Emergency Contact Numbers</strong></td>
+        <td>Confirm the exact numbers to display: toll-free (1800-NIAMS-911), WhatsApp (+91 8006426779), and any office landline</td>
+        <td>Text confirmation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title">🟡 Medium Priority — Recommended</h2>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Details</th>
+        <th>Format</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Team / Doctor Photos</strong></td>
+        <td>Headshots of lead flight physician, chief pilot, and operations head — builds medical credibility</td>
+        <td>JPG, min 400×400px, professional attire</td>
+      </tr>
+      <tr>
+        <td><strong>Fleet Specifications</strong></td>
+        <td>Exact aircraft models operated, range (km), patient capacity, medical equipment per aircraft type</td>
+        <td>Text document or spreadsheet</td>
+      </tr>
+      <tr>
+        <td><strong>Base Locations</strong></td>
+        <td>City and airport name for each operational base (for coverage map accuracy)</td>
+        <td>List of city names</td>
+      </tr>
+      <tr>
+        <td><strong>Additional Certifications</strong></td>
+        <td>Any NABH, ISO, or other accreditation certificates to display in the certifications ticker</td>
+        <td>Certificate names + logos</td>
+      </tr>
+      <tr>
+        <td><strong>Case Studies (2–3)</strong></td>
+        <td>Brief anonymized mission stories — e.g., "Critical cardiac patient transferred from Raipur to Chennai in 4 hours" — builds trust</td>
+        <td>Text, 100–150 words each</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert-box">
+    <strong>Important:</strong> Please do not share any patient photos or identifiable medical information unless you have written consent from the patient or their family. We will use only anonymized case summaries.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 3 — Optional Enhancements + Timeline
+═══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-logo">
+      <div class="page-logo-box"></div>
+      <div class="page-logo-name">NIAMS</div>
+    </div>
+    <div class="page-header-right">Website Requirement Document · Page 3 of 4</div>
+  </div>
+
+  <div class="section-label">Future Enhancements</div>
+  <h1 class="page-title">Optional Features for Phase 2</h1>
+  <p class="lead">These features are not required for launch but will significantly improve lead generation and search visibility over time.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🗺️</div>
+      <h3>City Landing Pages</h3>
+      <p>Dedicated pages for "Air Ambulance in Mumbai", "Air Ambulance in Delhi", etc. Critical for Google search traffic — people search by city.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📝</div>
+      <h3>Blog / Resources Section</h3>
+      <p>Articles like "What to expect during air transport" or "How to arrange an air ambulance quickly." Builds long-term organic SEO traffic.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">👨‍⚕️</div>
+      <h3>Doctor & Crew Profiles</h3>
+      <p>Full profile page for each key team member — qualifications, certifications, experience. Strongly increases medical credibility.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <h3>Cost Estimator Tool</h3>
+      <p>Simple form: select origin city, destination, aircraft type → shows estimated price range. Reduces cold inquiries and sets expectations.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗓️</div>
+      <h3>Live Booking / Scheduling</h3>
+      <p>Online scheduling form with availability calendar. Reduces manual phone coordination and captures more leads.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>WhatsApp Chat Bot</h3>
+      <p>Automated first-response bot on WhatsApp that collects patient details and routes to the right coordinator, even at 2am.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>Insurance Tie-up Info</h3>
+      <p>List insurance providers you work with. One of the most common patient questions is "will my insurance cover this?" — answer it on the site.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📍</div>
+      <h3>Google Maps Integration</h3>
+      <p>Embedded map showing your base locations, headquarters address, and nearby hospitals for each base city.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Suggested Launch Timeline</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot">1</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <h3>Content Collection</h3>
+        <p>Client provides: hero photos, gallery images, company logo, partner logos, real testimonials, and verified stats. This is the critical path item.</p>
+        <span class="duration">Week 1–2 · Client action required</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot">2</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <h3>Content Integration</h3>
+        <p>We replace all placeholder photos and text with the real assets provided. Contact form backend is connected and tested.</p>
+        <span class="duration">Week 3 · Developer action</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot">3</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <h3>Client Review &amp; Feedback</h3>
+        <p>Full website review with client. Text corrections, photo swaps, and any layout adjustments are made based on feedback.</p>
+        <span class="duration">Week 4 · Joint review</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot">4</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <h3>Domain &amp; Hosting Setup</h3>
+        <p>Website is deployed to your domain (nlcurantis.in or niams.in). SSL certificate configured. DNS pointed. Basic SEO meta tags set.</p>
+        <span class="duration">Week 5 · Developer action</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot">5</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <h3>Go Live</h3>
+        <p>Website is live. Google Search Console and Analytics connected. First-week monitoring for any issues.</p>
+        <span class="duration">Week 6 · Launch</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>Note:</strong> The timeline above depends entirely on how quickly the client provides the required content in Page 2. The development work is complete — the launch date is in your hands.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 4 — Technical Info + Sign-off
+═══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-logo">
+      <div class="page-logo-box"></div>
+      <div class="page-logo-name">NIAMS</div>
+    </div>
+    <div class="page-header-right">Website Requirement Document · Page 4 of 4</div>
+  </div>
+
+  <div class="section-label">Technical Overview</div>
+  <h1 class="page-title">Technical Specifications</h1>
+  <p class="lead">For your reference — what the website is built on and what you will need to maintain it.</p>
+
+  <div class="two-col">
+    <div class="col-block">
+      <h3>What It's Built With</h3>
+      <ul>
+        <li>Pure HTML, CSS, JavaScript — no framework</li>
+        <li>Single file (index.html) — easy to host anywhere</li>
+        <li>Three.js — particle/animation effects</li>
+        <li>GSAP 3 — scroll animations and transitions</li>
+        <li>Google Fonts (Bebas Neue, Space Mono, Barlow)</li>
+        <li>No backend required for the static site</li>
+      </ul>
+    </div>
+    <div class="col-block">
+      <h3>Hosting Requirements</h3>
+      <ul>
+        <li>Any standard web hosting works (no special server)</li>
+        <li>Recommended: Vercel, Netlify, or cPanel hosting</li>
+        <li>SSL certificate (HTTPS) — required for trust</li>
+        <li>Minimum bandwidth: 5 GB/month</li>
+        <li>Domain: nlcurantis.in or niams.in</li>
+        <li>Email for contact form: ops@nlcurantis.in</li>
+      </ul>
+    </div>
+    <div class="col-block">
+      <h3>Contact Form Backend</h3>
+      <ul>
+        <li>Form submissions need a backend service to receive emails</li>
+        <li>Options: Formspree (free), EmailJS, or custom SMTP</li>
+        <li>All inquiries sent to: ops@nlcurantis.in</li>
+        <li>WhatsApp integration is already configured</li>
+        <li>Setup time: ~1 hour once form service is chosen</li>
+      </ul>
+    </div>
+    <div class="col-block">
+      <h3>Mobile &amp; Browser Support</h3>
+      <ul>
+        <li>Fully responsive — tested down to 320px width</li>
+        <li>Mobile hamburger menu on screens ≤920px</li>
+        <li>Heavy animations disabled on mobile for performance</li>
+        <li>Supports: Chrome, Safari, Firefox, Edge (latest 2 versions)</li>
+        <li>iOS Safari and Android Chrome fully supported</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section-title">Content You Own &amp; Can Update</h2>
+  <p style="color:var(--muted); font-size:9.5pt; margin-bottom:10px;">After launch, the following items can be updated by sharing them with your developer — no technical knowledge required from your side:</p>
+
+  <ul class="content-list">
+    <li>Hero photos (swap any of the 3 carousel images)</li>
+    <li>Stats numbers (missions, response time, cities, success rate)</li>
+    <li>Testimonial quotes, names, and cities</li>
+    <li>Partner/hospital logos (add or remove)</li>
+    <li>FAQ questions and answers (add, edit, or remove)</li>
+    <li>Fleet specifications (aircraft models, range, capacity)</li>
+    <li>Contact details (phone numbers, email, WhatsApp)</li>
+    <li>Team member photos and profiles (if added in Phase 2)</li>
+  </ul>
+
+  <h2 class="section-title" style="margin-top:28px;">Summary Checklist</h2>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Deliverable</th>
+        <th>Responsible</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>3 hero photos (aircraft/crew/ICU)</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>5 gallery photos</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>Company logo (transparent PNG/SVG)</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>DGCA certificate number &amp; scan</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>4–6 partner / hospital logos</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>3 real patient testimonials (with consent)</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>Confirm stats (missions, cities, response time)</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>Confirm emergency contact numbers</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>Team / doctor headshots</td><td>Client</td><td><span class="badge badge-medium">Medium</span></td></tr>
+      <tr><td>Fleet specifications per aircraft</td><td>Client</td><td><span class="badge badge-medium">Medium</span></td></tr>
+      <tr><td>Base city locations</td><td>Client</td><td><span class="badge badge-medium">Medium</span></td></tr>
+      <tr><td>2–3 anonymized case studies</td><td>Client</td><td><span class="badge badge-medium">Medium</span></td></tr>
+      <tr><td>Domain registration / DNS access</td><td>Client</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>Contact form backend setup</td><td>Developer</td><td><span class="badge badge-high">High</span></td></tr>
+      <tr><td>Deploy to live hosting</td><td>Developer</td><td><span class="badge badge-high">High</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- Sign-off -->
+  <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--border);">
+    <div class="section-label">Sign-off</div>
+    <p style="font-size:9.5pt; color:var(--muted); margin-bottom:20px;">By signing below, both parties confirm they have reviewed and agreed to the requirements and responsibilities outlined in this document.</p>
+  </div>
+
+  <div class="signature-block">
+    <div class="sig-box">
+      <div class="sig-label">Client — NL Curantis International Pvt Ltd</div>
+      <div style="height:2px; background:var(--border); margin-bottom:8px;"></div>
+      <div class="sig-name">Authorized Signatory</div>
+      <div class="sig-role">NL Curantis International Pvt Ltd</div>
+      <div class="sig-date">Date: ___________________</div>
+    </div>
+    <div class="sig-box">
+      <div class="sig-label">Developer</div>
+      <div style="height:2px; background:var(--border); margin-bottom:8px;"></div>
+      <div class="sig-name">Ravikiran</div>
+      <div class="sig-role">Website Developer</div>
+      <div class="sig-date">Date: June 2026</div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px; text-align:center; font-size:8.5pt; color:var(--muted); border-top:1px solid var(--border); padding-top:16px;">
+    NIAMS – NL Curantis International Pvt Ltd &nbsp;|&nbsp; ops@nlcurantis.in &nbsp;|&nbsp; 1800-NIAMS-911 &nbsp;|&nbsp; Confidential Document
+  </div>
+</div>
+
+</body>
+</html>

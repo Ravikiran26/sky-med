@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REACT Air Ambulance – Rapid Emergency Aerocare Team | NL Curantis International</title>
   <meta name="description" content="REACT (Rapid Emergency Aerocare Team) deploys ICU-equipped aircraft and specialist medical crews across India and internationally. 24/7 air ambulance, medical escort, and critical care transport under NL Curantis International Pvt Ltd.">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reactairambulance.com/">
+  <meta property="og:title" content="REACT Air Ambulance – Rapid Emergency Aerocare Team">
+  <meta property="og:description" content="ICU-equipped aircraft and specialist medical crews across India and internationally. 24/7 air ambulance, organ retrieval, neonatal transport, and ECMO retrieval. Call now.">
+  <meta property="og:image" content="https://reactairambulance.com/hero-slide1-web.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="REACT Air Ambulance">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="REACT Air Ambulance – Rapid Emergency Aerocare Team">
+  <meta name="twitter:description" content="ICU-equipped aircraft and specialist crews available 24/7 across India and internationally. Air ambulance, organ retrieval, neonatal & ECMO transport.">
+  <meta name="twitter:image" content="https://reactairambulance.com/hero-slide1-web.jpg">
+
+  <!-- Canonical & Language -->
+  <link rel="canonical" href="https://reactairambulance.com/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="NL Curantis International Pvt Ltd">
+  <meta name="keywords" content="air ambulance India, air ambulance Hyderabad, HEMS helicopter emergency, organ retrieval flight, neonatal air transport, ECMO transport, medical repatriation India, ICU air ambulance, REACT air ambulance">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -2541,6 +2565,80 @@
 
     /* Service detail page — light theme already set in component CSS */
   </style>
+
+  <!-- Schema.org structured data — MedicalBusiness + EmergencyService -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["MedicalBusiness", "EmergencyService"],
+        "@id": "https://reactairambulance.com/#organization",
+        "name": "REACT Air Ambulance",
+        "alternateName": "Rapid Emergency Aerocare Team",
+        "legalName": "NL Curantis International Pvt Ltd",
+        "url": "https://reactairambulance.com",
+        "logo": "https://reactairambulance.com/react-logo-final.png",
+        "image": "https://reactairambulance.com/hero-slide1-web.jpg",
+        "description": "REACT (Rapid Emergency Aerocare Team) provides ICU-equipped air ambulance services, organ retrieval flights, neonatal transport, ECMO retrieval, helicopter emergency services (HEMS), and international medical repatriation across India and internationally.",
+        "telephone": "+918006426779",
+        "email": "ops@nlcurantis.in",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+918006426779",
+            "contactType": "emergency",
+            "availableLanguage": ["English", "Hindi", "Telugu"],
+            "hoursAvailable": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+              "opens": "00:00",
+              "closes": "23:59"
+            }
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hyderabad",
+          "addressRegion": "Telangana",
+          "addressCountry": "IN"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "India"
+        },
+        "serviceType": [
+          "Air Ambulance",
+          "Helicopter Emergency Medical Services",
+          "Organ Retrieval Flight",
+          "Neonatal Air Transport",
+          "ECMO Retrieval",
+          "International Medical Repatriation",
+          "Commercial Stretcher Transfer",
+          "Medical Escort"
+        ],
+        "availableService": [
+          { "@type": "MedicalTherapy", "name": "Dedicated Air Ambulance (Flying ICU)" },
+          { "@type": "MedicalTherapy", "name": "HEMS – Helicopter Emergency Medical Services" },
+          { "@type": "MedicalTherapy", "name": "Organ Retrieval & Transplant Logistics" },
+          { "@type": "MedicalTherapy", "name": "Neonatal & Pediatric Air Ambulance" },
+          { "@type": "MedicalTherapy", "name": "ECMO Initiation & Air Lift" },
+          { "@type": "MedicalTherapy", "name": "International Patient Transfer & Medical Repatriation" }
+        ],
+        "sameAs": [
+          "https://wa.me/918006426779"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://reactairambulance.com/#website",
+        "url": "https://reactairambulance.com",
+        "name": "REACT Air Ambulance",
+        "publisher": { "@id": "https://reactairambulance.com/#organization" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <canvas id="particles" aria-hidden="true"></canvas>

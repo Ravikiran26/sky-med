@@ -43,7 +43,7 @@
     body::before, body::after { display: none; }
 
     a { color: inherit; text-decoration: none; }
-    button, .btn { border: 0; cursor: pointer; font-family: var(--font-label); letter-spacing: 2.2px; text-transform: uppercase; }
+    button, .btn { border: 0; cursor: pointer; font-family: var(--font-body); font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; }
 
     #particles { display: none; }
 
@@ -68,7 +68,7 @@
 
     .section-copy {
       max-width: 620px; margin-top: 18px;
-      color: var(--muted); font-size: 17px; line-height: 1.78;
+      color: var(--muted); font-size: 17px; line-height: 1.82; font-weight: 400;
     }
 
     /* ── NAV ─────────────────────────────────────────────── */
@@ -119,15 +119,15 @@
     .nav-links {
       display: flex; align-items: center; gap: 34px;
       color: #3d5a7a;
-      font-family: var(--font-label); font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+      font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
       transition: color .3s;
     }
     .nav-links a { transition: color .2s; }
     .nav-links a:hover { color: var(--sky); }
 
     .emergency-nav {
-      padding: 13px 20px;
-      font-family: var(--font-label); font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase;
+      padding: 13px 22px;
+      font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase;
       background: linear-gradient(135deg, var(--red), var(--red2));
       color: #eef3ff; min-width: max-content;
       animation: redPulse 1.8s ease-in-out infinite;
@@ -248,32 +248,17 @@
     }
 
     /* Photo slideshow — full bleed background */
-    /* Hero video */
-    .hero-video {
-      position: absolute; inset: 0; z-index: 0; overflow: hidden;
-    }
-    .hero-video video {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-    }
-
-    /* Photo fallback (shown on mobile or if video fails) */
     .hero-slides {
       position: absolute; inset: 0; z-index: 0;
-      display: none;
     }
+
     .hero-slide {
       position: absolute; inset: 0;
       background-size: cover; background-position: center center;
-      opacity: 0; transition: opacity 1.6s ease-in-out;
+      opacity: 0;
+      transition: opacity 1.6s ease-in-out;
     }
     .hero-slide.active { opacity: 1; }
-
-    @media (max-width: 920px) {
-      .hero-video { display: none; }
-      .hero-slides { display: block; }
-    }
 
     /* Very light overlay — photo stays prominent, like ICATT */
     .hero-overlay {
@@ -287,14 +272,11 @@
       pointer-events: none;
     }
 
-    /* Slide dots — bottom center (mobile only, hidden on desktop where video plays) */
+    /* Slide dots — bottom center */
     .hero-dots {
       position: absolute; bottom: 28px; left: 50%;
       transform: translateX(-50%); z-index: 5;
-      display: none; align-items: center; gap: 8px;
-    }
-    @media (max-width: 920px) {
-      .hero-dots { display: flex; }
+      display: flex; align-items: center; gap: 8px;
     }
 
     .hero-dot {
@@ -1550,6 +1532,12 @@
       color: #1c2f45; font-weight: 400;
       font-family: var(--font-body);
     }
+    @media (max-width: 768px) {
+      .svc-modal-desc { font-size: 16px; line-height: 1.85; }
+      .svc-modal-sections-wrap { grid-template-columns: 1fr; }
+      .svc-modal-list li { font-size: 15px; }
+      .svc-modal-body-inner { padding: 36px 20px 60px; }
+    }
     .svc-modal-desc + .svc-modal-desc {
       margin-top: 16px; padding-top: 16px;
       border-top: 1px solid #e8edf3;
@@ -2004,15 +1992,25 @@
       .hamburger { display: block; }
 
       .nav-links {
-        position: fixed; left: 16px; right: 16px; top: 76px;
-        display: none; padding: 22px;
-        background: rgba(10,22,40,.96);
-        border: 1px solid rgba(255,255,255,.12);
-        backdrop-filter: blur(16px);
-        flex-direction: column; align-items: flex-start; gap: 18px;
-        color: rgba(238,243,255,.85);
+        position: fixed; left: 12px; right: 12px; top: 78px;
+        display: none; padding: 24px 22px;
+        background: rgba(4,17,31,.97);
+        border: 1px solid rgba(74,158,255,.14);
+        border-top: 2px solid var(--red);
+        border-radius: 0 0 12px 12px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column; align-items: flex-start; gap: 6px;
+        color: rgba(238,243,255,.9);
+        box-shadow: 0 16px 40px rgba(0,0,0,.35);
       }
       .nav.open .nav-links { display: flex; }
+      .nav-links a {
+        width: 100%; padding: 11px 0;
+        font-size: 15px; font-weight: 600; letter-spacing: 0.8px;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+      }
+      .nav-links a:last-child { border-bottom: none; }
       .emergency-nav { display: none; }
 
       .footer-grid { grid-template-columns: 1fr; }
@@ -2056,22 +2054,38 @@
     }
 
     @media (max-width: 620px) {
-      .shell { width: min(100% - 28px, 1180px); }
-      .section { padding: 72px 0; }
-      .brand-name { font-size: 26px; }
+      .shell { width: min(100% - 24px, 1180px); }
+      .section { padding: 64px 0; }
+      .brand-name { font-size: 24px; letter-spacing: 3px; }
       .brand-sub { display: none; }
-      .hero-sub { font-size: 15px; } .section-copy { font-size: 17px; }
 
-      .hero-actions, .cta-actions { display: grid; }
-      .btn { width: 100%; }
+      /* Hero — larger, more dramatic on mobile */
+      .hero-title { font-size: clamp(30px, 9vw, 46px); line-height: 1.08; letter-spacing: 1px; }
+      .hero-sub { font-size: 15px; font-weight: 400; line-height: 1.7; max-width: 92%; }
+      .section-copy { font-size: 16px; line-height: 1.78; }
+
+      /* Section titles tighter on small screens */
+      .section-title { font-size: clamp(28px, 8vw, 42px); letter-spacing: 3px; }
+      .cta h2 { letter-spacing: 3px; }
+
+      .hero-actions, .cta-actions { display: grid; gap: 12px; }
+      .btn { width: 100%; padding: 16px 20px; font-size: 13px; }
 
       .status-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
       .status-sep { display: none; }
 
-      .section-title, .cta h2, .phone { letter-spacing: 3px; }
+      /* Cards — more breathing room */
+      .fleet-card { padding: 24px 20px; }
+      .timeline-card, .coverage-copy { padding: 22px 18px; }
+      .svc-body { padding: 28px 18px 18px; }
 
-      .fleet-card, .timeline-card, .coverage-copy { padding: 22px; }
-      .svc-body { padding: 34px 20px 20px; }
+      /* Service cards on mobile — full width, tighter */
+      .svc2-hd { height: 160px; }
+      .svc2-body { padding: 18px 16px 16px; }
+
+      /* Quote form */
+      .qq-card { padding: 28px 18px 24px; }
+      .qq-heading { font-size: clamp(18px, 6vw, 26px); }
 
       .floating { right: 12px; bottom: 14px; }
       .float-btn .btn-icon { font-size: 20px; }
@@ -2086,7 +2100,7 @@
       .svc-panel-grid,
       .svc-panel-grid.cols-2 { grid-template-columns: 1fr; }
 
-      .svc-tab { font-size: 10px; padding: 12px 14px; letter-spacing: 1.6px; }
+      .svc-tab { font-size: 11px; font-weight: 700; padding: 13px 14px; letter-spacing: 0.8px; }
       .svc-tab-count { width: 18px; height: 18px; font-size: 9px; }
 
       .why-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2408,14 +2422,7 @@
     <!-- HERO -->
     <section class="hero">
 
-      <!-- Looping background video (desktop) -->
-      <div class="hero-video" aria-hidden="true">
-        <video autoplay muted loop playsinline preload="auto">
-          <source src="hero-video.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <!-- Photo fallback (mobile / no-video) -->
+      <!-- Full-bleed photo slider -->
       <div class="hero-slides" aria-hidden="true">
         <div class="hero-slide active" style="background-image:url('hero-ai.jpg'); background-position: center 55%;"></div>
         <div class="hero-slide" style="background-image:url('hero-main.jpg'); background-position: center 50%;"></div>
@@ -4154,16 +4161,15 @@
       'svc-neonatal': {
         num: '01', cat: 'Specialized Medical',
         img: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1200&q=80',
-        title: 'Neonatal & Pediatric Critical Care Transport',
+        title: 'Neonatal & Pediatric Air Ambulance Services',
         desc: [
-          'Critically ill newborns and children require a level of care during transport that is vastly different from adult patients. Our specialist neonatal and pediatric transport team is trained to manage premature infants, neonates in respiratory failure, and paediatric ICU patients during inter-facility transfers.',
-          'Every neonatal mission is staffed by a neonatologist or paediatric intensivist alongside a trained neonatal nurse. The aircraft is pre-configured with a transport incubator, paediatric ventilator, and a full neonatal emergency drug kit — replicating the NICU environment in the air.'
+          'Transporting newborns and children requires specialized expertise and equipment. REACT provides dedicated neonatal and pediatric transport services staffed by professionals trained in neonatal intensive care and pediatric critical care.',
+          'Our neonatal transport systems include transport incubators, neonatal ventilators, specialized monitoring equipment, and temperature-controlled environments designed specifically for infants and children.'
         ],
         sections: [
-          { heading: 'Specialised Equipment', items: ['Transport neonatal incubator with temperature & humidity control', 'Paediatric and neonatal ventilator', 'Paediatric cardiac monitor with SpO2 and capnography', 'Neonatal IV access and infusion support', 'Surfactant and emergency neonatal medications', 'Phototherapy unit (on request)'] },
-          { heading: 'Conditions Managed', items: ['Premature newborns requiring NICU care', 'Neonatal respiratory distress syndrome (RDS)', 'Congenital heart defects requiring surgical centre', 'Neonatal sepsis and metabolic emergencies', 'Paediatric ICU transfers — trauma, post-surgical, neurological', 'Paediatric oncology transfers'] }
+          { heading: 'Services Include', items: ['NICU transfers', 'Premature infant transport', 'Pediatric ICU transfers', 'Congenital heart disease transfers', 'International neonatal repatriation'] }
         ],
-        highlight: 'Every second counts for a critically ill newborn. Our team travels with hospital-grade neonatal equipment and is activated 24/7. Call us the moment your paediatrician recommends a transfer.'
+        highlight: 'Every second counts for a critically ill newborn. Our team is activated 24/7 with hospital-grade neonatal equipment. Call 9849994108 the moment your paediatrician recommends a transfer.'
       },
       'svc-ecmo': {
         num: '02', cat: 'Specialized Medical',

@@ -4511,22 +4511,64 @@
       window.addEventListener("resize", resize);
     }
 
+    /* ── FORMSPREE_ENDPOINT: replace with your form ID from formspree.io ── */
+    var FORMSPREE_URL = 'https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID';
+
+    function submitToFormspree(data, btn, successText) {
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res.ok || res.next) {
+          btn.textContent = successText;
+          btn.style.background = 'var(--green)';
+          btn.style.color = '#fff';
+        } else {
+          btn.textContent = 'Error — please call us directly';
+          btn.style.background = '#c0392b';
+          btn.style.color = '#fff';
+          btn.disabled = false;
+        }
+      })
+      .catch(function() {
+        btn.textContent = 'Error — please call us directly';
+        btn.style.background = '#c0392b';
+        btn.style.color = '#fff';
+        btn.disabled = false;
+      });
+    }
+
     function handleQuickQuote(e) {
       e.preventDefault();
-      var btn = document.querySelector('.qq-btn');
-      btn.textContent = 'Sent — We\'ll Call Shortly';
-      btn.style.background = 'var(--green)';
-      btn.style.color = '#03120a';
-      btn.disabled = true;
+      var form = e.target;
+      var btn  = form.querySelector('.qq-btn');
+      var data = {
+        name:        form.querySelector('[name="name"]')  ? form.querySelector('[name="name"]').value  : '',
+        phone:       form.querySelector('[name="phone"]') ? form.querySelector('[name="phone"]').value : '',
+        message:     form.querySelector('[name="msg"]')   ? form.querySelector('[name="msg"]').value   : '',
+        _subject:    'Quick Quote Request — REACT Air Ambulance'
+      };
+      submitToFormspree(data, btn, 'Sent — We\'ll Call Shortly');
     }
 
     function handleContactForm(e) {
       e.preventDefault();
-      var btn = e.target.querySelector('.contact-submit');
-      btn.textContent = 'Enquiry Sent — We\'ll Contact You Shortly';
-      btn.style.background = 'var(--green)';
-      btn.style.color = '#03120a';
-      btn.disabled = true;
+      var form = e.target;
+      var btn  = form.querySelector('.contact-submit');
+      var data = {
+        name:     form.querySelector('[name="name"]')    ? form.querySelector('[name="name"]').value    : '',
+        phone:    form.querySelector('[name="phone"]')   ? form.querySelector('[name="phone"]').value   : '',
+        email:    form.querySelector('[name="email"]')   ? form.querySelector('[name="email"]').value   : '',
+        enquiry:  form.querySelector('[name="enquiry"]') ? form.querySelector('[name="enquiry"]').value : '',
+        message:  form.querySelector('[name="message"]') ? form.querySelector('[name="message"]').value : '',
+        _subject: 'Website Enquiry — REACT Air Ambulance'
+      };
+      submitToFormspree(data, btn, 'Enquiry Sent — We\'ll Contact You Shortly');
     }
 
     // Init after DOM load

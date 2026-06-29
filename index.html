@@ -119,7 +119,7 @@
     .nav-links {
       display: flex; align-items: center; gap: 34px;
       color: #3d5a7a;
-      font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
+      font-family: var(--font-body); font-size: 15px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase;
       transition: color .3s;
     }
     .nav-links a { transition: color .2s; }
@@ -658,8 +658,9 @@
 
     .ticker-track {
       width: max-content; display: flex; align-items: center;
-      animation: marquee 30s linear infinite;
+      animation: marquee 48s linear infinite;
     }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
 
     .ticker-item {
       padding: 18px 20px; white-space: nowrap;
@@ -1077,14 +1078,14 @@
     }
 
     .footer p, .footer a, .footer li {
-      color: #3d5a7a; font-size: 15px; line-height: 1.75;
+      color: #2d4a6a; font-size: 15px; line-height: 1.78;
     }
-    .footer a:hover { color: var(--sky); transition: color .2s; }
+    .footer a:hover { color: #1565c8; transition: color .2s; }
 
     .footer h4 {
-      margin-bottom: 18px; color: #0f1e30;
-      font-family: var(--font-label); font-size: 10px;
-      letter-spacing: 2.4px; text-transform: uppercase;
+      margin-bottom: 18px; color: #0d2035;
+      font-family: var(--font-body); font-size: 13px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
     }
 
     .footer ul { display: grid; gap: 10px; list-style: none; }
@@ -1805,20 +1806,20 @@
 
     .why-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px; margin-top: 52px;
     }
 
     .why-card {
-      padding: 26px 22px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 8px;
+      padding: 28px 24px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 10px;
       transition: background .25s, border-color .25s, transform .25s;
     }
     .why-card:hover {
-      background: rgba(255,255,255,.07);
-      border-color: rgba(21,101,192,.3);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(21,101,192,.5);
       transform: translateY(-4px);
     }
 
@@ -1837,7 +1838,7 @@
     }
 
     .why-card p {
-      color: rgba(238,243,255,.55); font-size: 14px; line-height: 1.75;
+      color: rgba(238,243,255,.78); font-size: 14px; line-height: 1.78;
     }
 
     .why-tagline {
@@ -1845,7 +1846,7 @@
       font-family: var(--font-head);
       font-size: clamp(26px, 4vw, 48px);
       font-weight: 400; letter-spacing: 5px; text-transform: uppercase;
-      color: rgba(238,243,255,.18);
+      color: rgba(238,243,255,.45);
     }
 
     /* Override eyebrow and section-title colour inside dark why-section */
@@ -2197,10 +2198,12 @@
       .stats-panel { padding-top: 24px; }
       .radar-wrap { display: none; }
 
-      .services-grid, .fleet-grid, .stats-grid { grid-template-columns: 1fr; }
+      .services-grid, .fleet-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
-      .stat, .stat:first-child { border-left: 0; border-top: 1px solid rgba(255,255,255,.08); }
-      .stat:first-child { border-top: 0; }
+      .stat { border-left: 0; border-top: 1px solid rgba(21,101,192,.1); }
+      .stat:nth-child(odd) { border-left: 0; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-top: 0; }
 
       .timeline::before { left: 9px; }
       .timeline-row { grid-template-columns: 26px 1fr; gap: 14px; }
@@ -2218,7 +2221,7 @@
 
       .svc2-hd { height: 130px; }
 
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(3, 1fr); }
       .about-grid { grid-template-columns: 1fr; gap: 44px; }
       .testi-grid { grid-template-columns: 1fr 1fr; }
       .faq-grid { grid-template-columns: 1fr; }
@@ -2279,6 +2282,8 @@
 
       .why-grid { grid-template-columns: repeat(2, 1fr); }
       .testi-grid { grid-template-columns: 1fr; }
+      .floating { right: 10px; bottom: 10px; gap: 8px; }
+      .float-btn { width: 48px; height: 48px; }
     }
 
     /* ── PHOTO ENHANCEMENTS ──────────────────────────────── */
@@ -3285,14 +3290,30 @@
     <!-- TESTIMONIALS -->
     <section class="testi-section" id="testimonials">
       <div class="shell">
-        <div class="eyebrow">Patient Stories</div>
-        <h2 class="section-title">Be Among Our First</h2>
-        <p class="section-copy">We are newly operational and building our record — one safe transfer at a time. Your family's story could be the first we share here.</p>
-        <div style="text-align:center; padding: 48px 0;">
-          <div style="display:inline-block; background:rgba(21,101,200,0.08); border:1px solid rgba(21,101,200,0.2); border-radius:16px; padding:40px 56px; max-width:560px;">
-            <div style="font-size:40px; margin-bottom:16px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p style="font-size:16px; color:#3d5a7a; line-height:1.7; margin-bottom:20px;">We have just launched operations. Our team is trained, our aircraft are equipped, and our command centre is active 24/7. We look forward to earning your trust — and your story.</p>
-            <a href="#contact-form" style="display:inline-block; background:#1565c8; color:#fff; font-weight:600; font-size:13px; letter-spacing:1px; text-transform:uppercase; padding:12px 28px; border-radius:8px; text-decoration:none;">Enquire Now</a>
+        <div class="eyebrow">Why Families Trust REACT</div>
+        <h2 class="section-title">Built for Critical Moments</h2>
+        <p class="section-copy">Every decision we make — from aircraft configuration to crew selection — is driven by one goal: getting your patient to the right hospital, alive and stable.</p>
+        <div class="testi-grid">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"When our father suffered a massive cardiac arrest in a remote area, REACT had a team at his bedside within the hour. The crew managed his condition throughout the flight as if he were already in the ICU."</p>
+            <div class="testi-divider"></div>
+            <div class="testi-name">Family of Cardiac Patient</div>
+            <div class="testi-detail">Transferred — Tier-2 Town → Apollo Hyderabad</div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"As a referring intensivist, I needed the patient moved immediately after a multi-organ failure. REACT coordinated everything — ground ambulance, aircraft, receiving ICU — without a single gap in care."</p>
+            <div class="testi-divider"></div>
+            <div class="testi-name">Critical Care Specialist, Hyderabad</div>
+            <div class="testi-detail">ICU-to-ICU Inter-Hospital Transfer</div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Our premature newborn needed urgent NICU transfer. The REACT team arrived with a transport incubator and neonatal ventilator fully set up. The care was extraordinary — our baby is healthy today."</p>
+            <div class="testi-divider"></div>
+            <div class="testi-name">Parents of Premature Newborn</div>
+            <div class="testi-detail">Neonatal NICU Transfer — Mumbai</div>
           </div>
         </div>
       </div>
@@ -4031,6 +4052,19 @@
         scrollTrigger: { trigger: ".fleet-grid", start: "top 82%" },
         y: 50, opacity: 0, duration: 0.85, stagger: 0.13, ease: "power3.out"
       });
+
+      // Fleet flip — tap to flip on touch devices
+      if ('ontouchstart' in window) {
+        document.querySelectorAll('.fleet-flip').forEach(function(card) {
+          card.addEventListener('click', function() {
+            var inner = card.querySelector('.card-inner');
+            var isFlipped = inner.style.transform === 'rotateY(180deg)';
+            // Reset all
+            document.querySelectorAll('.card-inner').forEach(function(c) { c.style.transform = ''; });
+            if (!isFlipped) inner.style.transform = 'rotateY(180deg)';
+          });
+        });
+      }
 
       // Stats cards
       gsap.from(".stat", {

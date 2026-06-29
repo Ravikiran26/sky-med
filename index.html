@@ -1620,6 +1620,133 @@
       .svc-sticky-phone-num { font-size: 19px; }
     }
 
+    /* ── EQUIPMENT SECTION ───────────────────────────────── */
+    .equip-section {
+      background: #04111f;
+      padding: 100px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .equip-section::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(21,101,200,.12) 0%, transparent 65%);
+    }
+    .equip-intro {
+      max-width: 680px; margin: 16px 0 56px;
+      color: rgba(238,243,255,.6); font-size: 16px; line-height: 1.82; font-weight: 400;
+    }
+    .equip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .equip-card {
+      background: rgba(7,22,40,.8);
+      border: 1px solid rgba(74,158,255,.1);
+      border-radius: 12px;
+      padding: 24px 20px 20px;
+      cursor: pointer;
+      transition: border-color .25s, background .25s, transform .2s;
+      position: relative; overflow: hidden;
+    }
+    .equip-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--sky), var(--skylt));
+      opacity: 0; transition: opacity .25s;
+    }
+    .equip-card:hover, .equip-card.active {
+      border-color: rgba(74,158,255,.3);
+      background: rgba(11,30,55,.9);
+      transform: translateY(-3px);
+    }
+    .equip-card:hover::before, .equip-card.active::before { opacity: 1; }
+    .equip-card.active { border-color: rgba(74,158,255,.45); }
+    .equip-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(21,101,200,.18);
+      display: grid; place-items: center;
+      margin-bottom: 14px;
+      transition: background .25s;
+    }
+    .equip-card:hover .equip-icon, .equip-card.active .equip-icon {
+      background: rgba(21,101,200,.32);
+    }
+    .equip-icon svg { width: 22px; height: 22px; stroke: var(--skylt); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .equip-name {
+      font-family: var(--font-body); font-size: 13px; font-weight: 700;
+      color: #eef3ff; line-height: 1.35; margin-bottom: 10px;
+    }
+    .equip-tags {
+      display: flex; flex-wrap: wrap; gap: 5px;
+    }
+    .equip-tag {
+      font-family: var(--font-label); font-size: 8.5px; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--skylt);
+      background: rgba(74,158,255,.1); border-radius: 3px;
+      padding: 3px 7px;
+    }
+
+    /* Detail panel */
+    .equip-detail {
+      margin-top: 20px;
+      background: rgba(7,22,40,.9);
+      border: 1px solid rgba(74,158,255,.18);
+      border-radius: 12px;
+      padding: 32px 36px;
+      display: none;
+      animation: fadeSlideUp .28s ease both;
+    }
+    .equip-detail.open { display: block; }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .equip-detail-name {
+      font-family: var(--font-head); font-size: 28px; letter-spacing: 2px;
+      color: #eef3ff; margin-bottom: 20px;
+    }
+    .equip-detail-list {
+      list-style: none; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 10px 32px;
+    }
+    .equip-detail-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      color: rgba(238,243,255,.72); font-size: 14px; line-height: 1.6;
+    }
+    .equip-detail-list li::before {
+      content: ""; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--skylt); margin-top: 7px;
+      box-shadow: 0 0 6px rgba(74,158,255,.5);
+    }
+
+    /* Flying ICU banner */
+    .equip-banner {
+      margin-top: 48px;
+      background: linear-gradient(135deg, rgba(224,40,40,.08) 0%, rgba(21,101,200,.08) 100%);
+      border: 1px solid rgba(224,40,40,.2);
+      border-left: 4px solid var(--red);
+      border-radius: 0 12px 12px 0;
+      padding: 28px 36px;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .equip-banner-icon {
+      font-size: 36px; flex-shrink: 0;
+    }
+    .equip-banner p {
+      color: rgba(238,243,255,.78); font-size: 15px; line-height: 1.82;
+    }
+    .equip-banner strong { color: #eef3ff; }
+
+    @media (max-width: 920px) {
+      .equip-grid { grid-template-columns: repeat(2, 1fr); }
+      .equip-detail-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .equip-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .equip-card { padding: 18px 14px 16px; }
+      .equip-detail { padding: 22px 18px; }
+      .equip-banner { flex-direction: column; gap: 12px; padding: 22px 20px; }
+    }
+
     /* ── WHY REACT SECTION ───────────────────────────────── */
     .why-section {
       position: relative; padding: 112px 0; overflow: hidden;
@@ -3175,6 +3302,94 @@
       </div>
     </section>
 
+    <!-- EQUIPMENT -->
+    <section class="equip-section" id="equipment">
+      <div class="shell">
+        <span class="eyebrow" style="color:var(--skylt)">Flying ICU Standard</span>
+        <h2 class="section-title" style="color:#eef3ff;margin-top:10px">Advanced Critical Care<br>Medical Equipment</h2>
+        <p class="equip-intro">Our air ambulances are equipped with state-of-the-art critical care equipment, enabling ICU-level treatment throughout patient transport. Every mission is supported by advanced medical technology to ensure continuous monitoring, stabilization, and life-saving interventions.</p>
+
+        <div class="equip-grid" id="equip-grid">
+
+          <!-- Card 1 -->
+          <div class="equip-card" data-equip="0">
+            <div class="equip-icon">
+              <svg viewBox="0 0 24 24"><polyline points="2 12 6 4 9 16 12 8 14 12 16 10 18 12 22 12"/></svg>
+            </div>
+            <div class="equip-name">Cardiac Monitor with IBP & ETCO₂</div>
+            <div class="equip-tags"><span class="equip-tag">12-Lead ECG</span><span class="equip-tag">IBP</span><span class="equip-tag">ETCO₂</span></div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="equip-card" data-equip="1">
+            <div class="equip-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22V12M8 17s1-5 4-5 4 5 4 5"/><circle cx="12" cy="7" r="4"/><path d="M5 22c0-4 3-7 7-7s7 3 7 7"/></svg>
+            </div>
+            <div class="equip-name">Portable Mechanical Ventilator</div>
+            <div class="equip-tags"><span class="equip-tag">Adult</span><span class="equip-tag">Pediatric</span><span class="equip-tag">Neonatal</span></div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="equip-card" data-equip="2">
+            <div class="equip-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M12 14v4M10 16h4"/></svg>
+            </div>
+            <div class="equip-name">Syringe Infusion Pumps</div>
+            <div class="equip-tags"><span class="equip-tag">Vasopressors</span><span class="equip-tag">Sedatives</span><span class="equip-tag">Precision</span></div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="equip-card" data-equip="3">
+            <div class="equip-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 12h6M12 9v6"/><circle cx="12" cy="12" r="9"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+            </div>
+            <div class="equip-name">Advanced Airway Devices</div>
+            <div class="equip-tags"><span class="equip-tag">Adult</span><span class="equip-tag">Pediatric</span><span class="equip-tag">Video Laryngoscope</span></div>
+          </div>
+
+          <!-- Card 5 — row 2, centered via CSS -->
+          <div class="equip-card" data-equip="4">
+            <div class="equip-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="equip-name">Circulation Equipment</div>
+            <div class="equip-tags"><span class="equip-tag">Defibrillator</span><span class="equip-tag">AED</span><span class="equip-tag">IV/IO Access</span></div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="equip-card" data-equip="5">
+            <div class="equip-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
+            </div>
+            <div class="equip-name">Portable Suction Units</div>
+            <div class="equip-tags"><span class="equip-tag">Battery-Operated</span><span class="equip-tag">Airway Clearance</span></div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="equip-card" data-equip="6">
+            <div class="equip-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="equip-name">Portable Oxygen Concentrators</div>
+            <div class="equip-tags"><span class="equip-tag">Aviation-Compatible</span><span class="equip-tag">Long-Duration</span></div>
+          </div>
+
+        </div>
+
+        <!-- Detail panel (shown on card click) -->
+        <div class="equip-detail" id="equip-detail">
+          <div class="equip-detail-name" id="equip-detail-name"></div>
+          <ul class="equip-detail-list" id="equip-detail-list"></ul>
+        </div>
+
+        <!-- Flying ICU Banner -->
+        <div class="equip-banner">
+          <div class="equip-banner-icon">✈️</div>
+          <p><strong>ICU-Level Care in the Sky —</strong> Every REACT Air Ambulance mission is staffed by experienced critical care physicians, flight paramedics, and intensive care nurses. Combined with advanced medical equipment, our aircraft function as a fully equipped <strong>flying intensive care unit (ICU)</strong>, ensuring uninterrupted, hospital-grade treatment from bedside to destination.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- COVERAGE -->
     <section class="section" id="coverage">
       <div class="shell">
@@ -4074,6 +4289,115 @@
     // Init after DOM load
     initParticles();
     initGlobe();
+
+    // ── Equipment section ──────────────────────────────────
+    var EQUIP_DATA = [
+      {
+        name: 'Prehospital Cardiac Monitor with IBP & ETCO₂ Monitoring',
+        items: [
+          'Multi-parameter cardiac monitoring with 12-lead ECG',
+          'Continuous heart rate, blood pressure and SpO₂ monitoring',
+          'Invasive Blood Pressure (IBP) monitoring',
+          'End-Tidal CO₂ (ETCO₂) for accurate ventilation assessment',
+          'Respiratory rate and temperature monitoring',
+          'Early detection of cardiac arrhythmias during transport'
+        ]
+      },
+      {
+        name: 'Portable Mechanical Ventilator',
+        items: [
+          'Designed for adult, pediatric, and neonatal patients',
+          'Volume and pressure-controlled ventilation modes',
+          'Safe respiratory support during ground and air transfers',
+          'Suitable for critically ill, trauma, and post-operative patients',
+          'Compact, lightweight, and aviation-certified',
+          'Continuous waveform display and alarm systems'
+        ]
+      },
+      {
+        name: 'Syringe Infusion Pumps',
+        items: [
+          'Precision-controlled IV medication delivery',
+          'Supports vasopressors, sedatives, analgesics, and insulin',
+          'Multiple simultaneous infusion lines',
+          'High-accuracy drug administration during transport',
+          'Battery-operated for uninterrupted use in-flight',
+          'Compatible with all standard syringe sizes'
+        ]
+      },
+      {
+        name: 'Advanced Airway Devices (Adult & Pediatric)',
+        items: [
+          'Laryngoscopes and video laryngoscopes',
+          'Endotracheal tubes for all age groups',
+          'Supraglottic airway devices (LMA, iGel)',
+          'Bougies and stylets for difficult airways',
+          'Emergency cricothyrotomy kits',
+          'Rapid airway stabilization in emergencies'
+        ]
+      },
+      {
+        name: 'Circulation Equipment',
+        items: [
+          'Automated External Defibrillator (AED)',
+          'Manual defibrillator with synchronized cardioversion',
+          'Transcutaneous pacing capability',
+          'IV and IO access devices',
+          'Pressure infusion systems',
+          'Emergency vascular access kits'
+        ]
+      },
+      {
+        name: 'Portable Suction Units',
+        items: [
+          'Lightweight battery-operated suction devices',
+          'Effective removal of blood, secretions, and vomitus',
+          'Maintains airway patency during transport',
+          'Reliable in both ground ambulances and aircraft',
+          'High suction pressure with adjustable flow',
+          'Disposable canister system for infection control'
+        ]
+      },
+      {
+        name: 'Portable Oxygen Concentrators',
+        items: [
+          'Continuous supplemental oxygen delivery',
+          'Aviation-compatible and FAA/DGCA approved',
+          'Suitable for long-duration commercial airline transfers',
+          'Compact and lightweight for in-cabin use',
+          'Ideal for dedicated air ambulance missions',
+          'Adjustable flow rates for patient-specific needs'
+        ]
+      }
+    ];
+
+    (function() {
+      var cards  = document.querySelectorAll('.equip-card');
+      var detail = document.getElementById('equip-detail');
+      var dName  = document.getElementById('equip-detail-name');
+      var dList  = document.getElementById('equip-detail-list');
+      var active = -1;
+
+      cards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          var idx = parseInt(card.getAttribute('data-equip'));
+          if (active === idx) {
+            card.classList.remove('active');
+            detail.classList.remove('open');
+            active = -1;
+            return;
+          }
+          cards.forEach(function(c) { c.classList.remove('active'); });
+          card.classList.add('active');
+          active = idx;
+          var d = EQUIP_DATA[idx];
+          dName.textContent = d.name;
+          dList.innerHTML = d.items.map(function(i) { return '<li>' + i + '</li>'; }).join('');
+          detail.classList.add('open');
+          detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      });
+    })();
 
     // ── Service data store ─────────────────────────────────
     var SVC_DATA = {

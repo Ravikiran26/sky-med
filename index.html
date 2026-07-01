@@ -909,9 +909,26 @@
 
     /* ── FLEET ───────────────────────────────────────────── */
     .fleet-grid {
-      margin-top: 52px; display: grid;
+      margin-top: 28px; display: grid;
       grid-template-columns: repeat(3,1fr); gap: 18px;
     }
+    .fleet-grid-2 { grid-template-columns: repeat(2,1fr); max-width: 740px; }
+    .fleet-grid-3 { grid-template-columns: repeat(3,1fr); }
+
+    .fleet-group { }
+    .fleet-group-label {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px;
+    }
+    .fleet-group-tag {
+      font-family: var(--font-label); font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+    }
+    .fleet-group-tag.domestic  { background: rgba(61,220,132,.12); color: #3ddc84; border: 1px solid rgba(61,220,132,.25); }
+    .fleet-group-tag.international { background: rgba(74,158,255,.12); color: #4a9eff; border: 1px solid rgba(74,158,255,.25); }
+    .fleet-group-line { flex: 1; height: 1px; background: rgba(255,255,255,.08); }
+    .fleet-group-desc { font-family: var(--font-body); font-size: 13px; color: var(--muted); white-space: nowrap; }
 
     /* Legacy .fleet-card kept for potential fallback, hidden by flip card */
     .fleet-card {
@@ -2399,7 +2416,9 @@
       .stats-panel { padding-top: 24px; }
       .radar-wrap { display: none; }
 
-      .services-grid, .fleet-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .fleet-grid, .fleet-grid-2, .fleet-grid-3 { grid-template-columns: 1fr 1fr; }
+      .fleet-group-desc { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
       .stat { border-left: 0; border-top: 1px solid rgba(21,101,192,.1); }
@@ -2414,7 +2433,8 @@
       .coverage-grid { grid-template-columns: 1fr; }
       .map-panel { min-height: 380px; }
 
-      .fleet-grid { grid-template-columns: 1fr; }
+      .fleet-grid, .fleet-grid-2, .fleet-grid-3 { grid-template-columns: 1fr; }
+      .fleet-grid-2 { max-width: 100%; }
       .card-inner { min-height: 380px; }
 
       .svc-panel-grid,
@@ -3733,94 +3753,172 @@
       <div class="shell">
         <div class="eyebrow">ICU-Equipped Aircraft</div>
         <h2 class="section-title">Our Fleet</h2>
-        <p class="section-copy">Three aircraft categories covering every range requirement — from local trauma to intercontinental repatriation.</p>
-        <div class="fleet-grid">
+        <p class="section-copy">Five aircraft covering every mission — from domestic critical care transfers across India to intercontinental repatriations. Hover (or tap) a card to see onboard equipment.</p>
 
-          <!-- Card 1: Helicopter -->
-          <div class="fleet-flip">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="fleet-photo-wrap">
-                  <img src="https://images.unsplash.com/photo-1629155514090-072270d9c981?fm=jpg&q=80&w=720&auto=format&fit=crop" alt="Medical helicopter ready for air ambulance mission" loading="lazy" onerror="this.style.opacity='0'">
-                  <div class="fleet-photo-gradient"></div>
-                  <span class="badge">0 – 300 km</span>
+        <!-- DOMESTIC FLEET -->
+        <div class="fleet-group">
+          <div class="fleet-group-label">
+            <span class="fleet-group-tag domestic">Domestic</span>
+            <span class="fleet-group-line"></span>
+            <span class="fleet-group-desc">Within India — Short &amp; Mid-Range Missions</span>
+          </div>
+          <div class="fleet-grid fleet-grid-2">
+
+            <!-- King Air B200 -->
+            <div class="fleet-flip">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="fleet-photo-wrap">
+                    <img src="turbo-prop.jpg" alt="King Air B200 air ambulance turboprop" loading="lazy" onerror="this.style.opacity='0'">
+                    <div class="fleet-photo-gradient"></div>
+                    <span class="badge">Up to 3,000 km</span>
+                  </div>
+                  <h3>King Air B200</h3>
+                  <p>Beechcraft turboprop — India's most deployed air ambulance platform. Short-runway capable, pressurised cabin, full ICU configuration.</p>
                 </div>
-                <h3>Helicopter</h3>
-                <p>Rapid local trauma response. Reaches rooftop helipads, highways, and remote areas where fixed-wing cannot land.</p>
-              </div>
-              <div class="card-back">
-                <div class="card-back-title">Onboard Equipment</div>
-                <ul class="equip-list">
-                  <li>Portable ICU Ventilator</li>
-                  <li>Cardiac Monitor &amp; Defibrillator</li>
-                  <li>IV Infusion Pump</li>
-                  <li>Pulse Oximetry &amp; Capnography</li>
-                  <li>Medical Oxygen Supply</li>
-                  <li>Advanced Trauma Kit</li>
-                  <li>Neonatal Incubator (on request)</li>
-                </ul>
-                <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                <div class="card-back">
+                  <div class="card-back-title">Onboard Equipment</div>
+                  <ul class="equip-list">
+                    <li>ICU-Grade Ventilator</li>
+                    <li>12-Lead Cardiac Monitor &amp; Defibrillator</li>
+                    <li>Dual IV Infusion Pumps</li>
+                    <li>Portable O₂ Cylinders</li>
+                    <li>Suction Unit &amp; Advanced Airway Kit</li>
+                    <li>Point-of-Care Blood Analyser</li>
+                    <li>Neonatal Incubator (on request)</li>
+                  </ul>
+                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Card 2: Turbo Prop -->
-          <div class="fleet-flip">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="fleet-photo-wrap">
-                  <img src="turbo-prop.jpg" alt="Turboprop aircraft configured for medical transport" loading="lazy" onerror="this.style.opacity='0'">
-                  <div class="fleet-photo-gradient"></div>
-                  <span class="badge">300 – 1500 km</span>
+            <!-- King Air C90 -->
+            <div class="fleet-flip">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="fleet-photo-wrap">
+                    <img src="turbo-prop.jpg" alt="King Air C90 compact turboprop air ambulance" loading="lazy" onerror="this.style.opacity='0'">
+                    <div class="fleet-photo-gradient"></div>
+                    <span class="badge">Up to 1,600 km</span>
+                  </div>
+                  <h3>King Air C90</h3>
+                  <p>Compact turboprop for regional transfers. Accesses smaller airstrips and Tier-2 city airports, ideal for rapid inter-state patient evacuations.</p>
                 </div>
-                <h3>Turbo Prop</h3>
-                <p>Cost-effective inter-city transfers. Short-runway access, full ICU configuration, and 2-patient capacity for mid-range missions.</p>
-              </div>
-              <div class="card-back">
-                <div class="card-back-title">Onboard Equipment</div>
-                <ul class="equip-list">
-                  <li>ICU-Grade Ventilator</li>
-                  <li>12-Lead Cardiac Monitor</li>
-                  <li>Defibrillator / AED</li>
-                  <li>Dual IV Infusion Pumps</li>
-                  <li>Portable O₂ Cylinders</li>
-                  <li>Suction Unit &amp; Airway Kit</li>
-                  <li>Point-of-Care Blood Analyser</li>
-                </ul>
-                <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                <div class="card-back">
+                  <div class="card-back-title">Onboard Equipment</div>
+                  <ul class="equip-list">
+                    <li>Portable ICU Ventilator</li>
+                    <li>Cardiac Monitor &amp; Defibrillator</li>
+                    <li>IV Infusion Pump</li>
+                    <li>Pulse Oximetry &amp; Capnography</li>
+                    <li>Medical Oxygen Supply</li>
+                    <li>Advanced Trauma Kit</li>
+                    <li>Emergency Drug Kit</li>
+                  </ul>
+                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Card 3: ICU Jet -->
-          <div class="fleet-flip">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="fleet-photo-wrap">
-                  <img src="intl-transfer.jpg" alt="ICU medical jet for long-range international patient transport" loading="lazy" onerror="this.style.opacity='0'">
-                  <div class="fleet-photo-gradient"></div>
-                  <span class="badge">1500 km+</span>
-                </div>
-                <h3>ICU Jet</h3>
-                <p>Long-range international repatriation. Pressurised flying ICU cabin, intercontinental range, and specialist crew for complex critical cases.</p>
-              </div>
-              <div class="card-back">
-                <div class="card-back-title">Onboard Equipment</div>
-                <ul class="equip-list">
-                  <li>Advanced ICU Ventilator (Hamilton T1)</li>
-                  <li>Multi-Parameter Monitor</li>
-                  <li>Defibrillator + 12-Lead ECG</li>
-                  <li>Quad IV Infusion Pumps</li>
-                  <li>Pressurised Medical O₂</li>
-                  <li>Neonatal Incubator (on request)</li>
-                  <li>Intercontinental Range Capability</li>
-                </ul>
-                <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
-              </div>
-            </div>
           </div>
-
         </div>
+
+        <!-- INTERNATIONAL FLEET -->
+        <div class="fleet-group" style="margin-top:52px;">
+          <div class="fleet-group-label">
+            <span class="fleet-group-tag international">International</span>
+            <span class="fleet-group-line"></span>
+            <span class="fleet-group-desc">Cross-Border &amp; Intercontinental Transfers</span>
+          </div>
+          <div class="fleet-grid fleet-grid-3">
+
+            <!-- Learjet 45 -->
+            <div class="fleet-flip">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="fleet-photo-wrap">
+                    <img src="intl-transfer.jpg" alt="Learjet 45 air ambulance jet" loading="lazy" onerror="this.style.opacity='0'">
+                    <div class="fleet-photo-gradient"></div>
+                    <span class="badge">Up to 3,700 km</span>
+                  </div>
+                  <h3>Learjet 45</h3>
+                  <p>High-speed light jet for time-critical international transfers. Pressurised flying ICU cabin — India to Middle East and South-East Asia range.</p>
+                </div>
+                <div class="card-back">
+                  <div class="card-back-title">Onboard Equipment</div>
+                  <ul class="equip-list">
+                    <li>Advanced ICU Ventilator</li>
+                    <li>Multi-Parameter Monitor</li>
+                    <li>Defibrillator + 12-Lead ECG</li>
+                    <li>Dual IV &amp; Syringe Pumps</li>
+                    <li>Pressurised Medical O₂</li>
+                    <li>Portable Suction Unit</li>
+                    <li>Full Emergency Drug Kit</li>
+                  </ul>
+                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hawker -->
+            <div class="fleet-flip">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="fleet-photo-wrap">
+                    <img src="intl-transfer.jpg" alt="Hawker midsize jet air ambulance" loading="lazy" onerror="this.style.opacity='0'">
+                    <div class="fleet-photo-gradient"></div>
+                    <span class="badge">Up to 5,000 km</span>
+                  </div>
+                  <h3>Hawker</h3>
+                  <p>Mid-size jet with extended range and a larger ICU cabin. Ideal for complex critical patients requiring more space, equipment, and medical crew.</p>
+                </div>
+                <div class="card-back">
+                  <div class="card-back-title">Onboard Equipment</div>
+                  <ul class="equip-list">
+                    <li>ICU Ventilator (Hamilton T1)</li>
+                    <li>Multi-Parameter Monitor</li>
+                    <li>Defibrillator + 12-Lead ECG</li>
+                    <li>Triple IV &amp; Syringe Pumps</li>
+                    <li>Pressurised Medical O₂</li>
+                    <li>Neonatal Incubator (on request)</li>
+                    <li>Point-of-Care Blood Gas Analyser</li>
+                  </ul>
+                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gulfstream -->
+            <div class="fleet-flip">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="fleet-photo-wrap">
+                    <img src="intl-transfer.jpg" alt="Gulfstream long-range ICU jet for intercontinental medical transfers" loading="lazy" onerror="this.style.opacity='0'">
+                    <div class="fleet-photo-gradient"></div>
+                    <span class="badge">Intercontinental</span>
+                  </div>
+                  <h3>Gulfstream</h3>
+                  <p>Ultra-long-range large cabin jet for intercontinental repatriations. Maximum space, fuel range, and clinical capability for the most complex missions.</p>
+                </div>
+                <div class="card-back">
+                  <div class="card-back-title">Onboard Equipment</div>
+                  <ul class="equip-list">
+                    <li>Advanced ICU Ventilator (Hamilton T1)</li>
+                    <li>Multi-Parameter Bedside Monitor</li>
+                    <li>Defibrillator + 12-Lead ECG</li>
+                    <li>Quad IV &amp; Syringe Pumps</li>
+                    <li>Pressurised High-Flow O₂</li>
+                    <li>Neonatal Incubator (on request)</li>
+                    <li>ECMO-Capable Configuration</li>
+                  </ul>
+                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -4416,7 +4514,7 @@
 
       // Fleet flip cards reveal
       gsap.from(".fleet-flip", {
-        scrollTrigger: { trigger: ".fleet-grid", start: "top 82%" },
+        scrollTrigger: { trigger: "#fleet", start: "top 82%" },
         y: 50, opacity: 0, duration: 0.85, stagger: 0.13, ease: "power3.out"
       });
 

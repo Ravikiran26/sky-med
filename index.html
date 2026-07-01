@@ -2234,6 +2234,83 @@
     .contact-emergency-note p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
 
     /* ── PARTNER LOGOS ───────────────────────────────────── */
+    /* ── MEDICAL TEAM SECTION ───────────────────────────────── */
+    .team-section {
+      background: #ffffff;
+      padding: 100px 0 90px;
+      border-top: 1px solid #e8eef8;
+    }
+    .team-intro {
+      max-width: 600px; margin-bottom: 56px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .team-card {
+      background: #f8faff;
+      border: 1px solid #dde8f5;
+      border-radius: 16px;
+      padding: 36px 28px 30px;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .team-card:hover {
+      box-shadow: 0 12px 40px rgba(21,101,192,.10);
+      transform: translateY(-4px);
+    }
+    .team-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, #1565c8 0%, #0d3d8a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 28px; letter-spacing: 2px;
+      color: #ffffff;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(21,101,192,.25);
+      flex-shrink: 0;
+    }
+    .team-card-header { display: flex; align-items: center; gap: 18px; margin-bottom: 6px; }
+    .team-name {
+      font-family: var(--font-body); font-size: 18px; font-weight: 700;
+      color: #0d2952; line-height: 1.25; margin-bottom: 4px;
+    }
+    .team-title {
+      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      color: #1565c8; letter-spacing: .3px;
+    }
+    .team-exp {
+      display: inline-block;
+      background: #fff0f0; color: #c0392b;
+      font-family: var(--font-label); font-size: 9px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px;
+      margin: 14px 0 16px;
+    }
+    .team-bio {
+      font-family: var(--font-body); font-size: 14px; line-height: 1.75;
+      color: #3d5a7a; margin-bottom: 20px;
+    }
+    .team-skills {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .team-skill {
+      background: #eef4ff; color: #1a4a8a;
+      font-family: var(--font-body); font-size: 11px; font-weight: 600;
+      padding: 4px 10px; border-radius: 6px;
+      letter-spacing: .2px;
+    }
+    .team-cert {
+      background: #e6f9ef; color: #1a6a40;
+    }
+    @media (max-width: 920px) {
+      .team-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .team-section { padding: 64px 0 56px; }
+    }
+
     .partners-section {
       padding: 56px 0;
       background: var(--panel);
@@ -2786,6 +2863,7 @@
           </div>
         </div><!-- /.nav-item -->
 
+        <a href="#team">Our Doctors</a>
         <a href="#fleet">Fleet</a>
         <a href="#coverage">Coverage</a>
         <a href="#faq">FAQ</a>
@@ -2933,6 +3011,85 @@
               <span class="about-cert-badge">24/7 Operations</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDICAL TEAM -->
+    <section class="team-section" id="team">
+      <div class="shell">
+        <div class="team-intro">
+          <span class="eyebrow">Doctor-Led Every Mission</span>
+          <h2 class="section-title" style="color:#0d2952;">Meet Our<br>Medical Team</h2>
+          <p class="section-copy">Every REACT mission is led by a qualified Emergency Physician trained in critical care transport. Our doctors are not passengers — they are the clinical command on every flight.</p>
+        </div>
+
+        <div class="team-grid">
+
+          <!-- Dr. Tejasai -->
+          <div class="team-card">
+            <div class="team-card-header">
+              <div class="team-avatar">TS</div>
+              <div>
+                <div class="team-name">Dr. Tejasai</div>
+                <div class="team-title">Emergency Physician</div>
+              </div>
+            </div>
+            <span class="team-exp">6+ Years Experience</span>
+            <p class="team-bio">Emergency Physician specializing in Emergency Medicine, Critical Care, and Transport Medicine. Expert in rapid decision-making and evidence-based critical care across medical, surgical, and traumatic emergencies in aeromedical settings.</p>
+            <div class="team-skills">
+              <span class="team-skill team-cert">ACLS</span>
+              <span class="team-skill">Advanced Airway</span>
+              <span class="team-skill">Mechanical Ventilation</span>
+              <span class="team-skill">Bedside Ultrasound</span>
+              <span class="team-skill">Trauma Resuscitation</span>
+              <span class="team-skill">Shock Management</span>
+            </div>
+          </div>
+
+          <!-- Dr. Hari Krishna Reddy -->
+          <div class="team-card">
+            <div class="team-card-header">
+              <div class="team-avatar">HK</div>
+              <div>
+                <div class="team-name">Dr. Hari Krishna Reddy</div>
+                <div class="team-title">Emergency Physician &amp; Former Head of ED</div>
+              </div>
+            </div>
+            <span class="team-exp">5+ Years Experience</span>
+            <p class="team-bio">Former Team Lead and Head of Emergency Department with expertise in multidisciplinary emergency management across medical, surgical, paediatric, and traumatic cases. Extensive experience in inter-facility critical care transfers and aeromedical evacuations.</p>
+            <div class="team-skills">
+              <span class="team-skill team-cert">ACLS</span>
+              <span class="team-skill">POCUS</span>
+              <span class="team-skill">Advanced Airway</span>
+              <span class="team-skill">Mechanical Ventilation</span>
+              <span class="team-skill">Trauma Resuscitation</span>
+              <span class="team-skill">Critical Care Transport</span>
+            </div>
+          </div>
+
+          <!-- Dr. Sujender Rao Arepally -->
+          <div class="team-card">
+            <div class="team-card-header">
+              <div class="team-avatar">SA</div>
+              <div>
+                <div class="team-name">Dr. Sujender Rao Arepally</div>
+                <div class="team-title">Senior Emergency Medicine Physician</div>
+              </div>
+            </div>
+            <span class="team-exp">15+ Years Experience</span>
+            <p class="team-bio">Senior Emergency Physician with 15+ years of experience, including 10+ years in Emergency Medicine and critical care retrieval. Led international and domestic air ambulance transfers across continents. Former ship physician aboard Norwegian Cruise Line. Certified educator in emergency resuscitation.</p>
+            <div class="team-skills">
+              <span class="team-skill team-cert">ACLS Instructor</span>
+              <span class="team-skill team-cert">BLS Instructor</span>
+              <span class="team-skill team-cert">ATLS Provider</span>
+              <span class="team-skill team-cert">PALS Provider</span>
+              <span class="team-skill">International Retrieval</span>
+              <span class="team-skill">Maritime Medicine</span>
+              <span class="team-skill">Ventilator Management</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

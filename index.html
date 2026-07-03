@@ -2351,12 +2351,79 @@
     .team-cert {
       background: #e6f9ef; color: #1a6a40;
     }
+    /* Founder card */
+    .founder-card {
+      background: linear-gradient(135deg, #0d2952 0%, #1a3f7a 100%);
+      border: 1px solid rgba(21,101,192,.35);
+      border-radius: 20px;
+      padding: 44px 40px;
+      margin-bottom: 36px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 56px rgba(13,41,82,.18);
+    }
+    .founder-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #e02828, #1565c8);
+    }
+    .founder-avatar {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: linear-gradient(135deg, #e02828 0%, #8a0d1a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 36px; letter-spacing: 2px;
+      color: #ffffff;
+      box-shadow: 0 6px 24px rgba(224,40,40,.35);
+      flex-shrink: 0;
+    }
+    .founder-badge {
+      display: inline-flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .founder-badge span {
+      font-family: var(--font-label); font-size: 9px; letter-spacing: 2px;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+    }
+    .badge-founder { background: rgba(224,40,40,.18); color: #ff6b6b; border: 1px solid rgba(224,40,40,.3); }
+    .badge-ceo     { background: rgba(74,158,255,.15); color: #7dbfff; border: 1px solid rgba(74,158,255,.3); }
+    .badge-md      { background: rgba(61,220,132,.12); color: #5ce8a8; border: 1px solid rgba(61,220,132,.28); }
+    .founder-name {
+      font-family: var(--font-head); font-size: 32px; letter-spacing: 2px;
+      color: #ffffff; margin-bottom: 4px;
+    }
+    .founder-creds {
+      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      color: rgba(74,158,255,.85); margin-bottom: 18px; letter-spacing: .3px;
+    }
+    .founder-bio {
+      font-family: var(--font-body); font-size: 14.5px; line-height: 1.8;
+      color: rgba(238,243,255,.75); margin-bottom: 22px;
+    }
+    .founder-skills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .founder-skill {
+      background: rgba(255,255,255,.08); color: rgba(238,243,255,.85);
+      border: 1px solid rgba(255,255,255,.12);
+      font-family: var(--font-body); font-size: 11px; font-weight: 600;
+      padding: 4px 12px; border-radius: 6px;
+    }
+    .founder-skill.cert {
+      background: rgba(61,220,132,.1); color: #5ce8a8;
+      border-color: rgba(61,220,132,.25);
+    }
     @media (max-width: 920px) {
       .team-grid { grid-template-columns: 1fr 1fr; }
+      .founder-card { grid-template-columns: 1fr; gap: 24px; padding: 36px 28px; }
+      .founder-avatar { width: 90px; height: 90px; font-size: 28px; }
     }
     @media (max-width: 620px) {
       .team-grid { grid-template-columns: 1fr; }
       .team-section { padding: 64px 0 56px; }
+      .founder-name { font-size: 26px; }
     }
 
     .partners-section {
@@ -2927,12 +2994,8 @@
 
       <!-- Hero content -->
       <div class="hero-inner">
-        <div class="hero-avail">
-          <span class="hero-avail-dot"></span>
-          24/7 Command Centre Active
-        </div>
         <div class="hero-grid">
-          <h1 class="hero-title">Life-Saving Air Care,<br>Wherever You Are</h1>
+          <h1 class="hero-title">When Every Second<br>Counts, We REACT</h1>
           <p class="hero-sub">Connecting Lives Across Continents with Excellence and Precision — by <strong>NL Curantis International</strong>.</p>
           <div class="hero-crew">
             <span>Physicians</span>
@@ -3059,6 +3122,31 @@
           <span class="eyebrow">Doctor-Led Every Mission</span>
           <h2 class="section-title" style="color:#0d2952;">Meet Our<br>Medical Team</h2>
           <p class="section-copy">Every REACT mission is led by a qualified Emergency Physician trained in critical care transport. Our doctors are not passengers — they are the clinical command on every flight.</p>
+        </div>
+
+        <!-- Founder Card -->
+        <div class="founder-card">
+          <div class="founder-avatar">NR</div>
+          <div>
+            <div class="founder-badge">
+              <span class="badge-founder">Founder</span>
+              <span class="badge-ceo">CEO</span>
+              <span class="badge-md">Medical Director</span>
+            </div>
+            <div class="founder-name">Dr. Neel Rohith</div>
+            <div class="founder-creds">MBBS, MD (Emergency Medicine) · Fellowship in Critical Care Transport Medicine · FIAEM</div>
+            <p class="founder-bio">Dr. Neel Rohith is the Founder, Chief Executive Officer, and Medical Director of REACT Air Ambulance, operating under NL Curantis International Pvt Ltd. With over a decade of frontline experience in emergency and critical care medicine, Dr. Rohith pioneered the vision of bringing ICU-grade care into the sky — making rapid aeromedical transport accessible across India and internationally. Under his leadership, REACT has grown into a trusted name in life-saving air evacuations, organ retrieval, neonatal transport, and ECMO transfers. His philosophy is simple: every patient deserves the highest standard of care, regardless of geography.</p>
+            <div class="founder-skills">
+              <span class="founder-skill cert">ACLS Certified</span>
+              <span class="founder-skill cert">ATLS Provider</span>
+              <span class="founder-skill cert">PALS Certified</span>
+              <span class="founder-skill">Critical Care Transport</span>
+              <span class="founder-skill">Aeromedical Medicine</span>
+              <span class="founder-skill">ECMO Management</span>
+              <span class="founder-skill">Medical Leadership</span>
+              <span class="founder-skill">International Repatriation</span>
+            </div>
+          </div>
         </div>
 
         <div class="team-grid">
@@ -4058,26 +4146,8 @@
               <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="end" x="46" y="514">10°N</text>
 
               <!-- India outline -->
-              <path class="vmap-india" d="
-                M 60,259
-                L 80,296 L 120,314 L 158,347
-                L 178,411
-                C 202,462 228,520 252,543
-                L 300,541
-                C 310,497 314,458 316,440
-                L 420,330 L 472,290
-                L 504,258 L 544,294
-                L 604,240 L 642,188
-                L 562,204 L 482,204
-                L 462,196 L 382,178
-                L 312,169
-                C 286,146 262,128 240,122
-                L 200,96 L 190,60 L 180,32
-                C 168,35 156,46 148,60
-                C 140,74 138,96 138,116
-                C 128,145 104,196 100,206
-                C 92,225 70,246 60,259 Z
-              "/>
+              <!-- India shape rendered by D3 (initIndiaMap) -->
+              <g id="india-d3-shape"></g>
 
               <!-- Routes -->
               <path class="vmap-route vmap-route-anim" d="M 244,176 C 200,242 172,298 158,347"/>
@@ -5009,6 +5079,34 @@
         .catch(function() {});
     }
 
+    // ── India domestic map (D3 + world-atlas) ─────────────────
+    function initIndiaMap() {
+      if (!window.d3 || !window.topojson) return;
+
+      // Custom projection matching the hardcoded city formula:
+      // x = (lng - 67)*20 + 40,  y = (37 - lat)*18 + 25
+      var indiaProj = d3.geoTransform({
+        point: function(lng, lat) {
+          this.stream.point((lng - 67) * 20 + 40, (37 - lat) * 18 + 25);
+        }
+      });
+      var pathGen = d3.geoPath().projection(indiaProj);
+
+      fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+        .then(function(r) { return r.json(); })
+        .then(function(world) {
+          var countries = topojson.feature(world, world.objects.countries);
+          var india = countries.features.filter(function(d) { return String(d.id) === '356'; });
+          d3.select('#india-d3-shape').selectAll('path')
+            .data(india)
+            .enter()
+            .append('path')
+            .attr('d', pathGen)
+            .attr('class', 'vmap-india');
+        })
+        .catch(function() {});
+    }
+
     function _initGlobeOld() {
       if (!window.THREE) return;
 
@@ -5333,7 +5431,8 @@
     initGlobe();
 
     // ── Route map tab toggle ─────────────────────────────────
-    var _intlMapReady = true; // default tab is international — render immediately
+    var _intlMapReady = true;   // international is default — render immediately
+    var _indiaMapReady = false; // domestic loads lazily on first click
     initWorldMap();
     document.querySelectorAll('.vmap-tab').forEach(function(tab) {
       tab.addEventListener('click', function() {
@@ -5342,7 +5441,8 @@
         var isDomestic = tab.dataset.map === 'domestic';
         document.getElementById('vmap').style.display      = isDomestic ? 'block' : 'none';
         document.getElementById('vmap-intl').style.display = isDomestic ? 'none'  : 'block';
-        if (!isDomestic && !_intlMapReady) { _intlMapReady = true; initWorldMap(); }
+        if (isDomestic && !_indiaMapReady)  { _indiaMapReady = true;  initIndiaMap(); }
+        if (!isDomestic && !_intlMapReady)  { _intlMapReady  = true;  initWorldMap(); }
       });
     });
 

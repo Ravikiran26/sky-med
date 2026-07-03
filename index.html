@@ -1800,9 +1800,21 @@
       gap: 24px; margin-bottom: 48px;
     }
     .equip-eyebrow {
-      display: inline-block; font-family: var(--font-label);
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--red); margin-bottom: 12px;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-label); font-size: 11px; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 16px;
+      background: rgba(224,40,40,0.08); border: 1px solid rgba(224,40,40,0.25);
+      border-left: 3px solid var(--red); border-radius: 4px;
+      padding: 7px 16px 7px 13px;
+    }
+    .equip-eyebrow::before {
+      content: ''; display: inline-block; width: 6px; height: 6px;
+      background: var(--red); border-radius: 50%;
+      animation: pulse-dot 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.4; transform:scale(0.6); }
     }
     .equip-title {
       font-family: var(--font-head); font-size: clamp(32px, 4vw, 52px);
@@ -2419,11 +2431,14 @@
       .team-grid { grid-template-columns: 1fr 1fr; }
       .founder-card { grid-template-columns: 1fr; gap: 24px; padding: 36px 28px; }
       .founder-avatar { width: 90px; height: 90px; font-size: 28px; }
+      .founder-note { padding: 32px 28px 28px 32px; }
     }
     @media (max-width: 620px) {
       .team-grid { grid-template-columns: 1fr; }
       .team-section { padding: 64px 0 56px; }
       .founder-name { font-size: 26px; }
+      .founder-note { padding: 28px 20px 24px 24px; }
+      .founder-note-body { font-size: 14px; }
     }
 
     .partners-section {
@@ -3042,8 +3057,8 @@
           <div class="stat-label">Cities Covered</div>
         </div>
         <div class="stat">
-          <div class="stat-number"><span class="stat-accent">Emergency</span></div>
-          <div class="stat-label">Doctor Led Every Mission</div>
+          <div class="stat-number"><span class="stat-accent">Emergency Doctors</span></div>
+          <div class="stat-label">Led Every Mission</div>
         </div>
       </div>
     </section>
@@ -3134,8 +3149,8 @@
               <span class="badge-md">Medical Director</span>
             </div>
             <div class="founder-name">Dr. Neel Rohith</div>
-            <div class="founder-creds">MBBS, MD (Emergency Medicine) · Fellowship in Critical Care Transport Medicine · FIAEM</div>
-            <p class="founder-bio">Dr. Neel Rohith is the Founder, Chief Executive Officer, and Medical Director of REACT Air Ambulance, operating under NL Curantis International Pvt Ltd. With over a decade of frontline experience in emergency and critical care medicine, Dr. Rohith pioneered the vision of bringing ICU-grade care into the sky — making rapid aeromedical transport accessible across India and internationally. Under his leadership, REACT has grown into a trusted name in life-saving air evacuations, organ retrieval, neonatal transport, and ECMO transfers. His philosophy is simple: every patient deserves the highest standard of care, regardless of geography.</p>
+            <div class="founder-creds">MBBS, FEEM(RLA-UK), MEM(SEMI-INDIA), MRCEM(UK), Fellowship in Aviation Medicine UK, Prehospital Emergency Consultant, Aeromedical Intensivist</div>
+            <p class="founder-bio">As an Emergency Physician, I have had the privilege of caring for patients and supporting families during some of the most difficult moments of their lives. Through my experience in aeromedical transport and critical care transfers, I have witnessed how crucial timely access to the right medical care can be — and how overwhelming it is for families when a loved one needs urgent transportation.<br><br>REACT was founded with a simple purpose: to bridge this gap by providing safe, dependable, and medically coordinated patient transportation services. We believe that families deserve more than just a transfer service — they deserve reassurance, clear communication, and a team they can trust during life's most critical moments.<br><br>Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety. We treat every patient with the same dignity, respect, and care that we would want for our own loved ones. When every second counts, we REACT.</p>
             <div class="founder-skills">
               <span class="founder-skill cert">ACLS Certified</span>
               <span class="founder-skill cert">ATLS Provider</span>
@@ -3150,6 +3165,28 @@
         </div>
 
         <div class="team-grid">
+
+          <!-- Dr. Sujender Rao Arepally -->
+          <div class="team-card">
+            <div class="team-card-header">
+              <div class="team-avatar">SA</div>
+              <div>
+                <div class="team-name">Dr. Sujender Rao Arepally</div>
+                <div class="team-title">Senior Emergency Medicine Physician</div>
+              </div>
+            </div>
+            <span class="team-exp">15+ Years Experience</span>
+            <p class="team-bio">Senior Emergency Physician with 15+ years of experience, including 10+ years in Emergency Medicine and critical care retrieval. Led international and domestic air ambulance transfers across continents. Former ship physician aboard Norwegian Cruise Line. Certified educator in emergency resuscitation.</p>
+            <div class="team-skills">
+              <span class="team-skill team-cert">ACLS Instructor</span>
+              <span class="team-skill team-cert">BLS Instructor</span>
+              <span class="team-skill team-cert">ATLS Provider</span>
+              <span class="team-skill team-cert">PALS Provider</span>
+              <span class="team-skill">International Retrieval</span>
+              <span class="team-skill">Maritime Medicine</span>
+              <span class="team-skill">Ventilator Management</span>
+            </div>
+          </div>
 
           <!-- Dr. Tejasai -->
           <div class="team-card">
@@ -3193,25 +3230,26 @@
             </div>
           </div>
 
-          <!-- Dr. Sujender Rao Arepally -->
+          <!-- Dr. Om Sagar -->
           <div class="team-card">
             <div class="team-card-header">
-              <div class="team-avatar">SA</div>
+              <div class="team-avatar">OS</div>
               <div>
-                <div class="team-name">Dr. Sujender Rao Arepally</div>
-                <div class="team-title">Senior Emergency Medicine Physician</div>
+                <div class="team-name">Dr. Om Sagar</div>
+                <div class="team-title">Emergency Physician</div>
               </div>
             </div>
-            <span class="team-exp">15+ Years Experience</span>
-            <p class="team-bio">Senior Emergency Physician with 15+ years of experience, including 10+ years in Emergency Medicine and critical care retrieval. Led international and domestic air ambulance transfers across continents. Former ship physician aboard Norwegian Cruise Line. Certified educator in emergency resuscitation.</p>
+            <span class="team-exp">5+ Years Experience</span>
+            <p class="team-bio">Experienced Emergency Physician with expertise in Emergency Medicine, Critical Care, and Transport Medicine. Has managed a broad spectrum of life-threatening medical, surgical, and traumatic emergencies with a strong emphasis on rapid decision-making and evidence-based critical care. Committed to the highest standards of patient safety, clinical excellence, and continuity of care during aeromedical evacuations and inter-facility transfers.</p>
             <div class="team-skills">
-              <span class="team-skill team-cert">ACLS Instructor</span>
-              <span class="team-skill team-cert">BLS Instructor</span>
-              <span class="team-skill team-cert">ATLS Provider</span>
-              <span class="team-skill team-cert">PALS Provider</span>
-              <span class="team-skill">International Retrieval</span>
-              <span class="team-skill">Maritime Medicine</span>
-              <span class="team-skill">Ventilator Management</span>
+              <span class="team-skill team-cert">ACLS</span>
+              <span class="team-skill">Trauma Resuscitation</span>
+              <span class="team-skill">Advanced Airway</span>
+              <span class="team-skill">Mechanical Ventilation</span>
+              <span class="team-skill">Bedside Ultrasound</span>
+              <span class="team-skill">Procedural Sedation</span>
+              <span class="team-skill">Shock Management</span>
+              <span class="team-skill">Critical Care Transport</span>
             </div>
           </div>
 
@@ -3548,12 +3586,8 @@
         <div class="equip-header">
           <div>
             <span class="equip-eyebrow">Flying ICU Standard</span>
-            <h2 class="equip-title">Advanced Critical Care<br>Medical Equipment</h2>
+            <h2 class="equip-title">Advanced Pre Hospital<br>Medical Equipment</h2>
             <p class="equip-intro">Every REACT mission carries hospital-grade critical care equipment — the same technology found in a top-tier ICU, now airborne.</p>
-          </div>
-          <div class="equip-header-stat">
-            <div class="equip-stat-num">7</div>
-            <div class="equip-stat-label">Equipment<br>Categories</div>
           </div>
         </div>
 
@@ -3773,36 +3807,6 @@
     </section>
 
     <!-- TESTIMONIALS -->
-    <section class="testi-section" id="testimonials">
-      <div class="shell">
-        <div class="eyebrow">Why Families Trust REACT</div>
-        <h2 class="section-title">Built for Critical Moments</h2>
-        <p class="section-copy">Every decision we make — from aircraft configuration to crew selection — is driven by one goal: getting your patient to the right hospital, alive and stable.</p>
-        <div class="testi-grid">
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"When our father suffered a massive cardiac arrest in a remote area, REACT had a team at his bedside within the hour. The crew managed his condition throughout the flight as if he were already in the ICU."</p>
-            <div class="testi-divider"></div>
-            <div class="testi-name">Family of Cardiac Patient</div>
-            <div class="testi-detail">Transferred — Tier-2 Town → Apollo Hyderabad</div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"As a referring intensivist, I needed the patient moved immediately after a multi-organ failure. REACT coordinated everything — ground ambulance, aircraft, receiving ICU — without a single gap in care."</p>
-            <div class="testi-divider"></div>
-            <div class="testi-name">Critical Care Specialist, Hyderabad</div>
-            <div class="testi-detail">ICU-to-ICU Inter-Hospital Transfer</div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"Our premature newborn needed urgent NICU transfer. The REACT team arrived with a transport incubator and neonatal ventilator fully set up. The care was extraordinary — our baby is healthy today."</p>
-            <div class="testi-divider"></div>
-            <div class="testi-name">Parents of Premature Newborn</div>
-            <div class="testi-detail">Neonatal NICU Transfer — Mumbai</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- HOW IT WORKS -->
     <section class="section" id="process">
@@ -4115,6 +4119,13 @@
                 </filter>
                 <path id="vplane-r1" d="M 244,176 C 200,242 172,298 158,347"/>
                 <path id="vplane-r2" d="M 244,176 C 340,210 408,248 468,284"/>
+                <path id="vplane-r3" d="M 244,176 C 268,270 290,360 306,455"/>
+                <path id="vplane-r4" d="M 158,347 C 192,384 222,424 252,459"/>
+                <path id="vplane-r5" d="M 468,284 C 420,316 355,348 270,378"/>
+                <path id="vplane-r6" d="M 252,459 C 268,458 286,457 306,455"/>
+                <path id="vplane-r7" d="M 152,277 C 185,248 210,218 244,176"/>
+                <path id="vplane-r8" d="M 244,176 C 358,186 448,200 534,219"/>
+                <path id="vplane-r9" d="M 158,347 C 198,356 232,366 270,378"/>
               </defs>
 
               <!-- Lat/lng grid -->
@@ -4210,11 +4221,11 @@
               <text class="vmap-label vmap-label-hub" text-anchor="end" x="142" y="343">MUMBAI</text>
 
               <!-- Hyderabad -->
-              <g filter="url(#vcityGlow)">
-                <circle class="vmap-city-outer" cx="270" cy="378" r="7"/>
-                <circle class="vmap-city-inner" cx="270" cy="378" r="2.5"/>
+              <g class="vmap-city-hub" filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="270" cy="378" r="12"/>
+                <circle class="vmap-city-inner" cx="270" cy="378" r="5"/>
               </g>
-              <text class="vmap-label" x="282" y="375">Hyderabad</text>
+              <text class="vmap-label vmap-label-hub" x="284" y="374">HYDERABAD</text>
 
               <!-- Kolkata -->
               <g class="vmap-city-hub" filter="url(#vcityGlow)">
@@ -4270,9 +4281,17 @@
                   <mpath href="#vplane-r1"/>
                 </animateMotion>
                 <g fill="rgba(255,255,255,0.95)">
-                  <path d="M0,-9 C0.8,-7 1.2,-4 1.2,-1 L1.2,4 L0,6 L-1.2,4 L-1.2,-1 C-1.2,-4 -0.8,-7 0,-9Z"/>
-                  <path d="M-1.2,0 L-11,5 L-9,6.5 L-1.2,3 L1.2,3 L9,6.5 L11,5 L1.2,0Z"/>
-                  <path d="M-1.2,3.5 L-4.5,7.5 L-3,8 L-1.2,5.5 L1.2,5.5 L3,8 L4.5,7.5 L1.2,3.5Z"/>
+                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <!-- Main wings: highly swept back (Learjet 45) -->
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <!-- Rear engine pods -->
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <!-- T-tail horizontal stabilizers -->
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
               <g filter="url(#vcityGlow)">
@@ -4280,11 +4299,123 @@
                   <mpath href="#vplane-r2"/>
                 </animateMotion>
                 <g fill="rgba(255,255,255,0.95)">
-                  <path d="M0,-9 C0.8,-7 1.2,-4 1.2,-1 L1.2,4 L0,6 L-1.2,4 L-1.2,-1 C-1.2,-4 -0.8,-7 0,-9Z"/>
-                  <path d="M-1.2,0 L-11,5 L-9,6.5 L-1.2,3 L1.2,3 L9,6.5 L11,5 L1.2,0Z"/>
-                  <path d="M-1.2,3.5 L-4.5,7.5 L-3,8 L-1.2,5.5 L1.2,5.5 L3,8 L4.5,7.5 L1.2,3.5Z"/>
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="11s" begin="2s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r3"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="8s" begin="1s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r4"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="10s" begin="3.5s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r5"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="6s" begin="0.5s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r6"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="8s" begin="6s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r7"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="12s" begin="2.5s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r8"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="7s" begin="4s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r9"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <!-- Return flights (destination → India) -->
+              <g filter="url(#vcityGlow)"><animateMotion dur="9s" begin="4.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r1"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="9s" begin="7s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r2"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="11s" begin="5.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r3"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="8s" begin="5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r4"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="10s" begin="7.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r5"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="6s" begin="3.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r6"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="8s" begin="2s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r7"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="12s" begin="8s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r8"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="7s" begin="1.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vplane-r9"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
 
             </svg>
 
@@ -4298,6 +4429,10 @@
                 <path id="vpi-w2" d="M 542,272 Q 384,158 225,247"/><!-- Delhi→New York -->
                 <path id="vpi-w3" d="M 533,292 Q 565,308 597,329"/><!-- Mumbai→Singapore -->
                 <path id="vpi-w4" d="M 533,292 Q 630,346 697,403"/><!-- Mumbai→Sydney -->
+                <path id="vpi-w5" d="M 542,272 Q 519,274 496,279"/><!-- Delhi→Dubai -->
+                <path id="vpi-w6" d="M 542,272 Q 567,286 591,303"/><!-- Delhi→Bangkok -->
+                <path id="vpi-w7" d="M 597,329 Q 635,290 673,257"/><!-- Singapore→Tokyo -->
+                <path id="vpi-w8" d="M 542,272 Q 492,228 441,246"/><!-- Delhi→Istanbul -->
               </defs>
 
               <!-- D3-rendered graticule (filled by initWorldMap) -->
@@ -4436,9 +4571,17 @@
                   <mpath href="#vpi-w1"/>
                 </animateMotion>
                 <g fill="rgba(255,255,255,0.95)">
-                  <path d="M0,-9 C0.8,-7 1.2,-4 1.2,-1 L1.2,4 L0,6 L-1.2,4 L-1.2,-1 C-1.2,-4 -0.8,-7 0,-9Z"/>
-                  <path d="M-1.2,0 L-11,5 L-9,6.5 L-1.2,3 L1.2,3 L9,6.5 L11,5 L1.2,0Z"/>
-                  <path d="M-1.2,3.5 L-4.5,7.5 L-3,8 L-1.2,5.5 L1.2,5.5 L3,8 L4.5,7.5 L1.2,3.5Z"/>
+                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <!-- Main wings: highly swept back (Learjet 45) -->
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <!-- Rear engine pods -->
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <!-- T-tail horizontal stabilizers -->
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
               <g filter="url(#vcityGlow)">
@@ -4446,9 +4589,17 @@
                   <mpath href="#vpi-w2"/>
                 </animateMotion>
                 <g fill="rgba(255,255,255,0.95)">
-                  <path d="M0,-9 C0.8,-7 1.2,-4 1.2,-1 L1.2,4 L0,6 L-1.2,4 L-1.2,-1 C-1.2,-4 -0.8,-7 0,-9Z"/>
-                  <path d="M-1.2,0 L-11,5 L-9,6.5 L-1.2,3 L1.2,3 L9,6.5 L11,5 L1.2,0Z"/>
-                  <path d="M-1.2,3.5 L-4.5,7.5 L-3,8 L-1.2,5.5 L1.2,5.5 L3,8 L4.5,7.5 L1.2,3.5Z"/>
+                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <!-- Main wings: highly swept back (Learjet 45) -->
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <!-- Rear engine pods -->
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <!-- T-tail horizontal stabilizers -->
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
               <g filter="url(#vcityGlow)">
@@ -4456,9 +4607,17 @@
                   <mpath href="#vpi-w3"/>
                 </animateMotion>
                 <g fill="rgba(255,255,255,0.95)">
-                  <path d="M0,-9 C0.8,-7 1.2,-4 1.2,-1 L1.2,4 L0,6 L-1.2,4 L-1.2,-1 C-1.2,-4 -0.8,-7 0,-9Z"/>
-                  <path d="M-1.2,0 L-11,5 L-9,6.5 L-1.2,3 L1.2,3 L9,6.5 L11,5 L1.2,0Z"/>
-                  <path d="M-1.2,3.5 L-4.5,7.5 L-3,8 L-1.2,5.5 L1.2,5.5 L3,8 L4.5,7.5 L1.2,3.5Z"/>
+                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <!-- Main wings: highly swept back (Learjet 45) -->
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <!-- Rear engine pods -->
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <!-- T-tail horizontal stabilizers -->
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
               <g filter="url(#vcityGlow)">
@@ -4466,11 +4625,84 @@
                   <mpath href="#vpi-w4"/>
                 </animateMotion>
                 <g fill="rgba(255,255,255,0.95)">
-                  <path d="M0,-9 C0.8,-7 1.2,-4 1.2,-1 L1.2,4 L0,6 L-1.2,4 L-1.2,-1 C-1.2,-4 -0.8,-7 0,-9Z"/>
-                  <path d="M-1.2,0 L-11,5 L-9,6.5 L-1.2,3 L1.2,3 L9,6.5 L11,5 L1.2,0Z"/>
-                  <path d="M-1.2,3.5 L-4.5,7.5 L-3,8 L-1.2,5.5 L1.2,5.5 L3,8 L4.5,7.5 L1.2,3.5Z"/>
+                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <!-- Main wings: highly swept back (Learjet 45) -->
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <!-- Rear engine pods -->
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <!-- T-tail horizontal stabilizers -->
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="5s" begin="2s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vpi-w5"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="6s" begin="0.5s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vpi-w6"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="7s" begin="3s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vpi-w7"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="7s" begin="5s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vpi-w8"/>
+                </animateMotion>
+                <g fill="rgba(255,255,255,0.95)">
+                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
+                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
+                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
+                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                </g>
+              </g>
+              <!-- Return flights (destination → India) -->
+              <g filter="url(#vcityGlow)"><animateMotion dur="8s" begin="6s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w1"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="12s" begin="4s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w2"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="9s" begin="2.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w3"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="11s" begin="7s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w4"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="5s" begin="3.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w5"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="6s" begin="4s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w6"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="7s" begin="1s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w7"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlow)"><animateMotion dur="7s" begin="0s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w8"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
 
             </svg>
 
@@ -4501,11 +4733,6 @@
           <details class="faq-item">
             <summary class="faq-q">What medical conditions can be transported?</summary>
             <div class="faq-a">We transport all critical care conditions including cardiac emergencies, stroke, multi-trauma, respiratory failure, neonatal and pediatric critical illness, post-surgical transfers, and patients requiring ECMO support. Our medical directors assess each case individually.</div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">Does health insurance cover air ambulance services?</summary>
-            <div class="faq-a">Many health insurance policies in India now cover air ambulance transport. We assist with all insurance documentation and work directly with TPA desks. We recommend calling us immediately — we handle the paperwork while the aircraft is en route.</div>
           </details>
 
           <details class="faq-item">

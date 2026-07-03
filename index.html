@@ -1053,93 +1053,124 @@
     .callout-dot { fill: var(--skylt); }
 
     /* ── COVERAGE ────────────────────────────────────────── */
-    .coverage-grid {
-      display: grid; grid-template-columns: 1.45fr .9fr;
-      gap: 24px; align-items: stretch; margin-top: 54px;
+    /* ── COVERAGE / VINTAGE ROUTE MAP ───────────────────────── */
+    #coverage { background: var(--navy); }
+
+    .vmap-wrap { margin-top: 54px; }
+
+    .vmap-outer {
+      position: relative; background: #030c15;
+      border: 1px solid rgba(74,158,255,.2);
     }
 
-    .map-panel {
-      min-height: 520px; position: relative;
-      background: rgba(7,22,40,.8); border: 1px solid rgba(255,255,255,.08); overflow: hidden;
+    .vmap-corner {
+      position: absolute; width: 28px; height: 28px;
+      border-color: rgba(74,158,255,.5); border-style: solid;
+      pointer-events: none; z-index: 2;
+    }
+    .vmap-corner-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+    .vmap-corner-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+    .vmap-corner-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+    .vmap-corner-br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+    .vmap-topbar {
+      padding: 16px 32px; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(74,158,255,.08);
+    }
+    .vmap-topbar-title {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 3px; color: rgba(74,158,255,.55); text-transform: uppercase;
+    }
+    .vmap-topbar-sub {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; color: var(--muted); text-transform: uppercase;
     }
 
-    .map-panel canvas { width: 100%; height: 100%; display: block; }
+    #vmap { width: 100%; display: block; }
 
-    .globe-tooltip {
-      position: absolute; pointer-events: none;
-      background: rgba(4,17,31,.95); border: 1px solid rgba(74,158,255,.4);
-      color: #eef3ff; font-family: var(--font-label);
-      font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
-      padding: 7px 13px; transform: translate(-50%, -130%);
-      opacity: 0; transition: opacity .2s; white-space: nowrap;
+    .vmap-india {
+      fill: rgba(21,65,130,.2); stroke: rgba(74,158,255,.44);
+      stroke-width: 1.6; stroke-linejoin: round;
     }
-    .globe-tooltip.visible { opacity: 1; }
+    .vmap-grid-line { stroke: rgba(74,158,255,.055); stroke-width: 1; fill: none; }
 
-    .coverage-label {
-      position: absolute; left: 24px; bottom: 22px;
-      color: var(--green); font-family: var(--font-label);
-      font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase;
-      display: flex; align-items: center; gap: 8px;
-      z-index: 2;
+    .vmap-route {
+      fill: none; stroke: rgba(224,40,40,.52);
+      stroke-width: 1.5; stroke-dasharray: 6 5; stroke-linecap: round;
     }
+    .vmap-route-anim { animation: vRouteFlow 2.6s linear infinite; }
+    @keyframes vRouteFlow { to { stroke-dashoffset: -44; } }
 
-    .coverage-copy {
-      padding: 38px; display: flex; flex-direction: column; justify-content: center;
-      background: var(--panel); border: 1px solid rgba(255,255,255,.08);
-      box-shadow: 0 2px 20px rgba(0,0,0,.25);
+    .vmap-city-outer {
+      fill: none; stroke: rgba(224,40,40,.38); stroke-width: 1.5;
+      animation: vCityPulse 2.4s ease-in-out infinite;
+      transform-box: fill-box; transform-origin: center;
     }
-
-    .coverage-copy h3 {
-      font-family: var(--font-head);
-      font-size: clamp(48px, 6vw, 80px);
-      line-height: .9; letter-spacing: 4px; font-weight: 400; text-transform: uppercase;
+    .vmap-city-inner { fill: #e02828; }
+    .vmap-city-hub .vmap-city-outer { stroke: rgba(74,158,255,.5); }
+    .vmap-city-hub .vmap-city-inner { fill: var(--skylt); }
+    @keyframes vCityPulse {
+      0%,100% { transform: scale(1); opacity: 0.38; }
+      50%      { transform: scale(2.1); opacity: 0.05; }
     }
 
-    .coverage-list {
-      display: grid; gap: 16px; margin-top: 28px;
-      list-style: none; color: rgba(238,243,255,.72); font-size: 18px;
+    .vmap-label {
+      font-family: 'Space Mono', monospace; font-size: 8px;
+      letter-spacing: 1.5px; text-transform: uppercase; fill: rgba(238,243,255,.78);
     }
-    .coverage-list li { display: flex; align-items: center; gap: 12px; }
-    .coverage-list span {
-      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-      background: var(--skylt); box-shadow: 0 0 10px rgba(33,150,243,.45);
+    .vmap-label-hub { font-size: 9.5px; fill: #fff; }
+
+    .vmap-compass { opacity: 0.32; }
+
+    .vmap-legend {
+      position: absolute; right: 28px; bottom: 28px;
+      background: rgba(3,12,21,.9); border: 1px solid rgba(74,158,255,.18);
+      padding: 14px 18px;
+    }
+    .vmap-legend-row {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Space Mono', monospace; font-size: 8px;
+      letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .vmap-legend-row:last-child { margin-bottom: 0; }
+    .vmap-legend-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--red); flex-shrink: 0;
+    }
+    .vmap-legend-hub { background: var(--skylt); }
+    .vmap-legend-dash {
+      width: 22px; height: 1.5px; flex-shrink: 0;
+      background: repeating-linear-gradient(
+        to right, var(--red) 0, var(--red) 5px, transparent 5px, transparent 10px
+      );
     }
 
-    .route {
-      fill: none; stroke: rgba(30,58,110,.48);
-      stroke-width: 1.5; stroke-dasharray: 6 10;
-      animation: routeDash 5s linear infinite;
+    /* ── Vmap Tabs ───────────────────────────────────────────── */
+    .vmap-tabs { display: flex; gap: 3px; }
+    .vmap-tab {
+      font-family: var(--font-label); font-size: 9px;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 16px; cursor: pointer;
+      background: transparent; color: var(--muted);
+      border: 1px solid rgba(74,158,255,.2); transition: all .2s;
+    }
+    .vmap-tab.active {
+      background: rgba(74,158,255,.12); color: var(--skylt);
+      border-color: rgba(74,158,255,.45);
+    }
+    .vmap-tab:hover:not(.active) {
+      border-color: rgba(74,158,255,.35); color: rgba(74,158,255,.6);
     }
 
-    .pin {
-      fill: var(--red2); filter: drop-shadow(0 0 8px rgba(255,68,68,.85));
-      animation: pinPulse 1.8s ease-in-out infinite;
+    /* ── International map landmasses ───────────────────────── */
+    .vmap-intl-land {
+      fill: rgba(21,65,130,.12); stroke: rgba(74,158,255,.22);
+      stroke-width: 1; stroke-linejoin: round;
     }
-    .pin:nth-of-type(2) { animation-delay: .2s; }
-    .pin:nth-of-type(3) { animation-delay: .4s; }
-    .pin:nth-of-type(4) { animation-delay: .6s; }
-    .pin:nth-of-type(5) { animation-delay: .8s; }
-    .pin:nth-of-type(6) { animation-delay: 1s; }
-
-    /* ── ROUTE MAP ───────────────────────────────────────── */
-    .route-map { margin-top: 40px; }
-    .route-map-title {
-      font-family: var(--font-label); font-size: 11px; letter-spacing: 3px;
-      color: var(--muted); text-transform: uppercase; margin-bottom: 14px;
-    }
-    .route-map-panel {
-      background: rgba(7,22,40,.8); border: 1px solid rgba(255,255,255,.08); padding: 20px;
-    }
-    .rmap-svg { width: 100%; display: block; }
-    .rmap-india { fill: rgba(74,158,255,.08); stroke: rgba(74,158,255,.35); stroke-width: 2.5; }
-    .rline {
-      fill: none; stroke: rgba(30,58,110,.65); stroke-width: 2;
-      stroke-dasharray: 8 6; stroke-linecap: round;
-    }
-    .rcity-dot { fill: var(--skylt); filter: url(#rcityGlow); }
-    .rcity-label {
-      fill: rgba(238,243,255,.85); font-family: var(--font-label);
-      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0;
+    .vmap-intl-india {
+      fill: rgba(21,65,130,.28); stroke: rgba(74,158,255,.52);
+      stroke-width: 1.8; stroke-linejoin: round;
     }
 
     /* ── CTA ─────────────────────────────────────────────── */
@@ -2430,8 +2461,9 @@
       .node { grid-column: 1; }
       .timeline-card.left, .timeline-card.right { grid-column: 2; text-align: left; }
 
-      .coverage-grid { grid-template-columns: 1fr; }
-      .map-panel { min-height: 380px; }
+      .vmap-legend { display: none; }
+      .vmap-topbar-title { display: none; }
+      .vmap-tab { padding: 6px 10px; font-size: 8px; }
 
       .fleet-grid, .fleet-grid-2, .fleet-grid-3 { grid-template-columns: 1fr; }
       .fleet-grid-2 { max-width: 100%; }
@@ -2589,7 +2621,7 @@
 
     /* ── Shared light-section tokens ───────────────────────── */
     #about, .partners-section, #services, .why-section,
-    .testi-section, #process, #fleet, #icu, #coverage,
+    .testi-section, #process, #fleet, #icu,
     .faq-section {
       --lt-head:   #1a2d4f;
       --lt-body:   #3d5a7a;
@@ -2730,23 +2762,7 @@
     .callout-label    { fill: #3d5a7a; }
     .callout-line     { stroke: rgba(21,101,192,.3); }
 
-    /* ── Coverage ───────────────────────────────────────────── */
-    #coverage             { background: #f0f6ff; }
-    #coverage .eyebrow    { color: var(--skylt); }
-    #coverage .section-title { color: #1a2d4f; }
-    #coverage .section-copy  { color: #3d5a7a; }
-    #coverage .coverage-copy h3 { color: #1a2d4f; }
-    .coverage-list li     { color: #3d5a7a; }
-    .map-panel {
-      background: #ffffff;
-      border: 1px solid rgba(21,101,192,.12);
-    }
-    .route-map-title      { color: #1a2d4f; }
-    .route-map-panel {
-      background: #ffffff;
-      border: 1px solid rgba(21,101,192,.1);
-    }
-    .coverage-label       { color: #3d5a7a; }
+    /* ── Coverage — kept dark (vintage map) ─────────────────── */
 
     /* ── FAQ ────────────────────────────────────────────────── */
     .faq-section          { background: #ffffff; }
@@ -2889,7 +2905,7 @@
         <a href="#faq">FAQ</a>
         <a href="#contact-form">Contact</a>
       </div>
-      <a class="emergency-nav btn" href="tel:9849994108">&#9889; Emergency</a>
+      <a class="emergency-nav btn" href="tel:9849994018">&#9889; Emergency</a>
       <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false"><span></span></button>
     </div>
   </nav>
@@ -2931,7 +2947,7 @@
             Get a Free Quote
           </a>
           <span class="hero-or">or</span>
-          <a href="tel:+919849994108" class="hero-btn-call">
+          <a href="tel:+919849994018" class="hero-btn-call">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
             +91 98499 94108
           </a>
@@ -3787,7 +3803,7 @@
                     <li>Point-of-Care Blood Analyser</li>
                     <li>Neonatal Incubator (on request)</li>
                   </ul>
-                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                  <a href="tel:9849994018" class="book-btn">Request This Aircraft</a>
                 </div>
               </div>
             </div>
@@ -3815,7 +3831,7 @@
                     <li>Advanced Trauma Kit</li>
                     <li>Emergency Drug Kit</li>
                   </ul>
-                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                  <a href="tel:9849994018" class="book-btn">Request This Aircraft</a>
                 </div>
               </div>
             </div>
@@ -3855,7 +3871,7 @@
                     <li>Portable Suction Unit</li>
                     <li>Full Emergency Drug Kit</li>
                   </ul>
-                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                  <a href="tel:9849994018" class="book-btn">Request This Aircraft</a>
                 </div>
               </div>
             </div>
@@ -3883,7 +3899,7 @@
                     <li>Neonatal Incubator (on request)</li>
                     <li>Point-of-Care Blood Gas Analyser</li>
                   </ul>
-                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                  <a href="tel:9849994018" class="book-btn">Request This Aircraft</a>
                 </div>
               </div>
             </div>
@@ -3911,7 +3927,7 @@
                     <li>Neonatal Incubator (on request)</li>
                     <li>ECMO-Capable Configuration</li>
                   </ul>
-                  <a href="tel:9849994108" class="book-btn">Request This Aircraft</a>
+                  <a href="tel:9849994018" class="book-btn">Request This Aircraft</a>
                 </div>
               </div>
             </div>
@@ -3985,72 +4001,390 @@
     <section class="section" id="coverage">
       <div class="shell">
         <div class="eyebrow">Pan-India Network</div>
-        <h2 class="section-title">We Fly<br>Wherever You Need</h2>
+        <h2 class="section-title">Skies Without<br>Borders</h2>
         <p class="section-copy">32+ cities served across India — from metro hubs to Tier-2 towns — with international medical evacuation and repatriation on request.</p>
-        <div class="coverage-grid">
-          <!-- Three.js Globe replaces old SVG map -->
-          <div class="map-panel" id="globe-wrap">
-            <canvas id="globe-canvas"></canvas>
-            <div id="globe-tooltip" class="globe-tooltip"></div>
-            <div class="coverage-label"><span class="dot"></span> Pan-India Network</div>
-          </div>
-          <div class="coverage-copy">
-            <h3>Nationwide<br>Network</h3>
-            <ul class="coverage-list">
-              <li><span></span>32+ Cities Across India</li>
-              <li><span></span>International Evacuation &amp; Repatriation</li>
-              <li><span></span>Delhi &middot; Mumbai &middot; Bangalore</li>
-              <li><span></span>Chennai &middot; Kolkata &middot; Hyderabad</li>
-              <li><span></span>Pune &middot; Ahmedabad &middot; Kochi &middot; Guwahati</li>
-              <li><span></span>Dedicated On-Call Aircraft at Key Hubs</li>
-            </ul>
-          </div>
-        </div>
 
-        <!-- Route Map -->
-        <div class="route-map" id="route-map">
-          <p class="route-map-title">Our Route Network</p>
-          <div class="route-map-panel">
-            <svg id="rmap" viewBox="0 0 760 560" class="rmap-svg" aria-label="REACT India route network">
+        <div class="vmap-wrap">
+          <div class="vmap-outer">
+            <div class="vmap-corner vmap-corner-tl"></div>
+            <div class="vmap-corner vmap-corner-tr"></div>
+            <div class="vmap-corner vmap-corner-bl"></div>
+            <div class="vmap-corner vmap-corner-br"></div>
+
+            <div class="vmap-topbar">
+              <span class="vmap-topbar-title">REACT Air Ambulance &mdash; Operational Route Network</span>
+              <div class="vmap-tabs">
+                <button class="vmap-tab" data-map="domestic">Domestic</button>
+                <button class="vmap-tab active" data-map="international">International</button>
+              </div>
+            </div>
+
+            <svg id="vmap" viewBox="0 0 760 580" xmlns="http://www.w3.org/2000/svg" aria-label="REACT Air Ambulance India route network map" style="display:none">
               <defs>
-                <filter id="rcityGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <filter id="vcityGlow" x="-120%" y="-120%" width="340%" height="340%">
                   <feGaussianBlur stdDeviation="3" result="blur"/>
-                  <feMerge>
-                    <feMergeNode in="blur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
+                <path id="vplane-r1" d="M 244,176 C 200,242 172,298 158,347"/>
+                <path id="vplane-r2" d="M 244,176 C 340,210 408,248 468,284"/>
               </defs>
+
+              <!-- Lat/lng grid -->
+              <line class="vmap-grid-line" x1="100" y1="0" x2="100" y2="580"/>
+              <line class="vmap-grid-line" x1="200" y1="0" x2="200" y2="580"/>
+              <line class="vmap-grid-line" x1="300" y1="0" x2="300" y2="580"/>
+              <line class="vmap-grid-line" x1="400" y1="0" x2="400" y2="580"/>
+              <line class="vmap-grid-line" x1="500" y1="0" x2="500" y2="580"/>
+              <line class="vmap-grid-line" x1="600" y1="0" x2="600" y2="580"/>
+              <line class="vmap-grid-line" x1="0" y1="61"  x2="760" y2="61"/>
+              <line class="vmap-grid-line" x1="0" y1="151" x2="760" y2="151"/>
+              <line class="vmap-grid-line" x1="0" y1="241" x2="760" y2="241"/>
+              <line class="vmap-grid-line" x1="0" y1="331" x2="760" y2="331"/>
+              <line class="vmap-grid-line" x1="0" y1="421" x2="760" y2="421"/>
+              <line class="vmap-grid-line" x1="0" y1="511" x2="760" y2="511"/>
+
+              <!-- Degree labels -->
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="middle" x="100" y="11">70°E</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="middle" x="200" y="11">75°E</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="middle" x="300" y="11">80°E</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="middle" x="400" y="11">85°E</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="middle" x="500" y="11">90°E</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="middle" x="600" y="11">95°E</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="end" x="46" y="64">35°N</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="end" x="46" y="154">30°N</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="end" x="46" y="244">25°N</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="end" x="46" y="334">20°N</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="end" x="46" y="424">15°N</text>
+              <text font-family="Space Mono,monospace" font-size="7" fill="rgba(74,158,255,.28)" text-anchor="end" x="46" y="514">10°N</text>
+
               <!-- India outline -->
-              <path class="rmap-india" d="M361 46l36 38 42 10 20 44 42 38-5 48 38 39-12 45 50 34 2 44-46 7-16 39-56 2-30 51-56-23-40 20-45-40-52 2-27-44-58-9-10-50-42-36 15-44-32-48 32-38 1-56 45-25 13-44 58-4 34-49z"/>
-              <!-- Route lines: Delhi(372,150) Mumbai(246,330) Chennai(392,428) Kolkata(462,326) Hyderabad(403,348) Bangalore(380,390) -->
-              <!-- Delhi → Mumbai -->
-              <path class="rline" d="M372,150 C330,210 280,270 246,330"/>
-              <!-- Delhi → Kolkata -->
-              <path class="rline" d="M372,150 C400,210 440,268 462,326"/>
-              <!-- Mumbai → Bangalore -->
-              <path class="rline" d="M246,330 C280,350 330,375 380,390"/>
-              <!-- Mumbai → Chennai -->
-              <path class="rline" d="M246,330 C290,360 340,400 392,428"/>
-              <!-- Kolkata → Hyderabad -->
-              <path class="rline" d="M462,326 C445,334 425,340 403,348"/>
-              <!-- Bangalore → Chennai -->
-              <path class="rline" d="M380,390 C382,402 386,416 392,428"/>
-              <!-- City dots -->
-              <circle class="rcity-dot" cx="372" cy="150" r="7"/>
-              <circle class="rcity-dot" cx="246" cy="330" r="7"/>
-              <circle class="rcity-dot" cx="392" cy="428" r="7"/>
-              <circle class="rcity-dot" cx="462" cy="326" r="7"/>
-              <circle class="rcity-dot" cx="403" cy="348" r="7"/>
-              <circle class="rcity-dot" cx="380" cy="390" r="7"/>
-              <!-- City labels -->
-              <text class="rcity-label" x="372" y="138" text-anchor="middle">Delhi</text>
-              <text class="rcity-label" x="230" y="326" text-anchor="end">Mumbai</text>
-              <text class="rcity-label" x="392" y="444" text-anchor="middle">Chennai</text>
-              <text class="rcity-label" x="477" y="322" text-anchor="start">Kolkata</text>
-              <text class="rcity-label" x="418" y="344" text-anchor="start">Hyderabad</text>
-              <text class="rcity-label" x="364" y="407" text-anchor="end">Bangalore</text>
+              <path class="vmap-india" d="
+                M 60,259
+                L 80,296 L 120,314 L 158,347
+                L 178,411
+                C 202,462 228,520 252,543
+                L 300,541
+                C 310,497 314,458 316,440
+                L 420,330 L 472,290
+                L 504,258 L 544,294
+                L 604,240 L 642,188
+                L 562,204 L 482,204
+                L 462,196 L 382,178
+                L 312,169
+                C 286,146 262,128 240,122
+                L 200,96 L 190,60 L 180,32
+                C 168,35 156,46 148,60
+                C 140,74 138,96 138,116
+                C 128,145 104,196 100,206
+                C 92,225 70,246 60,259 Z
+              "/>
+
+              <!-- Routes -->
+              <path class="vmap-route vmap-route-anim" d="M 244,176 C 200,242 172,298 158,347"/>
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-1.3s" d="M 244,176 C 340,210 408,248 468,284"/>
+              <path class="vmap-route" d="M 244,176 C 268,270 290,360 306,455"/>
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-0.7s" d="M 158,347 C 192,384 222,424 252,459"/>
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-2s" d="M 468,284 C 420,316 355,348 270,378"/>
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-0.4s" d="M 252,459 C 268,458 286,457 306,455"/>
+              <path class="vmap-route" d="M 152,277 C 185,248 210,218 244,176"/>
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-1.7s" d="M 244,176 C 358,186 448,200 534,219"/>
+              <path class="vmap-route" d="M 158,347 C 198,356 232,366 270,378"/>
+
+              <!-- Srinagar -->
+              <g class="vmap-city-hub" filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="196" cy="77" r="9"/>
+                <circle class="vmap-city-inner" cx="196" cy="77" r="3.5"/>
+              </g>
+              <text class="vmap-label" x="208" y="74">Srinagar</text>
+
+              <!-- Chandigarh -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="236" cy="138" r="7"/>
+                <circle class="vmap-city-inner" cx="236" cy="138" r="2.5"/>
+              </g>
+              <text class="vmap-label" x="248" y="136">Chandigarh</text>
+
+              <!-- Delhi -->
+              <g class="vmap-city-hub" filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="244" cy="176" r="12"/>
+                <circle class="vmap-city-inner" cx="244" cy="176" r="5"/>
+              </g>
+              <text class="vmap-label vmap-label-hub" x="260" y="172">DELHI</text>
+
+              <!-- Jaipur -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="216" cy="205" r="7"/>
+                <circle class="vmap-city-inner" cx="216" cy="205" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="end" x="202" y="210">Jaipur</text>
+
+              <!-- Lucknow -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="318" cy="209" r="7"/>
+                <circle class="vmap-city-inner" cx="318" cy="209" r="2.5"/>
+              </g>
+              <text class="vmap-label" x="330" y="207">Lucknow</text>
+
+              <!-- Ahmedabad -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="152" cy="277" r="7"/>
+                <circle class="vmap-city-inner" cx="152" cy="277" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="end" x="138" y="274">Ahmedabad</text>
+
+              <!-- Mumbai -->
+              <g class="vmap-city-hub" filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="158" cy="347" r="12"/>
+                <circle class="vmap-city-inner" cx="158" cy="347" r="5"/>
+              </g>
+              <text class="vmap-label vmap-label-hub" text-anchor="end" x="142" y="343">MUMBAI</text>
+
+              <!-- Hyderabad -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="270" cy="378" r="7"/>
+                <circle class="vmap-city-inner" cx="270" cy="378" r="2.5"/>
+              </g>
+              <text class="vmap-label" x="282" y="375">Hyderabad</text>
+
+              <!-- Kolkata -->
+              <g class="vmap-city-hub" filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="468" cy="284" r="12"/>
+                <circle class="vmap-city-inner" cx="468" cy="284" r="5"/>
+              </g>
+              <text class="vmap-label vmap-label-hub" x="482" y="281">KOLKATA</text>
+
+              <!-- Guwahati -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="534" cy="219" r="7"/>
+                <circle class="vmap-city-inner" cx="534" cy="219" r="2.5"/>
+              </g>
+              <text class="vmap-label" x="548" y="217">Guwahati</text>
+
+              <!-- Bangalore -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="252" cy="459" r="7"/>
+                <circle class="vmap-city-inner" cx="252" cy="459" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="end" x="238" y="472">Bangalore</text>
+
+              <!-- Chennai -->
+              <g class="vmap-city-hub" filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="306" cy="455" r="12"/>
+                <circle class="vmap-city-inner" cx="306" cy="455" r="5"/>
+              </g>
+              <text class="vmap-label vmap-label-hub" x="320" y="452">CHENNAI</text>
+
+              <!-- Kochi -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="226" cy="511" r="7"/>
+                <circle class="vmap-city-inner" cx="226" cy="511" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="end" x="212" y="518">Kochi</text>
+
+              <!-- Compass rose -->
+              <g class="vmap-compass" transform="translate(682,510)">
+                <polygon points="0,-26 -5,-8 0,-14 5,-8" fill="rgba(74,158,255,.9)"/>
+                <polygon points="0,26 -5,8 0,14 5,8" fill="rgba(74,158,255,.4)"/>
+                <polygon points="26,0 8,-5 14,0 8,5" fill="rgba(74,158,255,.4)"/>
+                <polygon points="-26,0 -8,-5 -14,0 -8,5" fill="rgba(74,158,255,.4)"/>
+                <circle r="3.5" fill="rgba(74,158,255,.7)"/>
+                <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.8)" text-anchor="middle" y="-30">N</text>
+                <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.5)" text-anchor="middle" y="40">S</text>
+                <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.5)" text-anchor="start" x="30" y="3">E</text>
+                <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.5)" text-anchor="end" x="-30" y="3">W</text>
+              </g>
+
+              <!-- Animated planes -->
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="9s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r1"/>
+                </animateMotion>
+                <path d="M0,-5 L3,4 L0,2 L-3,4Z" fill="rgba(255,255,255,0.92)"/>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="9s" begin="4.5s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vplane-r2"/>
+                </animateMotion>
+                <path d="M0,-5 L3,4 L0,2 L-3,4Z" fill="rgba(255,255,255,0.92)"/>
+              </g>
+
             </svg>
+
+            <!-- ── International Map (D3 world atlas) ─────────────── -->
+            <svg id="vmap-intl" viewBox="0 100 760 460" xmlns="http://www.w3.org/2000/svg"
+                 aria-label="REACT international route network" style="display:block;width:100%">
+              <defs>
+                <!-- Plane motion paths — projection: equirectangular scale=120 center=[0,20] translate=[380,290] -->
+                <!-- x = 380 + 2.094*lng  |  y = 290 - 2.094*(lat-20) -->
+                <path id="vpi-w1" d="M 542,272 Q 461,178 380,224"/><!-- Delhi→London -->
+                <path id="vpi-w2" d="M 542,272 Q 384,158 225,247"/><!-- Delhi→New York -->
+                <path id="vpi-w3" d="M 533,292 Q 565,308 597,329"/><!-- Mumbai→Singapore -->
+                <path id="vpi-w4" d="M 533,292 Q 630,346 697,403"/><!-- Mumbai→Sydney -->
+              </defs>
+
+              <!-- D3-rendered graticule (filled by initWorldMap) -->
+              <g id="world-graticule"></g>
+
+              <!-- D3-rendered countries (filled by initWorldMap) -->
+              <g id="world-countries"></g>
+
+              <!-- Routes — Delhi(542,272) hub -->
+              <path class="vmap-route vmap-route-anim" d="M 542,272 Q 461,178 380,224"/><!-- London -->
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-1.6s" d="M 542,272 Q 384,158 225,247"/><!-- New York -->
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-0.8s" d="M 542,272 Q 492,228 441,246"/><!-- Istanbul -->
+              <path class="vmap-route" d="M 542,272 Q 519,274 496,279"/><!-- Dubai -->
+              <path class="vmap-route" d="M 542,272 Q 567,286 591,303"/><!-- Bangkok -->
+              <path class="vmap-route" d="M 542,272 Q 340,138 132,261"/><!-- Los Angeles -->
+
+              <!-- Routes — Mumbai(533,292) hub -->
+              <path class="vmap-route" d="M 533,292 Q 515,284 496,279"/><!-- Dubai -->
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-2.2s" d="M 533,292 Q 565,308 597,329"/><!-- Singapore -->
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-1.0s" d="M 533,292 Q 630,346 697,403"/><!-- Sydney -->
+              <path class="vmap-route" d="M 533,292 Q 495,311 457,335"/><!-- Nairobi -->
+              <path class="vmap-route" d="M 533,292 Q 534,306 534,323"/><!-- Malé -->
+
+              <!-- Routes — extra -->
+              <path class="vmap-route" d="M 597,329 Q 635,290 673,257"/><!-- Singapore→Tokyo -->
+
+              <!-- City markers (hubs) -->
+              <!-- Delhi 542,272 -->
+              <g class="vmap-city-hub" filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="542" cy="272" r="12"/>
+                <circle class="vmap-city-inner" cx="542" cy="272" r="5"/>
+              </g>
+              <text class="vmap-label vmap-label-hub" x="556" y="268">DELHI</text>
+
+              <!-- Mumbai 533,292 -->
+              <g class="vmap-city-hub" filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="533" cy="292" r="12"/>
+                <circle class="vmap-city-inner" cx="533" cy="292" r="5"/>
+              </g>
+              <text class="vmap-label vmap-label-hub" text-anchor="end" x="519" y="310">MUMBAI</text>
+
+              <!-- Destinations -->
+              <!-- London 380,224 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="380" cy="224" r="7"/>
+                <circle class="vmap-city-inner" cx="380" cy="224" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="middle" x="380" y="213">LONDON</text>
+
+              <!-- Istanbul 441,246 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="441" cy="246" r="7"/>
+                <circle class="vmap-city-inner" cx="441" cy="246" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="middle" x="441" y="236">ISTANBUL</text>
+
+              <!-- New York 225,247 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="225" cy="247" r="7"/>
+                <circle class="vmap-city-inner" cx="225" cy="247" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="middle" x="225" y="237">NEW YORK</text>
+
+              <!-- Los Angeles 132,261 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="132" cy="261" r="7"/>
+                <circle class="vmap-city-inner" cx="132" cy="261" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="middle" x="132" y="251">LOS ANGELES</text>
+
+              <!-- Dubai 496,279 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="496" cy="279" r="7"/>
+                <circle class="vmap-city-inner" cx="496" cy="279" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="end" x="488" y="293">DUBAI</text>
+
+              <!-- Bangkok 591,303 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="591" cy="303" r="7"/>
+                <circle class="vmap-city-inner" cx="591" cy="303" r="2.5"/>
+              </g>
+              <text class="vmap-label" x="601" y="300">BANGKOK</text>
+
+              <!-- Singapore 597,329 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="597" cy="329" r="7"/>
+                <circle class="vmap-city-inner" cx="597" cy="329" r="2.5"/>
+              </g>
+              <text class="vmap-label" x="607" y="326">SINGAPORE</text>
+
+              <!-- Tokyo 673,257 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="673" cy="257" r="7"/>
+                <circle class="vmap-city-inner" cx="673" cy="257" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="middle" x="673" y="247">TOKYO</text>
+
+              <!-- Sydney 697,403 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="697" cy="403" r="7"/>
+                <circle class="vmap-city-inner" cx="697" cy="403" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="middle" x="697" y="416">SYDNEY</text>
+
+              <!-- Nairobi 457,335 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="457" cy="335" r="7"/>
+                <circle class="vmap-city-inner" cx="457" cy="335" r="2.5"/>
+              </g>
+              <text class="vmap-label" text-anchor="end" x="449" y="349">NAIROBI</text>
+
+              <!-- Malé 534,323 -->
+              <g filter="url(#vcityGlow)">
+                <circle class="vmap-city-outer" cx="534" cy="323" r="7"/>
+                <circle class="vmap-city-inner" cx="534" cy="323" r="2.5"/>
+              </g>
+              <text class="vmap-label" x="544" y="320">MAL&Eacute;</text>
+
+              <!-- Compass rose -->
+              <g class="vmap-compass" transform="translate(710,540)">
+                <polygon points="0,-26 -5,-8 0,-14 5,-8" fill="rgba(74,158,255,.9)"/>
+                <polygon points="0,26 -5,8 0,14 5,8" fill="rgba(74,158,255,.4)"/>
+                <polygon points="26,0 8,-5 14,0 8,5" fill="rgba(74,158,255,.4)"/>
+                <polygon points="-26,0 -8,-5 -14,0 -8,5" fill="rgba(74,158,255,.4)"/>
+                <circle r="3.5" fill="rgba(74,158,255,.7)"/>
+                <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.8)" text-anchor="middle" y="-30">N</text>
+                <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.5)" text-anchor="middle" y="40">S</text>
+                <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.5)" text-anchor="start" x="30" y="3">E</text>
+                <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.5)" text-anchor="end" x="-30" y="3">W</text>
+              </g>
+
+              <!-- Animated planes -->
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="8s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vpi-w1"/>
+                </animateMotion>
+                <path d="M0,-5 L3,4 L0,2 L-3,4Z" fill="rgba(255,255,255,0.92)"/>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="14s" begin="3s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vpi-w2"/>
+                </animateMotion>
+                <path d="M0,-5 L3,4 L0,2 L-3,4Z" fill="rgba(255,255,255,0.92)"/>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="9s" begin="6s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vpi-w3"/>
+                </animateMotion>
+                <path d="M0,-5 L3,4 L0,2 L-3,4Z" fill="rgba(255,255,255,0.92)"/>
+              </g>
+              <g filter="url(#vcityGlow)">
+                <animateMotion dur="11s" begin="1s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#vpi-w4"/>
+                </animateMotion>
+                <path d="M0,-5 L3,4 L0,2 L-3,4Z" fill="rgba(255,255,255,0.92)"/>
+              </g>
+
+            </svg>
+
+            <div class="vmap-legend">
+              <div class="vmap-legend-row"><div class="vmap-legend-dot vmap-legend-hub"></div>Major Hub</div>
+              <div class="vmap-legend-row"><div class="vmap-legend-dot"></div>City Destination</div>
+              <div class="vmap-legend-row"><div class="vmap-legend-dash"></div>Air Route</div>
+            </div>
           </div>
         </div>
 
@@ -4092,7 +4426,7 @@
 
           <details class="faq-item">
             <summary class="faq-q">How do I request an air ambulance?</summary>
-            <div class="faq-a">Call our 24/7 emergency line: 9849994108. Have ready: patient name, current location, diagnosis/condition, receiving hospital if known. Our team handles everything else — aircraft, crew, ground ambulances, documentation, and hospital coordination.</div>
+            <div class="faq-a">Call our 24/7 emergency line: 9849994018. Have ready: patient name, current location, diagnosis/condition, receiving hospital if known. Our team handles everything else — aircraft, crew, ground ambulances, documentation, and hospital coordination.</div>
           </details>
 
           <details class="faq-item">
@@ -4120,16 +4454,16 @@
           <p class="contact-desc">Whether it's a planned medical transfer or an urgent enquiry, our team responds within minutes — day or night.</p>
 
           <div class="contact-cards">
-            <a href="tel:9849994108" class="contact-card">
+            <a href="tel:9849994018" class="contact-card">
               <div class="contact-card-icon">
                 <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.45-.45a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
               </div>
               <div>
                 <div class="contact-card-label">24/7 Emergency Line</div>
-                <div class="contact-card-value">9849994108</div>
+                <div class="contact-card-value">9849994018</div>
               </div>
             </a>
-            <a href="https://wa.me/919849994108" class="contact-card">
+            <a href="https://wa.me/919849994018" class="contact-card">
               <div class="contact-card-icon wa">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" stroke="none"/></svg>
               </div>
@@ -4199,7 +4533,7 @@
               <p class="contact-privacy">&#128274; Your details are private and only shared with our medical team.</p>
             </form>
             <div class="contact-emergency-note">
-              <p>For life-threatening emergencies, <strong style="color:var(--red2)">do not use this form.</strong> Call <strong style="color:#ff4444">9849994108</strong> immediately — our command centre is staffed 24/7/365.</p>
+              <p>For life-threatening emergencies, <strong style="color:var(--red2)">do not use this form.</strong> Call <strong style="color:#ff4444">9849994018</strong> immediately — our command centre is staffed 24/7/365.</p>
             </div>
           </div>
         </div>
@@ -4218,11 +4552,11 @@
       <div class="shell cta-content">
         <div class="eyebrow">Available 24 / 7 / 365</div>
         <h2>Every Second<br>Counts — Call Now</h2>
-        <a class="phone" href="tel:9849994108">9849994108</a>
+        <a class="phone" href="tel:9849994018">9849994018</a>
         <p style="color:rgba(238,243,255,.55);font-size:15px;margin-top:10px;font-family:var(--font-body)">Have ready: patient location, condition &amp; receiving hospital if known. We handle everything else.</p>
         <div class="cta-actions">
-          <a href="tel:9849994108" class="btn btn-red">Call Emergency Line</a>
-          <a href="https://wa.me/919849994108" class="btn btn-green">WhatsApp Us Now</a>
+          <a href="tel:9849994018" class="btn btn-red">Call Emergency Line</a>
+          <a href="https://wa.me/919849994018" class="btn btn-green">WhatsApp Us Now</a>
         </div>
       </div>
     </section>
@@ -4240,7 +4574,7 @@
           <p style="margin-top:18px; max-width:270px; line-height:1.7">ICU-equipped air ambulance command across India and internationally.</p>
           <span class="footer-dgca">Air Medical Service</span>
           <div class="social">
-            <a href="https://wa.me/919849994108" aria-label="WhatsApp" style="border-color:rgba(37,211,102,.3); color:#25d366;">
+            <a href="https://wa.me/919849994018" aria-label="WhatsApp" style="border-color:rgba(37,211,102,.3); color:#25d366;">
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
             <a href="mailto:ops@nlcurantis.in" aria-label="Email">
@@ -4278,7 +4612,7 @@
         </div>
         <div>
           <h4>Contact</h4>
-          <p><a href="tel:9849994108">Emergency: 9849994108</a></p>
+          <p><a href="tel:9849994018">Emergency: 9849994018</a></p>
           <p><a href="mailto:ops@nlcurantis.in">ops@nlcurantis.in</a></p>
           <p style="margin-top:10px">NL Curantis International Pvt Ltd<br>India</p>
         </div>
@@ -4292,13 +4626,13 @@
 
   <!-- FLOATING BUTTONS -->
   <div class="floating" aria-label="Emergency contacts">
-    <a class="float-btn float-emergency" href="tel:9849994108" aria-label="Emergency Call">
+    <a class="float-btn float-emergency" href="tel:9849994018" aria-label="Emergency Call">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
       </span>
       <span class="btn-label">Emergency Call</span>
     </a>
-    <a class="float-btn float-whatsapp" href="https://wa.me/919849994108">
+    <a class="float-btn float-whatsapp" href="https://wa.me/919849994018">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       </span>
@@ -4343,13 +4677,15 @@
     <!-- Sticky bottom bar — always visible while scrolling -->
     <div class="svc-modal-sticky">
       <span class="svc-sticky-phone-label">Emergency Line</span>
-      <a href="tel:9849994108" class="svc-sticky-phone-num">9849994108</a>
+      <a href="tel:9849994018" class="svc-sticky-phone-num">9849994018</a>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
   <script>
     // ── Nav scroll + hamburger ──────────────────────────────
     const nav       = document.getElementById("nav");
@@ -4569,28 +4905,17 @@
         }
       });
 
-      // Route map animation
+      // Vintage route map reveal
       ScrollTrigger.create({
-        trigger: "#route-map",
-        start: "top 80%",
+        trigger: "#vmap",
+        start: "top 85%",
         once: true,
         onEnter: function() {
-          const rlines = document.querySelectorAll(".rline");
-          rlines.forEach(function(line, i) {
-            gsap.fromTo(line,
-              { strokeDashoffset: 500 },
-              { strokeDashoffset: 0, duration: 1.2, delay: i * 0.3, ease: "power2.out" }
-            );
-          });
-          const rlabels = document.querySelectorAll(".rcity-label");
-          rlabels.forEach(function(label, i) {
-            gsap.to(label, {
-              opacity: 1,
-              duration: 0.5,
-              delay: rlines.length * 0.3 + i * 0.15,
-              ease: "power2.out"
-            });
-          });
+          gsap.fromTo("#vmap",
+            { opacity: 0, y: 24 },
+            { opacity: 1, y: 0, duration: 1.1, ease: "power2.out" }
+          );
+          gsap.set("#vmap", { opacity: 0 });
         }
       });
     }
@@ -4620,6 +4945,47 @@
 
     // ── Three.js Globe ──────────────────────────────────────
     function initGlobe() {
+      // Replaced by vintage route map — no-op
+    }
+
+    // ── International world map (D3 + world-atlas) ────────────
+    function initWorldMap() {
+      if (!window.d3 || !window.topojson) return;
+
+      var proj = d3.geoEquirectangular()
+        .scale(120)
+        .center([0, 20])
+        .translate([380, 290]);
+      var geoPath = d3.geoPath().projection(proj);
+
+      // Graticule every 30° lng / 15° lat
+      var graticule = d3.geoGraticule().step([30, 15])();
+      d3.select('#world-graticule')
+        .append('path')
+        .datum(graticule)
+        .attr('d', geoPath)
+        .attr('fill', 'none')
+        .attr('stroke', 'rgba(74,158,255,0.10)')
+        .attr('stroke-width', '0.6');
+
+      fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+        .then(function(r) { return r.json(); })
+        .then(function(world) {
+          var countries = topojson.feature(world, world.objects.countries);
+          d3.select('#world-countries').selectAll('path')
+            .data(countries.features)
+            .enter()
+            .append('path')
+            .attr('d', geoPath)
+            .attr('class', function(d) {
+              // India numeric id = 356
+              return String(d.id) === '356' ? 'vmap-intl-india' : 'vmap-intl-land';
+            });
+        })
+        .catch(function() {});
+    }
+
+    function _initGlobeOld() {
       if (!window.THREE) return;
 
       const wrap    = document.getElementById("globe-wrap");
@@ -4942,6 +5308,20 @@
     initParticles();
     initGlobe();
 
+    // ── Route map tab toggle ─────────────────────────────────
+    var _intlMapReady = true; // default tab is international — render immediately
+    initWorldMap();
+    document.querySelectorAll('.vmap-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.vmap-tab').forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        var isDomestic = tab.dataset.map === 'domestic';
+        document.getElementById('vmap').style.display      = isDomestic ? 'block' : 'none';
+        document.getElementById('vmap-intl').style.display = isDomestic ? 'none'  : 'block';
+        if (!isDomestic && !_intlMapReady) { _intlMapReady = true; initWorldMap(); }
+      });
+    });
+
     // ── Equipment section ──────────────────────────────────
     var EQUIP_DATA = [
       {
@@ -5064,7 +5444,7 @@
         sections: [
           { heading: 'Ideal For', items: ['Critically ill patients', 'Trauma cases', 'Stroke and cardiac emergencies', 'ICU-to-ICU transfers', 'Long-distance and international evacuations'] }
         ],
-        highlight: 'Available 24/7 for domestic and international missions. Call 9849994108 for immediate activation.'
+        highlight: 'Available 24/7 for domestic and international missions. Call 9849994018 for immediate activation.'
       },
       'svc-domestic': {
         num: '01', cat: 'Air Transport',
@@ -5078,7 +5458,7 @@
           { heading: 'Aircraft & Equipment', items: ['ICU-configured dedicated aircraft', 'Transport ventilator with full settings', 'Cardiac monitor with 12-lead ECG & defibrillator', 'IV infusion pumps & syringe drivers', 'Medical oxygen supply', 'Advanced airway management kit', 'Emergency drug kit'] },
           { heading: 'Mission Coordination', items: ['24/7 emergency activation', 'Bed-to-bed patient transfer', 'Ground ambulance at origin and destination', 'Pre-flight medical assessment', 'Receiving hospital notification & handover', 'Full documentation and medical records transfer'] }
         ],
-        highlight: 'We cover 32+ cities across India — from metro hospitals to Tier-2 towns. No mission is too remote. Call 9849994108 for immediate activation.'
+        highlight: 'We cover 32+ cities across India — from metro hospitals to Tier-2 towns. No mission is too remote. Call 9849994018 for immediate activation.'
       },
       'svc-intl': {
         num: '02', cat: 'Air Transport',
@@ -5091,7 +5471,7 @@
         sections: [
           { heading: 'Services Include', items: ['Global medical repatriation', 'Cross-border critical care transport', 'Visa and medical documentation assistance', 'Hospital admission coordination', 'End-to-end case management'] }
         ],
-        highlight: 'From foreign hospital discharge to landing in India — our coordinators handle every step so families do not have to. Call 9849994108 for international transfer assistance.'
+        highlight: 'From foreign hospital discharge to landing in India — our coordinators handle every step so families do not have to. Call 9849994018 for international transfer assistance.'
       },
       'svc-escort': {
         num: '03', cat: 'Air Transport',
@@ -5118,7 +5498,7 @@
         sections: [
           { heading: 'Benefits', items: ['Up to 70–80% lower cost than dedicated air ambulance', 'Suitable for long-haul international transfers', 'Continuous medical supervision', 'Bedside-to-bedside service available'] }
         ],
-        highlight: 'A safe and affordable alternative for stable patients — we handle airline approvals, stretcher installation, oxygen, and medical escort end-to-end. Call 9849994108 to check eligibility.'
+        highlight: 'A safe and affordable alternative for stable patients — we handle airline approvals, stretcher installation, oxygen, and medical escort end-to-end. Call 9849994018 to check eligibility.'
       },
       'svc-bizclass': {
         num: '05', cat: 'Air Transport',
@@ -5145,7 +5525,7 @@
         sections: [
           { heading: 'Services Include', items: ['NICU transfers', 'Premature infant transport', 'Pediatric ICU transfers', 'Congenital heart disease transfers', 'International neonatal repatriation'] }
         ],
-        highlight: 'Every second counts for a critically ill newborn. Our team is activated 24/7 with hospital-grade neonatal equipment. Call 9849994108 the moment your paediatrician recommends a transfer.'
+        highlight: 'Every second counts for a critically ill newborn. Our team is activated 24/7 with hospital-grade neonatal equipment. Call 9849994018 the moment your paediatrician recommends a transfer.'
       },
       'svc-ecmo': {
         num: '02', cat: 'Specialized Medical',
@@ -5158,7 +5538,7 @@
         sections: [
           { heading: 'Suitable For', items: ['Severe respiratory failure', 'Advanced cardiac failure', 'Lung transplantation candidates', 'Cardiogenic shock', 'Complex ICU retrievals'] }
         ],
-        highlight: 'ECMO transport is only possible with a team that has done it before. Our specialists deploy, initiate, and manage ECMO circuits in-flight — available nationally and internationally. Call 9849994108.'
+        highlight: 'ECMO transport is only possible with a team that has done it before. Our specialists deploy, initiate, and manage ECMO circuits in-flight — available nationally and internationally. Call 9849994018.'
       },
       'svc-organ': {
         num: '03', cat: 'Specialized Medical',

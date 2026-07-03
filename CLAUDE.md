@@ -18,7 +18,7 @@ sky-med/
 | Company | NL Curantis International Pvt Ltd |
 | Brand | REACT (Rapid Emergency Aerocare Team) |
 | Domain | reactairambulance.com |
-| Emergency line | 1800-NIAMS-911 (to be updated) |
+| Emergency line | +91 9849994018 |
 | WhatsApp | https://wa.me/918006426779 |
 | Email | ops@nlcurantis.in |
 

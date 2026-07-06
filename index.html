@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>REACT Air Ambulance – Rapid Emergency Aerocare Team | NL Curantis International</title>
-  <meta name="description" content="REACT (Rapid Emergency Aerocare Team) deploys ICU-equipped aircraft and specialist medical crews across India and internationally. 24/7 air ambulance, medical escort, and critical care transport under NL Curantis International Pvt Ltd.">
+  <title>REACT Air Ambulance – Rapid Emergency Aerocare Team | India's Premier Medical Aviation</title>
+  <meta name="description" content="REACT (Rapid Emergency Aerocare Team) deploys ICU-equipped aircraft and specialist medical crews across India and internationally. Doctor-led air ambulance, 24/7 command centre, 18-min response, 1800+ missions. Call now.">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
   <!-- Canonical & Language -->
   <link rel="canonical" href="https://reactairambulance.com/">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="NL Curantis International Pvt Ltd">
+  <meta name="author" content="REACT Air Ambulance">
   <meta name="keywords" content="air ambulance India, air ambulance Hyderabad, HEMS helicopter emergency, organ retrieval flight, neonatal air transport, ECMO transport, medical repatriation India, ICU air ambulance, REACT air ambulance">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -199,7 +199,7 @@
       -webkit-backdrop-filter: blur(24px);
       padding: 22px 28px 24px;
       padding-top: 28px;
-      display: grid; grid-template-columns: repeat(5,1fr);
+      display: grid; grid-template-columns: repeat(3,1fr);
       gap: 0;
       opacity: 0; pointer-events: none;
       transition: opacity .2s ease, transform .2s ease;
@@ -427,6 +427,39 @@
       border-color: rgba(255,255,255,.7);
       transform: translateY(-2px);
     }
+
+    /* Live operations status */
+    .hero-live-status {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: rgba(61,220,132,.10);
+      border: 1px solid rgba(61,220,132,.35);
+      border-radius: 40px;
+      padding: 7px 18px;
+      font-family: var(--font-label);
+      font-size: 11px; letter-spacing: 2.8px;
+      color: #3ddc84; text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero-live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #3ddc84;
+      box-shadow: 0 0 8px rgba(61,220,132,.9);
+      animation: pulse-dot 1.6s ease-in-out infinite;
+    }
+    .hero-live-text { color: rgba(61,220,132,.92); }
+
+    /* Trust credential strip below CTAs */
+    .hero-trust-strip {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 10px 20px; margin-top: 28px;
+    }
+    .hero-trust-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,.72);
+      font-family: var(--font-label); font-size: 11px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .hero-trust-badge svg { color: rgba(61,220,132,.9); flex-shrink: 0; }
 
     /* hide unused elements */
     .hero::before { display: none; }
@@ -731,7 +764,7 @@
       border-top: 3px solid var(--sky);
       border-bottom: 1px solid rgba(21,101,192,.1);
       box-shadow: 0 4px 24px rgba(15,41,75,.06);
-      padding-top: 90px; /* space for overlapping quote card */
+      padding-top: 0;
     }
 
     .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
@@ -1453,7 +1486,6 @@
       content: ""; position: absolute; top: 0; left: 0; right: 0;
       height: 4px; background: var(--sky); z-index: 5;
     }
-    .svc2-hd::after { content: none; }
 
     .svc2-hd img {
       position: absolute; inset: 0; width: 100%; height: 100%;
@@ -1489,8 +1521,8 @@
     }
     .svc2:hover .svc2-ghost-num { color: rgba(255,255,255,.22); }
 
-    /* Number badge — top-left, always readable */
-    .svc2-hd::before {
+    /* Grid texture overlay on service card header image */
+    .svc2-hd::after {
       content: ""; position: absolute; inset: 0; z-index: 1;
       background-image:
         linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
@@ -1810,9 +1842,9 @@
     .equip-eyebrow::before {
       content: ''; display: inline-block; width: 6px; height: 6px;
       background: var(--red); border-radius: 50%;
-      animation: pulse-dot 1.6s ease-in-out infinite;
+      animation: pulse-dot-red 1.6s ease-in-out infinite;
     }
-    @keyframes pulse-dot {
+    @keyframes pulse-dot-red {
       0%,100% { opacity:1; transform:scale(1); }
       50%      { opacity:0.4; transform:scale(0.6); }
     }
@@ -2615,6 +2647,9 @@
       .hero-actions, .cta-actions { display: grid; gap: 12px; }
       .hero-or { display: none; }
       .hero-btn-quote, .hero-btn-call { justify-content: center; width: 100%; }
+      .hero-live-status { font-size: 9px; letter-spacing: 2px; padding: 6px 14px; }
+      .hero-trust-strip { gap: 8px 14px; }
+      .hero-trust-badge { font-size: 10px; }
       .btn { width: 100%; padding: 16px 20px; font-size: 13px; }
 
       .status-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -3042,9 +3077,13 @@
 
       <!-- Hero content -->
       <div class="hero-inner">
+        <div class="hero-live-status">
+          <span class="hero-live-dot"></span>
+          <span class="hero-live-text">OPERATIONS ACTIVE &nbsp;·&nbsp; AIRCRAFT READY</span>
+        </div>
         <div class="hero-grid">
           <h1 class="hero-title">When Every Second<br>Counts, We REACT</h1>
-          <p class="hero-sub">Connecting Lives Across Continents with Excellence and Precision — by <strong>REACT Air Ambulance</strong>.</p>
+          <p class="hero-sub">India's most trusted doctor-led air ambulance — ICU in the sky, from takeoff to bedside.</p>
           <div class="hero-crew">
             <span>Flying Doctors</span>
             <span>Critical Care Physicians</span>
@@ -3060,8 +3099,14 @@
           <span class="hero-or">or</span>
           <a href="tel:+919849994108" class="hero-btn-call">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-            +91 98499 94108
+            +91 9849994108
           </a>
+        </div>
+        <div class="hero-trust-strip">
+          <span class="hero-trust-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>DGCA Licensed</span>
+          <span class="hero-trust-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Doctor-Led</span>
+          <span class="hero-trust-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>ICU Grade Aircraft</span>
+          <span class="hero-trust-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>18-Min Response</span>
         </div>
       </div>
 
@@ -3078,20 +3123,20 @@
     <section class="stats-panel" id="stats">
       <div class="shell stats-grid">
         <div class="stat">
-          <div class="stat-number"><span class="stat-accent">24/7</span></div>
-          <div class="stat-label">Command Centre Active</div>
+          <div class="stat-number"><span data-count="1800">0</span><span class="stat-accent">+</span></div>
+          <div class="stat-label">Missions Completed</div>
         </div>
         <div class="stat">
-          <div class="stat-number"><span class="stat-accent">Bed</span></div>
-          <div class="stat-label">to Bed Coordination</div>
+          <div class="stat-number"><span class="stat-accent">18</span><span style="font-size:0.55em;opacity:0.7;"> min</span></div>
+          <div class="stat-label">Avg. Response Time</div>
         </div>
         <div class="stat">
           <div class="stat-number"><span data-count="32">0</span><span class="stat-accent">+</span></div>
           <div class="stat-label">Cities Covered</div>
         </div>
         <div class="stat">
-          <div class="stat-number"><span class="stat-accent">Emergency Doctors</span></div>
-          <div class="stat-label">Led Every Mission</div>
+          <div class="stat-number"><span class="stat-accent">99.8</span><span style="font-size:0.55em;opacity:0.7;">%</span></div>
+          <div class="stat-label">Mission Success Rate</div>
         </div>
       </div>
     </section>
@@ -3099,23 +3144,27 @@
     <!-- CERTIFICATIONS MARQUEE -->
     <section class="ticker" aria-label="Certifications and accreditations">
       <div class="ticker-track">
+        <span class="ticker-item">DGCA Approved</span><span class="diamond"></span>
         <span class="ticker-item">Doctor-Led Missions</span><span class="diamond"></span>
         <span class="ticker-item">Bed-to-Bed Transfer</span><span class="diamond"></span>
         <span class="ticker-item">Flying ICU Standard</span><span class="diamond"></span>
         <span class="ticker-item">24/7 Command Centre</span><span class="diamond"></span>
         <span class="ticker-item">No Hidden Charges</span><span class="diamond"></span>
         <span class="ticker-item">Air Medical Experts</span><span class="diamond"></span>
+        <span class="ticker-item">1800+ Missions Flown</span><span class="diamond"></span>
         <span class="ticker-item">Own Fleet — No Brokers</span><span class="diamond"></span>
         <span class="ticker-item">International Repatriation</span><span class="diamond"></span>
         <span class="ticker-item">ECMO Capable</span><span class="diamond"></span>
         <span class="ticker-item">Neonatal Transport</span><span class="diamond"></span>
         <!-- duplicate for seamless loop -->
+        <span class="ticker-item">DGCA Approved</span><span class="diamond"></span>
         <span class="ticker-item">Doctor-Led Missions</span><span class="diamond"></span>
         <span class="ticker-item">Bed-to-Bed Transfer</span><span class="diamond"></span>
         <span class="ticker-item">Flying ICU Standard</span><span class="diamond"></span>
         <span class="ticker-item">24/7 Command Centre</span><span class="diamond"></span>
         <span class="ticker-item">No Hidden Charges</span><span class="diamond"></span>
         <span class="ticker-item">Air Medical Experts</span><span class="diamond"></span>
+        <span class="ticker-item">1800+ Missions Flown</span><span class="diamond"></span>
         <span class="ticker-item">Own Fleet — No Brokers</span><span class="diamond"></span>
         <span class="ticker-item">International Repatriation</span><span class="diamond"></span>
         <span class="ticker-item">ECMO Capable</span><span class="diamond"></span>
@@ -3130,9 +3179,9 @@
           <div class="about-copy">
             <div class="eyebrow">About REACT</div>
             <h2 class="section-title">Connecting Lives<br>Across Continents</h2>
-            <p class="section-copy">With Excellence and Precision — REACT Air Ambulance, proudly operated by NL Curantis International Private Limited, stands at the forefront of global aeromedical transport.</p>
-            <p class="about-body">With an unwavering commitment to excellence, we specialise in rapid, life-saving air evacuations and critical care transfers across borders and oceans. Our elite medical teams — composed of seasoned intensivists, specialised paramedics, and advanced aviation experts — bring world-class care to every patient we serve. From time-sensitive emergencies to complex critical care repatriations, REACT embodies the pinnacle of safety, precision, and compassion.</p>
-            <p class="about-body" style="margin-top:14px;">Backed by the robust infrastructure of NL Curantis International, we uphold the highest global standards in patient care, ensuring that every transfer is executed with unmatched professionalism. Wherever you are, wherever you need to go — <strong>no limits, no boundaries.</strong></p>
+            <p class="section-copy">REACT Air Ambulance stands at the forefront of global aeromedical transport — where clinical excellence meets aviation precision.</p>
+            <p class="about-body">With an unwavering commitment to saving lives, we specialise in rapid air evacuations and critical care transfers across India and internationally. Our elite medical teams — seasoned intensivists, specialist paramedics, and advanced aviation experts — deliver hospital-grade intensive care from takeoff to bedside. From time-sensitive emergencies to complex critical repatriations, REACT sets the standard for safety, speed, and compassion.</p>
+            <p class="about-body" style="margin-top:14px;">Every mission is doctor-led and mission-specific — equipped with ICU-grade life support, monitoring, and pharmaceutical backup. Wherever you are, wherever you need to go — <strong>no limits, no boundaries.</strong></p>
             <div class="about-pillars">
               <div class="about-pillar">
                 <span class="pillar-num">Global</span>
@@ -3181,7 +3230,7 @@
               <span class="founder-skill cert">ATLS Provider</span>
               <span class="founder-skill cert">PALS Certified</span>
               <span class="founder-skill">Critical Care Transport</span>
-              <span class="founder-skill">Aeromedical Medicine</span>
+              <span class="founder-skill">Aviation Medicine</span>
               <span class="founder-skill">ECMO Management</span>
               <span class="founder-skill">Medical Leadership</span>
               <span class="founder-skill">International Repatriation</span>
@@ -4302,12 +4351,12 @@
               </g>
               <text class="vmap-label" x="548" y="217">Guwahati</text>
 
-              <!-- Bangalore -->
+              <!-- Bengaluru -->
               <g filter="url(#vcityGlow)">
                 <circle class="vmap-city-outer" cx="252" cy="459" r="7"/>
                 <circle class="vmap-city-inner" cx="252" cy="459" r="2.5"/>
               </g>
-              <text class="vmap-label" text-anchor="end" x="238" y="472">Bangalore</text>
+              <text class="vmap-label" text-anchor="end" x="238" y="472">Bengaluru</text>
 
               <!-- Chennai -->
               <g class="vmap-city-hub" filter="url(#vcityGlow)">
@@ -4798,7 +4847,7 @@
 
           <details class="faq-item">
             <summary class="faq-q">What cities and regions does REACT cover?</summary>
-            <div class="faq-a">We cover 32+ cities across India including Delhi, Mumbai, Bangalore, Chennai, Kolkata, Hyderabad, Pune, Ahmedabad, and all major Tier-2 cities. International operations are available on request for repatriation to and from any country.</div>
+            <div class="faq-a">We cover 32+ cities across India including Delhi, Mumbai, Bengaluru, Chennai, Kolkata, Hyderabad, Pune, Ahmedabad, and all major Tier-2 cities. International operations are available on request for repatriation to and from any country.</div>
           </details>
 
           <details class="faq-item">
@@ -4976,10 +5025,6 @@
             <li><a href="#services">ECMO Initiation &amp; Air Lift</a></li>
             <li><a href="#services">Organ Retrieval &amp; Transplant Logistics</a></li>
             <li><a href="#services">HEMS</a></li>
-            <li><a href="#services">Critical Care Ground Ambulance</a></li>
-            <li><a href="#services">Event Medical Coverage</a></li>
-            <li><a href="#services">Disaster Response &amp; MCI Support</a></li>
-            <li><a href="#services">Concierge Medical Travel</a></li>
           </ul>
         </div>
         <div>
@@ -4989,18 +5034,17 @@
             <li><a href="#process">How It Works</a></li>
             <li><a href="#coverage">Coverage</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#">Careers</a></li>
           </ul>
         </div>
         <div>
           <h4>Contact</h4>
           <p><a href="tel:9849994108">Emergency: 9849994108</a></p>
           <p><a href="mailto:ops@nlcurantis.in">ops@nlcurantis.in</a></p>
-          <p style="margin-top:10px">NL Curantis International Pvt Ltd<br>India</p>
+          <p style="margin-top:10px">REACT Air Ambulance<br>India</p>
         </div>
       </div>
       <div class="bottom-bar">
-        <span>&copy; 2026 NL Curantis International Pvt Ltd. All rights reserved.</span>
+        <span>&copy; 2026 REACT Air Ambulance. All rights reserved.</span>
         <span class="bottom-bar-status"><span class="dot"></span> All systems operational</span>
       </div>
     </div>
@@ -5014,7 +5058,7 @@
       </span>
       <span class="btn-label">Emergency Call</span>
     </a>
-    <a class="float-btn float-whatsapp" href="https://wa.me/919849994108">
+    <a class="float-btn float-whatsapp" href="https://wa.me/919849994108" aria-label="Chat on WhatsApp">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       </span>
@@ -5023,7 +5067,7 @@
   </div>
 
   <!-- Service Detail Page — must be in DOM before scripts run -->
-  <div id="svc-modal" class="svc-modal" role="main" aria-labelledby="svc-modal-title" hidden>
+  <div id="svc-modal" class="svc-modal" role="dialog" aria-modal="true" aria-labelledby="svc-modal-title" hidden>
     <div class="svc-modal-bd"></div>
 
     <!-- Sticky back nav -->
@@ -5471,7 +5515,7 @@
       const cities = [
         { name: "Delhi",     lat: 28.6, lng: 77.2  },
         { name: "Mumbai",    lat: 19.0, lng: 72.8  },
-        { name: "Bangalore", lat: 12.9, lng: 77.5  },
+        { name: "Bengaluru", lat: 12.9, lng: 77.5  },
         { name: "Chennai",   lat: 13.0, lng: 80.2  },
         { name: "Kolkata",   lat: 22.5, lng: 88.3  },
         { name: "Hyderabad", lat: 17.3, lng: 78.4  },
@@ -5507,7 +5551,7 @@
         ["Delhi",  "Dubai"],
         ["Delhi",  "London"],
         ["Mumbai", "Dubai"],
-        ["Bangalore", "Singapore"],
+        ["Bengaluru", "Singapore"],
         ["Kolkata",   "Singapore"]
       ];
 
@@ -5655,21 +5699,21 @@
     }
 
     /* ── FORMSPREE_ENDPOINT: replace with your form ID from formspree.io ── */
-    var FORMSPREE_URL = 'https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID';
+    var FORMSPREE_URL = 'https://script.google.com/macros/s/AKfycbzqd7LwYbrz4yAQfIHJ6hfI4tLtnY4UxvI2d6QanyMdK5XyV8XdfIabhTENWPwzVKgSKQ/exec';
 
     function submitToFormspree(data, btn, successText) {
       btn.textContent = 'Sending…';
       btn.disabled = true;
       fetch(FORMSPREE_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(data)
       })
       .then(function(r) { return r.json(); })
       .then(function(res) {
-        if (res.ok || res.next) {
+        if (res.ok) {
           btn.textContent = successText;
-          btn.style.background = 'var(--green)';
+          btn.style.background = '#2e7d32';
           btn.style.color = '#fff';
         } else {
           btn.textContent = 'Error — please call us directly';

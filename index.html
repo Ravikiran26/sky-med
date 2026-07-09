@@ -31,7 +31,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Bebas+Neue&family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy:  #eef4fb;
@@ -2503,82 +2503,141 @@
       .doc-modal-body { padding: 24px 20px 36px; }
       .doc-modal-name { font-size: 19px; }
     }
-    /* Founder card */
-    .founder-card {
-      background: linear-gradient(135deg, #0d2952 0%, #1a3f7a 100%);
-      border: 1px solid rgba(21,101,192,.35);
-      border-radius: 20px;
-      padding: 44px 40px;
-      margin-bottom: 36px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 40px;
-      align-items: start;
-      position: relative;
+    /* ── Founder profile – premium executive ──────────────────── */
+    /* ── Founder – compact two-column executive profile ──────── */
+    .founder-profile-wrap { background: #f5f7fa; padding: 48px 0 56px; }
+
+    @keyframes founderIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+    .founder-split {
+      max-width: 900px; margin: 0 auto;
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid #dde5ef;
+      box-shadow: 0 1px 4px rgba(4,17,31,.04), 0 20px 56px rgba(4,17,31,.1);
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .founder-split.founder-visible { opacity: 1; transform: none; }
+
+    .founder-split.founder-visible .founder-eyebrow        { animation: founderIn .45s ease both .2s; }
+    .founder-split.founder-visible .founder-name           { animation: founderIn .5s  ease both .28s; }
+    .founder-split.founder-visible .founder-single-badge   { animation: founderIn .45s ease both .35s; }
+    .founder-split.founder-visible .founder-specialty-line { animation: founderIn .45s ease both .4s; }
+    .founder-split.founder-visible .founder-bio            { animation: founderIn .45s ease both .44s; }
+    .founder-split.founder-visible .founder-quote          { animation: founderIn .45s ease both .52s; }
+    .founder-split.founder-visible .founder-signature      { animation: founderIn .45s ease both .6s; }
+
+    /* ── Portrait – full card width, 400px tall ── */
+    .founder-photo-col {
+      position: relative; height: 400px;
+      background: linear-gradient(160deg,#04111f 0%,#0d2952 100%);
       overflow: hidden;
-      box-shadow: 0 16px 56px rgba(13,41,82,.18);
     }
-    .founder-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #e02828, #1565c8);
+    .fp-portrait {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 35%;
+      display: block;
     }
-    .founder-avatar {
-      width: 110px; height: 110px; border-radius: 50%;
-      background: linear-gradient(135deg, #e02828 0%, #8a0d1a 100%);
+    .fp-vignette {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: linear-gradient(to bottom, transparent 50%, rgba(4,17,31,.55) 100%);
+    }
+    .fp-accent {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px; z-index: 3;
+      background: linear-gradient(90deg,#e02828,#1565c8);
+    }
+
+    /* ── Content: 2-col grid on desktop ── */
+    .founder-content-col {
+      padding: 32px 44px 36px; background: #ffffff;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px;
+      position: relative; overflow: hidden;
+    }
+    .founder-wm-map {
+      position: absolute; inset: 0; opacity: .03;
+      pointer-events: none; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-head); font-size: 36px; letter-spacing: 2px;
-      color: #ffffff;
-      box-shadow: 0 6px 24px rgba(224,40,40,.35);
-      flex-shrink: 0;
     }
-    .founder-badge {
-      display: inline-flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;
+    .founder-wm-map svg { width: 140%; height: 140%; }
+
+    /* Left col – identity, quote, signature */
+    .founder-left-col { display: flex; flex-direction: column; }
+    /* Right col – bio copy */
+    .founder-right-col { display: flex; flex-direction: column; justify-content: center; }
+
+    .founder-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Inter', var(--font-body); font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; color: #e02828;
+      margin-bottom: 12px;
     }
-    .founder-badge span {
-      font-family: var(--font-label); font-size: 9px; letter-spacing: 2px;
-      text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+    .founder-eyebrow::before {
+      content: ''; display: block; width: 22px; height: 2px;
+      background: #e02828; flex-shrink: 0;
     }
-    .badge-founder { background: rgba(224,40,40,.18); color: #ff6b6b; border: 1px solid rgba(224,40,40,.3); }
-    .badge-ceo     { background: rgba(74,158,255,.15); color: #7dbfff; border: 1px solid rgba(74,158,255,.3); }
-    .badge-md      { background: rgba(61,220,132,.12); color: #5ce8a8; border: 1px solid rgba(61,220,132,.28); }
     .founder-name {
-      font-family: var(--font-head); font-size: 32px; letter-spacing: 2px;
-      color: #ffffff; margin-bottom: 4px;
+      font-family: var(--font-head); font-size: 36px; letter-spacing: 2px;
+      color: #04111f; line-height: 1.05; margin-bottom: 10px;
     }
-    .founder-creds {
-      font-family: var(--font-body); font-size: 13px; font-weight: 500;
-      color: rgba(74,158,255,.85); margin-bottom: 18px; letter-spacing: .3px;
+    .founder-single-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Inter', var(--font-body); font-size: 11px; font-weight: 600;
+      color: #1565c8; border: 1px solid rgba(21,101,200,.25);
+      background: rgba(21,101,200,.05); padding: 5px 14px;
+      border-radius: 20px; margin-bottom: 6px; width: fit-content;
     }
+    .founder-specialty-line {
+      font-family: 'Inter', var(--font-body); font-size: 11.5px;
+      color: #7a90a8; letter-spacing: .3px;
+    }
+    .founder-hr { border: none; border-top: 1px solid #edf2f7; margin: 16px 0; }
+
     .founder-bio {
-      font-family: var(--font-body); font-size: 14.5px; line-height: 1.8;
-      color: rgba(238,243,255,.75); margin-bottom: 22px;
+      font-family: 'Inter', var(--font-body); font-size: 14.5px; font-weight: 400;
+      line-height: 1.78; color: #3c5070; margin-bottom: 14px;
     }
-    .founder-skills { display: flex; flex-wrap: wrap; gap: 7px; }
-    .founder-skill {
-      background: rgba(255,255,255,.08); color: rgba(238,243,255,.85);
-      border: 1px solid rgba(255,255,255,.12);
-      font-family: var(--font-body); font-size: 11px; font-weight: 600;
-      padding: 4px 12px; border-radius: 6px;
+    .founder-bio:last-of-type { margin-bottom: 0; }
+
+    .founder-quote {
+      padding: 12px 16px 12px 18px;
+      background: linear-gradient(135deg,rgba(21,101,200,.05) 0%,rgba(4,17,31,.02) 100%);
+      border-left: 3px solid #1565c8; border-radius: 0 8px 8px 0;
     }
-    .founder-skill.cert {
-      background: rgba(61,220,132,.1); color: #5ce8a8;
-      border-color: rgba(61,220,132,.25);
+    .founder-quote-text {
+      font-family: 'Inter', var(--font-body); font-size: 13.5px; font-weight: 500;
+      font-style: italic; color: #1a2e4a; line-height: 1.65;
     }
+
+    .founder-signature { display: flex; flex-direction: column; gap: 4px; margin-top: 14px; }
+    .founder-sig-name {
+      font-family: 'Dancing Script', cursive; font-weight: 700;
+      font-size: 28px; color: #1a2e4a; line-height: 1;
+    }
+    .founder-sig-line {
+      width: 130px; height: 1.5px;
+      background: linear-gradient(to right,rgba(26,46,74,.4),transparent);
+    }
+    .founder-sig-title {
+      font-family: 'Inter', var(--font-body); font-size: 9.5px; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase; color: #8aa0bc;
+    }
+
     @media (max-width: 920px) {
       .team-grid { grid-template-columns: 1fr 1fr; }
-      .founder-card { grid-template-columns: 1fr; gap: 24px; padding: 36px 28px; }
-      .founder-avatar { width: 90px; height: 90px; font-size: 28px; }
-      .founder-note { padding: 32px 28px 28px 32px; }
+      .founder-photo-col { height: 320px; }
+      .founder-content-col { grid-template-columns: 1fr; gap: 0; padding: 28px 32px 32px; }
+      .founder-left-col { margin-bottom: 20px; }
+      .founder-name { font-size: 30px; }
+      .founder-bio { font-size: 14px; }
     }
     @media (max-width: 620px) {
       .team-grid { grid-template-columns: 1fr; }
       .team-section { padding: 64px 0 56px; }
+      .founder-photo-col { height: 280px; }
+      .founder-content-col { padding: 22px 20px 26px; }
       .founder-name { font-size: 26px; }
-      .founder-note { padding: 28px 20px 24px 24px; }
-      .founder-note-body { font-size: 14px; }
+      .founder-bio { font-size: 13.5px; }
+      .founder-sig-name { font-size: 24px; }
     }
 
     .partners-section {
@@ -3043,7 +3102,7 @@
         "alternateName": "Rapid Emergency Aerocare Team",
         "legalName": "NL Curantis International Pvt Ltd",
         "url": "https://reactairambulance.com",
-        "logo": "https://reactairambulance.com/react-logo-hq.jpg",
+        "logo": "https://reactairambulance.com/image copy.png",
         "image": "https://reactairambulance.com/hero-slide1-web.jpg",
         "description": "REACT (Rapid Emergency Aerocare Team) provides ICU-equipped air ambulance services, organ retrieval flights, neonatal transport, ECMO retrieval, helicopter emergency services (HEMS), and international medical repatriation across India and internationally.",
         "telephone": "+919849994108",
@@ -3091,7 +3150,7 @@
           { "@type": "MedicalTherapy", "name": "International Patient Transfer & Medical Repatriation" }
         ],
         "sameAs": [
-          "https://wa.me/919849994108"
+          "https://wa.me/919849994108?text=Hi%20REACT%20Air%20Ambulance%2C%20I%20need%20assistance%20with%20medical%20air%20transport.%20Please%20contact%20me."
         ]
       },
       {
@@ -3112,7 +3171,7 @@
   <nav class="nav" id="nav">
     <div class="shell nav-inner">
       <a href="#top" class="brand" aria-label="REACT Air Ambulance home">
-        <img src="react-logo-hq.jpg" alt="REACT Air Ambulance" class="brand-logo" height="68">
+        <img src="image copy.png" alt="REACT Air Ambulance" class="brand-logo" height="68">
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
@@ -3312,29 +3371,63 @@
     </section>
 
     <!-- FOUNDER -->
-    <section style="background:#ffffff; padding: 0 0 56px;">
+    <section class="founder-profile-wrap">
       <div class="shell">
-        <div class="founder-card">
-          <div class="founder-avatar">NR</div>
-          <div>
-            <div class="founder-badge">
-              <span class="badge-founder">Founder</span>
-              <span class="badge-ceo">CEO</span>
-              <span class="badge-md">Medical Director</span>
+        <div class="founder-split" id="founder-split">
+
+          <!-- Portrait – full card width, top -->
+          <div class="founder-photo-col">
+            <img src="dr-founder.jpg" alt="Dr. T. Neel Rohith Reddy" class="fp-portrait"
+              onerror="this.style.display='none'">
+            <div class="fp-vignette"></div>
+            <div class="fp-accent"></div>
+          </div>
+
+          <!-- Content – below portrait -->
+          <div class="founder-content-col">
+
+            <!-- 3% world-map watermark -->
+            <div class="founder-wm-map" aria-hidden="true">
+              <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#04111f" d="M155,55 L240,48 L270,75 L285,120 L265,175 L235,205 L190,225 L145,195 L120,155 L110,105 Z"/>
+                <path fill="#04111f" d="M200,248 L240,238 L272,278 L282,348 L260,415 L218,442 L182,415 L172,355 L178,285 Z"/>
+                <path fill="#04111f" d="M452,52 L518,47 L548,72 L558,105 L528,128 L482,132 L460,110 L448,82 Z"/>
+                <path fill="#04111f" d="M458,155 L522,150 L552,192 L562,268 L540,350 L498,395 L458,383 L428,332 L430,262 L440,198 Z"/>
+                <path fill="#04111f" d="M558,52 L780,44 L830,98 L840,168 L800,208 L712,228 L628,218 L572,185 L548,128 Z"/>
+                <path fill="#04111f" d="M630,182 L672,177 L694,225 L678,278 L652,288 L622,256 L618,212 Z"/>
+                <path fill="#04111f" d="M755,178 L808,168 L828,205 L815,248 L772,258 L742,225 Z"/>
+                <path fill="#04111f" d="M772,315 L875,295 L920,338 L908,408 L845,438 L775,415 L748,372 L752,332 Z"/>
+              </svg>
             </div>
-            <div class="founder-name">Dr. T. Neel Rohith Reddy</div>
-            <div class="founder-creds">MBBS, FEM(RLA-UK), MEM(SEMI-INDIA), MRCEM(UK), Fellowship in Aviation Medicine UK, Prehospital Emergency Consultant, Aeromedical Intensivist</div>
-            <p class="founder-bio">As an Emergency Physician, I have had the privilege of caring for patients and supporting families during some of the most difficult moments of their lives. Through my experience in aeromedical transport and critical care transfers, I have witnessed how crucial timely access to the right medical care can be — and how overwhelming it is for families when a loved one needs urgent transportation.<br><br>REACT was founded with a simple purpose: to bridge this gap by providing safe, dependable, and medically coordinated patient transportation services. We believe that families deserve more than just a transfer service — they deserve reassurance, clear communication, and a team they can trust during life's most critical moments.<br><br>Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety. We treat every patient with the same dignity, respect, and care that we would want for our own loved ones. When every second counts, we REACT.</p>
-            <div class="founder-skills">
-              <span class="founder-skill cert">ACLS Certified</span>
-              <span class="founder-skill cert">ATLS Provider</span>
-              <span class="founder-skill cert">PALS Certified</span>
-              <span class="founder-skill">Critical Care Transport</span>
-              <span class="founder-skill">Aviation Medicine</span>
-              <span class="founder-skill">ECMO Management</span>
-              <span class="founder-skill">Medical Leadership</span>
-              <span class="founder-skill">International Repatriation</span>
+
+            <!-- Left column: identity + quote + signature -->
+            <div class="founder-left-col">
+              <div class="founder-eyebrow">Message from our Founder</div>
+              <div class="founder-name">Dr. Neel Rohith Reddy</div>
+              <div class="founder-single-badge">
+                <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 1L2 3.5v3C2 9 3.8 10.8 6 11.5 8.2 10.8 10 9 10 6.5v-3L6 1z"/>
+                </svg>
+                Founder &amp; Medical Director
+              </div>
+              <div class="founder-specialty-line">Emergency Physician &bull; Aeromedical Intensivist</div>
+              <hr class="founder-hr">
+              <div class="founder-quote">
+                <div class="founder-quote-text">"Every patient deserves ICU-level care from the moment transport begins."</div>
+              </div>
+              <div class="founder-signature">
+                <span class="founder-sig-name">Dr. Neel Rohith Reddy</span>
+                <div class="founder-sig-line"></div>
+                <span class="founder-sig-title">Founder &amp; Medical Director, REACT Air Ambulance</span>
+              </div>
             </div>
+
+            <!-- Right column: bio -->
+            <div class="founder-right-col">
+              <p class="founder-bio">In critical care, minutes determine outcomes. Through a decade of aeromedical transport and emergency response across India and beyond, I have seen how the right clinical team — deployed at speed — saves lives that would otherwise be lost.</p>
+              <p class="founder-bio">REACT exists to close that gap: physician-led, ICU-equipped aeromedical transport built on one conviction — that no patient should wait for qualified care because of geography.</p>
+            </div>
+
           </div>
         </div>
       </div>
@@ -3354,7 +3447,7 @@
           <!-- Dr. Sujender Rao Arepally -->
           <div class="team-card" data-doc="sujender">
             <div class="team-photo-wrap">
-              <img src="dr-sujender.jpg" alt="Dr. Sujender Rao Arepally" class="team-photo" style="object-position:center 35%" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <img src="dr-sujender.jpg" alt="Dr. Sujender Rao Arepally" class="team-photo" style="object-position:center 10%" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="team-photo-init">SA</div>
             </div>
             <div class="team-card-body">
@@ -3761,7 +3854,7 @@
 
           <!-- Large: air ambulance in flight -->
           <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1696243144263-76fbba9f8d18?fm=jpg&q=80&w=960&auto=format&fit=crop" alt="REACT medical helicopter alongside ambulance at emergency scene" loading="lazy" onerror="this.style.opacity='0'">
+            <img src="ops-helipad.jpg" alt="REACT air ambulance crew transferring patient on rooftop helipad" loading="lazy" onerror="this.style.opacity='0'" style="object-position:center 40%">
             <div class="gallery-caption">
               <span class="cap-tag">Air Ambulance</span>
               <span class="cap-title">Rapid Deployment, Every Mission</span>
@@ -3788,7 +3881,7 @@
 
           <!-- Bottom-right 1: ground ambulance -->
           <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=600&q=80" alt="Ground ambulance coordination for bed-to-bed transfer" loading="lazy" onerror="this.style.opacity='0'">
+            <img src="ground-transfer.jpg" alt="REACT Air Ambulance ground transfer team loading patient at emergency entrance" loading="lazy" onerror="this.style.opacity='0'" style="object-position:center 40%">
             <div class="gallery-caption">
               <span class="cap-tag">Ground Transfer</span>
               <span class="cap-title">Bed-to-Bed Continuity</span>
@@ -4965,7 +5058,7 @@
                 <div class="contact-card-value">+91 9849994108</div>
               </div>
             </a>
-            <a href="https://wa.me/919849994108" class="contact-card">
+            <a href="https://wa.me/919849994108?text=Hi%20REACT%20Air%20Ambulance%2C%20I%20need%20assistance%20with%20medical%20air%20transport.%20Please%20contact%20me." class="contact-card">
               <div class="contact-card-icon wa">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" stroke="none"/></svg>
               </div>
@@ -5058,7 +5151,7 @@
         <p style="color:rgba(238,243,255,.55);font-size:15px;margin-top:10px;font-family:var(--font-body)">Have ready: patient location, condition &amp; receiving hospital if known. We handle everything else.</p>
         <div class="cta-actions">
           <a href="tel:9849994108" class="btn btn-red">Call Emergency Line</a>
-          <a href="https://wa.me/919849994108" class="btn btn-green">WhatsApp Us Now</a>
+          <a href="https://wa.me/919849994108?text=Hi%20REACT%20Air%20Ambulance%2C%20I%20need%20assistance%20with%20medical%20air%20transport.%20Please%20contact%20me." class="btn btn-green">WhatsApp Us Now</a>
         </div>
       </div>
     </section>
@@ -5071,12 +5164,12 @@
       <div class="footer-grid">
         <div>
           <a href="#top" class="brand" aria-label="REACT Air Ambulance home">
-            <img src="react-logo-hq.jpg" alt="REACT Air Ambulance" class="brand-logo" height="68">
+            <img src="image copy.png" alt="REACT Air Ambulance" class="brand-logo" height="68">
           </a>
           <p style="margin-top:18px; max-width:270px; line-height:1.7">ICU-equipped air ambulance command across India and internationally.</p>
           <span class="footer-dgca">Air Medical Service</span>
           <div class="social">
-            <a href="https://wa.me/919849994108" aria-label="WhatsApp" style="border-color:rgba(37,211,102,.3); color:#25d366;">
+            <a href="https://wa.me/919849994108?text=Hi%20REACT%20Air%20Ambulance%2C%20I%20need%20assistance%20with%20medical%20air%20transport.%20Please%20contact%20me." aria-label="WhatsApp" style="border-color:rgba(37,211,102,.3); color:#25d366;">
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
             <a href="mailto:ops@reactairambulance.com" aria-label="Email">
@@ -5129,7 +5222,7 @@
       </span>
       <span class="btn-label">Emergency Call</span>
     </a>
-    <a class="float-btn float-whatsapp" href="https://wa.me/919849994108" aria-label="Chat on WhatsApp">
+    <a class="float-btn float-whatsapp" href="https://wa.me/919849994108?text=Hi%20REACT%20Air%20Ambulance%2C%20I%20need%20assistance%20with%20medical%20air%20transport.%20Please%20contact%20me." aria-label="Chat on WhatsApp">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       </span>
@@ -5418,6 +5511,15 @@
         })(performance.now());
       });
     }, { threshold: 0.3 }).observe(statsSection);
+
+    // ── Founder card scroll fade-in ─────────────────────────
+    (function() {
+      const el = document.getElementById('founder-split');
+      if (!el) return;
+      new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) el.classList.add('founder-visible');
+      }, { threshold: 0.12 }).observe(el);
+    })();
 
     // ── Three.js Globe ──────────────────────────────────────
     function initGlobe() {
@@ -6076,7 +6178,7 @@
       },
       'svc-ground': {
         num: '01', cat: 'Ground & Response',
-        img: 'https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=1200&q=80',
+        img: 'ground-transfer.jpg',
         title: 'Critical Care Ground Ambulance',
         desc: [
           'Our Advanced Life Support (ALS) and Critical Care ground ambulances serve as the essential link in every air medical mission — transporting patients from their hospital bed to the aircraft, and from the aircraft to the receiving hospital, without any interruption in clinical care.',
@@ -6244,7 +6346,7 @@
           title: 'Senior Emergency Medicine Physician',
           exp: '15+ Years Experience',
           initials: 'SA',
-          photo: 'dr-sujender.jpg', photoPos: 'center 35%',
+          photo: 'dr-sujender.jpg', photoPos: 'center 10%',
           bio: 'Senior Emergency Physician with 15+ years of experience, including 10+ years in Emergency Medicine and critical care retrieval. Led international and domestic air ambulance transfers across continents. Former ship physician aboard Norwegian Cruise Line. Certified educator in emergency resuscitation and advanced life support.',
           certs: ['ACLS Instructor','BLS Instructor','ATLS Provider','PALS Provider'],
           skills: ['International Retrieval','Maritime Medicine','Ventilator Management','Advanced Airway','Critical Care Transport']

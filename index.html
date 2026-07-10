@@ -2682,12 +2682,17 @@
     }
     .hosp-item {
       display: inline-flex; align-items: center; justify-content: center;
-      padding: 0 44px; height: 72px;
+      padding: 0 40px; height: 88px;
       border-right: 1px solid rgba(21,101,192,.1);
       white-space: nowrap; cursor: default;
       transition: opacity .25s;
     }
-    .hosp-item:hover { opacity: 0.75; }
+    .hosp-item img {
+      height: 40px; width: auto; max-width: 160px;
+      object-fit: contain; display: block;
+      transition: opacity .25s;
+    }
+    .hosp-item:hover img { opacity: 0.75; }
     .hosp-logo-text {
       font-size: 22px; font-weight: 800; line-height: 1;
       letter-spacing: -0.5px;
@@ -3563,35 +3568,21 @@
       <div class="hosp-ticker-wrap">
         <div class="hosp-ticker-track">
           <!-- Set 1 -->
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#1a3a6b;">AIIMS<span style="color:#6a8aaa;">Delhi</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#9b1b30;">Apollo<span style="color:#c0392b;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#005baa;">AIG<span style="color:#6a8aaa;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#e85d04;">Medicover<span style="color:#6a8aaa;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#c0392b;">Fortis<span style="color:#6a8aaa;">Healthcare</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#2e7d32;">Medanta<span style="color:#6a8aaa;">The Medicity</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#b71c1c;">Max<span style="color:#6a8aaa;">Healthcare</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#e65100;">Narayana<span style="color:#6a8aaa;">Health</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#6a1a2e;">Manipal<span style="color:#6a8aaa;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#003566;">KIMS<span style="color:#6a8aaa;">Hyderabad</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#1b5e20;">Yashoda<span style="color:#6a8aaa;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#6a0572;">Aster<span style="color:#6a8aaa;">CMI</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#003087;">Kokilaben<span style="color:#6a8aaa;">Hospital</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#00695c;">Care<span style="color:#6a8aaa;">Hospitals</span></span></span>
+          <span class="hosp-item"><img src="logo-apollo.png" alt="Apollo Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#9b1b30;\'>Apollo<span style=\'color:#c0392b;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="https://upload.wikimedia.org/wikipedia/en/6/6c/Yashoda_Hospitals_logo.png" alt="Yashoda Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#1b5e20;\'>Yashoda<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-kims.png" alt="KIMS Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#003566;\'>KIMS<span style=\'color:#6a8aaa;\'>Hyderabad</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-aig.png" alt="AIG Hospitals" loading="lazy" style="height:44px;border-radius:6px;" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#005baa;\'>AIG<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-medicover.png" alt="Medicover Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#e85d04;\'>Medicover<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-care.png" alt="Care Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#00695c;\'>Care<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-continental.png" alt="Continental Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#1a7a6e;\'>Continental<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
           <!-- Set 2 duplicate for seamless loop -->
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#1a3a6b;">AIIMS<span style="color:#6a8aaa;">Delhi</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#9b1b30;">Apollo<span style="color:#c0392b;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#005baa;">AIG<span style="color:#6a8aaa;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#e85d04;">Medicover<span style="color:#6a8aaa;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#c0392b;">Fortis<span style="color:#6a8aaa;">Healthcare</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#2e7d32;">Medanta<span style="color:#6a8aaa;">The Medicity</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#b71c1c;">Max<span style="color:#6a8aaa;">Healthcare</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#e65100;">Narayana<span style="color:#6a8aaa;">Health</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#6a1a2e;">Manipal<span style="color:#6a8aaa;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#003566;">KIMS<span style="color:#6a8aaa;">Hyderabad</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#1b5e20;">Yashoda<span style="color:#6a8aaa;">Hospitals</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#6a0572;">Aster<span style="color:#6a8aaa;">CMI</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#003087;">Kokilaben<span style="color:#6a8aaa;">Hospital</span></span></span>
-          <span class="hosp-item"><span class="hosp-logo-text" style="color:#00695c;">Care<span style="color:#6a8aaa;">Hospitals</span></span></span>
+          <span class="hosp-item"><img src="logo-apollo.png" alt="Apollo Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#9b1b30;\'>Apollo<span style=\'color:#c0392b;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="https://upload.wikimedia.org/wikipedia/en/6/6c/Yashoda_Hospitals_logo.png" alt="Yashoda Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#1b5e20;\'>Yashoda<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-kims.png" alt="KIMS Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#003566;\'>KIMS<span style=\'color:#6a8aaa;\'>Hyderabad</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-aig.png" alt="AIG Hospitals" loading="lazy" style="height:44px;border-radius:6px;" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#005baa;\'>AIG<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-medicover.png" alt="Medicover Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#e85d04;\'>Medicover<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-care.png" alt="Care Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#00695c;\'>Care<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item"><img src="logo-continental.png" alt="Continental Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#1a7a6e;\'>Continental<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
         </div>
       </div>
     </section>

@@ -1298,42 +1298,125 @@
     .bottom-bar-status { display: flex; align-items: center; gap: 8px; }
 
     /* ── FLOATING ────────────────────────────────────────── */
-    .floating { position: fixed; right: 20px; bottom: 22px; z-index: 400; display: grid; gap: 10px; }
-
-    .float-btn {
-      min-width: 164px; height: 48px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      color: #eef3ff; font-family: var(--font-label);
-      font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; border: none;
+    /* ── EMERGENCY WIDGET ───────────────────────────────────── */
+    .emerg-widget {
+      position: fixed; right: 20px; bottom: 24px; z-index: 400;
+      width: 224px;
+      background: rgba(4,17,31,.93);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(74,158,255,.14);
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 15px 15px 13px;
+      box-shadow:
+        0 12px 40px rgba(0,0,0,.55),
+        0 0 0 1px rgba(255,255,255,.04) inset,
+        0 0 60px rgba(224,40,40,.06);
+      animation: widgetSlideIn .65s cubic-bezier(.34,1.56,.64,1) 1.2s both;
+    }
+    /* scanline texture for dashboard feel */
+    .emerg-widget::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 18px; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 3px,
+        rgba(255,255,255,.012) 3px, rgba(255,255,255,.012) 4px
+      );
+    }
+    /* top red accent bar */
+    .emerg-widget::after {
+      content: '';
+      position: absolute; top: 0; left: 20px; right: 20px; height: 2px;
+      background: linear-gradient(90deg, transparent, #e02828 40%, #e02828 60%, transparent);
+      border-radius: 0 0 2px 2px;
+    }
+    @keyframes widgetSlideIn {
+      from { opacity: 0; transform: translateX(50px) translateY(8px); }
+      to   { opacity: 1; transform: none; }
     }
 
-    .float-emergency {
-      background: #e02828; color: #fff;
-      min-width: 58px; width: 58px; height: 58px;
-      border-radius: 50%;
-      box-shadow: 0 4px 20px rgba(224,40,40,.5);
-      animation: emergPulse 2s ease-in-out infinite;
+    .emerg-widget-hd {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 13px; padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
-    .float-emergency .btn-label { display: none; }
-    .float-emergency .btn-icon svg { width: 22px; height: 22px; }
-    @keyframes emergPulse {
-      0%,100% { box-shadow: 0 4px 20px rgba(224,40,40,.4); }
-      50%      { box-shadow: 0 4px 32px rgba(224,40,40,.75), 0 0 0 8px rgba(224,40,40,.1); }
+    .emerg-indicator {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #e02828; flex-shrink: 0; margin-top: 3px;
+      animation: indicPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes indicPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(224,40,40,.7); }
+      60%      { box-shadow: 0 0 0 5px rgba(224,40,40,0); }
+    }
+    .emerg-widget-title {
+      font-family: var(--font-label); font-size: 10.5px;
+      letter-spacing: 1.6px; text-transform: uppercase;
+      color: #eef3ff; line-height: 1.2; font-weight: 700;
+    }
+    .emerg-widget-sub {
+      font-family: var(--font-label); font-size: 8px;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--muted); margin-top: 3px;
     }
 
-    .float-whatsapp {
-      background: #25d366; color: #fff;
-      min-width: 58px; width: 58px; height: 58px;
-      border-radius: 50%;
-      box-shadow: 0 4px 20px rgba(37,211,102,.45);
-      animation: waPulse 2s ease-in-out infinite;
-    }
-    .float-whatsapp .btn-label { display: none; }
-    .float-whatsapp .btn-icon svg { width: 28px; height: 28px; }
+    .emerg-widget-btns { display: grid; gap: 8px; margin-bottom: 11px; }
 
-    @keyframes waPulse {
-      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.4); }
-      50%      { box-shadow: 0 4px 32px rgba(37,211,102,.75), 0 0 0 8px rgba(37,211,102,.08); }
+    .emerg-btn-call {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 14px;
+      background: linear-gradient(135deg, #c8211e, #e02828 50%, #ff4444);
+      color: #fff; border-radius: 10px;
+      font-family: var(--font-label); font-size: 10px;
+      letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700;
+      box-shadow: 0 4px 18px rgba(224,40,40,.45);
+      transition: transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .emerg-btn-call::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, transparent 60%);
+      border-radius: 10px; pointer-events: none;
+    }
+    .emerg-btn-call:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(224,40,40,.65);
+    }
+
+    .emerg-btn-wa {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 14px;
+      background: rgba(37,211,102,.1);
+      border: 1px solid rgba(37,211,102,.28);
+      color: #3ddc84; border-radius: 10px;
+      font-family: var(--font-label); font-size: 10px;
+      letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+    .emerg-btn-wa:hover {
+      background: rgba(37,211,102,.18);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37,211,102,.25);
+    }
+
+    .emerg-widget-footer {
+      text-align: center;
+      font-family: var(--font-label); font-size: 8px;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(106,138,170,.6);
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+
+    @media (max-width: 620px) {
+      .emerg-widget {
+        right: 10px; bottom: 12px;
+        width: 196px; padding: 13px 13px 11px;
+        border-radius: 15px;
+      }
+      .emerg-widget-title { font-size: 9.5px; }
+      .emerg-btn-call, .emerg-btn-wa { padding: 10px 12px; font-size: 9px; }
     }
 
     /* ── KEYFRAMES ───────────────────────────────────────── */
@@ -2840,8 +2923,6 @@
       .qq-card { padding: 28px 18px 24px; }
       .qq-heading { font-size: clamp(18px, 6vw, 26px); }
 
-      .floating { right: 12px; bottom: 14px; }
-      .float-btn .btn-icon { font-size: 20px; }
 
 .bottom-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
       .footer-grid { grid-template-columns: 1fr; gap: 30px; }
@@ -2858,8 +2939,6 @@
 
       .why-grid { grid-template-columns: repeat(2, 1fr); }
       .testi-grid { grid-template-columns: 1fr; }
-      .floating { right: 10px; bottom: 10px; gap: 8px; }
-      .float-btn { width: 48px; height: 48px; }
     }
 
     /* ── PHOTO ENHANCEMENTS ──────────────────────────────── */
@@ -5208,19 +5287,25 @@
   </footer>
 
   <!-- FLOATING BUTTONS -->
-  <div class="floating" aria-label="Emergency contacts">
-    <a class="float-btn float-emergency" href="tel:9849994108" aria-label="Emergency Call">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-      </span>
-      <span class="btn-label">Emergency Call</span>
-    </a>
-    <a class="float-btn float-whatsapp" href="https://wa.me/919849994108?text=Hi%20REACT%20Air%20Ambulance%2C%20I%20need%20assistance%20with%20medical%20air%20transport.%20Please%20contact%20me." aria-label="Chat on WhatsApp">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      </span>
-      <span class="btn-label">WhatsApp</span>
-    </a>
+  <div class="emerg-widget" role="complementary" aria-label="Emergency contacts">
+    <div class="emerg-widget-hd">
+      <div class="emerg-indicator" aria-hidden="true"></div>
+      <div>
+        <div class="emerg-widget-title">Emergency Assistance</div>
+        <div class="emerg-widget-sub">24×7 Medical Coordination</div>
+      </div>
+    </div>
+    <div class="emerg-widget-btns">
+      <a href="tel:9849994108" class="emerg-btn-call" aria-label="Call REACT Air Ambulance emergency line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        Call Now
+      </a>
+      <a href="https://wa.me/919849994108?text=Hi%20REACT%20Air%20Ambulance%2C%20I%20need%20assistance%20with%20medical%20air%20transport.%20Please%20contact%20me." class="emerg-btn-wa" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="emerg-widget-footer">ICU &bull; Doctor-Led &bull; Global</div>
   </div>
 
   <!-- Service Detail Page — must be in DOM before scripts run -->

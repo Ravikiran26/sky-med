@@ -785,14 +785,14 @@
     .stat-number {
       font-family: var(--font-head);
       font-size: clamp(52px, 6vw, 72px);
-      line-height: .9; letter-spacing: 3px; color: var(--white);
+      line-height: .9; letter-spacing: 3px; color: #0d2952;
     }
-
     .stat-accent { color: var(--skylt); }
 
     .stat-label {
       margin-top: 12px; color: var(--muted);
-      font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+      font-family: var(--font-body); font-size: 12px; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase;
     }
 
     /* ── TICKER ──────────────────────────────────────────── */
@@ -1844,15 +1844,26 @@
       .svc-sticky-phone-num { font-size: 19px; }
     }
 
-    /* ── EQUIPMENT SECTION ───────────────────────────────── */
+    /* ── EQUIPMENT SECTION — Premium Redesign ───────────────── */
     .equip-section {
-      background: #f4f8ff;
-      padding: 100px 0 90px;
+      background: #f0f5fb;
+      padding: 96px 0 88px;
+      position: relative; overflow: hidden;
     }
-    .equip-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      gap: 24px; margin-bottom: 48px;
+    /* ECG watermark */
+    .equip-bg-mark {
+      position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+      pointer-events: none; z-index: 0; overflow: hidden; height: 120px;
     }
+    .equip-bg-mark svg { width: 100%; height: 100%; opacity: .03; }
+    .equip-section > .shell > * { position: relative; z-index: 1; }
+
+    /* ── Header ── */
+    .equip-hdr {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 32px; margin-bottom: 44px;
+    }
+    .equip-hdr-left { max-width: 580px; }
     .equip-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-label); font-size: 11px; letter-spacing: 4px;
@@ -1871,163 +1882,311 @@
       50%      { opacity:0.4; transform:scale(0.6); }
     }
     .equip-title {
-      font-family: var(--font-head); font-size: clamp(32px, 4vw, 52px);
+      font-family: var(--font-head); font-size: clamp(30px, 4vw, 52px);
       letter-spacing: 2px; line-height: 1.05; color: #0d2035;
-      text-transform: uppercase;
+      text-transform: uppercase; margin-bottom: 14px;
     }
     .equip-intro {
-      max-width: 560px; margin-top: 14px;
-      color: #4a6a8a; font-size: 15px; line-height: 1.8; font-weight: 400;
+      color: #4a6a8a; font-size: 15px; line-height: 1.8;
     }
-    .equip-header-stat {
-      flex-shrink: 0; text-align: center;
-      background: #04111f; border-radius: 12px;
-      padding: 20px 28px;
+    .equip-cert-row {
+      display: flex; flex-direction: column; gap: 7px; align-items: flex-end;
+      padding-top: 4px; flex-shrink: 0;
     }
-    .equip-stat-num {
-      font-family: var(--font-head); font-size: 56px; letter-spacing: -2px;
-      color: #eef3ff; line-height: 1;
+    .e-cert {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-label); font-size: 7.5px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 13px 5px 10px; border-radius: 20px; border: 1px solid;
+      white-space: nowrap;
     }
-    .equip-stat-label {
+    .e-cert-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .e-cert--dgca { color: #0d6b3f; background: rgba(13,107,63,.08); border-color: rgba(13,107,63,.28); }
+    .e-cert--dgca .e-cert-dot { background: #0d6b3f; }
+    .e-cert--icu  { color: #1565c8; background: rgba(21,101,200,.08); border-color: rgba(21,101,200,.28); }
+    .e-cert--icu  .e-cert-dot { background: #1565c8; }
+    .e-cert--ped  { color: #7c3aed; background: rgba(124,58,237,.08); border-color: rgba(124,58,237,.28); }
+    .e-cert--ped  .e-cert-dot { background: #7c3aed; }
+
+    /* ── Hero split: infographic + featured card ── */
+    .equip-hero {
+      display: grid; grid-template-columns: 1fr 400px;
+      gap: 22px; margin-bottom: 36px; align-items: stretch;
+    }
+    .equip-icu-wrap {
+      position: relative; border-radius: 20px; overflow: hidden;
+      background: #04111f; min-height: 320px;
+    }
+    .equip-icu-wrap img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      display: block; transition: transform .55s ease;
+      filter: brightness(.88);
+    }
+    .equip-icu-wrap:hover img { transform: scale(1.035); }
+    .equip-icu-corner-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: rgba(4,17,31,.72); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.1); border-radius: 8px;
+      padding: 6px 14px;
+      font-family: var(--font-label); font-size: 8px; letter-spacing: 2px;
+      text-transform: uppercase; color: #4a9eff;
+    }
+
+    /* ── Featured Ventilator Card ── */
+    .equip-feat {
+      background: #04111f;
+      border-radius: 20px;
+      padding: 34px 30px 30px;
+      position: relative; overflow: hidden;
+      border: 1px solid rgba(21,101,200,.18);
+      display: flex; flex-direction: column;
+      transition: box-shadow .3s, border-color .3s;
+    }
+    .equip-feat:hover {
+      box-shadow: 0 0 0 1px #1565c8, 0 20px 60px rgba(21,101,200,.22);
+      border-color: #1565c8;
+    }
+    .equip-feat::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #1565c8, #4a9eff, #1565c8);
+    }
+    .equip-feat-ecg-bg {
+      position: absolute; bottom: 24px; left: 0; right: 0; height: 55px;
+      pointer-events: none;
+    }
+    .equip-feat-ecg-bg svg { width: 100%; height: 100%; opacity: .07; }
+    .equip-feat-star {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-label); font-size: 7.5px; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #4a9eff; margin-bottom: 18px;
+    }
+    .equip-feat-star::before {
+      content: ''; width: 24px; height: 1px; background: rgba(74,158,255,.5);
+    }
+    .equip-feat-name {
+      font-family: var(--font-head); font-size: 30px; letter-spacing: 2px;
+      color: #eef3ff; line-height: 1.05; margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+    .equip-feat-sub {
+      font-family: var(--font-body); font-size: 12px; color: rgba(238,243,255,.4);
+      margin-bottom: 18px; letter-spacing: .3px;
+    }
+    .equip-feat-mfr {
+      font-family: var(--font-label); font-size: 8.5px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(238,243,255,.3);
+      margin-bottom: 18px; padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .equip-feat-specs {
+      list-style: none; display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 22px; flex: 1;
+    }
+    .equip-feat-specs li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: var(--font-body); font-size: 13px; color: rgba(238,243,255,.68);
+      line-height: 1.5;
+    }
+    .equip-feat-specs li::before {
+      content: ''; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%;
+      background: #4a9eff; margin-top: 6px;
+    }
+    .equip-feat-badges {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px;
+    }
+    .equip-feat-badge {
+      font-family: var(--font-label); font-size: 7px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(74,158,255,.85);
+      border: 1px solid rgba(74,158,255,.22); border-radius: 4px; padding: 4px 10px;
+    }
+    .equip-feat-cta {
+      display: inline-flex; align-items: center; gap: 6px;
       font-family: var(--font-label); font-size: 9px; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--skylt); margin-top: 4px;
+      text-transform: uppercase; color: #4a9eff; text-decoration: none;
+      transition: gap .22s;
     }
+    .equip-feat-cta:hover { gap: 12px; }
+    .equip-feat-cta-arrow { display: inline-block; transition: transform .22s; }
+    .equip-feat-cta:hover .equip-feat-cta-arrow { transform: translateX(4px); }
 
-    /* 4-column grid, last 3 centered */
-    .equip-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+    /* ── Equipment card grid ── */
+    .equip-grid-new {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-bottom: 32px;
     }
+    .equip-card-new {
+      background: #fff; border: 1px solid #dce8f5; border-radius: 16px;
+      padding: 26px 22px 20px; position: relative; overflow: hidden;
+      transition: transform .24s, box-shadow .24s, border-color .24s;
+      cursor: default;
+    }
+    .equip-card-new::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      border-radius: 16px 16px 0 0; opacity: 0; transition: opacity .22s;
+    }
+    .equip-card-new:hover { transform: translateY(-5px); border-color: #b0c8e8; }
+    .equip-card-new:hover::after { opacity: 1; }
 
-    .equip-card {
-      background: #ffffff;
-      border: 1px solid #dde8f5;
-      border-radius: 14px;
-      padding: 26px 22px 20px;
-      cursor: pointer;
-      transition: box-shadow .25s, transform .22s, border-color .22s;
-      position: relative;
-    }
-    .equip-card::after {
-      content: ""; position: absolute; top: 0; left: 24px; right: 24px; height: 3px;
-      background: var(--sky); border-radius: 0 0 3px 3px;
-      opacity: 0; transition: opacity .22s;
-    }
-    .equip-card:hover { box-shadow: 0 8px 32px rgba(21,101,200,.14); transform: translateY(-4px); border-color: #b8d0ee; }
-    .equip-card:hover::after { opacity: 1; }
-    .equip-card.active { border-color: #1565c8; box-shadow: 0 8px 36px rgba(21,101,200,.2); }
-    .equip-card.active::after { opacity: 1; background: var(--red); }
+    /* Category colour theme */
+    .ecat-monitoring::after  { background: #1565c8; }
+    .ecat-monitoring:hover   { box-shadow: 0 12px 40px rgba(21,101,200,.16); }
+    .ecat-respiratory::after { background: #0d8a5e; }
+    .ecat-respiratory:hover  { box-shadow: 0 12px 40px rgba(13,138,94,.14); }
+    .ecat-airway::after      { background: #7c3aed; }
+    .ecat-airway:hover       { box-shadow: 0 12px 40px rgba(124,58,237,.14); }
+    .ecat-infusion::after    { background: #c25a0a; }
+    .ecat-infusion:hover     { box-shadow: 0 12px 40px rgba(194,90,10,.13); }
+    .ecat-circulation::after { background: #e02828; }
+    .ecat-circulation:hover  { box-shadow: 0 12px 40px rgba(224,40,40,.14); }
 
-    .equip-card-top {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      margin-bottom: 14px;
+    .ec-cat-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-label); font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;
     }
-    .equip-icon {
-      width: 46px; height: 46px; border-radius: 11px;
-      background: #e8f0fb;
-      display: grid; place-items: center;
-      transition: background .22s;
+    .ec-cat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .ecat-monitoring .ec-cat-tag  { color: #1565c8; }
+    .ecat-monitoring .ec-cat-dot  { background: #1565c8; }
+    .ecat-respiratory .ec-cat-tag { color: #0d8a5e; }
+    .ecat-respiratory .ec-cat-dot { background: #0d8a5e; }
+    .ecat-airway .ec-cat-tag      { color: #7c3aed; }
+    .ecat-airway .ec-cat-dot      { background: #7c3aed; }
+    .ecat-infusion .ec-cat-tag    { color: #c25a0a; }
+    .ecat-infusion .ec-cat-dot    { background: #c25a0a; }
+    .ecat-circulation .ec-cat-tag { color: #e02828; }
+    .ecat-circulation .ec-cat-dot { background: #e02828; }
+
+    .ec-icon {
+      width: 44px; height: 44px; border-radius: 11px;
+      display: grid; place-items: center; margin-bottom: 14px;
     }
-    .equip-card:hover .equip-icon, .equip-card.active .equip-icon { background: #d0e2f8; }
-    .equip-icon svg { width: 22px; height: 22px; stroke: #1565c8; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .equip-num {
-      font-family: var(--font-head); font-size: 32px; letter-spacing: -1px;
-      color: #dde8f5; line-height: 1;
-    }
-    .equip-name {
+    .ecat-monitoring .ec-icon  { background: rgba(21,101,200,.1); }
+    .ecat-respiratory .ec-icon { background: rgba(13,138,94,.1); }
+    .ecat-airway .ec-icon      { background: rgba(124,58,237,.1); }
+    .ecat-infusion .ec-icon    { background: rgba(194,90,10,.1); }
+    .ecat-circulation .ec-icon { background: rgba(224,40,40,.1); }
+    .ec-icon svg { width: 22px; height: 22px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .ecat-monitoring .ec-icon svg  { stroke: #1565c8; }
+    .ecat-respiratory .ec-icon svg { stroke: #0d8a5e; }
+    .ecat-airway .ec-icon svg      { stroke: #7c3aed; }
+    .ecat-infusion .ec-icon svg    { stroke: #c25a0a; }
+    .ecat-circulation .ec-icon svg { stroke: #e02828; }
+
+    .ec-name {
       font-family: var(--font-body); font-size: 14px; font-weight: 700;
       color: #0d2035; line-height: 1.3; margin-bottom: 12px;
     }
-    .equip-name span { font-weight: 400; color: #4a6a8a; }
-    .equip-bullets {
-      list-style: none; display: grid; gap: 6px; margin-bottom: 14px;
+    .ec-name small { display: block; font-weight: 400; color: #5a7a9a; font-size: 12px; margin-top: 2px; }
+    .ec-specs {
+      list-style: none; display: grid; gap: 7px; margin-bottom: 14px;
     }
-    .equip-bullets li {
-      font-size: 12.5px; color: #2d4a6a; line-height: 1.45;
-      display: flex; align-items: flex-start; gap: 8px;
+    .ec-specs li {
+      font-family: var(--font-body); font-size: 12px; color: #3a5570; line-height: 1.45;
+      display: flex; align-items: flex-start; gap: 7px;
     }
-    .equip-bullets li::before {
-      content: ""; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%;
-      background: var(--red); margin-top: 5px;
+    .ec-specs li::before {
+      content: ''; flex-shrink: 0; width: 4px; height: 4px; border-radius: 50%; margin-top: 5px;
     }
-    .equip-more {
-      font-family: var(--font-body); font-size: 11px; font-weight: 600;
-      letter-spacing: 0.5px; color: #1565c8;
-      transition: color .2s;
-    }
-    .equip-card:hover .equip-more { color: var(--red); }
-    .equip-card.active .equip-more { color: var(--red); }
+    .ecat-monitoring .ec-specs li::before  { background: #1565c8; }
+    .ecat-respiratory .ec-specs li::before { background: #0d8a5e; }
+    .ecat-airway .ec-specs li::before      { background: #7c3aed; }
+    .ecat-infusion .ec-specs li::before    { background: #c25a0a; }
+    .ecat-circulation .ec-specs li::before { background: #e02828; }
 
-    /* Expandable detail panel */
-    .equip-detail {
-      margin-top: 20px;
-      background: #04111f;
-      border-radius: 14px;
-      padding: 36px 40px;
-      display: none;
+    .ec-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; }
+    .ec-badge {
+      font-family: var(--font-label); font-size: 7px; letter-spacing: 1px;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px; border: 1px solid;
     }
-    .equip-detail.open { display: block; animation: fadeSlideUp .28s ease both; }
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .equip-detail-inner {
-      display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start;
-    }
-    .equip-detail-num {
-      font-family: var(--font-head); font-size: 80px; letter-spacing: -3px;
-      color: rgba(255,255,255,.07); line-height: 1; margin-bottom: -12px;
-    }
-    .equip-detail-name {
-      font-family: var(--font-head); font-size: 22px; letter-spacing: 1.5px;
-      color: #eef3ff; line-height: 1.2; text-transform: uppercase;
-    }
-    .equip-detail-list {
-      list-style: none; display: grid;
-      grid-template-columns: 1fr 1fr; gap: 10px 32px;
-    }
-    .equip-detail-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      color: rgba(238,243,255,.7); font-size: 14px; line-height: 1.6;
-    }
-    .equip-detail-list li::before {
-      content: ""; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%;
-      background: var(--skylt); margin-top: 7px;
-    }
+    .ecb-dgca { color: #0d6b3f; border-color: rgba(13,107,63,.28); background: rgba(13,107,63,.06); }
+    .ecb-icu  { color: #1565c8; border-color: rgba(21,101,200,.28); background: rgba(21,101,200,.06); }
+    .ecb-ped  { color: #7c3aed; border-color: rgba(124,58,237,.28); background: rgba(124,58,237,.06); }
+    .ecb-aed  { color: #e02828; border-color: rgba(224,40,40,.28); background: rgba(224,40,40,.06); }
+    .ecb-bat  { color: #c25a0a; border-color: rgba(194,90,10,.28); background: rgba(194,90,10,.06); }
 
-    /* Flying ICU Banner */
-    .equip-banner {
-      margin-top: 36px;
-      background: #04111f;
-      border-radius: 14px;
-      padding: 32px 40px;
+    .ec-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid #eef2f8;
     }
-    .equip-banner-label {
-      font-family: var(--font-head); font-size: 20px; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--skylt); margin-bottom: 12px;
+    .ec-mfr { font-family: var(--font-label); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; color: #9ab0c8; }
+    .ec-arrow {
+      font-family: var(--font-label); font-size: 8.5px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #1565c8;
+      display: flex; align-items: center; gap: 4px; transition: gap .2s;
     }
-    .equip-banner p {
-      color: rgba(238,243,255,.7); font-size: 15px; line-height: 1.85;
-      max-width: 860px;
-    }
-    .equip-banner strong { color: #eef3ff; }
+    .ec-arrow-icon { display: inline-block; transition: transform .2s; }
+    .equip-card-new:hover .ec-arrow { gap: 8px; }
+    .equip-card-new:hover .ec-arrow-icon { transform: translateX(3px); }
 
-    @media (max-width: 1024px) {
-      .equip-grid { grid-template-columns: repeat(3, 1fr); }
+    /* ── Manufacturer trust strip ── */
+    .equip-mfr-strip {
+      background: #fff; border: 1px solid #dce8f5; border-radius: 14px;
+      padding: 18px 32px; display: flex; align-items: center; gap: 24px;
+      margin-bottom: 28px; flex-wrap: wrap;
     }
-    @media (max-width: 920px) {
-      .equip-header { flex-direction: column; align-items: flex-start; }
-      .equip-grid { grid-template-columns: repeat(2, 1fr); }
-      .equip-detail-inner { grid-template-columns: 1fr; gap: 20px; }
-      .equip-detail-list { grid-template-columns: 1fr; }
-      .equip-detail { padding: 28px 24px; }
-      .equip-banner { padding: 28px 24px; }
+    .equip-mfr-strip-label {
+      font-family: var(--font-label); font-size: 8px; letter-spacing: 2px;
+      text-transform: uppercase; color: #9ab0c8; flex-shrink: 0;
+    }
+    .equip-mfr-divider { width: 1px; height: 22px; background: #dce8f5; flex-shrink: 0; }
+    .equip-mfr-logos { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .equip-mfr-item {
+      font-family: var(--font-head); font-size: 16px; letter-spacing: 2.5px;
+      color: #c0d0e0; text-transform: uppercase; transition: color .22s;
+      line-height: 1;
+    }
+    .equip-mfr-item:hover { color: #8aaac8; }
+
+    /* ── Banner ── */
+    .equip-banner-new {
+      background: #04111f; border-radius: 20px;
+      padding: 36px 44px; display: flex; align-items: center; gap: 48px;
+      position: relative; overflow: hidden;
+    }
+    .equip-banner-new::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #e02828 0%, #1565c8 50%, #4a9eff 100%);
+    }
+    .equip-banner-stat { flex-shrink: 0; text-align: center; }
+    .equip-banner-stat-num {
+      font-family: var(--font-head); font-size: 64px; letter-spacing: -2px;
+      color: #eef3ff; line-height: 1;
+    }
+    .equip-banner-stat-lbl {
+      font-family: var(--font-label); font-size: 9px; letter-spacing: 2px;
+      text-transform: uppercase; color: #4a9eff; margin-top: 5px;
+    }
+    .equip-banner-content { flex: 1; }
+    .equip-banner-heading {
+      font-family: var(--font-head); font-size: 22px; letter-spacing: 2px;
+      text-transform: uppercase; color: #eef3ff; margin-bottom: 10px;
+    }
+    .equip-banner-body {
+      color: rgba(238,243,255,.62); font-size: 14px; line-height: 1.85; margin: 0;
+    }
+    .equip-banner-body strong { color: rgba(238,243,255,.92); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .equip-hero { grid-template-columns: 1fr 360px; }
+    }
+    @media (max-width: 960px) {
+      .equip-hdr { flex-direction: column; }
+      .equip-cert-row { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 6px; }
+      .equip-hero { grid-template-columns: 1fr; }
+      .equip-icu-wrap { min-height: 240px; }
+      .equip-grid-new { grid-template-columns: repeat(2, 1fr); }
+      .equip-mfr-strip { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .equip-banner-new { flex-direction: column; padding: 28px; gap: 20px; }
+      .equip-banner-stat { text-align: left; }
     }
     @media (max-width: 540px) {
-      .equip-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .equip-card { padding: 18px 14px 16px; }
-      .equip-banner { padding: 22px 18px; }
+      .equip-section { padding: 64px 0 56px; }
+      .equip-grid-new { grid-template-columns: 1fr; gap: 12px; }
+      .equip-feat { padding: 26px 22px; }
+      .equip-banner-new { padding: 24px 20px; }
+      .equip-mfr-strip { padding: 16px 20px; }
+      .equip-banner-stat-num { font-size: 48px; }
     }
 
     /* ── WHY REACT SECTION ───────────────────────────────── */
@@ -2550,139 +2709,260 @@
     }
     /* ── Founder profile – premium executive ──────────────────── */
     /* ── Founder – compact two-column executive profile ──────── */
-    .founder-profile-wrap { background: #f5f7fa; padding: 48px 0 56px; }
-
-    @keyframes founderIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
-
-    .founder-split {
-      max-width: 900px; margin: 0 auto;
-      border-radius: 20px; overflow: hidden;
-      border: 1px solid #dde5ef;
-      box-shadow: 0 1px 4px rgba(4,17,31,.04), 0 20px 56px rgba(4,17,31,.1);
-      opacity: 0; transform: translateY(20px);
-      transition: opacity .75s ease, transform .75s ease;
+    /* ── Leadership Section ── */
+    .leadership-section { background: #f5f8fc; padding: 72px 0 80px; }
+    .leadership-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 28px; max-width: 860px; margin: 0 auto;
     }
-    .founder-split.founder-visible { opacity: 1; transform: none; }
-
-    .founder-split.founder-visible .founder-eyebrow        { animation: founderIn .45s ease both .2s; }
-    .founder-split.founder-visible .founder-name           { animation: founderIn .5s  ease both .28s; }
-    .founder-split.founder-visible .founder-single-badge   { animation: founderIn .45s ease both .35s; }
-    .founder-split.founder-visible .founder-specialty-line { animation: founderIn .45s ease both .4s; }
-    .founder-split.founder-visible .founder-bio            { animation: founderIn .45s ease both .44s; }
-    .founder-split.founder-visible .founder-quote          { animation: founderIn .45s ease both .52s; }
-    .founder-split.founder-visible .founder-signature      { animation: founderIn .45s ease both .6s; }
-
-    /* ── Portrait – full card width, 400px tall ── */
-    .founder-photo-col {
-      position: relative; height: 400px;
-      background: linear-gradient(160deg,#04111f 0%,#0d2952 100%);
-      overflow: hidden;
+    .leader-card {
+      background: #fff; border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(21,101,200,.1);
+      box-shadow: 0 4px 28px rgba(4,17,31,.07);
+      display: flex; flex-direction: column;
+      cursor: pointer;
+      transition: box-shadow .3s, transform .3s;
     }
-    .fp-portrait {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 35%;
-      display: block;
+    .leader-card:hover { transform: translateY(-4px); box-shadow: 0 12px 48px rgba(4,17,31,.13); }
+    .leader-photo-wrap {
+      position: relative; height: 260px; overflow: hidden;
+      background: linear-gradient(160deg,#04111f,#0d2952);
     }
-    .fp-vignette {
-      position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      background: linear-gradient(to bottom, transparent 50%, rgba(4,17,31,.55) 100%);
-    }
-    .fp-accent {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 3px; z-index: 3;
+    .leader-photo-wrap::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 3;
       background: linear-gradient(90deg,#e02828,#1565c8);
     }
-
-    /* ── Content: 2-col grid on desktop ── */
-    .founder-content-col {
-      padding: 32px 44px 36px; background: #ffffff;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px;
-      position: relative; overflow: hidden;
+    .leader-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .leader-photo-init {
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 64px; color: rgba(255,255,255,.2);
     }
-    .founder-wm-map {
-      position: absolute; inset: 0; opacity: .03;
-      pointer-events: none; overflow: hidden;
+    .leader-body { padding: 22px 24px 22px; display: flex; flex-direction: column; flex: 1; }
+    .leader-tag {
+      display: inline-block; font-family: var(--font-label); font-size: 8.5px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #e02828; margin-bottom: 7px;
+    }
+    .leader-name { font-family: var(--font-head); font-size: 26px; letter-spacing: 1.5px; color: #04111f; line-height: 1.05; margin-bottom: 4px; }
+    .leader-role { font-family: var(--font-body); font-size: 12.5px; font-weight: 500; color: #1565c8; margin-bottom: 12px; }
+    .leader-bio { font-family: var(--font-body); font-size: 13px; line-height: 1.7; color: #3c5070; margin-bottom: 14px; flex: 1; }
+    .leader-creds { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .leader-view-btn {
+      align-self: flex-start; font-family: var(--font-label); font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #1565c8;
+      background: none; border: none; cursor: pointer; padding: 0; transition: color .2s;
+    }
+    .leader-view-btn:hover { color: #e02828; }
+
+    /* Leadership modal */
+    /* ── Premium Executive Leader Modal ─────────────────────────────── */
+    .leader-overlay {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(4,17,31,.88); backdrop-filter: blur(12px);
       display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .38s ease;
+      padding: 24px;
     }
-    .founder-wm-map svg { width: 140%; height: 140%; }
+    .leader-overlay.lm-open { opacity: 1; pointer-events: all; }
+    .leader-modal {
+      background: #fff; border-radius: 24px;
+      max-width: 940px; width: 100%; max-height: 90vh;
+      overflow: hidden; position: relative;
+      box-shadow: 0 50px 130px rgba(4,17,31,.48), 0 8px 40px rgba(4,17,31,.2);
+      display: flex; flex-direction: row;
+      transform: translateY(44px) scale(.94);
+      transition: transform .48s cubic-bezier(.16,1,.3,1);
+    }
+    .leader-overlay.lm-open .leader-modal { transform: none; }
 
-    /* Left col – identity, quote, signature */
-    .founder-left-col { display: flex; flex-direction: column; }
-    /* Right col – bio copy */
-    .founder-right-col { display: flex; flex-direction: column; justify-content: center; }
+    /* Photo panel */
+    .lm-photo-wrap {
+      position: relative; flex: 0 0 320px; min-height: 100%;
+      overflow: hidden;
+      background-color: #04111f;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center 30%;
+      transition: background-size .75s cubic-bezier(.16,1,.3,1);
+    }
+    .lm-photo { display: none; } /* photo shown as background on wrap */
+    .lm-photo-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 230px;
+      background: linear-gradient(to top, #04111f 0%, transparent 100%);
+      z-index: 2; pointer-events: none;
+    }
+    .lm-photo-label {
+      position: absolute; bottom: 26px; left: 0; right: 0;
+      z-index: 3; padding: 0 22px; text-align: center;
+    }
+    .lm-photo-label-eyebrow {
+      display: block; font-family: var(--font-label); font-size: 7px;
+      font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(255,255,255,.42); margin-bottom: 5px;
+    }
+    .lm-photo-specialty-text {
+      display: block; font-family: var(--font-body); font-size: 12.5px;
+      font-weight: 600; color: rgba(255,255,255,.88); letter-spacing: .3px;
+    }
+    .lm-init {
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 80px; color: rgba(255,255,255,.1);
+      letter-spacing: 4px;
+    }
 
-    .founder-eyebrow {
-      display: flex; align-items: center; gap: 10px;
-      font-family: 'Inter', var(--font-body); font-size: 10px; font-weight: 700;
-      letter-spacing: 3px; text-transform: uppercase; color: #e02828;
-      margin-bottom: 12px;
+    /* Close button — floating pill, rotates 90° on hover */
+    .lm-close {
+      position: absolute; top: 18px; right: 18px; z-index: 20;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #fff; border: 1px solid rgba(4,17,31,.09);
+      box-shadow: 0 4px 22px rgba(4,17,31,.18);
+      cursor: pointer; color: #04111f;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .32s ease, box-shadow .25s ease, background .22s, color .22s;
     }
-    .founder-eyebrow::before {
-      content: ''; display: block; width: 22px; height: 2px;
-      background: #e02828; flex-shrink: 0;
+    .lm-close:hover {
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: 0 8px 30px rgba(4,17,31,.3);
+      background: #04111f; color: #fff;
     }
-    .founder-name {
-      font-family: var(--font-head); font-size: 36px; letter-spacing: 2px;
-      color: #04111f; line-height: 1.05; margin-bottom: 10px;
+
+    /* Right content panel */
+    .lm-body {
+      flex: 1; overflow-y: auto; padding: 46px 50px 46px;
+      display: flex; flex-direction: column;
+      position: relative;
+      background: #f7f9fc;
+      opacity: 0;
+      transition: opacity .34s ease .18s;
+      scrollbar-width: thin; scrollbar-color: rgba(21,101,200,.2) transparent;
     }
-    .founder-single-badge {
+    .lm-body::-webkit-scrollbar { width: 4px; }
+    .lm-body::-webkit-scrollbar-track { background: transparent; }
+    .lm-body::-webkit-scrollbar-thumb { background: rgba(21,101,200,.22); border-radius: 2px; }
+    .leader-overlay.lm-open .lm-body { opacity: 1; }
+
+    /* ECG watermark */
+    .lm-ecg-bg {
+      position: absolute; left: 0; right: 0; bottom: 16%; height: 90px;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .lm-ecg-bg svg { width: 100%; height: 100%; opacity: .04; }
+    .lm-body > *:not(.lm-ecg-bg) { position: relative; z-index: 1; }
+
+    /* Header block */
+    .lm-tag {
+      display: inline-block; font-family: var(--font-label); font-size: 7.5px;
+      font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+      color: #e02828; margin-bottom: 10px;
+    }
+    .lm-name {
+      font-family: var(--font-head); font-size: 38px; letter-spacing: 2.5px;
+      color: #04111f; line-height: 1; margin-bottom: 9px;
+    }
+    .lm-specialty {
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      color: #1565c8; letter-spacing: .2px; margin-bottom: 4px;
+    }
+    .lm-role {
+      font-family: var(--font-body); font-size: 12px; font-weight: 400;
+      color: #7a90aa; letter-spacing: .4px; margin-bottom: 0;
+    }
+    .lm-divider {
+      width: 100%; height: 1px; margin: 24px 0;
+      background: linear-gradient(90deg,rgba(21,101,200,.45) 0%,rgba(21,101,200,.12) 55%,transparent 100%);
+    }
+
+    /* Pull quote card */
+    .lm-quote-block {
+      background: #fff; border-left: 3px solid #1565c8;
+      border-radius: 0 12px 12px 0; padding: 17px 22px; margin-bottom: 28px;
+      box-shadow: 0 2px 22px rgba(21,101,200,.08), inset 0 0 0 1px rgba(21,101,200,.07);
+    }
+    .lm-quote-text {
+      font-family: var(--font-body); font-size: 13px; font-style: italic;
+      line-height: 1.78; color: #0d2952; font-weight: 400; margin: 0;
+    }
+
+    /* Sectioned biography */
+    .lm-section { margin-bottom: 20px; }
+    .lm-section-label {
+      display: block; font-family: var(--font-label); font-size: 7.5px;
+      font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: #1565c8; margin-bottom: 8px; opacity: .65;
+    }
+    .lm-bio {
+      font-family: var(--font-body); font-size: 13.5px; line-height: 1.84;
+      color: #3c5070; margin: 0;
+    }
+
+    /* Expertise chips — outlined with icon dot */
+    .lm-creds { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 26px; }
+    .lm-chip {
       display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'Inter', var(--font-body); font-size: 11px; font-weight: 600;
-      color: #1565c8; border: 1px solid rgba(21,101,200,.25);
-      background: rgba(21,101,200,.05); padding: 5px 14px;
-      border-radius: 20px; margin-bottom: 6px; width: fit-content;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      color: #0d2952; letter-spacing: .2px;
+      border: 1px solid rgba(21,101,200,.26); border-radius: 7px;
+      padding: 5px 12px; background: rgba(21,101,200,.04);
+      transition: border-color .2s, background .2s, color .2s;
     }
-    .founder-specialty-line {
-      font-family: 'Inter', var(--font-body); font-size: 11.5px;
-      color: #7a90a8; letter-spacing: .3px;
-    }
-    .founder-hr { border: none; border-top: 1px solid #edf2f7; margin: 16px 0; }
-
-    .founder-bio {
-      font-family: 'Inter', var(--font-body); font-size: 14.5px; font-weight: 400;
-      line-height: 1.78; color: #3c5070; margin-bottom: 14px;
-    }
-    .founder-bio:last-of-type { margin-bottom: 0; }
-
-    .founder-quote {
-      padding: 12px 16px 12px 18px;
-      background: linear-gradient(135deg,rgba(21,101,200,.05) 0%,rgba(4,17,31,.02) 100%);
-      border-left: 3px solid #1565c8; border-radius: 0 8px 8px 0;
-    }
-    .founder-quote-text {
-      font-family: 'Inter', var(--font-body); font-size: 13.5px; font-weight: 500;
-      font-style: italic; color: #1a2e4a; line-height: 1.65;
+    .lm-chip:hover { border-color: rgba(21,101,200,.52); background: rgba(21,101,200,.09); color: #1565c8; }
+    .lm-chip-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: #1565c8; flex-shrink: 0; opacity: .65;
     }
 
-    .founder-signature { display: flex; flex-direction: column; gap: 4px; margin-top: 14px; }
-    .founder-sig-name {
-      font-family: 'Dancing Script', cursive; font-weight: 700;
-      font-size: 28px; color: #1a2e4a; line-height: 1;
+    /* Signature block */
+    .lm-signature {
+      margin-top: 34px; padding-top: 24px;
+      border-top: 1px solid rgba(21,101,200,.11);
+      display: flex; align-items: center; gap: 16px;
     }
-    .founder-sig-line {
-      width: 130px; height: 1.5px;
-      background: linear-gradient(to right,rgba(26,46,74,.4),transparent);
+    .lm-sig-line { flex: 1; }
+    .lm-sig-name {
+      font-family: var(--font-head); font-size: 15px; letter-spacing: 1.5px;
+      color: #04111f; margin-bottom: 3px;
     }
-    .founder-sig-title {
-      font-family: 'Inter', var(--font-body); font-size: 9.5px; font-weight: 500;
-      letter-spacing: 1.5px; text-transform: uppercase; color: #8aa0bc;
+    .lm-sig-cred {
+      font-family: var(--font-body); font-size: 11px;
+      color: #7a90aa; letter-spacing: .3px;
+    }
+    .lm-sig-emblem {
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg,#04111f 0%,#1565c8 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(21,101,200,.32);
+    }
+
+    /* Tablet / mobile */
+    @media (max-width: 768px) {
+      .leader-modal { flex-direction: column; border-radius: 18px; overflow-y: auto; max-height: 92vh; }
+      .lm-photo-wrap { flex: none; height: 270px; min-height: unset; }
+      .lm-body { padding: 28px 26px 36px; opacity: 1 !important; transition: none !important; }
+      .lm-name { font-size: 30px; }
+      .lm-specialty { font-size: 13px; }
+      .lm-signature { flex-wrap: wrap; gap: 10px; }
+    }
+    @media (max-width: 480px) {
+      .lm-photo-wrap { height: 230px; }
+      .lm-photo-fade { height: 140px; }
+      .lm-body { padding: 22px 18px 28px; }
+      .lm-name { font-size: 26px; }
+      .lm-quote-block { padding: 13px 16px; }
+      .lm-close { top: 12px; right: 12px; width: 36px; height: 36px; }
     }
 
     @media (max-width: 920px) {
       .team-grid { grid-template-columns: 1fr 1fr; }
-      .founder-photo-col { height: 320px; }
-      .founder-content-col { grid-template-columns: 1fr; gap: 0; padding: 28px 32px 32px; }
-      .founder-left-col { margin-bottom: 20px; }
-      .founder-name { font-size: 30px; }
-      .founder-bio { font-size: 14px; }
+      .leadership-grid { gap: 20px; }
     }
     @media (max-width: 620px) {
       .team-grid { grid-template-columns: 1fr; }
       .team-section { padding: 64px 0 56px; }
-      .founder-photo-col { height: 280px; }
-      .founder-content-col { padding: 22px 20px 26px; }
-      .founder-name { font-size: 26px; }
-      .founder-bio { font-size: 13.5px; }
-      .founder-sig-name { font-size: 24px; }
+      .advisor-card { grid-template-columns: 1fr !important; }
+      .advisor-card img { height: 320px !important; }
+      .leadership-grid { grid-template-columns: 1fr; }
     }
 
     .partners-section {
@@ -2840,7 +3120,7 @@
       .fleet-group-desc { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
-      .stat { border-left: 0; border-top: 1px solid rgba(21,101,192,.1); }
+      .stat { border-left: 0; border-top: 1px solid rgba(21,101,192,.08); }
       .stat:nth-child(odd) { border-left: 0; }
       .stat:nth-child(1), .stat:nth-child(2) { border-top: 0; }
 
@@ -3449,68 +3729,136 @@
       </div>
     </section>
 
-    <!-- FOUNDER -->
-    <section class="founder-profile-wrap">
+    <!-- LEADERSHIP -->
+    <section class="leadership-section" id="leadership">
       <div class="shell">
-        <div class="founder-split" id="founder-split">
+        <div style="text-align:center; margin-bottom:44px;">
+          <span class="eyebrow">Meet the Founders</span>
+          <h2 class="section-title" style="color:#0d2952;">Our Leadership</h2>
+        </div>
+        <div class="leadership-grid">
 
-          <!-- Portrait – full card width, top -->
-          <div class="founder-photo-col">
-            <img src="dr-founder.jpg" alt="Dr. T. Neel Rohith Reddy" class="fp-portrait"
-              onerror="this.style.display='none'">
-            <div class="fp-vignette"></div>
-            <div class="fp-accent"></div>
+          <!-- Dr. Neel Rohith Reddy -->
+          <div class="leader-card" data-leader="neel">
+            <div class="leader-photo-wrap">
+              <img src="dr-founder.jpg" alt="Dr. Neel Rohith Reddy" class="leader-photo"
+                style="object-position:center 20%;"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="leader-photo-init">NR</div>
+            </div>
+            <div class="leader-body">
+              <span class="leader-tag">Founder</span>
+              <div class="leader-name">Dr. Neel Rohith Reddy</div>
+              <div class="leader-role">Founder &amp; Medical Director</div>
+              <p class="leader-bio">Emergency Physician and Aeromedical Intensivist with over a decade of critical care transport experience across India and internationally. Founded REACT to ensure every patient receives ICU-level care from the moment transport begins.</p>
+              <div class="leader-creds">
+                <span class="team-skill team-cert">Emergency Medicine</span>
+                <span class="team-skill">Aeromedical Transport</span>
+                <span class="team-skill">Critical Care</span>
+                <span class="team-skill">ICU Transport</span>
+                <span class="team-skill team-cert">ACLS</span>
+                <span class="team-skill">Retrieval Medicine</span>
+              </div>
+              <button class="leader-view-btn">View Full Profile →</button>
+            </div>
           </div>
 
-          <!-- Content – below portrait -->
-          <div class="founder-content-col">
-
-            <!-- 3% world-map watermark -->
-            <div class="founder-wm-map" aria-hidden="true">
-              <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#04111f" d="M155,55 L240,48 L270,75 L285,120 L265,175 L235,205 L190,225 L145,195 L120,155 L110,105 Z"/>
-                <path fill="#04111f" d="M200,248 L240,238 L272,278 L282,348 L260,415 L218,442 L182,415 L172,355 L178,285 Z"/>
-                <path fill="#04111f" d="M452,52 L518,47 L548,72 L558,105 L528,128 L482,132 L460,110 L448,82 Z"/>
-                <path fill="#04111f" d="M458,155 L522,150 L552,192 L562,268 L540,350 L498,395 L458,383 L428,332 L430,262 L440,198 Z"/>
-                <path fill="#04111f" d="M558,52 L780,44 L830,98 L840,168 L800,208 L712,228 L628,218 L572,185 L548,128 Z"/>
-                <path fill="#04111f" d="M630,182 L672,177 L694,225 L678,278 L652,288 L622,256 L618,212 Z"/>
-                <path fill="#04111f" d="M755,178 L808,168 L828,205 L815,248 L772,258 L742,225 Z"/>
-                <path fill="#04111f" d="M772,315 L875,295 L920,338 L908,408 L845,438 L775,415 L748,372 L752,332 Z"/>
-              </svg>
+          <!-- Dr. Y. Lavanya Reddy -->
+          <div class="leader-card" data-leader="lavanya">
+            <div class="leader-photo-wrap">
+              <img src="dr-lavanya.jpg" alt="Dr. Y. Lavanya Reddy" class="leader-photo"
+                style="object-position:center 20%;"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="leader-photo-init">LR</div>
             </div>
-
-            <!-- Left column: identity + quote + signature -->
-            <div class="founder-left-col">
-              <div class="founder-eyebrow">Message from our Founder</div>
-              <div class="founder-name">Dr. Neel Rohith Reddy</div>
-              <div class="founder-single-badge">
-                <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 1L2 3.5v3C2 9 3.8 10.8 6 11.5 8.2 10.8 10 9 10 6.5v-3L6 1z"/>
-                </svg>
-                Founder &amp; Medical Director
+            <div class="leader-body">
+              <span class="leader-tag">Co-Founder</span>
+              <div class="leader-name">Dr. Y. Lavanya Reddy</div>
+              <div class="leader-role">Co-Founder &amp; Director</div>
+              <p class="leader-bio">ENT Surgeon and Co-Founder of REACT, committed to compassionate, patient-centered care. Brings surgical expertise and a belief that every patient deserves dignity, reassurance, and continuity of care throughout their medical journey.</p>
+              <div class="leader-creds">
+                <span class="team-skill">ENT Surgery</span>
+                <span class="team-skill team-cert">MS (ENT)</span>
+                <span class="team-skill">Surgical Care</span>
+                <span class="team-skill">Patient-Centered Care</span>
+                <span class="team-skill">Medical Transport</span>
+                <span class="team-skill">Clinical Excellence</span>
               </div>
-              <div class="founder-specialty-line">Emergency Physician &bull; Aeromedical Intensivist</div>
-              <hr class="founder-hr">
-              <div class="founder-quote">
-                <div class="founder-quote-text">"Every patient deserves ICU-level care from the moment transport begins."</div>
-              </div>
-              <div class="founder-signature">
-                <span class="founder-sig-name">Dr. Neel Rohith Reddy</span>
-                <div class="founder-sig-line"></div>
-                <span class="founder-sig-title">Founder &amp; Medical Director, REACT Air Ambulance</span>
-              </div>
+              <button class="leader-view-btn">View Full Profile →</button>
             </div>
-
-            <!-- Right column: bio -->
-            <div class="founder-right-col">
-              <p class="founder-bio">In critical care, minutes determine outcomes. Through a decade of aeromedical transport and emergency response across India and beyond, I have seen how the right clinical team — deployed at speed — saves lives that would otherwise be lost.</p>
-              <p class="founder-bio">REACT exists to close that gap: physician-led, ICU-equipped aeromedical transport built on one conviction — that no patient should wait for qualified care because of geography.</p>
-            </div>
-
           </div>
+
         </div>
       </div>
     </section>
+
+    <!-- LEADERSHIP MODAL -->
+    <div class="leader-overlay" id="leader-overlay" role="dialog" aria-modal="true" aria-label="Leadership profile">
+      <div class="leader-modal" id="leader-modal">
+
+        <!-- Close button -->
+        <button class="lm-close" id="lm-close" aria-label="Close">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- Left: portrait panel -->
+        <div class="lm-photo-wrap">
+          <img id="lm-img" class="lm-photo" src="" alt="">
+          <div class="lm-init" id="lm-init"></div>
+          <div class="lm-photo-fade"></div>
+          <div class="lm-photo-label">
+            <span class="lm-photo-label-eyebrow">Medical Specialty</span>
+            <span class="lm-photo-specialty-text" id="lm-photo-specialty"></span>
+          </div>
+        </div>
+
+        <!-- Right: content panel -->
+        <div class="lm-body">
+
+          <!-- ECG watermark background -->
+          <div class="lm-ecg-bg">
+            <svg viewBox="0 0 800 100" preserveAspectRatio="xMidYMid meet" fill="none">
+              <polyline points="0,50 80,50 100,15 120,85 140,15 160,50 200,50 220,8 240,92 260,50 340,50 360,25 380,75 400,50 480,50 500,15 520,85 540,15 560,50 600,50 620,8 640,92 660,50 740,50 760,25 780,75 800,50" stroke="#1565c8" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <!-- Header -->
+          <span class="lm-tag" id="lm-tag"></span>
+          <div class="lm-name" id="lm-name"></div>
+          <div class="lm-specialty" id="lm-specialty"></div>
+          <div class="lm-role" id="lm-role"></div>
+          <div class="lm-divider"></div>
+
+          <!-- Pull quote -->
+          <div class="lm-quote-block" id="lm-quote-block">
+            <p class="lm-quote-text" id="lm-quote"></p>
+          </div>
+
+          <!-- Bio sections (injected by JS) -->
+          <div id="lm-bio-wrap"></div>
+
+          <!-- Expertise chips -->
+          <div class="lm-creds" id="lm-creds"></div>
+
+          <!-- Signature block -->
+          <div class="lm-signature">
+            <div class="lm-sig-line">
+              <div class="lm-sig-name" id="lm-sig-name"></div>
+              <div class="lm-sig-cred" id="lm-sig-cred"></div>
+            </div>
+            <div class="lm-sig-emblem">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L4 6v6c0 5.5 3.3 10.1 8 12 4.7-1.9 8-6.5 8-12V6l-8-4z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M12 8v8M8 12h8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+        </div><!-- /lm-body -->
+      </div>
+    </div>
 
     <!-- MEDICAL TEAM -->
     <section class="team-section" id="team">
@@ -3629,7 +3977,62 @@
             </div>
           </div>
 
+          <div class="team-card" data-doc="rahul">
+            <div class="team-photo-wrap">
+              <img src="dr-rahul.jpg" alt="Dr. Rahul Vantaku" class="team-photo" style="object-position:center 35%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="team-photo-init">RV</div>
+            </div>
+            <div class="team-card-body">
+              <div class="team-name">Dr. Rahul Vantaku</div>
+              <div class="team-title">Pediatric Emergency Physician</div>
+              <span class="team-exp">Pediatric Critical Care</span>
+              <p class="team-bio">Pediatric Emergency Physician specializing in critically ill children and trauma. Known for rapid assessment, systematic approach, and calm leadership in high-pressure environments.</p>
+              <div class="team-skills">
+                <span class="team-skill">Pediatric Emergency</span>
+                <span class="team-skill">Critical Care</span>
+                <span class="team-skill">Trauma Management</span>
+                <span class="team-skill">Pediatric Resuscitation</span>
+              </div>
+              <button class="team-view-btn">View Full Profile →</button>
+            </div>
+          </div>
+
         </div>
+      </div>
+    </section>
+
+    <!-- LEGAL COUNSEL -->
+    <section style="background:#f0f4fa; padding:64px 0;">
+      <div class="shell">
+        <div style="margin-bottom:40px;">
+          <span class="eyebrow" style="color:#1565c8;">Aviation Legal Advisory</span>
+          <h2 class="section-title" style="color:#0d2952;">Our Legal Counsel</h2>
+        </div>
+
+        <div class="advisor-card" style="display:grid; grid-template-columns:300px 1fr; gap:48px; align-items:center; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 4px 32px rgba(21,101,192,.10);">
+          <!-- Photo -->
+          <img src="advisor-rohit.jpg" alt="Isaac Rohit Satyavarapu"
+            style="width:100%; height:400px; object-fit:cover; object-position:center 20%; display:block;">
+          <!-- Info -->
+          <div style="padding:36px 40px 36px 0;">
+            <div style="font-family:var(--font-body); font-size:22px; font-weight:700; color:#0d2952; margin-bottom:4px;">Isaac Rohit Satyavarapu</div>
+            <div style="font-family:var(--font-body); font-size:14px; font-weight:500; color:#1565c8; margin-bottom:14px;">Aviation Attorney &amp; Legal Counsel</div>
+            <span style="display:inline-block; background:#eef0ff; color:#1a237e; font-family:var(--font-label); font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:18px;">Legal Counsel</span>
+            <p style="font-family:var(--font-body); font-size:14.5px; line-height:1.75; color:#3d5a7a; margin-bottom:20px;">Aviation Attorney based in India specializing in DGCA regulatory compliance, AOC/NSOP establishment, aircraft acquisition &amp; leasing, aviation contracts, and operational risk management for air ambulance operators across India and internationally.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;">
+              <span class="team-skill">DGCA Compliance</span>
+              <span class="team-skill">AOC / NSOP</span>
+              <span class="team-skill">Aviation Law</span>
+              <span class="team-skill">Aircraft Leasing</span>
+              <span class="team-skill">Charter Agreements</span>
+              <span class="team-skill">Operational Risk</span>
+            </div>
+            <button class="team-view-btn" onclick="document.querySelector('.team-card[data-doc=rohit]').click()">View Full Profile →</button>
+          </div>
+        </div>
+
+        <!-- Hidden trigger card for modal -->
+        <div class="team-card" data-doc="rohit" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none;opacity:0;"></div>
       </div>
     </section>
 
@@ -3968,147 +4371,237 @@
 
     <!-- EQUIPMENT -->
     <section class="equip-section" id="equipment">
+
+      <!-- ECG background watermark -->
+      <div class="equip-bg-mark">
+        <svg viewBox="0 0 1400 120" fill="none" preserveAspectRatio="xMidYMid meet">
+          <polyline points="0,60 120,60 150,15 180,105 210,15 240,60 320,60 350,8 380,112 410,60 500,60 530,30 560,90 590,60 680,60 710,15 740,105 770,15 800,60 880,60 910,8 940,112 970,60 1060,60 1090,30 1120,90 1150,60 1240,60 1270,15 1300,105 1330,15 1360,60 1400,60" stroke="#1565c8" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
       <div class="shell">
 
-        <div class="equip-header">
-          <div>
+        <!-- Section Header -->
+        <div class="equip-hdr">
+          <div class="equip-hdr-left">
             <span class="equip-eyebrow">Flying ICU Standard</span>
-            <h2 class="equip-title">Advanced Pre Hospital<br>Medical Equipment</h2>
-            <p class="equip-intro">Every REACT mission carries hospital-grade critical care equipment — the same technology found in a top-tier ICU, now airborne.</p>
+            <h2 class="equip-title">Advanced Pre-Hospital<br>Medical Equipment</h2>
+            <p class="equip-intro">Every REACT mission carries hospital-grade critical care equipment — the same technology found in a top-tier ICU, now airborne and operational from the moment we arrive.</p>
+          </div>
+          <div class="equip-cert-row">
+            <span class="e-cert e-cert--dgca"><span class="e-cert-dot"></span>DGCA Compatible</span>
+            <span class="e-cert e-cert--icu"><span class="e-cert-dot"></span>ICU Standard</span>
+            <span class="e-cert e-cert--ped"><span class="e-cert-dot"></span>Adult / Pediatric / Neonatal</span>
           </div>
         </div>
 
-        <div class="equip-grid" id="equip-grid">
+        <!-- Hero split: ICU aircraft photo + Featured Ventilator -->
+        <div class="equip-hero">
 
-          <div class="equip-card" data-equip="0">
-            <div class="equip-card-top">
-              <div class="equip-icon">
-                <svg viewBox="0 0 24 24"><polyline points="2 12 6 4 9 16 12 8 14 12 16 10 18 12 22 12"/></svg>
-              </div>
-              <span class="equip-num">01</span>
+          <!-- Left: ICU infographic -->
+          <div class="equip-icu-wrap">
+            <img src="icu-infographic.png" alt="REACT aircraft configured as a flying ICU — every aircraft carries ICU-grade life support" loading="lazy">
+            <span class="equip-icu-corner-badge">REACT Airborne ICU</span>
+          </div>
+
+          <!-- Right: Featured Ventilator Card -->
+          <div class="equip-feat">
+            <!-- ECG inside card -->
+            <div class="equip-feat-ecg-bg">
+              <svg viewBox="0 0 400 55" fill="none">
+                <polyline points="0,28 50,28 65,8 80,48 95,8 110,28 160,28 175,4 190,52 205,28 255,28 270,14 285,42 300,28 350,28 365,8 380,48 395,8 400,28" stroke="#4a9eff" stroke-width="1.2" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <div class="equip-name">Cardiac Monitor<br><span>with IBP & ETCO₂</span></div>
-            <ul class="equip-bullets">
+
+            <div class="equip-feat-star">FEATURED · RESPIRATORY</div>
+            <div class="equip-feat-name">Portable Mechanical<br>Ventilator</div>
+            <div class="equip-feat-sub">Critical Care Transport · ICU-Grade</div>
+            <div class="equip-feat-mfr">Hamilton Medical · Dräger · Mindray</div>
+
+            <ul class="equip-feat-specs">
+              <li>Adult, pediatric &amp; neonatal ventilation modes</li>
+              <li>Volume &amp; pressure-controlled (VCV / PCV)</li>
+              <li>Aviation-certified for pressurized cabins</li>
+              <li>Continuous waveform display &amp; alarm systems</li>
+              <li>Compact, battery-operated, lightweight design</li>
+            </ul>
+
+            <div class="equip-feat-badges">
+              <span class="equip-feat-badge">DGCA Compatible</span>
+              <span class="equip-feat-badge">Aviation-Certified</span>
+              <span class="equip-feat-badge">Adult / Ped / Neo</span>
+              <span class="equip-feat-badge">ICU Standard</span>
+            </div>
+
+            <a class="equip-feat-cta" href="#contact">
+              Request this aircraft
+              <span class="equip-feat-cta-arrow">→</span>
+            </a>
+          </div>
+
+        </div><!-- /equip-hero -->
+
+        <!-- Equipment Grid (6 remaining) -->
+        <div class="equip-grid-new">
+
+          <!-- Cardiac Monitor -->
+          <div class="equip-card-new ecat-monitoring">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Monitoring</div>
+            <div class="ec-icon">
+              <svg viewBox="0 0 24 24"><polyline points="2 12 6 4 9 16 12 8 14 12 16 10 18 12 22 12"/></svg>
+            </div>
+            <div class="ec-name">Cardiac Monitor<small>with IBP &amp; ETCO₂</small></div>
+            <ul class="ec-specs">
               <li>12-Lead ECG + continuous vitals</li>
               <li>Invasive Blood Pressure (IBP)</li>
               <li>End-Tidal CO₂ monitoring</li>
             </ul>
-            <div class="equip-more">View all specs ↓</div>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-icu">12-Lead ECG</span>
+              <span class="ec-badge ecb-icu">ICU Standard</span>
+            </div>
+            <div class="ec-footer">
+              <span class="ec-mfr">Philips · Zoll</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
           </div>
 
-          <div class="equip-card" data-equip="1">
-            <div class="equip-card-top">
-              <div class="equip-icon">
-                <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 4 0v2M12 12v4M10 14h4"/></svg>
-              </div>
-              <span class="equip-num">02</span>
+          <!-- Syringe Infusion Pumps -->
+          <div class="equip-card-new ecat-infusion">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Infusion</div>
+            <div class="ec-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
             </div>
-            <div class="equip-name">Portable Mechanical<br><span>Ventilator</span></div>
-            <ul class="equip-bullets">
-              <li>Adult, pediatric & neonatal</li>
-              <li>Volume & pressure-controlled modes</li>
-              <li>Aviation-certified</li>
+            <div class="ec-name">Syringe Infusion Pumps<small>Precision IV Drug Delivery</small></div>
+            <ul class="ec-specs">
+              <li>Vasopressors, sedatives &amp; insulin</li>
+              <li>Multiple simultaneous infusion lines</li>
+              <li>Battery-operated, in-flight safe</li>
             </ul>
-            <div class="equip-more">View all specs ↓</div>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-icu">ICU Standard</span>
+              <span class="ec-badge ecb-bat">Battery-Op</span>
+            </div>
+            <div class="ec-footer">
+              <span class="ec-mfr">B.Braun · BD</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
           </div>
 
-          <div class="equip-card" data-equip="2">
-            <div class="equip-card-top">
-              <div class="equip-icon">
-                <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-              </div>
-              <span class="equip-num">03</span>
+          <!-- Advanced Airway Devices -->
+          <div class="equip-card-new ecat-airway">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Airway</div>
+            <div class="ec-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             </div>
-            <div class="equip-name">Syringe<br><span>Infusion Pumps</span></div>
-            <ul class="equip-bullets">
-              <li>Precision IV drug delivery</li>
-              <li>Vasopressors, sedatives, insulin</li>
-              <li>Multiple simultaneous lines</li>
-            </ul>
-            <div class="equip-more">View all specs ↓</div>
-          </div>
-
-          <div class="equip-card" data-equip="3">
-            <div class="equip-card-top">
-              <div class="equip-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </div>
-              <span class="equip-num">04</span>
-            </div>
-            <div class="equip-name">Advanced<br><span>Airway Devices</span></div>
-            <ul class="equip-bullets">
+            <div class="ec-name">Advanced Airway Devices<small>Adult &amp; Pediatric</small></div>
+            <ul class="ec-specs">
               <li>Video laryngoscopes</li>
-              <li>Supraglottic & ETT devices</li>
+              <li>Supraglottic &amp; ETT devices</li>
               <li>Emergency cric kits</li>
             </ul>
-            <div class="equip-more">View all specs ↓</div>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-ped">Adult / Pediatric</span>
+              <span class="ec-badge ecb-icu">Video-Guided</span>
+            </div>
+            <div class="ec-footer">
+              <span class="ec-mfr">King · Ambu</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
           </div>
 
-          <div class="equip-card" data-equip="4">
-            <div class="equip-card-top">
-              <div class="equip-icon">
-                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              </div>
-              <span class="equip-num">05</span>
+          <!-- Circulation / Defibrillator -->
+          <div class="equip-card-new ecat-circulation">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Circulation</div>
+            <div class="ec-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
-            <div class="equip-name">Circulation<br><span>Equipment</span></div>
-            <ul class="equip-bullets">
+            <div class="ec-name">Defibrillator &amp; Circulation<small>AED + Manual Capability</small></div>
+            <ul class="ec-specs">
               <li>AED + manual defibrillator</li>
               <li>Transcutaneous pacing</li>
-              <li>IV/IO vascular access</li>
+              <li>IV / IO vascular access</li>
             </ul>
-            <div class="equip-more">View all specs ↓</div>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-aed">AED + Manual</span>
+              <span class="ec-badge ecb-aed">ACLS</span>
+            </div>
+            <div class="ec-footer">
+              <span class="ec-mfr">Zoll · Philips</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
           </div>
 
-          <div class="equip-card" data-equip="5">
-            <div class="equip-card-top">
-              <div class="equip-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-              </div>
-              <span class="equip-num">06</span>
+          <!-- Portable Suction Units -->
+          <div class="equip-card-new ecat-respiratory">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Respiratory</div>
+            <div class="ec-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
             </div>
-            <div class="equip-name">Portable<br><span>Suction Units</span></div>
-            <ul class="equip-bullets">
-              <li>Battery-operated</li>
-              <li>Clears blood & secretions</li>
-              <li>Ground & air compatible</li>
+            <div class="ec-name">Portable Suction Units<small>Airway Clearance System</small></div>
+            <ul class="ec-specs">
+              <li>Battery-operated &amp; portable</li>
+              <li>Clears blood &amp; secretions</li>
+              <li>Ground &amp; air compatible</li>
             </ul>
-            <div class="equip-more">View all specs ↓</div>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-bat">Battery-Op</span>
+              <span class="ec-badge ecb-icu">Portable</span>
+            </div>
+            <div class="ec-footer">
+              <span class="ec-mfr">Laerdal · DeVilbiss</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
           </div>
 
-          <div class="equip-card" data-equip="6">
-            <div class="equip-card-top">
-              <div class="equip-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <span class="equip-num">07</span>
+          <!-- Portable O2 Concentrators -->
+          <div class="equip-card-new ecat-respiratory">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Respiratory</div>
+            <div class="ec-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <div class="equip-name">Portable Oxygen<br><span>Concentrators</span></div>
-            <ul class="equip-bullets">
-              <li>Aviation-compatible (DGCA)</li>
+            <div class="ec-name">Portable Oxygen Concentrators<small>DGCA / FAA Approved</small></div>
+            <ul class="ec-specs">
+              <li>Aviation-compatible (DGCA &amp; FAA)</li>
               <li>Long-duration O₂ therapy</li>
-              <li>Commercial & charter flights</li>
+              <li>Commercial &amp; charter flights</li>
             </ul>
-            <div class="equip-more">View all specs ↓</div>
-          </div>
-
-        </div>
-
-        <!-- Expandable detail panel -->
-        <div class="equip-detail" id="equip-detail">
-          <div class="equip-detail-inner">
-            <div class="equip-detail-left">
-              <div class="equip-detail-num" id="equip-detail-num"></div>
-              <div class="equip-detail-name" id="equip-detail-name"></div>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-dgca">DGCA Approved</span>
+              <span class="ec-badge ecb-bat">Long-Duration</span>
             </div>
-            <ul class="equip-detail-list" id="equip-detail-list"></ul>
+            <div class="ec-footer">
+              <span class="ec-mfr">OGSI · Inogen</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
+          </div>
+
+        </div><!-- /equip-grid-new -->
+
+        <!-- Manufacturer Trust Strip -->
+        <div class="equip-mfr-strip">
+          <span class="equip-mfr-strip-label">Trusted Medical Partners</span>
+          <div class="equip-mfr-divider"></div>
+          <div class="equip-mfr-logos">
+            <span class="equip-mfr-item">Philips</span>
+            <span class="equip-mfr-item">Dräger</span>
+            <span class="equip-mfr-item">Zoll</span>
+            <span class="equip-mfr-item">Hamilton</span>
+            <span class="equip-mfr-item">Laerdal</span>
+            <span class="equip-mfr-item">B.Braun</span>
           </div>
         </div>
 
-        <!-- Flying ICU Banner -->
-        <div class="equip-banner">
-          <div class="equip-banner-label">ICU-Level Care in the Sky</div>
-          <p>Every REACT Air Ambulance mission is staffed by experienced <strong>critical care physicians, flight paramedics, and intensive care nurses</strong>. Combined with advanced medical equipment, our aircraft function as a fully equipped <strong>flying intensive care unit (ICU)</strong> — ensuring uninterrupted, hospital-grade treatment from bedside to destination.</p>
+        <!-- Banner -->
+        <div class="equip-banner-new">
+          <div class="equip-banner-stat">
+            <div class="equip-banner-stat-num">47+</div>
+            <div class="equip-banner-stat-lbl">Devices On Board</div>
+          </div>
+          <div class="equip-banner-content">
+            <div class="equip-banner-heading">ICU-Level Care in the Sky</div>
+            <p class="equip-banner-body">Every REACT Air Ambulance mission is staffed by experienced <strong>critical care physicians, flight paramedics, and intensive care nurses</strong>. Combined with advanced medical equipment, our aircraft function as a fully equipped <strong>flying intensive care unit (ICU)</strong> — ensuring uninterrupted, hospital-grade treatment from bedside to destination.</p>
+          </div>
         </div>
 
       </div>
@@ -5571,13 +6064,131 @@
       });
     }, { threshold: 0.3 }).observe(statsSection);
 
-    // ── Founder card scroll fade-in ─────────────────────────
+    // ── Leadership Modal ─────────────────────────────────────
+    var LEADERS = {
+      neel: {
+        tag: 'Founder',
+        name: 'Dr. Neel Rohith Reddy',
+        specialty: 'Emergency Physician & Aeromedical Intensivist',
+        role: 'Founder & Medical Director · REACT',
+        initials: 'NR',
+        photo: 'dr-founder.jpg', bgSize: 'cover', bgPos: 'center 15%',
+        quote: 'Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety — because we treat every patient with the same care we would want for our own loved ones.',
+        sections: ['About', 'Why We Founded REACT', 'Our Promise'],
+        bios: [
+          'As an Emergency Physician, I have had the privilege of caring for patients and supporting families during some of the most difficult moments of their lives. Through my experience in aeromedical transport and critical care transfers, I have witnessed how crucial timely access to the right medical care can be — and how overwhelming it is for families when a loved one needs urgent transportation.',
+          'REACT was founded with a simple purpose: to bridge this gap by providing safe, dependable, and medically coordinated patient transportation services. We believe that families deserve more than just a transfer service — they deserve reassurance, clear communication, and a team they can trust during life\'s most critical moments.',
+          'Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety. We treat every patient with the same dignity, respect, and care that we would want for our own loved ones. When every second counts, we REACT.'
+        ],
+        sigCred: 'MD · Emergency Physician · Aeromedical Transport',
+        creds: ['Emergency Medicine','Aeromedical Transport','Critical Care','ICU Transport','ACLS','Retrieval Medicine']
+      },
+      lavanya: {
+        tag: 'Co-Founder',
+        name: 'Dr. Y. Lavanya Reddy',
+        specialty: 'ENT Surgeon · MS (ENT)',
+        role: 'Co-Founder & Director · REACT',
+        initials: 'LR',
+        photo: 'dr-lavanya.jpg', bgSize: 'cover', bgPos: 'center 18%',
+        quote: 'Every medical journey is deeply personal — and every individual deserves to be cared for with compassion, dignity, and respect, whether inside the operating room or during a critical medical transfer.',
+        sections: ['About', 'Our Philosophy'],
+        bios: [
+          'As a surgeon, I have learned that healing is not defined solely by the treatment we provide, but by the confidence, comfort, and trust we inspire in our patients and their families. Every medical journey is deeply personal, and I believe that every individual deserves to be cared for with compassion, dignity, and respect — whether inside the operating room or during a critical medical transfer.',
+          'At REACT, we have built our service around that philosophy. Our commitment extends beyond safely transporting patients; it is about ensuring continuity of care, thoughtful coordination, and unwavering support throughout the journey. My vision is for every patient and every family to feel reassured that they are in capable hands, and that their well-being remains at the heart of everything we do.'
+        ],
+        sigCred: 'MS (ENT) · ENT Surgeon · Co-Founder, REACT',
+        creds: ['ENT Surgery','MS (ENT)','Surgical Care','Patient-Centered Care','Medical Transport','Clinical Excellence']
+      }
+    };
+
     (function() {
-      const el = document.getElementById('founder-split');
-      if (!el) return;
-      new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) el.classList.add('founder-visible');
-      }, { threshold: 0.12 }).observe(el);
+      var overlay = document.getElementById('leader-overlay');
+      var closeBtn = document.getElementById('lm-close');
+      if (!overlay) return;
+
+      function openLeader(id) {
+        var d = LEADERS[id]; if (!d) return;
+
+        // Portrait — use background-image on the wrap for full positional control
+        var photoWrap = overlay.querySelector('.lm-photo-wrap');
+        var init = document.getElementById('lm-init');
+        init.style.display = 'none';
+        if (d.photo) {
+          photoWrap.style.backgroundImage = 'url(' + d.photo + ')';
+          photoWrap.style.backgroundSize  = d.bgSize || 'cover';
+          photoWrap.style.backgroundPosition = d.bgPos || 'center 30%';
+        } else {
+          photoWrap.style.backgroundImage = 'none';
+          init.style.display = 'flex';
+        }
+        init.textContent = d.initials;
+        var photoSpecialty = document.getElementById('lm-photo-specialty');
+        if (photoSpecialty) photoSpecialty.textContent = d.specialty || '';
+
+        // Header
+        document.getElementById('lm-tag').textContent      = d.tag;
+        document.getElementById('lm-name').textContent     = d.name;
+        document.getElementById('lm-specialty').textContent = d.specialty || '';
+        document.getElementById('lm-role').textContent     = d.role;
+
+        // Pull quote
+        var quoteBlock = document.getElementById('lm-quote-block');
+        var quoteEl    = document.getElementById('lm-quote');
+        if (d.quote) { quoteEl.textContent = d.quote; quoteBlock.style.display = ''; }
+        else { quoteBlock.style.display = 'none'; }
+
+        // Sectioned biography
+        var bioWrap = document.getElementById('lm-bio-wrap');
+        bioWrap.innerHTML = '';
+        d.bios.forEach(function(b, i) {
+          var sec = document.createElement('div');
+          sec.className = 'lm-section';
+          var label = document.createElement('span');
+          label.className = 'lm-section-label';
+          label.textContent = (d.sections && d.sections[i]) ? d.sections[i] : 'About';
+          var p = document.createElement('p');
+          p.className = 'lm-bio'; p.textContent = b;
+          sec.appendChild(label); sec.appendChild(p);
+          bioWrap.appendChild(sec);
+        });
+
+        // Expertise chips
+        var credsEl = document.getElementById('lm-creds');
+        credsEl.innerHTML = '';
+        d.creds.forEach(function(c) {
+          var chip = document.createElement('span');
+          chip.className = 'lm-chip';
+          var dot = document.createElement('span');
+          dot.className = 'lm-chip-dot';
+          chip.appendChild(dot);
+          chip.appendChild(document.createTextNode(c));
+          credsEl.appendChild(chip);
+        });
+
+        // Signature
+        var sigName = document.getElementById('lm-sig-name');
+        var sigCred = document.getElementById('lm-sig-cred');
+        if (sigName) sigName.textContent = d.name;
+        if (sigCred) sigCred.textContent = d.sigCred || d.role;
+
+        overlay.classList.add('lm-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLeader() {
+        overlay.classList.remove('lm-open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.leader-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          openLeader(card.dataset.leader);
+        });
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeLeader);
+      overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLeader(); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLeader(); });
     })();
 
     // ── Three.js Globe ──────────────────────────────────────
@@ -5990,112 +6601,9 @@
     });
 
     // ── Equipment section ──────────────────────────────────
-    var EQUIP_DATA = [
-      {
-        name: 'Prehospital Cardiac Monitor with IBP & ETCO₂ Monitoring',
-        items: [
-          'Multi-parameter cardiac monitoring with 12-lead ECG',
-          'Continuous heart rate, blood pressure and SpO₂ monitoring',
-          'Invasive Blood Pressure (IBP) monitoring',
-          'End-Tidal CO₂ (ETCO₂) for accurate ventilation assessment',
-          'Respiratory rate and temperature monitoring',
-          'Early detection of cardiac arrhythmias during transport'
-        ]
-      },
-      {
-        name: 'Portable Mechanical Ventilator',
-        items: [
-          'Designed for adult, pediatric, and neonatal patients',
-          'Volume and pressure-controlled ventilation modes',
-          'Safe respiratory support during ground and air transfers',
-          'Suitable for critically ill, trauma, and post-operative patients',
-          'Compact, lightweight, and aviation-certified',
-          'Continuous waveform display and alarm systems'
-        ]
-      },
-      {
-        name: 'Syringe Infusion Pumps',
-        items: [
-          'Precision-controlled IV medication delivery',
-          'Supports vasopressors, sedatives, analgesics, and insulin',
-          'Multiple simultaneous infusion lines',
-          'High-accuracy drug administration during transport',
-          'Battery-operated for uninterrupted use in-flight',
-          'Compatible with all standard syringe sizes'
-        ]
-      },
-      {
-        name: 'Advanced Airway Devices (Adult & Pediatric)',
-        items: [
-          'Laryngoscopes and video laryngoscopes',
-          'Endotracheal tubes for all age groups',
-          'Supraglottic airway devices (LMA, iGel)',
-          'Bougies and stylets for difficult airways',
-          'Emergency cricothyrotomy kits',
-          'Rapid airway stabilization in emergencies'
-        ]
-      },
-      {
-        name: 'Circulation Equipment',
-        items: [
-          'Automated External Defibrillator (AED)',
-          'Manual defibrillator with synchronized cardioversion',
-          'Transcutaneous pacing capability',
-          'IV and IO access devices',
-          'Pressure infusion systems',
-          'Emergency vascular access kits'
-        ]
-      },
-      {
-        name: 'Portable Suction Units',
-        items: [
-          'Lightweight battery-operated suction devices',
-          'Effective removal of blood, secretions, and vomitus',
-          'Maintains airway patency during transport',
-          'Reliable in both ground ambulances and aircraft',
-          'High suction pressure with adjustable flow',
-          'Disposable canister system for infection control'
-        ]
-      },
-      {
-        name: 'Portable Oxygen Concentrators',
-        items: [
-          'Continuous supplemental oxygen delivery',
-          'Aviation-compatible and FAA/DGCA approved',
-          'Suitable for long-duration commercial airline transfers',
-          'Compact and lightweight for in-cabin use',
-          'Ideal for dedicated air ambulance missions',
-          'Adjustable flow rates for patient-specific needs'
-        ]
-      }
-    ];
-
+    // Equipment section — static cards (no expand panel in new design)
     (function() {
-      var cards  = document.querySelectorAll('.equip-card');
-      var detail = document.getElementById('equip-detail');
-      var dName  = document.getElementById('equip-detail-name');
-      var dList  = document.getElementById('equip-detail-list');
-      var active = -1;
-
-      cards.forEach(function(card) {
-        card.addEventListener('click', function() {
-          var idx = parseInt(card.getAttribute('data-equip'));
-          if (active === idx) {
-            card.classList.remove('active');
-            detail.classList.remove('open');
-            active = -1;
-            return;
-          }
-          cards.forEach(function(c) { c.classList.remove('active'); });
-          card.classList.add('active');
-          active = idx;
-          var d = EQUIP_DATA[idx];
-          dName.textContent = d.name;
-          dList.innerHTML = d.items.map(function(i) { return '<li>' + i + '</li>'; }).join('');
-          detail.classList.add('open');
-          detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        });
-      });
+      // Hover states handled by CSS; no JS interaction needed.
     })();
 
     // ── Service data store ─────────────────────────────────
@@ -6406,9 +6914,9 @@
           exp: '15+ Years Experience',
           initials: 'SA',
           photo: 'dr-sujender.jpg', photoPos: 'center 10%',
-          bio: 'Senior Emergency Physician with 15+ years of experience, including 10+ years in Emergency Medicine and critical care retrieval. Led international and domestic air ambulance transfers across continents. Former ship physician aboard Norwegian Cruise Line. Certified educator in emergency resuscitation and advanced life support.',
+          bio: 'Dr. Sujender Rao Arepally is an experienced Emergency Medicine Physician with over 15 years of clinical experience, including more than 10 years in emergency medicine, critical care, and pre-hospital emergency services. He has extensive expertise in managing trauma, medical, surgical, pediatric, and cardiac emergencies, with a strong focus on rapid assessment, resuscitation, and evidence-based emergency care.\n\nHe has significant experience in air ambulance and retrieval medicine, having coordinated and accompanied numerous international and domestic transfers of critically ill patients. His expertise includes advanced critical care transport, ventilator management, hemodynamic stabilization, and ensuring safe continuity of care during long-distance fixed-wing and ground ambulance missions. He also served as a physician with Norwegian Cruise Line (NCL), independently managing medical emergencies, trauma, critical care stabilization, and medical evacuations in remote maritime environments.\n\nDr. Arepally is deeply committed to medical education and has trained numerous doctors, nurses, and healthcare professionals in emergency medicine and resuscitation. He is a certified Basic Life Support (BLS) and Advanced Cardiovascular Life Support (ACLS) Instructor, as well as an Advanced Trauma Life Support (ATLS) Provider and Pediatric Advanced Life Support (PALS) Provider. Recognized for his calm leadership, sound clinical judgment, and ability to perform under pressure, he brings expertise across hospital emergency departments, pre-hospital systems, aeromedical retrieval, and maritime medicine.',
           certs: ['ACLS Instructor','BLS Instructor','ATLS Provider','PALS Provider'],
-          skills: ['International Retrieval','Maritime Medicine','Ventilator Management','Advanced Airway','Critical Care Transport']
+          skills: ['International Air Retrieval','Maritime Medicine','Ventilator Management','Advanced Airway','Hemodynamic Stabilization','Trauma Resuscitation','Critical Care Transport','Medical Education']
         },
         tejasai: {
           name: 'Dr. Tejasai',
@@ -6449,6 +6957,26 @@
           bio: 'Dr. Koppela Aravind Reddy is an Emergency and Critical Care Physician with over 5 years of clinical experience in Emergency Medicine, Critical Care, and the transport of critically ill patients. He has extensive expertise in the rapid assessment, resuscitation, stabilization, and management of medical, cardiac, trauma, pediatric, and surgical emergencies in high-acuity emergency and intensive care settings.\n\nHe is proficient in advanced airway management, rapid sequence intubation (RSI), mechanical ventilation, point-of-care ultrasound (POCUS), Advanced Cardiac Life Support (ACLS), trauma resuscitation, procedural sedation, hemodynamic monitoring, and the management of critically ill patients requiring advanced life support. He is experienced in coordinating and escorting critically ill patients during ground and air ambulance transfers, ensuring safe transport, continuity of critical care, and seamless communication throughout retrieval.\n\nPassionate about emergency retrieval medicine and aeromedical services, Dr. Aravind Reddy is committed to delivering safe, timely, evidence-based, and compassionate care while maintaining the highest standards of patient safety during critical care transport and aeromedical evacuations.',
           certs: ['ACLS'],
           skills: ['Advanced Airway Management','Rapid Sequence Intubation (RSI)','Mechanical Ventilation','POCUS','Trauma Resuscitation','Procedural Sedation','Hemodynamic Monitoring','Critical Care Transport','Ground & Air Retrieval']
+        },
+        rahul: {
+          name: 'Dr. Rahul Vantaku',
+          title: 'Pediatric Emergency Physician',
+          exp: 'Pediatric Critical Care',
+          initials: 'RV',
+          photo: 'dr-rahul.jpg', photoPos: 'center 35%',
+          bio: 'Dr. Rahul Vantaku is a dedicated Pediatric Emergency Physician with specialized expertise in managing critically ill children and pediatric trauma. He brings a calm, systematic approach to the most high-pressure clinical environments, ensuring rapid and accurate assessment of every young patient.\n\nHis clinical strengths lie in pediatric resuscitation, critical care transport of children, trauma management, and advanced airway management tailored to pediatric anatomy. Dr. Rahul is known for his child-centered care philosophy — treating each patient with precision and empathy while maintaining clear communication with families during emergencies.\n\nAs part of the REACT air ambulance medical team, Dr. Rahul ensures that pediatric patients receive the highest standard of in-flight critical care, from initial stabilization through safe delivery to definitive care facilities.',
+          certs: [],
+          skills: ['Pediatric Emergency','Critical Care','Trauma Management','Rapid Assessment','Pediatric Resuscitation','Advanced Airway (Pediatric)','Critical Care Transport']
+        },
+        rohit: {
+          name: 'Isaac Rohit Satyavarapu',
+          title: 'Aviation Attorney & Legal Counsel',
+          exp: 'Legal Counsel',
+          initials: 'IR',
+          photo: 'advisor-rohit.jpg', photoPos: 'center top',
+          bio: 'Aviation Attorney based in India specializing in aviation law, regulatory compliance, and policy advisory for airlines, business aviation operators, helicopter services, air ambulance operators, aircraft owners, and aviation investors.\n\nHis practice covers DGCA regulatory compliance, AOC/NSOP establishment, aircraft acquisition, financing and leasing, aircraft registration and deregistration, aviation contracts, employment law for flight and ground crew, accident and incident legal support, and operational risk management. He also advises on charter agreements, wet and dry leasing, MRO, airport and ground handling contracts, and the establishment of aviation businesses in India.\n\nWith a strong understanding of Indian and international aviation regulations, Isaac provides practical legal and strategic solutions that help clients operate efficiently while maintaining full regulatory compliance.',
+          certs: ['Aviation Regulatory & Policy','Business Aviation Advisor'],
+          skills: ['DGCA Compliance','AOC / NSOP','Aircraft Acquisition & Leasing','Aviation Contracts','Operational Risk Management','Charter Agreements','MRO Contracts']
         }
       };
 

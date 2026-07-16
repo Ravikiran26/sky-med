@@ -10,223 +10,360 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #fff; color: #1a2a3a; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.8; }
+
+    :root {
+      --navy: #04111f;
+      --red: #e02828;
+      --blue: #1565c8;
+      --blue-lt: #EEF4FF;
+      --text: #0f172a;
+      --body: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #F8FAFC;
+      --card: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 1.9; -webkit-font-smoothing: antialiased; }
+
+    /* ── Progress bar ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--red), #ff6b6b);
+      z-index: 9999; transition: width .1s linear;
+    }
 
     /* ── Navbar ── */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; background: #fff; box-shadow: 0 1px 0 #e2e8f0; }
-    .nav-logo { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.5px; color: #04111f; text-decoration: none; }
-    .nav-logo span { color: #e02828; }
-    .nav-back { font-size: 13px; font-weight: 500; color: #1565c8; text-decoration: none; display: flex; align-items: center; gap: 6px; }
-    .nav-back:hover { color: #04111f; }
-    .nav-back svg { width: 14px; height: 14px; }
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 60px; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: 0.3px; color: var(--navy); text-decoration: none; }
+    .nav-logo span { color: var(--red); }
+    .nav-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); background: #f3f4f6; padding: 3px 10px; border-radius: 20px; }
 
-    /* ── Page wrapper ── */
-    .page { max-width: 860px; margin: 0 auto; padding: 100px 32px 80px; }
+    /* ── Sticky back button ── */
+    .sticky-back {
+      position: fixed; bottom: 32px; right: 32px; z-index: 200;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--navy); color: #fff;
+      font-size: 13px; font-weight: 600; text-decoration: none;
+      padding: 12px 20px; border-radius: 100px;
+      box-shadow: 0 4px 20px rgba(4,17,31,.25);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .sticky-back:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(4,17,31,.32); }
+    .sticky-back svg { width: 14px; height: 14px; }
 
-    /* ── Header ── */
-    .page-eyebrow { display: none; }
-    .page-title { font-size: 36px; font-weight: 700; color: #0d2a6e; margin-bottom: 24px; line-height: 1.2; }
-    .page-meta { font-size: 13px; color: #6a8aaa; margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid #e2e8f0; }
+    /* ── Outer shell ── */
+    .shell { max-width: 960px; margin: 0 auto; padding: 100px 24px 80px; }
 
-    /* ── Content ── */
-    .policy-section { margin-bottom: 36px; }
-    .policy-section h2 { font-size: 17px; font-weight: 700; color: #1a2a3a; margin-bottom: 12px; }
-    .policy-section p { font-size: 15px; color: #334155; margin-bottom: 14px; line-height: 1.8; }
-    .policy-section ul { padding-left: 22px; margin-bottom: 14px; }
-    .policy-section ul li { font-size: 15px; color: #334155; margin-bottom: 8px; line-height: 1.7; }
-    .policy-section a { color: #1565c8; text-decoration: none; }
+    /* ── Page header ── */
+    .page-header { text-align: center; margin-bottom: 48px; }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #fff1f1; color: var(--red);
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .page-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+    h1.page-title { font-size: 52px; font-weight: 800; color: var(--navy); line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+    .page-meta { font-size: 14px; color: var(--muted); font-weight: 400; }
+
+    /* ── White content card ── */
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 8px 40px rgba(0,0,0,.07);
+      padding: 64px 72px;
+    }
+
+    /* ── Callout box ── */
+    .callout {
+      display: flex; gap: 16px;
+      background: var(--blue-lt); border: 1px solid #BFDBFE;
+      border-radius: 12px; padding: 20px 24px; margin-bottom: 48px;
+    }
+    .callout-icon { flex-shrink: 0; width: 22px; height: 22px; margin-top: 2px; color: var(--blue); }
+    .callout p { font-size: 16px; color: #1e3a5f; line-height: 1.75; margin: 0; }
+
+    /* ── Warning callout ── */
+    .warn-callout {
+      display: flex; gap: 16px;
+      background: #fff8f8; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 18px 22px; margin: 20px 0;
+    }
+    .warn-callout svg { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; color: var(--red); }
+    .warn-callout p { font-size: 15px; color: #7f1d1d; line-height: 1.7; margin: 0; }
+
+    /* ── Section divider ── */
+    .policy-section { padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--border); }
+    .policy-section:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+    /* ── Section number + heading ── */
+    .section-num { display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 18px; letter-spacing: -0.3px; line-height: 1.3; }
+
+    /* ── Body content ── */
+    .policy-section p { font-size: 17px; color: var(--body); margin-bottom: 16px; line-height: 1.85; }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul { padding-left: 0; margin: 16px 0; list-style: none; }
+    .policy-section ul li {
+      font-size: 16px; color: var(--body); line-height: 1.75;
+      padding: 10px 0 10px 28px; border-bottom: 1px solid #f3f4f6;
+      position: relative;
+    }
+    .policy-section ul li:last-child { border-bottom: none; }
+    .policy-section ul li::before {
+      content: ''; position: absolute; left: 0; top: 19px;
+      width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    }
+    .policy-section a { color: var(--blue); font-weight: 500; text-decoration: none; }
     .policy-section a:hover { text-decoration: underline; }
+    strong { font-weight: 600; color: var(--text); }
 
-    /* Cancellation fee table */
-    .fee-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid #e2e8f0; }
-    .fee-table th { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; background: #f8fafc; text-align: left; padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
-    .fee-table td { font-size: 14px; color: #334155; padding: 14px 16px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
-    .fee-table tr:last-child td { border-bottom: none; }
-    .fee-pct { font-size: 18px; font-weight: 700; white-space: nowrap; }
+    /* ── Fee table ── */
+    .fee-table-wrap { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,.06); margin: 20px 0 24px; }
+    .fee-table { width: 100%; border-collapse: collapse; }
+    .fee-table thead { background: var(--navy); }
+    .fee-table th { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.7); text-align: left; padding: 14px 20px; }
+    .fee-table tbody tr { border-bottom: 1px solid var(--border); transition: background .15s; }
+    .fee-table tbody tr:last-child { border-bottom: none; }
+    .fee-table tbody tr:hover { background: #f8faff; }
+    .fee-table td { font-size: 15px; color: var(--body); padding: 16px 20px; vertical-align: middle; }
+    .fee-table td:first-child { font-weight: 500; color: var(--text); }
+    .fee-pct { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; margin-right: 4px; }
     .fee-pct.green  { color: #16a34a; }
     .fee-pct.yellow { color: #d97706; }
-    .fee-pct.red    { color: #e02828; }
+    .fee-pct.red    { color: var(--red); }
 
-    .highlight-box { background: #f8faff; border-left: 3px solid #1565c8; padding: 16px 20px; margin-bottom: 24px; }
-    .highlight-box p { margin-bottom: 0; color: #1a2a3a; font-size: 15px; }
-    .warn-box { background: #fff8f8; border-left: 3px solid #e02828; padding: 16px 20px; margin-bottom: 20px; }
-    .warn-box p { margin-bottom: 0; color: #7f1d1d; font-size: 15px; }
-
-    /* Acceptance block */
-    .acceptance { background: #f8faff; border: 1px solid #dbeafe; padding: 24px; margin-top: 48px; }
-    .acceptance h3 { font-size: 17px; font-weight: 700; color: #0d2a6e; margin-bottom: 10px; }
-    .acceptance p { font-size: 15px; color: #334155; margin-bottom: 0; }
+    /* ── Acceptance block ── */
+    .acceptance {
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f0fe 100%);
+      border: 1px solid #bfdbfe; border-radius: 16px;
+      padding: 32px 36px; margin-top: 48px;
+    }
+    .acceptance h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .acceptance p { font-size: 15px; color: #1e3a5f; line-height: 1.75; margin: 0; }
 
     /* ── Footer ── */
-    .page-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .page-footer span { font-size: 13px; color: #6a8aaa; }
-    .page-footer a { color: #1565c8; text-decoration: none; font-size: 13px; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .card-footer span { font-size: 13px; color: var(--muted); }
+    .card-footer a { font-size: 13px; font-weight: 600; color: var(--blue); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+    .card-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .shell { padding: 90px 16px 60px; }
+      h1.page-title { font-size: 32px; letter-spacing: -0.5px; }
+      .card { padding: 36px 24px; }
+      .sticky-back { bottom: 20px; right: 16px; padding: 10px 16px; font-size: 12px; }
+    }
   </style>
 </head>
 <body>
 
+  <div id="progress-bar"></div>
+
   <nav class="nav">
     <a href="/" class="nav-logo"><span>REACT</span> Air Ambulance</a>
-    <a href="/" class="nav-back">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to Home
-    </a>
+    <span class="nav-tag">Legal</span>
   </nav>
 
-  <div class="page">
-    <div class="page-eyebrow">Legal</div>
-    <h1 class="page-title">Cancellation, Refund &amp; Operational Policy</h1>
-    <p class="page-meta">Effective: July 2026 &nbsp;·&nbsp; NL Curantis International Pvt Ltd</p>
+  <a href="/" class="sticky-back">
+    <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to Home
+  </a>
 
-    <div class="highlight-box">
-      <p>Every REACT Air Ambulance mission is a highly coordinated medical operation involving aircraft scheduling, aviation authorities, airport handling, international permits, medical crew deployment, ground ambulances, and specialised medical equipment. Once a mission is confirmed, substantial operational costs are incurred immediately. The following policy governs all confirmed bookings.</p>
+  <div class="shell">
+
+    <div class="page-header">
+      <div class="page-badge">Legal</div>
+      <h1 class="page-title">Cancellation, Refund &amp;<br>Operational Policy</h1>
+      <p class="page-meta">Effective: July 2026 &nbsp;&middot;&nbsp; NL Curantis International Pvt Ltd</p>
     </div>
 
-    <div class="policy-section">
-      <h2>1. Booking Confirmation</h2>
-      <p>A booking is considered confirmed only after all of the following conditions are met:</p>
-      <ul>
-        <li>Receipt of the agreed advance payment</li>
-        <li>Written confirmation issued by REACT Air Ambulance</li>
-        <li>Aircraft and medical team allocation</li>
-        <li>Acceptance of all applicable terms and conditions</li>
-      </ul>
-    </div>
+    <div class="card">
 
-    <div class="policy-section">
-      <h2>2. Cancellation by the Client</h2>
-      <table class="fee-table">
-        <thead>
-          <tr>
-            <th>Timing of Cancellation</th>
-            <th>Cancellation Fee</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>More than 24 hours before scheduled departure</td>
-            <td><span class="fee-pct green">25%</span> of total mission cost</td>
-          </tr>
-          <tr>
-            <td>Between 24 hours and 12 hours before scheduled departure</td>
-            <td><span class="fee-pct yellow">50%</span> of total mission cost</td>
-          </tr>
-          <tr>
-            <td>Less than 12 hours before departure or No-Show</td>
-            <td><span class="fee-pct red">100%</span> — No refund issued</td>
-          </tr>
-          <tr>
-            <td>After aircraft has departed base, repositioned, or medical crew has commenced mission</td>
-            <td><span class="fee-pct red">100%</span> — No refund issued</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="policy-section">
-      <h2>3. Medical Mission Abandonment</h2>
-      <p>If the patient, family, hospital, insurer, or authorised representative cancels or refuses transportation after any of the following stages, all expenses incurred shall be charged to the client and additional operational costs may apply:</p>
-      <ul>
-        <li>Medical team deployment</li>
-        <li>Ground ambulance dispatch</li>
-        <li>Airport arrival</li>
-        <li>Aircraft preparation</li>
-        <li>Immigration or customs clearance</li>
-        <li>Aircraft positioning</li>
-      </ul>
-    </div>
-
-    <div class="policy-section">
-      <h2>4. Force Majeure</h2>
-      <p>REACT Air Ambulance shall not be liable for delays, cancellations, rescheduling, or inability to perform a mission arising from events beyond its reasonable control, including but not limited to:</p>
-      <ul>
-        <li>Adverse weather or airport closures</li>
-        <li>Air Traffic Control restrictions</li>
-        <li>Government regulations, war, or civil unrest</li>
-        <li>Natural disasters, pandemics, or epidemics</li>
-        <li>Industrial action or political instability</li>
-        <li>Security threats</li>
-        <li>Aircraft technical issues affecting safety</li>
-        <li>Medical emergencies requiring operational changes</li>
-      </ul>
-      <p>Where practical, REACT Air Ambulance will make reasonable efforts to arrange an alternative aircraft, revised departure schedule, or suitable operational solution.</p>
-    </div>
-
-    <div class="policy-section">
-      <h2>5. Aircraft Substitution</h2>
-      <p>REACT Air Ambulance reserves the right to substitute the scheduled aircraft with another of equal or higher capability if operational, technical, maintenance, or safety requirements necessitate such substitution. Such substitution shall not constitute grounds for cancellation or compensation.</p>
-    </div>
-
-    <div class="policy-section">
-      <h2>6. Operational Delays</h2>
-      <p>Mission departure times are estimated and may vary due to:</p>
-      <ul>
-        <li>Air Traffic Control clearances</li>
-        <li>International overflight and landing permits</li>
-        <li>Airport slot availability</li>
-        <li>Customs and immigration procedures</li>
-        <li>Medical stabilisation of the patient</li>
-        <li>Weather conditions, fuel availability, or airport operational restrictions</li>
-      </ul>
-      <p>REACT Air Ambulance shall not be responsible for consequential losses arising from operational delays.</p>
-    </div>
-
-    <div class="policy-section">
-      <h2>7. Patient Medical Fitness</h2>
-      <p>The attending physician, receiving physician, and REACT Air Ambulance Medical Director reserve the right to determine whether a patient is medically fit for air transport. If transport becomes medically unsafe before departure, the mission may be postponed, modified, or cancelled in the interest of patient safety.</p>
-    </div>
-
-    <div class="policy-section">
-      <h2>8. Refund Policy</h2>
-      <p>Refunds, where applicable, shall be processed after deduction of applicable cancellation charges and operational expenses.</p>
-      <ul>
-        <li><strong>Standard processing time:</strong> within 24 working hours of cancellation approval</li>
-        <li>Depending on banking procedures, international payment networks, public holidays, or regulatory compliance, the credit may take up to <strong>7 working days</strong> to appear in the client's account</li>
-      </ul>
-      <div class="warn-box">
-        <p>Bank charges, foreign exchange losses, payment gateway fees, and intermediary bank deductions are non-refundable unless otherwise agreed in writing.</p>
+      <div class="callout">
+        <svg class="callout-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+        <p>Every REACT Air Ambulance mission is a highly coordinated medical operation involving aircraft scheduling, aviation authorities, airport handling, international permits, medical crew deployment, ground ambulances, and specialised medical equipment. Once a mission is confirmed, substantial operational costs are incurred immediately.</p>
       </div>
-    </div>
 
-    <div class="policy-section">
-      <h2>9. Third-Party Costs</h2>
-      <p>The client shall remain responsible for costs incurred from third-party service providers, including but not limited to:</p>
-      <ul>
-        <li>Airport handling charges</li>
-        <li>Ground ambulance services</li>
-        <li>Hospital coordination fees</li>
-        <li>Immigration or visa processing fees</li>
-        <li>Customs clearance</li>
-        <li>Commercial airline penalties</li>
-        <li>Landing and parking charges</li>
-        <li>Medical consumables used specifically for the patient</li>
-      </ul>
-      <p>These charges may be payable even if the mission is cancelled.</p>
-    </div>
+      <div class="policy-section">
+        <span class="section-num">01</span>
+        <h2>Booking Confirmation</h2>
+        <p>A booking is considered confirmed only after all of the following conditions are met:</p>
+        <ul>
+          <li>Receipt of the agreed advance payment</li>
+          <li>Written confirmation issued by REACT Air Ambulance</li>
+          <li>Aircraft and medical team allocation</li>
+          <li>Acceptance of all applicable terms and conditions</li>
+        </ul>
+      </div>
 
-    <div class="policy-section">
-      <h2>10. Limitation of Liability</h2>
-      <p>REACT Air Ambulance shall not be liable for indirect, incidental, special, or consequential damages, including but not limited to loss of income, travel expenses, accommodation costs, missed commercial flights, or any other financial loss arising from mission delays, cancellations, or operational changes.</p>
-    </div>
+      <div class="policy-section">
+        <span class="section-num">02</span>
+        <h2>Cancellation by the Client</h2>
+        <div class="fee-table-wrap">
+          <table class="fee-table">
+            <thead>
+              <tr>
+                <th>Timing of Cancellation</th>
+                <th>Fee Applied</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>More than 24 hours before scheduled departure</td>
+                <td><span class="fee-pct green">25%</span> of total mission cost</td>
+              </tr>
+              <tr>
+                <td>Between 24 hours and 12 hours before scheduled departure</td>
+                <td><span class="fee-pct yellow">50%</span> of total mission cost</td>
+              </tr>
+              <tr>
+                <td>Less than 12 hours before departure or No-Show</td>
+                <td><span class="fee-pct red">100%</span> — No refund issued</td>
+              </tr>
+              <tr>
+                <td>After aircraft departure, repositioning, or crew mission commencement</td>
+                <td><span class="fee-pct red">100%</span> — No refund issued</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-    <div class="policy-section">
-      <h2>11. Governing Law</h2>
-      <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of the Republic of India. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the competent courts at <strong>Hyderabad, Telangana, India</strong>.</p>
-    </div>
+      <div class="policy-section">
+        <span class="section-num">03</span>
+        <h2>Medical Mission Abandonment</h2>
+        <p>If the patient, family, hospital, insurer, or authorised representative cancels or refuses transportation after any of the following stages, all expenses incurred shall be charged to the client:</p>
+        <ul>
+          <li>Medical team deployment</li>
+          <li>Ground ambulance dispatch</li>
+          <li>Airport arrival</li>
+          <li>Aircraft preparation</li>
+          <li>Immigration or customs clearance</li>
+          <li>Aircraft positioning</li>
+        </ul>
+      </div>
 
-    <div class="acceptance">
-      <h3>Acceptance</h3>
-      <p>By confirming a booking and making payment, the client acknowledges that they have read, understood, and accepted these Cancellation, Refund, and Operational Terms and Conditions in full.</p>
-    </div>
+      <div class="policy-section">
+        <span class="section-num">04</span>
+        <h2>Force Majeure</h2>
+        <p>REACT Air Ambulance shall not be liable for delays, cancellations, rescheduling, or inability to perform a mission arising from events beyond its reasonable control, including but not limited to:</p>
+        <ul>
+          <li>Adverse weather or airport closures</li>
+          <li>Air Traffic Control restrictions</li>
+          <li>Government regulations, war, or civil unrest</li>
+          <li>Natural disasters, pandemics, or epidemics</li>
+          <li>Industrial action or political instability</li>
+          <li>Security threats</li>
+          <li>Aircraft technical issues affecting safety</li>
+          <li>Medical emergencies requiring operational changes</li>
+        </ul>
+        <p>Where practical, REACT Air Ambulance will make reasonable efforts to arrange an alternative aircraft, revised departure schedule, or suitable operational solution.</p>
+      </div>
 
-    <div class="page-footer">
-      <span>&copy; 2026 REACT Air Ambulance. All rights reserved.</span>
-      <a href="/privacy-policy.html">Privacy Policy &rarr;</a>
+      <div class="policy-section">
+        <span class="section-num">05</span>
+        <h2>Aircraft Substitution</h2>
+        <p>REACT Air Ambulance reserves the right to substitute the scheduled aircraft with another of equal or higher capability if operational, technical, maintenance, or safety requirements necessitate such substitution. Such substitution shall not constitute grounds for cancellation or compensation.</p>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">06</span>
+        <h2>Operational Delays</h2>
+        <p>Mission departure times are estimated and may vary due to:</p>
+        <ul>
+          <li>Air Traffic Control clearances</li>
+          <li>International overflight and landing permits</li>
+          <li>Airport slot availability</li>
+          <li>Customs and immigration procedures</li>
+          <li>Medical stabilisation of the patient</li>
+          <li>Weather conditions, fuel availability, or airport operational restrictions</li>
+        </ul>
+        <p>REACT Air Ambulance shall not be responsible for consequential losses arising from operational delays.</p>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">07</span>
+        <h2>Patient Medical Fitness</h2>
+        <p>The attending physician, receiving physician, and REACT Air Ambulance Medical Director reserve the right to determine whether a patient is medically fit for air transport. If transport becomes medically unsafe before departure, the mission may be postponed, modified, or cancelled in the interest of patient safety.</p>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">08</span>
+        <h2>Refund Policy</h2>
+        <p>Refunds, where applicable, shall be processed after deduction of applicable cancellation charges and operational expenses.</p>
+        <ul>
+          <li><strong>Standard processing time:</strong> within 24 working hours of cancellation approval</li>
+          <li>Depending on banking procedures, international payment networks, public holidays, or regulatory compliance, the credit may take up to <strong>7 working days</strong> to appear in the client's account</li>
+        </ul>
+        <div class="warn-callout">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+          <p>Bank charges, foreign exchange losses, payment gateway fees, and intermediary bank deductions are non-refundable unless otherwise agreed in writing.</p>
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">09</span>
+        <h2>Third-Party Costs</h2>
+        <p>The client shall remain responsible for costs incurred from third-party service providers, including but not limited to:</p>
+        <ul>
+          <li>Airport handling charges</li>
+          <li>Ground ambulance services</li>
+          <li>Hospital coordination fees</li>
+          <li>Immigration or visa processing fees</li>
+          <li>Customs clearance</li>
+          <li>Commercial airline penalties</li>
+          <li>Landing and parking charges</li>
+          <li>Medical consumables used specifically for the patient</li>
+        </ul>
+        <p>These charges may be payable even if the mission is cancelled.</p>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">10</span>
+        <h2>Limitation of Liability</h2>
+        <p>REACT Air Ambulance shall not be liable for indirect, incidental, special, or consequential damages, including but not limited to loss of income, travel expenses, accommodation costs, missed commercial flights, or any other financial loss arising from mission delays, cancellations, or operational changes.</p>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">11</span>
+        <h2>Governing Law</h2>
+        <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of the Republic of India. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the competent courts at <strong>Hyderabad, Telangana, India</strong>.</p>
+      </div>
+
+      <div class="acceptance">
+        <h3>Acceptance of Terms</h3>
+        <p>By confirming a booking and making payment, the client acknowledges that they have read, understood, and accepted these Cancellation, Refund, and Operational Terms and Conditions in full.</p>
+      </div>
+
+      <div class="card-footer">
+        <span>&copy; 2026 REACT Air Ambulance. All rights reserved.</span>
+        <a href="/privacy-policy.html">Privacy Policy <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
     </div>
   </div>
+
+  <script>
+    var bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', function() {
+      var s = document.documentElement.scrollTop || document.body.scrollTop;
+      var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      bar.style.width = (s / h * 100) + '%';
+    });
+  </script>
 
 </body>
 </html>

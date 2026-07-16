@@ -2844,11 +2844,11 @@
       box-shadow: 0 4px 22px rgba(4,17,31,.18);
       cursor: pointer; color: #04111f;
       display: flex; align-items: center; justify-content: center;
-      transition: transform .32s ease, box-shadow .25s ease, background .22s, color .22s;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s, color .2s;
     }
     .lm-close:hover {
-      transform: rotate(90deg) scale(1.1);
-      box-shadow: 0 8px 30px rgba(4,17,31,.3);
+      transform: rotate(90deg) scale(1.05);
+      box-shadow: 0 10px 32px rgba(4,17,31,.28);
       background: #04111f; color: #fff;
     }
 
@@ -2883,52 +2883,60 @@
     }
     .lm-name {
       font-family: var(--font-head); font-size: 38px; letter-spacing: 2.5px;
-      color: #04111f; line-height: 1; margin-bottom: 9px;
+      color: #04111f; line-height: 1; margin-bottom: 14px;
     }
     .lm-specialty {
-      font-family: var(--font-body); font-size: 15px; font-weight: 600;
-      color: #1565c8; letter-spacing: .2px; margin-bottom: 4px;
+      font-family: var(--font-body); font-size: 16px; font-weight: 600;
+      color: #1565c8; letter-spacing: .2px; margin-bottom: 5px;
     }
     .lm-role {
       font-family: var(--font-body); font-size: 12px; font-weight: 400;
       color: #7a90aa; letter-spacing: .4px; margin-bottom: 0;
     }
     .lm-divider {
-      width: 100%; height: 1px; margin: 24px 0;
+      width: 100%; height: 1px; margin: 26px 0;
       background: linear-gradient(90deg,rgba(21,101,200,.45) 0%,rgba(21,101,200,.12) 55%,transparent 100%);
     }
 
     /* Pull quote card */
     .lm-quote-block {
-      background: #fff; border-left: 3px solid #1565c8;
-      border-radius: 0 12px 12px 0; padding: 17px 22px; margin-bottom: 28px;
+      background: #F8FAFC; border-left: 5px solid #1565c8;
+      border-radius: 0 12px 12px 0; padding: 22px 28px; margin-bottom: 36px;
       box-shadow: 0 2px 22px rgba(21,101,200,.08), inset 0 0 0 1px rgba(21,101,200,.07);
     }
     .lm-quote-text {
-      font-family: var(--font-body); font-size: 13px; font-style: italic;
-      line-height: 1.78; color: #0d2952; font-weight: 400; margin: 0;
+      font-family: var(--font-body); font-size: 16px; font-style: italic;
+      line-height: 1.8; color: #0d2952; font-weight: 400; margin: 0;
     }
 
     /* Sectioned biography */
-    .lm-section { margin-bottom: 20px; }
+    .lm-section { margin-bottom: 32px; }
     .lm-section-label {
-      display: block; font-family: var(--font-label); font-size: 7.5px;
-      font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
-      color: #1565c8; margin-bottom: 8px; opacity: .65;
+      display: flex; align-items: center; gap: 14px;
+      font-family: var(--font-label); font-size: 11px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: #2563EB; margin-bottom: 16px; opacity: 1;
+    }
+    .lm-section-label::before {
+      content: ''; display: block; width: 40px; height: 2px;
+      background: #2563EB; flex-shrink: 0; border-radius: 2px;
     }
     .lm-bio {
-      font-family: var(--font-body); font-size: 13.5px; line-height: 1.84;
-      color: #3c5070; margin: 0;
+      font-family: var(--font-body); font-size: 15px; line-height: 1.85;
+      color: #475569; margin: 0; white-space: pre-line; max-width: 650px;
+    }
+    .lm-section-divider {
+      width: 100%; height: 1px; background: #E5E7EB; margin: 8px 0 32px;
     }
 
     /* Expertise chips — outlined with icon dot */
-    .lm-creds { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 26px; }
+    .lm-creds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
     .lm-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--font-body); font-size: 10.5px; font-weight: 500;
       color: #0d2952; letter-spacing: .2px;
-      border: 1px solid rgba(21,101,200,.26); border-radius: 7px;
-      padding: 5px 12px; background: rgba(21,101,200,.04);
+      border: 1px solid rgba(21,101,200,.26); border-radius: 5px;
+      padding: 4px 10px; background: rgba(21,101,200,.04);
       transition: border-color .2s, background .2s, color .2s;
     }
     .lm-chip:hover { border-color: rgba(21,101,200,.52); background: rgba(21,101,200,.09); color: #1565c8; }
@@ -2965,7 +2973,10 @@
       .lm-photo-wrap { flex: none; height: 270px; min-height: unset; }
       .lm-body { padding: 28px 26px 36px; opacity: 1 !important; transition: none !important; }
       .lm-name { font-size: 30px; }
-      .lm-specialty { font-size: 13px; }
+      .lm-specialty { font-size: 14px; }
+      .lm-bio { font-size: 14px; max-width: 100%; }
+      .lm-quote-text { font-size: 14px; }
+      .lm-section-label { font-size: 10px; }
       .lm-signature { flex-wrap: wrap; gap: 10px; }
     }
     @media (max-width: 480px) {
@@ -6100,10 +6111,9 @@
         initials: 'NR',
         photo: 'dr-founder.jpg', bgSize: 'cover', bgPos: 'center 15%',
         quote: 'Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety — because we treat every patient with the same care we would want for our own loved ones.',
-        sections: ['About', 'Why We Founded REACT', 'Our Promise'],
+        sections: ['Founder\'s Note', 'Our Promise'],
         bios: [
-          'As an Emergency Physician, I have had the privilege of caring for patients and supporting families during some of the most difficult moments of their lives. Through my experience in aeromedical transport and critical care transfers, I have witnessed how crucial timely access to the right medical care can be — and how overwhelming it is for families when a loved one needs urgent transportation.',
-          'REACT was founded with a simple purpose: to bridge this gap by providing safe, dependable, and medically coordinated patient transportation services. We believe that families deserve more than just a transfer service — they deserve reassurance, clear communication, and a team they can trust during life\'s most critical moments.',
+          'As an Emergency Physician, I have had the privilege of caring for patients and supporting families during some of the most difficult moments of their lives. Through my experience in aeromedical transport and critical care transfers, I have witnessed how crucial timely access to the right medical care can be — and how overwhelming it is for families when a loved one needs urgent transportation.\n\nREACT was founded with a simple purpose: to bridge this gap by providing safe, dependable, and medically coordinated patient transportation services. We believe that families deserve more than just a transfer service — they deserve reassurance, clear communication, and a team they can trust during life\'s most critical moments.',
           'Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety. We treat every patient with the same dignity, respect, and care that we would want for our own loved ones. When every second counts, we REACT.'
         ],
         sigCred: 'MD · Emergency Physician · Aeromedical Transport',
@@ -6167,6 +6177,11 @@
         var bioWrap = document.getElementById('lm-bio-wrap');
         bioWrap.innerHTML = '';
         d.bios.forEach(function(b, i) {
+          if (i > 0) {
+            var div = document.createElement('div');
+            div.className = 'lm-section-divider';
+            bioWrap.appendChild(div);
+          }
           var sec = document.createElement('div');
           sec.className = 'lm-section';
           var label = document.createElement('span');

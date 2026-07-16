@@ -6767,7 +6767,7 @@
       },
       'svc-hems': {
         num: '04', cat: 'Specialized Medical',
-        img: 'hems-helicopter.jpg',
+        img: 'hems-helicopter.jpg', imgPos: 'center 55%',
         title: 'HEMS – Helicopter Emergency Medical Services',
         desc: [
           'REACT\'s Helicopter Emergency Medical Services (HEMS) provide rapid access to advanced medical care in situations where time is critical. Helicopters enable rapid patient evacuation from accident scenes, remote locations, islands, mountainous terrain, and congested urban areas.',
@@ -6891,6 +6891,7 @@
         if (!data) return;
         mImg.src             = data.img;
         mImg.alt             = data.title;
+        mImg.style.objectPosition = data.imgPos || 'center center';
         mCat.textContent     = data.cat;
         mNum.textContent     = data.num;
         mTitle.textContent   = data.title;

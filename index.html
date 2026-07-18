@@ -92,7 +92,7 @@
     }
 
     a, button, [role="button"], .btn, .float-btn, .svc-tab,
-    .svc2-cta, .learn, .book-btn, .hamburger { cursor: pointer; }
+    .svc2-cta, .learn, .book-btn, .hamburger { cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
     body::before, body::after { display: none; }
 
@@ -1671,6 +1671,8 @@
     .svc-modal {
       position: fixed; inset: 0; z-index: 300;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
       background: #04111f;
       animation: mPageIn .35s cubic-bezier(.22,.61,.36,1) both;
     }
@@ -1854,8 +1856,8 @@
     }
     .svc-sticky-phone-num:hover { color: var(--red2); }
 
-    /* Make cards clickable */
-    .svc2 { cursor: pointer !important; }
+    /* Make cards clickable — touch-action removes 300ms tap delay on mobile */
+    .svc2 { cursor: pointer !important; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
     @media (max-width: 768px) {
       .svc-modal-photo { height: 360px; }
@@ -6893,6 +6895,8 @@
         return html;
       }
 
+      var _scrollY = 0;
+
       function openModal(card) {
         var id   = card.dataset.svcId;
         var data = SVC_DATA[id];
@@ -6906,12 +6910,19 @@
         mContent.innerHTML   = buildContent(data);
         modal.hidden         = false;
         modal.scrollTop      = 0;
-        document.body.style.overflow = 'hidden';
+        /* iOS-safe scroll lock */
+        _scrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top      = '-' + _scrollY + 'px';
+        document.body.style.width    = '100%';
       }
 
       function closeModal() {
         modal.hidden = true;
-        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top      = '';
+        document.body.style.width    = '';
+        window.scrollTo(0, _scrollY);
       }
 
       document.querySelectorAll('.svc2').forEach(function(card) {

@@ -162,10 +162,10 @@
     .nav.scrolled .brand { transform: scale(.9); transform-origin: left center; }
 
     .brand-logo {
-      height: 56px; width: auto; display: block;
+      height: 80px; width: auto; display: block;
       background: #ffffff;
-      border-radius: 12px;
-      padding: 6px 10px;
+      border-radius: 14px;
+      padding: 8px 14px;
       box-shadow: 0 2px 12px rgba(15,23,42,.08), 0 0 0 1px rgba(17,24,39,.05);
       transition: box-shadow .25s ease;
     }
@@ -347,15 +347,15 @@
     }
     .hero-slide.active { opacity: 1; }
 
-    /* Directional gradient — dark on left where text sits, clear on right */
+    /* Directional gradient — cinematic left fade, lets photo breathe on right */
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
         to right,
-        rgba(4,17,31,.88) 0%,
-        rgba(4,17,31,.68) 28%,
-        rgba(4,17,31,.22) 52%,
-        transparent 72%
+        rgba(4,17,31,.62) 0%,
+        rgba(4,17,31,.42) 32%,
+        rgba(4,17,31,.10) 58%,
+        transparent 75%
       );
       pointer-events: none;
     }
@@ -394,11 +394,13 @@
       font-size: clamp(32px, 3.8vw, 58px);
       letter-spacing: -0.3px; line-height: 1.1;
       color: #ffffff;
+      text-shadow: 0 2px 20px rgba(4,17,31,.55), 0 1px 4px rgba(4,17,31,.4);
     }
     .hero-sub {
       margin: 18px 0 0;
-      color: rgba(255,255,255,.85); font-size: 17px;
+      color: rgba(255,255,255,.92); font-size: 17px;
       line-height: 1.65; max-width: 520px;
+      text-shadow: 0 1px 8px rgba(4,17,31,.5);
     }
 
     .hero-actions {
@@ -1117,124 +1119,189 @@
 
     /* ── COVERAGE ────────────────────────────────────────── */
     /* ── COVERAGE / VINTAGE ROUTE MAP ───────────────────────── */
-    #coverage { background: var(--navy); }
+    #coverage { background: #030d1a; }
 
-    .vmap-wrap { margin-top: 54px; }
+    .vmap-wrap { margin-top: 48px; }
 
     .vmap-outer {
-      position: relative; background: #030c15;
-      border: 1px solid rgba(74,158,255,.2);
+      position: relative;
+      background: linear-gradient(160deg,#030d1a 0%,#040f1e 60%,#030c18 100%);
+      border: 1px solid rgba(74,158,255,.12);
+      border-radius: 16px; overflow: hidden;
+    }
+    /* Atmospheric vignette */
+    .vmap-outer::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 4;
+      background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(2,8,18,.7) 100%);
     }
 
     .vmap-corner {
-      position: absolute; width: 28px; height: 28px;
-      border-color: rgba(74,158,255,.5); border-style: solid;
-      pointer-events: none; z-index: 2;
+      position: absolute; width: 18px; height: 18px;
+      border-color: rgba(74,158,255,.28); border-style: solid;
+      pointer-events: none; z-index: 5;
     }
-    .vmap-corner-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
-    .vmap-corner-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
-    .vmap-corner-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
-    .vmap-corner-br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+    .vmap-corner-tl { top: 14px; left: 14px; border-width: 1.5px 0 0 1.5px; }
+    .vmap-corner-tr { top: 14px; right: 14px; border-width: 1.5px 1.5px 0 0; }
+    .vmap-corner-bl { bottom: 14px; left: 14px; border-width: 0 0 1.5px 1.5px; }
+    .vmap-corner-br { bottom: 14px; right: 14px; border-width: 0 1.5px 1.5px 0; }
 
     .vmap-topbar {
-      padding: 16px 32px; display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid rgba(74,158,255,.08);
+      padding: 20px 32px; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(74,158,255,.07);
+      background: rgba(3,10,22,.55); position: relative; z-index: 5;
     }
     .vmap-topbar-title {
-      font-family: var(--font-label); font-size: 9px;
-      letter-spacing: 3px; color: rgba(74,158,255,.55); text-transform: uppercase;
+      font-family: 'Inter','Manrope',sans-serif; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.01em; color: rgba(238,243,255,.92); text-transform: none;
     }
     .vmap-topbar-sub {
-      font-family: var(--font-label); font-size: 9px;
-      letter-spacing: 2px; color: var(--muted); text-transform: uppercase;
+      font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: 0.01em; color: rgba(106,138,170,.72); text-transform: none; margin-top: 3px;
     }
 
     #vmap { width: 100%; display: block; }
 
     .vmap-india {
-      fill: rgba(21,65,130,.2); stroke: rgba(74,158,255,.44);
-      stroke-width: 1.6; stroke-linejoin: round;
+      fill: rgba(21,65,130,.22); stroke: rgba(74,158,255,.4);
+      stroke-width: 1.4; stroke-linejoin: round;
     }
-    .vmap-grid-line { stroke: rgba(74,158,255,.055); stroke-width: 1; fill: none; }
+    .vmap-grid-line { stroke: rgba(74,158,255,.04); stroke-width: 0.8; fill: none; }
 
+    /* Thin elegant routes — blue instead of red */
     .vmap-route {
-      fill: none; stroke: rgba(224,40,40,.52);
-      stroke-width: 1.5; stroke-dasharray: 6 5; stroke-linecap: round;
+      fill: none; stroke: rgba(74,158,255,.22);
+      stroke-width: 0.9; stroke-dasharray: 5 7; stroke-linecap: round;
     }
-    .vmap-route-anim { animation: vRouteFlow 2.6s linear infinite; }
-    @keyframes vRouteFlow { to { stroke-dashoffset: -44; } }
+    /* Animated travelling light pulse on active routes */
+    .vmap-route-anim {
+      stroke: rgba(74,158,255,.35);
+      animation: vRouteFlow 5s linear infinite;
+    }
+    @keyframes vRouteFlow { to { stroke-dashoffset: -48; } }
+
+    /* Soft pulse light that travels along active routes */
+    .vmap-route-pulse {
+      fill: none; stroke: rgba(150,200,255,.65);
+      stroke-width: 1.8; stroke-dasharray: 14 300;
+      stroke-linecap: round;
+      animation: vPulseTravel 7s linear infinite;
+    }
+    @keyframes vPulseTravel { to { stroke-dashoffset: -314; } }
 
     .vmap-city-outer {
-      fill: none; stroke: rgba(224,40,40,.38); stroke-width: 1.5;
-      animation: vCityPulse 2.4s ease-in-out infinite;
+      fill: none; stroke: rgba(74,158,255,.22); stroke-width: 1;
+      animation: vCityPulse 3.5s ease-in-out infinite;
       transform-box: fill-box; transform-origin: center;
     }
-    .vmap-city-inner { fill: #e02828; }
-    .vmap-city-hub .vmap-city-outer { stroke: rgba(74,158,255,.5); }
-    .vmap-city-hub .vmap-city-inner { fill: var(--skylt); }
+    .vmap-city-inner { fill: rgba(74,158,255,.75); }
+    .vmap-city-hub .vmap-city-outer { stroke: rgba(74,158,255,.35); }
+    .vmap-city-hub .vmap-city-inner { fill: #4a9eff; }
     @keyframes vCityPulse {
-      0%,100% { transform: scale(1); opacity: 0.38; }
-      50%      { transform: scale(2.1); opacity: 0.05; }
+      0%,100% { transform: scale(1); opacity: 0.22; }
+      50%      { transform: scale(1.9); opacity: 0.04; }
+    }
+
+    /* India primary hub — slow authoritative pulse */
+    .india-hub-ring {
+      fill: none; stroke: rgba(74,158,255,.45); stroke-width: 1.2;
+      animation: indiaRing 3s ease-out infinite;
+      transform-box: fill-box; transform-origin: center;
+    }
+    @keyframes indiaRing {
+      0%   { r: 14; opacity: 0.5; }
+      100% { r: 32; opacity: 0; }
     }
 
     .vmap-label {
-      font-family: 'Space Mono', monospace; font-size: 8px;
-      letter-spacing: 1.5px; text-transform: uppercase; fill: rgba(238,243,255,.78);
+      font-family: 'Inter','Manrope',sans-serif; font-size: 9px; font-weight: 500;
+      letter-spacing: 0.09em; text-transform: uppercase; fill: rgba(238,243,255,.60);
     }
-    .vmap-label-hub { font-size: 9.5px; fill: #fff; }
+    .vmap-label-hub { font-size: 10px; font-weight: 600; fill: rgba(238,243,255,.90); letter-spacing: 0.07em; }
 
-    .vmap-compass { opacity: 0.32; }
+    .vmap-compass { opacity: 0.18; }
 
+    /* Frosted glass legend */
     .vmap-legend {
-      position: absolute; right: 28px; bottom: 28px;
-      background: rgba(3,12,21,.9); border: 1px solid rgba(74,158,255,.18);
-      padding: 14px 18px;
+      position: absolute; right: 24px; bottom: 24px; z-index: 5;
+      background: rgba(4,14,28,.72);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(74,158,255,.14);
+      border-radius: 12px; padding: 16px 20px;
+    }
+    .vmap-legend-title {
+      font-family: 'Inter',sans-serif; font-size: 8px; font-weight: 600;
+      letter-spacing: 0.12em; color: rgba(74,158,255,.7); text-transform: uppercase;
+      margin-bottom: 12px;
     }
     .vmap-legend-row {
-      display: flex; align-items: center; gap: 10px;
-      font-family: 'Space Mono', monospace; font-size: 8px;
-      letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase;
-      margin-bottom: 8px;
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 500;
+      letter-spacing: 0.06em; color: rgba(106,138,170,.85); text-transform: uppercase;
+      margin-bottom: 10px;
     }
     .vmap-legend-row:last-child { margin-bottom: 0; }
     .vmap-legend-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--red); flex-shrink: 0;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(74,158,255,.8); flex-shrink: 0;
     }
-    .vmap-legend-hub { background: var(--skylt); }
+    .vmap-legend-hub { background: #4a9eff; }
     .vmap-legend-dash {
-      width: 22px; height: 1.5px; flex-shrink: 0;
+      width: 22px; height: 1px; flex-shrink: 0;
       background: repeating-linear-gradient(
-        to right, var(--red) 0, var(--red) 5px, transparent 5px, transparent 10px
+        to right,rgba(74,158,255,.55) 0,rgba(74,158,255,.55) 4px,transparent 4px,transparent 9px
       );
     }
 
+    /* Compact stats panel */
+    .vmap-stats {
+      position: absolute; left: 24px; bottom: 24px; z-index: 5;
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .vmap-stat-pill {
+      background: rgba(4,14,28,.72);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(74,158,255,.14);
+      border-radius: 10px; padding: 11px 16px; min-width: 110px;
+    }
+    .vmap-stat-val {
+      font-family: 'Inter',sans-serif; font-size: 17px; font-weight: 700;
+      color: #4a9eff; letter-spacing: -0.02em; line-height: 1;
+    }
+    .vmap-stat-lbl {
+      font-family: 'Inter',sans-serif; font-size: 8.5px; font-weight: 500;
+      color: rgba(106,138,170,.8); letter-spacing: 0.07em;
+      text-transform: uppercase; margin-top: 5px;
+    }
+
     /* ── Vmap Tabs ───────────────────────────────────────────── */
-    .vmap-tabs { display: flex; gap: 3px; }
+    .vmap-tabs { display: flex; gap: 4px; }
     .vmap-tab {
-      font-family: var(--font-label); font-size: 9px;
-      letter-spacing: 2px; text-transform: uppercase;
-      padding: 6px 16px; cursor: pointer;
-      background: transparent; color: var(--muted);
-      border: 1px solid rgba(74,158,255,.2); transition: all .2s;
+      font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 7px 18px; cursor: pointer;
+      background: transparent; color: rgba(106,138,170,.75);
+      border: 1px solid rgba(74,158,255,.14); border-radius: 7px;
+      transition: all .2s;
     }
     .vmap-tab.active {
-      background: rgba(74,158,255,.12); color: var(--skylt);
-      border-color: rgba(74,158,255,.45);
+      background: rgba(74,158,255,.09); color: #4a9eff;
+      border-color: rgba(74,158,255,.38);
     }
     .vmap-tab:hover:not(.active) {
-      border-color: rgba(74,158,255,.35); color: rgba(74,158,255,.6);
+      border-color: rgba(74,158,255,.28); color: rgba(74,158,255,.65);
     }
 
     /* ── International map landmasses ───────────────────────── */
     .vmap-intl-land {
-      fill: rgba(21,65,130,.12); stroke: rgba(74,158,255,.22);
-      stroke-width: 1; stroke-linejoin: round;
+      fill: rgba(21,65,130,.28); stroke: rgba(74,158,255,.32);
+      stroke-width: 0.5; stroke-linejoin: round;
     }
     .vmap-intl-india {
-      fill: rgba(21,65,130,.28); stroke: rgba(74,158,255,.52);
-      stroke-width: 1.8; stroke-linejoin: round;
+      fill: rgba(21,101,200,.50); stroke: rgba(74,158,255,.78);
+      stroke-width: 1.2; stroke-linejoin: round;
     }
+    #vmap-intl { background: transparent; }
+    #world-ocean { fill: rgba(6,18,36,.5); }
 
     /* ── CTA ─────────────────────────────────────────────── */
     .cta {
@@ -3383,7 +3450,7 @@
       /* Disable backdrop-filter on mobile — GPU compositing delays touch events on iOS */
       .nav, .nav.scrolled { backdrop-filter: none; -webkit-backdrop-filter: none; }
       .hamburger { display: flex; align-items: center; justify-content: center; }
-      .brand-logo { height: 48px; }
+      .brand-logo { height: 64px; }
 
       .nav-links {
         position: fixed; left: 0; right: 0; top: 72px; bottom: 0;
@@ -3786,7 +3853,7 @@
           "Air Ambulance",
           "Helicopter Emergency Medical Services",
           "Organ Retrieval Flight",
-          "Neonatal Air Transport",
+          "Neonatal Air Ambulance",
           "ECMO Retrieval",
           "International Medical Repatriation",
           "Commercial Stretcher Transfer",
@@ -3836,11 +3903,11 @@
           <div class="nav-dropdown">
 
             <div class="dropdown-col">
-              <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Air Transport</span>
+              <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Air Ambulance</span>
               <a href="#services" data-svc="svc-dedicated">Dedicated Air Ambulance</a>
               <!-- <a href="#services" data-svc="svc-intl">International Repatriation</a> -->
-              <a href="#services" data-svc="svc-hems">HEMS</a>
               <a href="#services" data-svc="svc-stretcher">Airline Stretcher Transfer</a>
+              <a href="#services" data-svc="svc-bizclass">Business Class Medical Escort</a>
             </div>
 
             <div class="dropdown-col">
@@ -3848,11 +3915,11 @@
               <a href="#services" data-svc="svc-ecmo">ECMO Initiation &amp; Airlift</a>
               <a href="#services" data-svc="svc-neonatal">Neonatal &amp; Pediatric</a>
               <a href="#services" data-svc="svc-organ">Vital Organ Transportation</a>
-              <a href="#services" data-svc="svc-bizclass">Business Class Medical Escort</a>
             </div>
 
             <div class="dropdown-col">
               <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Emergency Response</span>
+              <a href="#services" data-svc="svc-hems">HEMS</a>
               <a href="#services" data-svc="svc-disaster">Disaster Response &amp; Command</a>
             </div>
 
@@ -3883,7 +3950,6 @@
         <div class="hero-slide active" style="background-image:url('landing-1.png'); background-position:center center;"></div>
         <div class="hero-slide" style="background-image:url('landing-2.png'); background-position:center center;"></div>
         <div class="hero-slide" style="background-image:url('landing-3.png'); background-position:center center;"></div>
-        <div class="hero-slide" style="background-image:url('landing-4.png'); background-position:center center;"></div>
       </div>
 
       <!-- Directional gradient — dark left, clear right -->
@@ -3914,7 +3980,6 @@
         <button class="hero-dot active" aria-label="Slide 1" role="tab" aria-selected="true"></button>
         <button class="hero-dot" aria-label="Slide 2" role="tab" aria-selected="false"></button>
         <button class="hero-dot" aria-label="Slide 3" role="tab" aria-selected="false"></button>
-        <button class="hero-dot" aria-label="Slide 4" role="tab" aria-selected="false"></button>
       </div>
 
     </section>
@@ -3932,20 +3997,20 @@
     <section class="stats-panel" id="stats">
       <div class="shell stats-grid">
         <div class="stat">
-          <div class="stat-number"><span data-count="1800">0</span><span class="stat-accent">+</span></div>
-          <div class="stat-label">Missions Completed</div>
+          <div class="stat-number"><span class="stat-accent">24</span><span style="font-size:0.55em;opacity:0.7;">/7</span></div>
+          <div class="stat-label">Operations Active</div>
         </div>
         <div class="stat">
           <div class="stat-number"><span class="stat-accent">18</span><span style="font-size:0.55em;opacity:0.7;"> min</span></div>
           <div class="stat-label">Avg. Response Time</div>
         </div>
         <div class="stat">
-          <div class="stat-number"><span data-count="32">0</span><span class="stat-accent">+</span></div>
-          <div class="stat-label">Cities Covered</div>
+          <div class="stat-number"><span class="stat-accent" style="font-size:0.75em;letter-spacing:-1px;">Global</span></div>
+          <div class="stat-label">Operations Coverage</div>
         </div>
         <div class="stat">
-          <div class="stat-number"><span class="stat-accent">99.8</span><span style="font-size:0.55em;opacity:0.7;">%</span></div>
-          <div class="stat-label">Mission Success Rate</div>
+          <div class="stat-number"><span class="stat-accent">8</span></div>
+          <div class="stat-label">Specialized Services</div>
         </div>
       </div>
     </section>
@@ -3960,7 +4025,7 @@
         <span class="ticker-item">24/7 Command Centre</span><span class="diamond"></span>
         <span class="ticker-item">No Hidden Charges</span><span class="diamond"></span>
         <span class="ticker-item">Air Medical Experts</span><span class="diamond"></span>
-        <span class="ticker-item">1800+ Missions Flown</span><span class="diamond"></span>
+        <span class="ticker-item">Global Operations</span><span class="diamond"></span>
         <span class="ticker-item">Own Fleet — No Brokers</span><span class="diamond"></span>
         <span class="ticker-item">International Repatriation</span><span class="diamond"></span>
         <span class="ticker-item">ECMO Capable</span><span class="diamond"></span>
@@ -3973,7 +4038,7 @@
         <span class="ticker-item">24/7 Command Centre</span><span class="diamond"></span>
         <span class="ticker-item">No Hidden Charges</span><span class="diamond"></span>
         <span class="ticker-item">Air Medical Experts</span><span class="diamond"></span>
-        <span class="ticker-item">1800+ Missions Flown</span><span class="diamond"></span>
+        <span class="ticker-item">Global Operations</span><span class="diamond"></span>
         <span class="ticker-item">Own Fleet — No Brokers</span><span class="diamond"></span>
         <span class="ticker-item">International Repatriation</span><span class="diamond"></span>
         <span class="ticker-item">ECMO Capable</span><span class="diamond"></span>
@@ -4481,20 +4546,20 @@
 
           <button class="svc-tab active" role="tab" aria-selected="true" aria-controls="tab-air" data-tab="tab-air">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13l8-5 4 2 8-4"/><path d="M18 6l2 4-2 2"/></svg>
-            Air Transport
+            Air Ambulance
             <span class="svc-tab-count">4</span>
           </button>
 
           <button class="svc-tab" role="tab" aria-selected="false" aria-controls="tab-spec" data-tab="tab-spec">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
             Specialized Care
-            <span class="svc-tab-count">4</span>
+            <span class="svc-tab-count">3</span>
           </button>
 
           <button class="svc-tab" role="tab" aria-selected="false" aria-controls="tab-resp" data-tab="tab-resp">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
             Emergency Response
-            <span class="svc-tab-count">1</span>
+            <span class="svc-tab-count">2</span>
           </button>
 
         </nav>
@@ -4550,32 +4615,11 @@
               </article>
               -->
 
-              <article class="svc2" data-svc-id="svc-hems">
-                <div class="svc2-hd">
-                  <img src="landing-4.png" alt="REACT Air Ambulance HEMS helicopter on helipad" loading="lazy" onerror="this.style.opacity='0'">
-                  <div class="svc2-hd-overlay"></div>
-                  <span class="svc2-ghost-num">03</span>
-                  <div class="svc2-ico">
-                    <svg viewBox="0 0 24 24"><path d="M3 14l8-5 3 2 8-4"/><path d="M18 7l2 4-2 2"/><path d="M9 19v-4M15 19v-4"/></svg>
-                  </div>
-                </div>
-                <div class="svc2-bd">
-                  <h3>HEMS – Helicopter Emergency Medical Services</h3>
-                  <p class="svc2-desc">Rapid access to advanced medical care in time-critical situations. Enables patient evacuation from accident scenes, remote locations, islands, mountainous terrain, and congested urban areas.</p>
-                  <ul class="svc2-feats">
-                    <li>Road traffic &amp; trauma accidents</li>
-                    <li>Remote area &amp; industrial retrievals</li>
-                    <li>Inter-hospital critical care transfers</li>
-                  </ul>
-                  <a href="#" class="svc2-cta">Learn More →</a>
-                </div>
-              </article>
-
               <article class="svc2" data-svc-id="svc-stretcher">
                 <div class="svc2-hd">
                   <img src="stretcher-transfer.jpg" alt="Commercial airline stretcher transfer service" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
-                  <span class="svc2-ghost-num">04</span>
+                  <span class="svc2-ghost-num">02</span>
                   <div class="svc2-ico">
                     <svg viewBox="0 0 24 24"><rect x="2" y="9" width="20" height="8" rx="2"/><path d="M7 9V6a2 2 0 014 0v3M13 9V6a2 2 0 014 0v3"/></svg>
                   </div>
@@ -4587,6 +4631,27 @@
                     <li>70–80% lower cost than air ambulance</li>
                     <li>Long-haul international transfers</li>
                     <li>Continuous medical supervision</li>
+                  </ul>
+                  <a href="#" class="svc2-cta">Learn More →</a>
+                </div>
+              </article>
+
+              <article class="svc2" data-svc-id="svc-bizclass">
+                <div class="svc2-hd">
+                  <img src="turbo-prop.jpg" alt="Business class medical escort premium cabin" loading="lazy" onerror="this.style.opacity='0'">
+                  <div class="svc2-hd-overlay"></div>
+                  <span class="svc2-ghost-num">03</span>
+                  <div class="svc2-ico">
+                    <svg viewBox="0 0 24 24"><path d="M2 7h20M2 12h20M2 17h14"/><circle cx="19" cy="17" r="3"/></svg>
+                  </div>
+                </div>
+                <div class="svc2-bd">
+                  <h3>Business Class Medical Escort</h3>
+                  <p class="svc2-desc">For patients who are medically stable but require professional medical supervision. Travel in Business Class accompanied by experienced medical professionals who monitor, administer medications, and manage oxygen therapy.</p>
+                  <ul class="svc2-feats">
+                    <li>Post-surgical &amp; oncology patients</li>
+                    <li>Elderly travellers &amp; oxygen support</li>
+                    <li>Long-distance international travel</li>
                   </ul>
                   <a href="#" class="svc2-cta">Learn More →</a>
                 </div>
@@ -4662,27 +4727,6 @@
                 </div>
               </article>
 
-              <article class="svc2" data-svc-id="svc-bizclass">
-                <div class="svc2-hd">
-                  <img src="turbo-prop.jpg" alt="Business class medical escort premium cabin" loading="lazy" onerror="this.style.opacity='0'">
-                  <div class="svc2-hd-overlay"></div>
-                  <span class="svc2-ghost-num">04</span>
-                  <div class="svc2-ico">
-                    <svg viewBox="0 0 24 24"><path d="M2 7h20M2 12h20M2 17h14"/><circle cx="19" cy="17" r="3"/></svg>
-                  </div>
-                </div>
-                <div class="svc2-bd">
-                  <h3>Business Class Medical Escort</h3>
-                  <p class="svc2-desc">For patients who are medically stable but require professional medical supervision. Travel in Business Class accompanied by experienced medical professionals who monitor, administer medications, and manage oxygen therapy.</p>
-                  <ul class="svc2-feats">
-                    <li>Post-surgical &amp; oncology patients</li>
-                    <li>Elderly travellers &amp; oxygen support</li>
-                    <li>Long-distance international travel</li>
-                  </ul>
-                  <a href="#" class="svc2-cta">Learn More →</a>
-                </div>
-              </article>
-
             </div>
           </div>
 
@@ -4690,11 +4734,31 @@
           <div class="svc-panel" id="tab-resp" role="tabpanel">
             <div class="svc-panel-grid cols-2">
 
-              <article class="svc2 svc2-wide" data-svc-id="svc-disaster">
+              <article class="svc2" data-svc-id="svc-hems">
                 <div class="svc2-hd">
-                  <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=700&q=75" alt="Disaster response and medical command center operations" loading="lazy" onerror="this.style.opacity='0'">
+                  <img src="landing-4.png" alt="REACT Air Ambulance HEMS helicopter on helipad" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
                   <span class="svc2-ghost-num">01</span>
+                  <div class="svc2-ico">
+                    <svg viewBox="0 0 24 24"><path d="M3 14l8-5 3 2 8-4"/><path d="M18 7l2 4-2 2"/><path d="M9 19v-4M15 19v-4"/></svg>
+                  </div>
+                </div>
+                <div class="svc2-bd">
+                  <h3>HEMS – Helicopter Emergency Medical Services</h3>
+                  <p class="svc2-desc">Rapid access to advanced medical care in time-critical situations. Enables patient evacuation from accident scenes, remote locations, islands, mountainous terrain, and congested urban areas.</p>
+                  <ul class="svc2-feats">
+                    <li>Road traffic &amp; trauma accidents</li>
+                    <li>Remote area &amp; industrial retrievals</li>
+                    <li>Inter-hospital critical care transfers</li>
+                  </ul>
+                  <a href="#" class="svc2-cta">Learn More →</a>
+                </div>
+              </article>
+
+              <article class="svc2" data-svc-id="svc-disaster">
+                <div class="svc2-hd" style="background:linear-gradient(135deg,#0a1a2e 0%,#0d2340 40%,#1a1a2e 100%);">
+                  <div class="svc2-hd-overlay"></div>
+                  <span class="svc2-ghost-num">02</span>
                   <div class="svc2-ico">
                     <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
                   </div>
@@ -5387,9 +5451,9 @@
     <!-- COVERAGE -->
     <section class="section" id="coverage">
       <div class="shell">
-        <div class="eyebrow">Pan-India Network</div>
-        <h2 class="section-title">Skies Without<br>Borders</h2>
-        <p class="section-copy">32+ cities served across India — from metro hubs to Tier-2 towns — with international medical evacuation and repatriation on request.</p>
+        <div class="eyebrow">Operations Network</div>
+        <h2 class="section-title">Global Medical<br>Evacuation Network</h2>
+        <p class="section-copy">Doctor-led ICU transport across India and worldwide.</p>
 
         <div class="vmap-wrap">
           <div class="vmap-outer">
@@ -5399,7 +5463,10 @@
             <div class="vmap-corner vmap-corner-br"></div>
 
             <div class="vmap-topbar">
-              <span class="vmap-topbar-title">REACT Air Ambulance &mdash; Operational Route Network</span>
+              <div>
+                <div class="vmap-topbar-title">Global Medical Evacuation Network</div>
+                <div class="vmap-topbar-sub">Doctor-led ICU transport across India and worldwide</div>
+              </div>
               <div class="vmap-tabs">
                 <button class="vmap-tab" data-map="domestic">Domestic</button>
                 <button class="vmap-tab active" data-map="international">International</button>
@@ -5730,44 +5797,56 @@
                 <path id="vpi-w8" d="M 542,272 Q 492,228 441,246"/><!-- Delhi→Istanbul -->
               </defs>
 
+              <!-- Ocean fill -->
+              <rect id="world-ocean" x="0" y="0" width="760" height="560"/>
+
               <!-- D3-rendered graticule (filled by initWorldMap) -->
               <g id="world-graticule"></g>
 
               <!-- D3-rendered countries (filled by initWorldMap) -->
               <g id="world-countries"></g>
 
-              <!-- Routes — Delhi(542,272) hub -->
-              <path class="vmap-route vmap-route-anim" d="M 542,272 Q 461,178 380,224"/><!-- London -->
-              <path class="vmap-route vmap-route-anim" style="animation-delay:-1.6s" d="M 542,272 Q 384,158 225,247"/><!-- New York -->
-              <path class="vmap-route vmap-route-anim" style="animation-delay:-0.8s" d="M 542,272 Q 492,228 441,246"/><!-- Istanbul -->
-              <path class="vmap-route" d="M 542,272 Q 519,274 496,279"/><!-- Dubai -->
-              <path class="vmap-route" d="M 542,272 Q 567,286 591,303"/><!-- Bangkok -->
-              <path class="vmap-route" d="M 542,272 Q 340,138 132,261"/><!-- Los Angeles -->
-
-              <!-- Routes — Mumbai(533,292) hub -->
-              <path class="vmap-route" d="M 533,292 Q 515,284 496,279"/><!-- Dubai -->
-              <path class="vmap-route vmap-route-anim" style="animation-delay:-2.2s" d="M 533,292 Q 565,308 597,329"/><!-- Singapore -->
-              <path class="vmap-route vmap-route-anim" style="animation-delay:-1.0s" d="M 533,292 Q 630,346 697,403"/><!-- Sydney -->
-              <path class="vmap-route" d="M 533,292 Q 495,311 457,335"/><!-- Nairobi -->
-              <path class="vmap-route" d="M 533,292 Q 534,306 534,323"/><!-- Malé -->
-
-              <!-- Routes — extra -->
+              <!-- Routes — base lines (all faint) -->
+              <path class="vmap-route" d="M 542,272 Q 461,178 380,224"/><!-- Delhi→London -->
+              <path class="vmap-route" d="M 542,272 Q 384,158 225,247"/><!-- Delhi→New York -->
+              <path class="vmap-route" d="M 542,272 Q 492,228 441,246"/><!-- Delhi→Istanbul -->
+              <path class="vmap-route" d="M 542,272 Q 519,274 496,279"/><!-- Delhi→Dubai -->
+              <path class="vmap-route" d="M 542,272 Q 567,286 591,303"/><!-- Delhi→Bangkok -->
+              <path class="vmap-route" d="M 533,292 Q 515,284 496,279"/><!-- Mumbai→Dubai -->
+              <path class="vmap-route" d="M 533,292 Q 565,308 597,329"/><!-- Mumbai→Singapore -->
+              <path class="vmap-route" d="M 533,292 Q 495,311 457,335"/><!-- Mumbai→Nairobi -->
+              <path class="vmap-route" d="M 533,292 Q 534,306 534,323"/><!-- Mumbai→Malé -->
               <path class="vmap-route" d="M 597,329 Q 635,290 673,257"/><!-- Singapore→Tokyo -->
 
-              <!-- City markers (hubs) -->
-              <!-- Delhi 542,272 -->
-              <g class="vmap-city-hub" filter="url(#vcityGlow)">
-                <circle class="vmap-city-outer" cx="542" cy="272" r="12"/>
-                <circle class="vmap-city-inner" cx="542" cy="272" r="5"/>
-              </g>
-              <text class="vmap-label vmap-label-hub" x="556" y="268">DELHI</text>
+              <!-- Active route animated dash-flow (5 key routes) -->
+              <path class="vmap-route vmap-route-anim" d="M 542,272 Q 461,178 380,224"/><!-- London -->
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-2s" d="M 542,272 Q 384,158 225,247"/><!-- New York -->
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-1s" d="M 542,272 Q 492,228 441,246"/><!-- Istanbul -->
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-3s" d="M 533,292 Q 565,308 597,329"/><!-- Singapore -->
+              <path class="vmap-route vmap-route-anim" style="animation-delay:-4s" d="M 542,272 Q 519,274 496,279"/><!-- Dubai -->
 
-              <!-- Mumbai 533,292 -->
-              <g class="vmap-city-hub" filter="url(#vcityGlow)">
-                <circle class="vmap-city-outer" cx="533" cy="292" r="12"/>
-                <circle class="vmap-city-inner" cx="533" cy="292" r="5"/>
+              <!-- Travelling light pulse on 4 primary routes -->
+              <path class="vmap-route-pulse" d="M 542,272 Q 461,178 380,224"/>
+              <path class="vmap-route-pulse" style="animation-delay:-3s" d="M 542,272 Q 384,158 225,247"/>
+              <path class="vmap-route-pulse" style="animation-delay:-1.5s" d="M 533,292 Q 565,308 597,329"/>
+              <path class="vmap-route-pulse" style="animation-delay:-5s" d="M 542,272 Q 492,228 441,246"/>
+
+              <!-- City markers (hubs) -->
+              <!-- Delhi 542,272 — primary hub with slow pulse -->
+              <circle class="india-hub-ring" cx="542" cy="272" r="14"/>
+              <g class="vmap-city-hub">
+                <circle class="vmap-city-outer" cx="542" cy="272" r="10"/>
+                <circle class="vmap-city-inner" cx="542" cy="272" r="4.5"/>
               </g>
-              <text class="vmap-label vmap-label-hub" text-anchor="end" x="519" y="310">MUMBAI</text>
+              <text class="vmap-label vmap-label-hub" x="558" y="268">DELHI</text>
+
+              <!-- Mumbai 533,292 — primary hub -->
+              <circle class="india-hub-ring" cx="533" cy="292" r="14" style="animation-delay:-1.5s"/>
+              <g class="vmap-city-hub">
+                <circle class="vmap-city-outer" cx="533" cy="292" r="10"/>
+                <circle class="vmap-city-inner" cx="533" cy="292" r="4.5"/>
+              </g>
+              <text class="vmap-label vmap-label-hub" text-anchor="end" x="517" y="310">MUMBAI</text>
 
               <!-- Destinations -->
               <!-- London 380,224 -->
@@ -5860,140 +5939,52 @@
                 <text font-family="Space Mono,monospace" font-size="8" fill="rgba(74,158,255,.5)" text-anchor="end" x="-30" y="3">W</text>
               </g>
 
-              <!-- Animated planes -->
-              <g filter="url(#vcityGlow)">
-                <animateMotion dur="8s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#vpi-w1"/>
-                </animateMotion>
-                <g fill="rgba(255,255,255,0.95)">
-                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+              <!-- 5 elegant silver aircraft with subtle blue glow -->
+              <g filter="url(#vcityGlow)" opacity="0.82">
+                <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w1"/></animateMotion>
+                <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
-                  <!-- Main wings: highly swept back (Learjet 45) -->
-                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
-                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
-                  <!-- Rear engine pods -->
-                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
-                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
-                  <!-- T-tail horizontal stabilizers -->
-                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
-                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)">
-                <animateMotion dur="14s" begin="3s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#vpi-w2"/>
-                </animateMotion>
-                <g fill="rgba(255,255,255,0.95)">
-                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+              <g filter="url(#vcityGlow)" opacity="0.82">
+                <animateMotion dur="18s" begin="4s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w2"/></animateMotion>
+                <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
-                  <!-- Main wings: highly swept back (Learjet 45) -->
-                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
-                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
-                  <!-- Rear engine pods -->
-                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
-                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
-                  <!-- T-tail horizontal stabilizers -->
-                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
-                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)">
-                <animateMotion dur="9s" begin="6s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#vpi-w3"/>
-                </animateMotion>
-                <g fill="rgba(255,255,255,0.95)">
-                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+              <g filter="url(#vcityGlow)" opacity="0.82">
+                <animateMotion dur="10s" begin="2s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w3"/></animateMotion>
+                <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
-                  <!-- Main wings: highly swept back (Learjet 45) -->
-                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
-                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
-                  <!-- Rear engine pods -->
-                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
-                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
-                  <!-- T-tail horizontal stabilizers -->
-                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
-                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)">
-                <animateMotion dur="11s" begin="1s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#vpi-w4"/>
-                </animateMotion>
-                <g fill="rgba(255,255,255,0.95)">
-                  <!-- Fuselage: nose at +X (direction of travel with rotate=auto) -->
+              <g filter="url(#vcityGlow)" opacity="0.82">
+                <animateMotion dur="8s" begin="6s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w5"/></animateMotion>
+                <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
-                  <!-- Main wings: highly swept back (Learjet 45) -->
-                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
-                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
-                  <!-- Rear engine pods -->
-                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
-                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
-                  <!-- T-tail horizontal stabilizers -->
-                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
-                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)">
-                <animateMotion dur="5s" begin="2s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#vpi-w5"/>
-                </animateMotion>
-                <g fill="rgba(255,255,255,0.95)">
+              <g filter="url(#vcityGlow)" opacity="0.82">
+                <animateMotion dur="11s" begin="1s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w8"/></animateMotion>
+                <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
-                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
-                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
-                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
-                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
-                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
-                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
+                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
+                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
+                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)">
-                <animateMotion dur="6s" begin="0.5s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#vpi-w6"/>
-                </animateMotion>
-                <g fill="rgba(255,255,255,0.95)">
-                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
-                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
-                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
-                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
-                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
-                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
-                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
-                </g>
-              </g>
-              <g filter="url(#vcityGlow)">
-                <animateMotion dur="7s" begin="3s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#vpi-w7"/>
-                </animateMotion>
-                <g fill="rgba(255,255,255,0.95)">
-                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
-                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
-                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
-                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
-                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
-                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
-                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
-                </g>
-              </g>
-              <g filter="url(#vcityGlow)">
-                <animateMotion dur="7s" begin="5s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#vpi-w8"/>
-                </animateMotion>
-                <g fill="rgba(255,255,255,0.95)">
-                  <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
-                  <path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/>
-                  <path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/>
-                  <path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/>
-                  <path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/>
-                  <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/>
-                  <path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
-                </g>
-              </g>
-              <!-- Return flights (destination → India) -->
-              <g filter="url(#vcityGlow)"><animateMotion dur="8s" begin="6s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w1"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
-              <g filter="url(#vcityGlow)"><animateMotion dur="12s" begin="4s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w2"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
-              <g filter="url(#vcityGlow)"><animateMotion dur="9s" begin="2.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w3"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
-              <g filter="url(#vcityGlow)"><animateMotion dur="11s" begin="7s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w4"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
               <g filter="url(#vcityGlow)"><animateMotion dur="5s" begin="3.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w5"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
               <g filter="url(#vcityGlow)"><animateMotion dur="6s" begin="4s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w6"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
               <g filter="url(#vcityGlow)"><animateMotion dur="7s" begin="1s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w7"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
@@ -6001,10 +5992,28 @@
 
             </svg>
 
+            <!-- Compact stats — bottom left -->
+            <div class="vmap-stats">
+              <div class="vmap-stat-pill">
+                <div class="vmap-stat-val">32+</div>
+                <div class="vmap-stat-lbl">Domestic Coverage</div>
+              </div>
+              <div class="vmap-stat-pill">
+                <div class="vmap-stat-val">Global</div>
+                <div class="vmap-stat-lbl">International Missions</div>
+              </div>
+              <div class="vmap-stat-pill">
+                <div class="vmap-stat-val">5</div>
+                <div class="vmap-stat-lbl">ICU Aircraft Ready</div>
+              </div>
+            </div>
+
+            <!-- Frosted glass legend — bottom right -->
             <div class="vmap-legend">
-              <div class="vmap-legend-row"><div class="vmap-legend-dot vmap-legend-hub"></div>Major Hub</div>
-              <div class="vmap-legend-row"><div class="vmap-legend-dot"></div>City Destination</div>
-              <div class="vmap-legend-row"><div class="vmap-legend-dash"></div>Air Route</div>
+              <div class="vmap-legend-title">Map Legend</div>
+              <div class="vmap-legend-row"><div class="vmap-legend-dot vmap-legend-hub"></div>Primary Hub</div>
+              <div class="vmap-legend-row"><div class="vmap-legend-dot" style="background:rgba(74,158,255,.5)"></div>City Destination</div>
+              <div class="vmap-legend-row"><div class="vmap-legend-dash"></div>Active Route</div>
             </div>
           </div>
         </div>
@@ -7074,9 +7083,17 @@
     initGlobe();
 
     // ── Route map tab toggle ─────────────────────────────────
-    var _intlMapReady = true;   // international is default — render immediately
-    var _indiaMapReady = false; // domestic loads lazily on first click
-    initWorldMap();
+    var _intlMapReady = false;
+    var _indiaMapReady = false;
+
+    // D3 + TopoJSON are deferred — poll until ready then render
+    (function waitForD3() {
+      if (window.d3 && window.topojson) {
+        if (!_intlMapReady) { _intlMapReady = true; initWorldMap(); }
+      } else {
+        setTimeout(waitForD3, 80);
+      }
+    })();
     document.querySelectorAll('.vmap-tab').forEach(function(tab) {
       tab.addEventListener('click', function() {
         document.querySelectorAll('.vmap-tab').forEach(function(t) { t.classList.remove('active'); });
@@ -7084,8 +7101,8 @@
         var isDomestic = tab.dataset.map === 'domestic';
         document.getElementById('vmap').style.display      = isDomestic ? 'block' : 'none';
         document.getElementById('vmap-intl').style.display = isDomestic ? 'none'  : 'block';
-        if (isDomestic && !_indiaMapReady)  { _indiaMapReady = true;  initIndiaMap(); }
-        if (!isDomestic && !_intlMapReady)  { _intlMapReady  = true;  initWorldMap(); }
+        if (isDomestic && !_indiaMapReady)   { _indiaMapReady = true; initIndiaMap(); }
+        if (!isDomestic && !_intlMapReady)  { _intlMapReady  = true; initWorldMap(); }
       });
     });
 
@@ -7098,7 +7115,7 @@
     // ── Service data store ─────────────────────────────────
     var SVC_DATA = {
       'svc-dedicated': {
-        num: '01', cat: 'Air Transport',
+        num: '01', cat: 'Air Ambulance',
         img: 'dedicated-ambulance.jpg',
         title: 'Dedicated Air Ambulance Services',
         desc: [
@@ -7112,7 +7129,7 @@
         highlight: 'Available 24/7 for domestic and international missions. Call 9849994108 for immediate activation.'
       },
       'svc-domestic': {
-        num: '01', cat: 'Air Transport',
+        num: '01', cat: 'Air Ambulance',
         img: 'dedicated-ambulance.jpg',
         title: 'Domestic Air Ambulance',
         desc: [
@@ -7126,7 +7143,7 @@
         highlight: 'We cover 32+ cities across India — from metro hospitals to Tier-2 towns. No mission is too remote. Call 9849994108 for immediate activation.'
       },
       'svc-intl': {
-        num: '02', cat: 'Air Transport',
+        num: '02', cat: 'Air Ambulance',
         img: 'intl-transfer.jpg',
         title: 'International Patient Transfer & Medical Repatriation',
         desc: [
@@ -7139,7 +7156,7 @@
         highlight: 'From foreign hospital discharge to landing in India — our coordinators handle every step so families do not have to. Call 9849994108 for international transfer assistance.'
       },
       'svc-escort': {
-        num: '03', cat: 'Air Transport',
+        num: '03', cat: 'Air Ambulance',
         img: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=1200&q=80',
         title: 'Commercial Air Medical Escort',
         desc: [
@@ -7153,7 +7170,7 @@
         highlight: 'Medical escorts travel on any commercial airline — domestic or international. This is a cost-effective alternative to a dedicated air ambulance for stable patients who still need supervised travel.'
       },
       'svc-stretcher': {
-        num: '04', cat: 'Air Transport',
+        num: '04', cat: 'Air Ambulance',
         img: 'stretcher-transfer.jpg',
         imgPos: 'center 55%',
         title: 'Commercial Airline Stretcher Transfer',
@@ -7168,7 +7185,7 @@
         highlight: 'A safe and affordable alternative for stable patients — we handle airline approvals, stretcher installation, oxygen, and medical escort end-to-end. Call 9849994108 to check eligibility.'
       },
       'svc-bizclass': {
-        num: '05', cat: 'Air Transport',
+        num: '05', cat: 'Air Ambulance',
         img: 'turbo-prop.jpg',
         title: 'Business Class Medical Escort',
         desc: [
@@ -7268,7 +7285,7 @@
       },
       'svc-disaster': {
         num: '03', cat: 'Ground & Response',
-        img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80',
+        img: '',
         title: 'Disaster Response & Mass Casualty Support',
         desc: [
           'During natural disasters, industrial incidents, public emergencies, and mass casualty events, coordinated medical evacuation becomes essential. REACT supports government agencies, hospitals, emergency services, and humanitarian organizations by providing rapid medical transport coordination and deployment of specialized teams.',

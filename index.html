@@ -464,18 +464,18 @@
 
     /* Specialist trust strip — sits below the hero */
     .hero-spec-strip {
-      background: #04111f;
-      border-top: 1px solid rgba(255,255,255,.07);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      padding: 14px 24px;
+      background: #071628;
+      border-top: 1px solid rgba(255,255,255,.10);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      padding: 16px 24px;
       display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 0;
     }
     .hero-spec-strip span {
-      font-family: var(--font-label); font-size: 10px;
-      letter-spacing: 1.8px; text-transform: uppercase;
-      color: rgba(255,255,255,.55);
-      padding: 0 20px;
-      border-right: 1px solid rgba(255,255,255,.14);
+      font-family: var(--font-label); font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.88);
+      padding: 0 24px;
+      border-right: 1px solid rgba(255,255,255,.22);
     }
     .hero-spec-strip span:last-child { border-right: none; }
 
@@ -503,7 +503,7 @@
       .hero-sub { font-size: 15px; }
       .hero-dots { left: 20px; bottom: 16px; }
       .hero-spec-strip { padding: 12px 20px; gap: 8px 0; }
-      .hero-spec-strip span { font-size: 9px; padding: 0 12px; }
+      .hero-spec-strip span { font-size: 10px; padding: 0 12px; }
     }
 
     /* Hide legacy hero elements no longer used */
@@ -3380,19 +3380,20 @@
     @media (max-width: 920px) {
       .nav-inner { height: 72px; }
       .nav.scrolled .nav-inner { height: 64px; }
+      /* Disable backdrop-filter on mobile — GPU compositing delays touch events on iOS */
+      .nav, .nav.scrolled { backdrop-filter: none; -webkit-backdrop-filter: none; }
       .hamburger { display: flex; align-items: center; justify-content: center; }
       .brand-logo { height: 48px; }
 
       .nav-links {
         position: fixed; left: 0; right: 0; top: 72px; bottom: 0;
         display: none; padding: 32px 28px;
-        background: rgba(10,30,60,.97);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
+        background: rgba(10,30,60,.98);
         flex-direction: column; align-items: flex-start; gap: 4px;
         overflow-y: auto;
       }
       .nav.open .nav-links { display: flex; }
+      .nav.scrolled.open .nav-links { top: 64px; }
       .nav-links > a,
       .nav-item > a {
         width: 100%; padding: 14px 0;
@@ -6298,9 +6299,19 @@
       nav.classList.toggle("scrolled", window.scrollY > 16);
     });
 
-    hamburger.addEventListener("click", () => {
-      const open = nav.classList.toggle("open");
+    var _hamTouched = 0;
+    function _toggleMenu() {
+      var open = nav.classList.toggle("open");
       hamburger.setAttribute("aria-expanded", String(open));
+    }
+    hamburger.addEventListener("touchstart", function(e) {
+      e.preventDefault(); // fire immediately, no 300ms delay
+      _hamTouched = Date.now();
+      _toggleMenu();
+    }, { passive: false });
+    hamburger.addEventListener("click", function() {
+      if (Date.now() - _hamTouched < 600) return; // block ghost click after touch
+      _toggleMenu();
     });
 
     navLinks.querySelectorAll("a").forEach(link => {

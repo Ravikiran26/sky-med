@@ -130,89 +130,127 @@
     }
 
     /* ── NAV ─────────────────────────────────────────────── */
+    /* ── PREMIUM HEADER ─────────────────────────────────────── */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,.97);
-      border-bottom: 1px solid rgba(21,101,192,.1);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      transition: box-shadow .3s;
+      background: #FCFCFD;
+      border-bottom: 1px solid rgba(17,24,39,.06);
+      box-shadow: 0 8px 30px rgba(15,23,42,.05);
+      transition: height .3s ease, background .3s ease, box-shadow .3s ease, backdrop-filter .3s ease;
     }
-
-    .nav.scrolled, .nav.open {
-      background: rgba(255,255,255,.99);
-      border-bottom-color: rgba(21,101,192,.14);
-      box-shadow: 0 2px 20px rgba(15,41,75,.08);
+    .nav.scrolled {
+      background: rgba(252,252,253,.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 4px 24px rgba(15,23,42,.09);
     }
 
     .nav-inner {
-      height: 88px; display: flex;
-      align-items: center; justify-content: space-between; gap: 28px;
+      height: 105px; display: flex;
+      align-items: center; justify-content: space-between; gap: 32px;
+      transition: height .3s ease;
     }
+    .nav.scrolled .nav-inner { height: 78px; }
 
-    .brand { display: inline-flex; align-items: center; gap: 14px; min-width: max-content; }
-
-    .brand-mark {
-      width: 42px; height: 42px;
-      display: grid; place-items: center;
-      background: var(--red);
-      box-shadow: 0 0 28px rgba(224,40,40,.45);
-      position: relative; flex-shrink: 0;
+    /* ── Logo ── */
+    .brand {
+      display: inline-flex; align-items: center;
+      gap: 0; min-width: max-content;
+      transition: transform .3s ease;
     }
-    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; background: #eef3ff; }
-    .brand-mark::before { width: 22px; height: 6px; }
-    .brand-mark::after  { width: 6px;  height: 22px; }
-
-    .brand-text { display: flex; flex-direction: column; gap: 1px; }
+    .brand:hover { transform: scale(1.02); }
+    .nav.scrolled .brand { transform: scale(.9); transform-origin: left center; }
 
     .brand-logo {
-      height: 68px; width: auto; display: block;
-      background: #ffffff; border-radius: 10px;
-      padding: 5px 8px;
-      box-shadow: 0 3px 16px rgba(0,0,0,.25);
+      height: 56px; width: auto; display: block;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 6px 10px;
+      box-shadow: 0 2px 12px rgba(15,23,42,.08), 0 0 0 1px rgba(17,24,39,.05);
+      transition: box-shadow .25s ease;
     }
+    .brand:hover .brand-logo { box-shadow: 0 4px 20px rgba(15,23,42,.12), 0 0 0 1px rgba(17,24,39,.07); }
     .brand-name { font-family: var(--font-head); font-size: 32px; letter-spacing: 5px; line-height: 1; color: #0f1e30; }
-    .brand-sub { font-family: var(--font-label); font-size: 8px; letter-spacing: 2.4px; color: var(--muted); }
+    .brand-sub  { font-family: var(--font-label); font-size: 8px; letter-spacing: 2.4px; color: var(--muted); }
+    .brand-mark, .brand-text { display: none; }
 
+    /* ── Navigation links ── */
     .nav-links {
-      display: flex; align-items: center; gap: 34px;
-      color: #3d5a7a;
-      font-family: var(--font-body); font-size: 15px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase;
-      transition: color .3s;
-    }
-    .nav-links a { transition: color .2s; }
-    .nav-links a:hover { color: var(--sky); }
-
-    .emergency-nav {
-      padding: 13px 22px;
-      font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase;
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      color: #eef3ff; min-width: max-content;
-      border-radius: 8px;
-      animation: redPulse 1.8s ease-in-out infinite;
+      display: flex; align-items: center; gap: 48px;
+      font-family: "Inter", "Manrope", sans-serif;
+      font-size: 16px; font-weight: 600;
+      letter-spacing: 0.03em; text-transform: none;
+      color: #1e3a5f;
     }
 
-    .hamburger {
-      display: none; width: 42px; height: 42px;
-      background: rgba(21,101,192,.07);
-      border: 1px solid rgba(21,101,192,.2);
-      color: #0f1e30; position: relative; cursor: pointer;
-    }
-    .hamburger span, .hamburger::before, .hamburger::after {
-      content: ""; position: absolute; left: 11px; width: 18px; height: 1px; background: #0f1e30;
-    }
-    .hamburger::before { top: 13px; }
-    .hamburger span    { top: 20px; }
-    .hamburger::after  { top: 27px; }
-
-    /* ── NAV DROPDOWN ────────────────────────────────────── */
-    .nav-item {
-      position: relative;
-      display: flex; align-items: center;
-    }
+    /* Top-level link — underline slides from left on hover */
+    .nav-links > a,
     .nav-item > a {
-      display: flex; align-items: center; gap: 5px;
+      position: relative; display: inline-flex; align-items: center; gap: 5px;
+      color: #1e3a5f; padding-bottom: 3px;
+      transition: color 250ms ease;
     }
+    .nav-links > a::after,
+    .nav-item > a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: #1251a8;
+      transition: width 250ms ease;
+      border-radius: 2px;
+    }
+    .nav-links > a:hover,
+    .nav-item:hover > a { color: #1251a8; }
+    .nav-links > a:hover::after,
+    .nav-item:hover > a::after { width: 100%; }
+
+    /* ── Call Now button ── */
+    .emergency-nav {
+      display: inline-flex; align-items: center; gap: 9px;
+      height: 54px; padding: 0 32px;
+      font-family: "Inter", sans-serif; font-size: 15px; font-weight: 700;
+      letter-spacing: 0.01em; text-transform: none;
+      background: linear-gradient(135deg, #F15A4A 0%, #E53935 100%);
+      color: #ffffff; min-width: max-content;
+      border-radius: 16px;
+      box-shadow: 0 10px 35px rgba(229,57,53,.25);
+      animation: none;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+    .emergency-nav:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 42px rgba(229,57,53,.35);
+      background: linear-gradient(135deg, #F46A5B 0%, #EF4444 100%);
+    }
+    .emergency-nav svg { transition: transform .22s ease; }
+    .emergency-nav:hover svg { transform: translateX(2px); }
+
+    /* ── Animated hamburger ── */
+    .hamburger {
+      display: none; width: 44px; height: 44px;
+      background: transparent; border: 1px solid rgba(18,81,168,.15);
+      border-radius: 10px;
+      color: #1e3a5f; position: relative; cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+    .hamburger:hover { background: rgba(18,81,168,.05); border-color: rgba(18,81,168,.25); }
+    .hamburger span, .hamburger::before, .hamburger::after {
+      content: ""; position: absolute;
+      left: 50%; transform: translateX(-50%);
+      width: 20px; height: 1.5px;
+      background: #1e3a5f;
+      transition: transform .3s ease, opacity .3s ease, top .3s ease;
+      border-radius: 2px;
+    }
+    .hamburger::before { top: 14px; }
+    .hamburger span    { top: 21px; }
+    .hamburger::after  { top: 28px; }
+    /* Animate to × */
+    .nav.open .hamburger::before { top: 21px; transform: translateX(-50%) rotate(45deg); }
+    .nav.open .hamburger span    { opacity: 0; transform: translateX(-50%) scaleX(0); }
+    .nav.open .hamburger::after  { top: 21px; transform: translateX(-50%) rotate(-45deg); }
+
+    /* ── Nav caret ── */
+    .nav-item { position: relative; display: flex; align-items: center; }
     .nav-caret {
       width: 10px; height: 6px; flex-shrink: 0;
       stroke: currentColor; fill: none;
@@ -222,31 +260,26 @@
     .nav-item:hover .nav-caret,
     .nav-item.open .nav-caret { transform: rotate(180deg); }
 
+    /* ── Mega dropdown ── */
     .nav-dropdown {
-      position: absolute;
-      top: 100%;
-      left: 50%; transform: translateX(-50%) translateY(-6px);
+      position: absolute; top: calc(100% + 8px);
+      left: 50%; transform: translateX(-50%) translateY(-8px);
       width: 860px;
-      background: rgba(255,255,255,.99);
-      border: 1px solid rgba(21,101,192,.12);
-      border-top: 2px solid var(--sky);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      padding: 22px 28px 24px;
-      padding-top: 28px;
+      background: #ffffff;
+      border: 1px solid rgba(17,24,39,.08);
+      border-top: 2px solid #1251a8;
+      border-radius: 0 0 16px 16px;
+      padding: 28px 32px 26px;
       display: grid; grid-template-columns: repeat(3,1fr);
       gap: 0;
       opacity: 0; pointer-events: none;
-      transition: opacity .2s ease, transform .2s ease;
+      transition: opacity .22s ease, transform .22s ease;
       z-index: 200;
-      box-shadow: 0 16px 40px rgba(15,41,75,.12), 0 1px 3px rgba(15,41,75,.06);
+      box-shadow: 0 20px 48px rgba(15,23,42,.1), 0 2px 8px rgba(15,23,42,.04);
     }
-    /* Invisible bridge fills gap between nav link and dropdown panel */
     .nav-dropdown::before {
-      content: '';
-      position: absolute;
-      top: -22px; left: 0; right: 0;
-      height: 22px;
+      content: ''; position: absolute;
+      top: -20px; left: 0; right: 0; height: 20px;
     }
     .nav-item:hover .nav-dropdown,
     .nav-item:focus-within .nav-dropdown {
@@ -256,43 +289,41 @@
 
     .dropdown-col {
       display: flex; flex-direction: column;
-      padding: 0 20px 0 0;
-      border-right: 1px solid rgba(21,101,192,.08);
+      padding: 0 24px 0 0;
+      border-right: 1px solid rgba(17,24,39,.06);
     }
-    .dropdown-col:last-child { border-right: none; padding-right: 0; padding-left: 20px; }
+    .dropdown-col:last-child  { border-right: none; padding-right: 0; padding-left: 24px; }
     .dropdown-col:first-child { padding-left: 0; }
-    .dropdown-col:not(:first-child) { padding-left: 20px; }
+    .dropdown-col:not(:first-child) { padding-left: 24px; }
 
     .dropdown-cat {
-      font-family: var(--font-label); font-size: 9px;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--skylt); margin-bottom: 12px; padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      display: flex; align-items: center; gap: 7px;
+      font-family: "Inter", sans-serif; font-size: 10px;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #1251a8; margin-bottom: 14px; padding-bottom: 12px;
+      border-bottom: 1px solid rgba(18,81,168,.1);
+      display: flex; align-items: center; gap: 8px;
     }
     .dropdown-cat-dot {
       width: 5px; height: 5px; border-radius: 50%;
-      background: var(--skylt); flex-shrink: 0;
-      box-shadow: 0 0 6px rgba(33,150,243,.5);
+      background: #1251a8; flex-shrink: 0; opacity: .7;
     }
 
     .nav-dropdown a {
-      font-family: var(--font-body); font-size: 13px;
-      letter-spacing: .2px; text-transform: none;
-      color: #3d5a7a;
-      padding: 6px 0; line-height: 1.45;
-      transition: color .16s, padding-left .16s;
-      display: flex; align-items: flex-start; gap: 8px;
+      font-family: "Inter", sans-serif; font-size: 14px;
+      font-weight: 500; letter-spacing: 0;
+      color: #374151; text-transform: none;
+      padding: 7px 0; line-height: 1.45;
+      transition: color .18s ease, padding-left .18s ease;
+      display: flex; align-items: center; gap: 0;
     }
     .nav-dropdown a::before {
-      content: "›"; flex-shrink: 0; margin-top: -1px;
-      color: var(--sky); opacity: 0;
-      transition: opacity .16s;
+      content: "›"; flex-shrink: 0;
+      color: #1251a8; opacity: 0; width: 0;
+      transition: opacity .18s ease, width .18s ease;
+      font-size: 16px; line-height: 1;
     }
-    .nav-dropdown a:hover {
-      color: var(--sky); padding-left: 4px;
-    }
-    .nav-dropdown a:hover::before { opacity: 1; }
+    .nav-dropdown a:hover { color: #1251a8; padding-left: 6px; }
+    .nav-dropdown a:hover::before { opacity: 1; width: 14px; }
 
     /* ── HERO ────────────────────────────────────────────── */
     .hero {
@@ -3323,53 +3354,54 @@
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 920px) {
-      /* Mobile: hide hover dropdown, show tap-toggle inline */
+      /* Mobile: inline dropdown on tap */
       .nav-dropdown {
         position: static; transform: none;
         width: 100%; opacity: 1; pointer-events: auto;
-        background: rgba(255,255,255,.04);
-        border: 1px solid rgba(255,255,255,.08);
-        border-top: 2px solid var(--red);
-        backdrop-filter: none; box-shadow: none;
-        padding: 14px 16px;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        display: none;
-        transition: none;
-        margin-top: 10px;
+        background: rgba(18,81,168,.04);
+        border: none; border-left: 2px solid rgba(18,81,168,.2);
+        border-radius: 0; box-shadow: none;
+        padding: 12px 16px;
+        grid-template-columns: 1fr;
+        gap: 0;
+        display: none; transition: none;
+        margin-top: 6px;
       }
       .nav-item.open .nav-dropdown { display: grid; }
       .nav-item { flex-direction: column; align-items: flex-start; width: 100%; }
       .nav-item > a { width: 100%; justify-content: space-between; }
-      .dropdown-col { border-right: none; padding: 0 !important; }
-      .nav-dropdown a { font-size: 12px; padding: 5px 0; }
+      .nav-item > a::after { display: none; }
+      .dropdown-col { border-right: none; padding: 0 !important; margin-bottom: 8px; }
+      .dropdown-cat { font-size: 9px; margin-bottom: 6px; padding-bottom: 6px; }
+      .nav-dropdown a { font-size: 13px; padding: 5px 0; color: rgba(255,255,255,.75); }
+      .nav-dropdown a:hover { color: #fff; padding-left: 4px; }
     }
 
     @media (max-width: 920px) {
-      .nav-inner { height: 70px; }
-      .hamburger { display: block; }
-      .brand-logo { height: 52px; }
+      .nav-inner { height: 72px; }
+      .nav.scrolled .nav-inner { height: 64px; }
+      .hamburger { display: flex; align-items: center; justify-content: center; }
+      .brand-logo { height: 48px; }
 
       .nav-links {
-        position: fixed; left: 12px; right: 12px; top: 78px;
-        display: none; padding: 24px 22px;
-        background: rgba(4,17,31,.97);
-        border: 1px solid rgba(74,158,255,.14);
-        border-top: 2px solid var(--red);
-        border-radius: 0 0 12px 12px;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        flex-direction: column; align-items: flex-start; gap: 6px;
-        color: rgba(238,243,255,.9);
-        box-shadow: 0 16px 40px rgba(0,0,0,.35);
+        position: fixed; left: 0; right: 0; top: 72px; bottom: 0;
+        display: none; padding: 32px 28px;
+        background: rgba(10,30,60,.97);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        flex-direction: column; align-items: flex-start; gap: 4px;
+        overflow-y: auto;
       }
       .nav.open .nav-links { display: flex; }
-      .nav-links a {
-        width: 100%; padding: 11px 0;
-        font-size: 15px; font-weight: 600; letter-spacing: 0.8px;
-        border-bottom: 1px solid rgba(255,255,255,.06);
+      .nav-links > a,
+      .nav-item > a {
+        width: 100%; padding: 14px 0;
+        font-size: 20px; font-weight: 600; letter-spacing: -0.01em;
+        color: rgba(255,255,255,.9);
+        border-bottom: 1px solid rgba(255,255,255,.07);
       }
-      .nav-links a:last-child { border-bottom: none; }
+      .nav-links > a::after { display: none; }
+      .nav-links > a:hover { color: #fff; }
       .emergency-nav { display: none; }
 
       .footer-grid { grid-template-columns: 1fr; }
@@ -3804,35 +3836,38 @@
 
             <div class="dropdown-col">
               <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Air Transport</span>
-              <a href="#services" data-tab="tab-air">Dedicated Air Ambulance</a>
-              <a href="#services" data-tab="tab-air">International Repatriation</a>
-              <a href="#services" data-tab="tab-air">HEMS</a>
-              <a href="#services" data-tab="tab-air">Airline Stretcher Transfer</a>
+              <a href="#services" data-svc="svc-dedicated">Dedicated Air Ambulance</a>
+              <a href="#services" data-svc="svc-intl">International Repatriation</a>
+              <a href="#services" data-svc="svc-hems">HEMS</a>
+              <a href="#services" data-svc="svc-stretcher">Airline Stretcher Transfer</a>
             </div>
 
             <div class="dropdown-col">
               <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Specialized Care</span>
-              <a href="#services" data-tab="tab-spec">ECMO Initiation &amp; Airlift</a>
-              <a href="#services" data-tab="tab-spec">Neonatal &amp; Pediatric</a>
-              <a href="#services" data-tab="tab-spec">Vital Organ Transportation</a>
-              <a href="#services" data-tab="tab-spec">Business Class Medical Escort</a>
+              <a href="#services" data-svc="svc-ecmo">ECMO Initiation &amp; Airlift</a>
+              <a href="#services" data-svc="svc-neonatal">Neonatal &amp; Pediatric</a>
+              <a href="#services" data-svc="svc-organ">Vital Organ Transportation</a>
+              <a href="#services" data-svc="svc-bizclass">Business Class Medical Escort</a>
             </div>
 
             <div class="dropdown-col">
               <span class="dropdown-cat"><span class="dropdown-cat-dot"></span>Emergency Response</span>
-              <a href="#services" data-tab="tab-resp">Disaster Response &amp; Command</a>
+              <a href="#services" data-svc="svc-disaster">Disaster Response &amp; Command</a>
             </div>
 
           </div>
         </div><!-- /.nav-item -->
 
-        <a href="#team">Our Doctors</a>
+        <a href="#team">Doctors</a>
 
         <a href="#coverage">Coverage</a>
         <a href="#faq">FAQ</a>
         <a href="#contact-form">Contact</a>
       </div>
-      <a class="emergency-nav btn" href="tel:+919849994108">&#9990; Call Now</a>
+      <a class="emergency-nav" href="tel:+919849994108">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call Now
+      </a>
       <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false"><span></span></button>
     </div>
   </nav>
@@ -7327,6 +7362,16 @@
 
       document.querySelectorAll('.svc2').forEach(function(card) {
         card.addEventListener('click', function() { openModal(card); });
+      });
+
+      // Navbar dropdown — open modal directly when a service link is clicked
+      document.querySelectorAll('[data-svc]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var svcId = link.dataset.svc;
+          var card  = document.querySelector('.svc2[data-svc-id="' + svcId + '"]');
+          if (card) openModal(card);
+        });
       });
 
       document.querySelectorAll('.svc2-cta').forEach(function(link) {

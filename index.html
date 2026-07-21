@@ -53,9 +53,13 @@
   }
   </script>
 
+  <!-- Preload above-the-fold images for faster LCP -->
+  <link rel="preload" as="image" href="landing-1.png">
+  <link rel="preload" as="image" href="dedicated-ambulance.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy:  #eef4fb;
@@ -291,13 +295,10 @@
     .nav-dropdown a:hover::before { opacity: 1; }
 
     /* ── HERO ────────────────────────────────────────────── */
-    /* ── HERO — FULL-WIDTH PHOTO ─────────────────────────── */
     .hero {
-      min-height: 88vh;
-      padding: 140px 0 100px;
+      height: 650px;
       display: flex;
       align-items: center;
-      justify-content: center;
       position: relative;
       overflow: hidden;
     }
@@ -306,204 +307,181 @@
     .hero-slides {
       position: absolute; inset: 0; z-index: 0;
     }
-
     .hero-slide {
       position: absolute; inset: 0;
-      background-size: cover; background-position: center center;
+      background-size: cover;
+      background-position: center center;
       opacity: 0;
-      transition: opacity 1.6s ease-in-out;
+      transition: opacity 1.8s ease-in-out;
     }
     .hero-slide.active { opacity: 1; }
 
+    /* Directional gradient — dark on left where text sits, clear on right */
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
-        to bottom,
-        rgba(4,17,31,.45) 0%,
-        rgba(4,17,31,.58) 60%,
-        rgba(4,17,31,.72) 100%
+        to right,
+        rgba(4,17,31,.88) 0%,
+        rgba(4,17,31,.68) 28%,
+        rgba(4,17,31,.22) 52%,
+        transparent 72%
       );
       pointer-events: none;
     }
 
-    /* Slide dots — bottom center */
+    /* Slide dots — bottom left aligned with content */
     .hero-dots {
-      position: absolute; bottom: 28px; left: 50%;
-      transform: translateX(-50%); z-index: 5;
+      position: absolute; bottom: 24px; left: max(48px, 5vw);
+      z-index: 5;
       display: flex; align-items: center; gap: 8px;
     }
-
     .hero-dot {
-      width: 8px; height: 8px; border-radius: 50%; padding: 0;
-      background: rgba(255,255,255,.40); border: 1.5px solid rgba(255,255,255,.6);
+      width: 7px; height: 7px; border-radius: 50%; padding: 0;
+      background: rgba(255,255,255,.38); border: 1.5px solid rgba(255,255,255,.55);
       cursor: pointer;
       transition: background .3s, transform .3s;
     }
     .hero-dot.active {
       background: #ffffff; transform: scale(1.4);
       border-color: transparent;
-      box-shadow: 0 0 8px rgba(255,255,255,.5);
     }
 
-    /* Content — centered, minimal */
+    /* Content — left-aligned */
     .hero-inner {
       position: relative; z-index: 2;
       display: flex; flex-direction: column;
-      align-items: center; text-align: center;
-      max-width: 820px; padding: 0 24px;
+      align-items: flex-start; text-align: left;
+      max-width: 640px;
+      padding: 0 24px 0 max(48px, 5vw);
+      width: 100%;
     }
-
     .hero-grid { width: 100%; }
 
     .hero-title {
       font-family: var(--font-body);
       font-weight: 700;
-      font-size: clamp(34px, 4.2vw, 62px);
+      font-size: clamp(32px, 3.8vw, 58px);
       letter-spacing: -0.3px; line-height: 1.1;
       color: #ffffff;
-      text-shadow: 0 2px 16px rgba(4,17,31,.5);
     }
-
     .hero-sub {
-      margin: 16px auto 0; max-width: 580px;
-      color: rgba(255,255,255,.88); font-size: 18px;
-      line-height: 1.6;
-    }
-
-    /* 24/7 availability badge */
-    .hero-avail {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.28);
-      border-radius: 40px;
-      padding: 7px 18px;
-      font-family: var(--font-label);
-      font-size: 12px; letter-spacing: 2.5px;
-      color: #ffffff; text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-    .hero-avail-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #3ddc84;
-      box-shadow: 0 0 6px #3ddc84;
-      animation: pulse-dot 1.8s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .6; transform: scale(1.3); }
-    }
-
-    /* Crew strip under the subtitle */
-    .hero-crew {
-      margin-top: 14px;
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px;
-      color: rgba(255,255,255,.70);
-      font-size: 14px; letter-spacing: .5px;
-    }
-    .hero-crew span { white-space: nowrap; }
-    .hero-crew span + span::before {
-      content: "·"; margin-right: 18px; opacity: .5;
+      margin: 18px 0 0;
+      color: rgba(255,255,255,.85); font-size: 17px;
+      line-height: 1.65; max-width: 520px;
     }
 
     .hero-actions {
-      display: flex; flex-wrap: wrap; justify-content: center;
+      display: flex; flex-wrap: wrap;
       align-items: center;
-      gap: 14px; margin-top: 36px;
+      gap: 12px; margin-top: 32px;
     }
 
-    /* Quote CTA — red filled */
+    /* Primary CTA — red */
     .hero-btn-quote {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: #e02828;
-      color: #ffffff;
-      font-family: var(--font-body); font-size: 16px; font-weight: 700;
-      letter-spacing: .8px;
-      padding: 15px 32px;
-      border-radius: 8px; border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(224,40,40,.35);
+      display: inline-flex; align-items: center; gap: 9px;
+      background: #e02828; color: #ffffff;
+      font-family: var(--font-body); font-size: 15px; font-weight: 700;
+      letter-spacing: .5px;
+      padding: 14px 28px;
+      border-radius: 6px; border: none;
+      cursor: pointer; text-decoration: none;
+      transition: background .2s, transform .15s;
     }
-    .hero-btn-quote:hover {
-      background: #c41f1f;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(224,40,40,.45);
-    }
+    .hero-btn-quote:hover { background: #c41f1f; transform: translateY(-2px); }
     .hero-btn-quote svg { flex-shrink: 0; }
 
-    /* "or" divider */
-    .hero-or {
-      color: rgba(255,255,255,.55);
-      font-family: var(--font-body); font-size: 15px;
-    }
-
-    /* Call button — white outline */
+    /* Secondary CTA — white outline */
     .hero-btn-call {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,.10);
-      border: 1.5px solid rgba(255,255,255,.45);
+      display: inline-flex; align-items: center; gap: 9px;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,.55);
       color: #ffffff;
-      font-family: var(--font-body); font-size: 16px; font-weight: 600;
-      letter-spacing: .5px;
-      padding: 15px 28px;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      backdrop-filter: blur(8px);
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      letter-spacing: .3px;
+      padding: 14px 24px;
+      border-radius: 6px;
+      cursor: pointer; text-decoration: none;
       transition: background .2s, border-color .2s, transform .15s;
     }
     .hero-btn-call:hover {
-      background: rgba(255,255,255,.18);
-      border-color: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.8);
       transform: translateY(-2px);
     }
 
-    /* Live operations status */
+    /* Live status badge */
     .hero-live-status {
-      display: inline-flex; align-items: center; gap: 9px;
-      background: rgba(61,220,132,.10);
-      border: 1px solid rgba(61,220,132,.35);
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(61,220,132,.4);
       border-radius: 40px;
-      padding: 7px 18px;
+      padding: 6px 16px;
       font-family: var(--font-label);
-      font-size: 11px; letter-spacing: 2.8px;
+      font-size: 10px; letter-spacing: 2.5px;
       color: #3ddc84; text-transform: uppercase;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
     .hero-live-dot {
       width: 7px; height: 7px; border-radius: 50%;
       background: #3ddc84;
-      box-shadow: 0 0 8px rgba(61,220,132,.9);
       animation: pulse-dot 1.6s ease-in-out infinite;
     }
-    .hero-live-text { color: rgba(61,220,132,.92); }
-
-    /* Trust credential strip below CTAs */
-    .hero-trust-strip {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 10px 20px; margin-top: 28px;
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .6; transform: scale(1.3); }
     }
-    .hero-trust-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      color: rgba(255,255,255,.72);
-      font-family: var(--font-label); font-size: 11px;
-      letter-spacing: 1.5px; text-transform: uppercase;
-    }
-    .hero-trust-badge svg { color: rgba(61,220,132,.9); flex-shrink: 0; }
+    .hero-live-text { color: rgba(61,220,132,.9); }
 
-    /* hide unused elements */
-    .hero::before { display: none; }
-    .hero::after  { display: none; }
-    .hero-left  { display: none; }
-    .hero-right { display: none; }
-    .hero-photo-vignette { display: none; }
-    .hero-photo-badge { display: none; }
-    .hero-trust { display: none; }
-    .hero-chips { display: none; }
-    .hero-chip  { display: none; }
-    .hero-float { display: none; }
-    .hero-banner { display: none; }
+    /* Specialist trust strip — sits below the hero */
+    .hero-spec-strip {
+      background: #04111f;
+      border-top: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 14px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 0;
+    }
+    .hero-spec-strip span {
+      font-family: var(--font-label); font-size: 10px;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      padding: 0 20px;
+      border-right: 1px solid rgba(255,255,255,.14);
+    }
+    .hero-spec-strip span:last-child { border-right: none; }
+
+    /* Mobile hero */
+    @media (max-width: 768px) {
+      .hero {
+        height: auto; min-height: 560px;
+        align-items: flex-end; padding-bottom: 48px;
+      }
+      .hero-overlay {
+        background: linear-gradient(
+          to top,
+          rgba(4,17,31,.92) 0%,
+          rgba(4,17,31,.72) 38%,
+          rgba(4,17,31,.20) 68%,
+          transparent 100%
+        );
+      }
+      .hero-slide { background-position: center 20%; }
+      .hero-inner {
+        padding: 0 20px 0 20px;
+        max-width: 100%;
+      }
+      .hero-title { font-size: clamp(28px, 7.5vw, 42px); }
+      .hero-sub { font-size: 15px; }
+      .hero-dots { left: 20px; bottom: 16px; }
+      .hero-spec-strip { padding: 12px 20px; gap: 8px 0; }
+      .hero-spec-strip span { font-size: 9px; padding: 0 12px; }
+    }
+
+    /* Hide legacy hero elements no longer used */
+    .hero-crew, .hero-or, .hero-trust-strip, .hero-trust-badge,
+    .hero-avail, .hero-avail-dot,
+    .hero::before, .hero::after,
+    .hero-left, .hero-right, .hero-photo-vignette, .hero-photo-badge,
+    .hero-trust, .hero-chips, .hero-chip, .hero-float, .hero-banner
+    { display: none; }
     .word { display: inline; }
     .word-inner { display: inline; }
 
@@ -1498,7 +1476,159 @@
     /* ── SERVICES SECTION ────────────────────────────────── */
     #services {
       background: var(--navy);
+      padding-top: 0;
     }
+
+    /* ── Premium Services Hero ── */
+    .svc-hero {
+      position: relative; height: 520px; overflow: hidden;
+      background: #04111f;
+    }
+
+    /* Film grain texture */
+    .svc-hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 3; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: .5; mix-blend-mode: overlay;
+    }
+
+    /* Vignette */
+    .svc-hero::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: radial-gradient(ellipse at 70% 50%, transparent 35%, rgba(4,17,31,.55) 100%);
+    }
+
+    .svc-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 65% center;
+      filter: saturate(1.08) brightness(0.92) contrast(1.04);
+      transform: scale(1.05);
+      animation: svcHeroZoom 12s ease-out forwards;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    @keyframes svcHeroZoom {
+      from { transform: scale(1.05); }
+      to   { transform: scale(1.00); }
+    }
+
+    /* Left cinematic gradient — text side only */
+    .svc-hero-gradient {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: linear-gradient(
+        to right,
+        rgba(4,17,31,.92)  0%,
+        rgba(4,17,31,.78) 22%,
+        rgba(4,17,31,.38) 42%,
+        transparent       62%
+      );
+    }
+
+    .svc-hero-content {
+      position: absolute; inset: 0; z-index: 4;
+      display: flex; align-items: center;
+    }
+
+    .svc-hero-text {
+      width: 42%; padding: 0 0 0 7%;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    .svc-hero-eyebrow {
+      font-family: var(--font-label); font-size: 10px; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--skylt);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .svc-hero-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--skylt);
+    }
+
+    .svc-hero-title {
+      font-family: var(--font-head); font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 400; line-height: 1.0; letter-spacing: 3px;
+      text-transform: uppercase; color: #eef3ff; margin: 0;
+    }
+    .svc-hero-title span { color: var(--red); }
+
+    .svc-hero-desc {
+      font-family: var(--font-body); font-size: 15px; font-weight: 300;
+      line-height: 1.75; color: rgba(238,243,255,.72);
+      max-width: 360px; margin: 0;
+    }
+
+    .svc-hero-stats {
+      display: flex; gap: 28px; margin-top: 8px;
+    }
+    .svc-hero-stat-num {
+      font-family: var(--font-head); font-size: 28px; letter-spacing: 1px;
+      color: #eef3ff; line-height: 1;
+    }
+    .svc-hero-stat-lbl {
+      font-family: var(--font-label); font-size: 9px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted); margin-top: 3px;
+    }
+    .svc-hero-divider {
+      width: 1px; background: rgba(238,243,255,.15); align-self: stretch; margin: 2px 0;
+    }
+
+    .svc-hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--red); color: #fff; border: none; cursor: pointer;
+      font-family: var(--font-label); font-size: 9.5px; letter-spacing: 2.5px;
+      text-transform: uppercase; padding: 13px 24px; border-radius: 3px;
+      text-decoration: none; width: fit-content;
+      transition: background .22s, gap .22s;
+      box-shadow: 0 4px 20px rgba(224,40,40,.35);
+    }
+    .svc-hero-cta:hover { background: #c81e1e; gap: 14px; }
+    .svc-hero-cta-arrow { display: inline-block; transition: transform .22s; }
+    .svc-hero-cta:hover .svc-hero-cta-arrow { transform: translateX(3px); }
+
+    /* Scrolling tab section below hero */
+    .svc-hero + .shell { padding-top: 48px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .svc-hero-img { object-position: 75% center; }
+      .svc-hero-text { width: 55%; }
+      .svc-hero-gradient {
+        background: linear-gradient(
+          to right,
+          rgba(4,17,31,.94)  0%,
+          rgba(4,17,31,.82) 30%,
+          rgba(4,17,31,.45) 55%,
+          transparent       75%
+        );
+      }
+    }
+    @media (max-width: 768px) {
+      .svc-hero { height: 420px; }
+      .svc-hero-img { object-position: 80% center; }
+      .svc-hero-text { width: 75%; padding: 0 0 0 5%; }
+      .svc-hero-title { font-size: clamp(32px, 8vw, 48px); }
+      .svc-hero-gradient {
+        background: linear-gradient(
+          to right,
+          rgba(4,17,31,.96)  0%,
+          rgba(4,17,31,.88) 50%,
+          rgba(4,17,31,.6)  80%,
+          transparent       100%
+        );
+      }
+    }
+    @media (max-width: 480px) {
+      .svc-hero { height: 360px; }
+      .svc-hero-img { object-position: 85% center; }
+      .svc-hero-text { width: 88%; padding: 0 5%; }
+      .svc-hero-stats { gap: 16px; }
+      .svc-hero-stat-num { font-size: 22px; }
+      .svc-hero-desc { font-size: 13.5px; }
+    }
+
     #services .svc-tabs-nav  { border-bottom-color: rgba(255,255,255,.1); margin-top: 44px; }
     #services .svc-tab       { color: var(--muted); }
     #services .svc-tab:hover:not(.active) { color: var(--sky); }
@@ -1536,11 +1666,11 @@
     .svc2-hd img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover;
-      filter: saturate(1.05) brightness(.72) contrast(1.05);
+      filter: saturate(1.1) brightness(1.0) contrast(1.05);
       transition: filter .55s ease, transform .6s cubic-bezier(.25,.46,.45,.94);
     }
     .svc2:hover .svc2-hd img {
-      filter: saturate(1.15) brightness(.82) contrast(1.08);
+      filter: saturate(1.2) brightness(1.05) contrast(1.08);
       transform: scale(1.06);
     }
 
@@ -1549,23 +1679,15 @@
       position: absolute; inset: 0; z-index: 2;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,.08)   0%,
-        rgba(0,0,0,.12)   40%,
-        rgba(14,26,52,.72) 75%,
-        rgba(14,26,52,.92) 100%
+        rgba(0,0,0,0)      0%,
+        rgba(0,0,0,.08)    50%,
+        rgba(14,26,52,.45) 85%,
+        rgba(14,26,52,.65) 100%
       );
     }
 
     /* Service number — prominent in header */
-    .svc2-ghost-num {
-      position: absolute; bottom: -8px; right: 14px; z-index: 4;
-      font-family: var(--font-head); font-size: 88px;
-      line-height: 1; letter-spacing: -2px;
-      color: rgba(255,255,255,.14);
-      pointer-events: none; user-select: none;
-      transition: color .3s;
-    }
-    .svc2:hover .svc2-ghost-num { color: rgba(255,255,255,.22); }
+    .svc2-ghost-num { display: none; }
 
     /* Grid texture overlay on service card header image */
     .svc2-hd::after {
@@ -1578,13 +1700,7 @@
 
     /* Icon — top-left, transparent border style */
     .svc2-ico {
-      position: absolute; top: 18px; left: 20px; z-index: 5;
-      width: 40px; height: 40px; bottom: auto;
-      background: rgba(21,101,192,.9);
-      border: none;
-      box-shadow: 0 3px 14px rgba(21,101,192,.4);
-      display: grid; place-items: center;
-      transition: background .25s, box-shadow .25s;
+      display: none;
     }
     .svc2:hover .svc2-ico {
       background: var(--sky);
@@ -1716,15 +1832,15 @@
     .svc-modal-photo img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; object-position: center 42%;
-      filter: brightness(.88) saturate(1.1);
+      filter: brightness(1.0) saturate(1.12) contrast(1.04);
       transition: transform 9s ease;
     }
     .svc-modal:not([hidden]) .svc-modal-photo img { transform: scale(1.05); }
     .svc-modal-photo-ov {
       position: absolute; inset: 0;
       background:
-        linear-gradient(to right,  rgba(4,17,31,.88) 0%, rgba(4,17,31,.50) 45%, rgba(4,17,31,.10) 75%, transparent 100%),
-        linear-gradient(to top,    rgba(4,17,31,.90) 0%, rgba(4,17,31,.30) 38%, transparent 100%);
+        linear-gradient(to right,  rgba(4,17,31,.80) 0%, rgba(4,17,31,.35) 38%, rgba(4,17,31,.05) 65%, transparent 100%),
+        linear-gradient(to top,    rgba(4,17,31,.70) 0%, rgba(4,17,31,.15) 32%, transparent 100%);
     }
     /* Blue glow line at bottom of photo */
     .svc-modal-photo::after {
@@ -1942,19 +2058,19 @@
     .e-cert--ped  { color: #7c3aed; background: rgba(124,58,237,.08); border-color: rgba(124,58,237,.28); }
     .e-cert--ped  .e-cert-dot { background: #7c3aed; }
 
-    /* ── Hero split: infographic + featured card ── */
+    /* ── Hero split: infographic full width ── */
     .equip-hero {
-      display: grid; grid-template-columns: 1fr 400px;
-      gap: 22px; margin-bottom: 36px; align-items: stretch;
+      display: block;
+      margin-bottom: 36px;
     }
     .equip-icu-wrap {
       position: relative; border-radius: 20px; overflow: hidden;
       background: #04111f; min-height: 320px;
     }
     .equip-icu-wrap img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      width: 100%; height: auto; object-fit: contain; object-position: center;
       display: block; transition: transform .55s ease;
-      filter: brightness(.88);
+      filter: brightness(1.0);
     }
     .equip-icu-wrap:hover img { transform: scale(1.035); }
     .equip-icu-corner-badge {
@@ -2075,7 +2191,7 @@
 
     .ec-cat-tag {
       display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-label); font-size: 10px; font-weight: 700;
+      font-family: var(--font-label); font-size: 12px; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;
     }
     .ec-cat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
@@ -2094,6 +2210,14 @@
       width: 44px; height: 44px; border-radius: 11px;
       display: grid; place-items: center; margin-bottom: 14px;
     }
+    .ec-photo {
+      width: 100%; height: 160px; border-radius: 10px;
+      overflow: hidden; margin-bottom: 14px; background: #f0f4fa;
+    }
+    .ec-photo img {
+      width: 100%; height: 100%; object-fit: contain; object-position: center;
+      padding: 8px;
+    }
     .ecat-monitoring .ec-icon  { background: rgba(21,101,200,.1); }
     .ecat-respiratory .ec-icon { background: rgba(13,138,94,.1); }
     .ecat-airway .ec-icon      { background: rgba(124,58,237,.1); }
@@ -2107,15 +2231,15 @@
     .ecat-circulation .ec-icon svg { stroke: #e02828; }
 
     .ec-name {
-      font-family: var(--font-body); font-size: 14px; font-weight: 700;
+      font-family: var(--font-body); font-size: 17px; font-weight: 700;
       color: #0d2035; line-height: 1.3; margin-bottom: 12px;
     }
-    .ec-name small { display: block; font-weight: 400; color: #5a7a9a; font-size: 12px; margin-top: 2px; }
+    .ec-name small { display: block; font-weight: 400; color: #5a7a9a; font-size: 14px; margin-top: 2px; }
     .ec-specs {
       list-style: none; display: grid; gap: 7px; margin-bottom: 14px;
     }
     .ec-specs li {
-      font-family: var(--font-body); font-size: 12px; color: #3a5570; line-height: 1.45;
+      font-family: var(--font-body); font-size: 14px; color: #3a5570; line-height: 1.45;
       display: flex; align-items: flex-start; gap: 7px;
     }
     .ec-specs li::before {
@@ -2129,7 +2253,7 @@
 
     .ec-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; }
     .ec-badge {
-      font-family: var(--font-label); font-size: 7px; letter-spacing: 1px;
+      font-family: var(--font-label); font-size: 9px; letter-spacing: 1px;
       text-transform: uppercase; padding: 3px 8px; border-radius: 4px; border: 1px solid;
     }
     .ecb-dgca { color: #0d6b3f; border-color: rgba(13,107,63,.28); background: rgba(13,107,63,.06); }
@@ -2142,9 +2266,9 @@
       display: flex; align-items: center; justify-content: space-between;
       padding-top: 14px; border-top: 1px solid #eef2f8;
     }
-    .ec-mfr { font-family: var(--font-label); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; color: #9ab0c8; }
+    .ec-mfr { font-family: var(--font-label); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #9ab0c8; }
     .ec-arrow {
-      font-family: var(--font-label); font-size: 8.5px; letter-spacing: 1.5px;
+      font-family: var(--font-label); font-size: 10.5px; letter-spacing: 1.5px;
       text-transform: uppercase; color: #1565c8;
       display: flex; align-items: center; gap: 4px; transition: gap .2s;
     }
@@ -2608,42 +2732,52 @@
 
     /* Card body */
     .team-card-body { padding: 22px 22px 20px; display: flex; flex-direction: column; flex: 1; }
+
     .team-name {
-      font-family: var(--font-body); font-size: 17px; font-weight: 700;
-      color: #0d2952; line-height: 1.25; margin-bottom: 4px;
+      font-family: "Manrope", sans-serif;
+      font-size: 22px; font-weight: 750;
+      color: #0a1e3c; line-height: 1.2;
+      letter-spacing: -0.02em; margin-bottom: 8px;
     }
     .team-title {
-      font-family: var(--font-body); font-size: 12.5px; font-weight: 500;
-      color: #1565c8; letter-spacing: .3px;
+      font-family: "Inter", sans-serif;
+      font-size: 15px; font-weight: 600; line-height: 1.5;
+      color: #1251a8; letter-spacing: 0;
+      margin-bottom: 14px;
     }
     .team-exp {
       display: inline-block;
-      background: #fff0f0; color: #c0392b;
-      font-family: var(--font-label); font-size: 9px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
+      background: #fff2f2; color: #b52020;
+      font-family: "Inter", sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase;
       padding: 4px 10px; border-radius: 20px;
-      margin: 12px 0 13px; align-self: flex-start;
+      margin-bottom: 16px; align-self: flex-start;
     }
     .team-bio {
-      font-family: var(--font-body); font-size: 13px; line-height: 1.72;
-      color: #3d5a7a; margin-bottom: 14px;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      font-family: "Inter", sans-serif; font-size: 15px; line-height: 1.75;
+      color: #2c445e; margin-bottom: 18px;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+      line-clamp: 3; overflow: hidden;
     }
-    .team-skills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+    .team-skills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
     .team-skill {
-      background: #eef4ff; color: #1a4a8a;
-      font-family: var(--font-body); font-size: 10.5px; font-weight: 600;
-      padding: 3px 9px; border-radius: 6px; letter-spacing: .2px;
+      background: #edf1f9; color: #1e3a6e;
+      font-family: "Inter", sans-serif; font-size: 12px; font-weight: 500;
+      padding: 6px 10px; border-radius: 8px; letter-spacing: 0;
     }
-    .team-cert { background: #eef4ff; color: #1a4a8a; }
+    .team-cert { background: #e8f0fe; color: #1a4a8a; }
     .team-view-btn {
-      display: inline-flex; align-items: center; gap: 5px; margin-top: auto;
-      font-family: var(--font-label); font-size: 9.5px; letter-spacing: 1.5px;
-      text-transform: uppercase; color: #1565c0;
+      display: inline-flex; align-items: center; gap: 6px; margin-top: auto;
+      font-family: "Inter", sans-serif; font-size: 13px; font-weight: 600;
+      letter-spacing: 0; text-transform: none; color: #1251a8;
       background: none; border: none; cursor: pointer; padding: 0;
-      transition: gap 0.2s, color 0.2s;
+      transition: gap 0.2s ease, color 0.2s ease;
     }
-    .team-view-btn:hover { color: #0d3d8a; gap: 9px; }
+    .team-view-btn .btn-arrow {
+      display: inline-block; transition: transform 0.2s ease;
+    }
+    .team-view-btn:hover { color: #0a3580; gap: 10px; }
+    .team-view-btn:hover .btn-arrow { transform: translateX(3px); }
 
     /* ── Doctor Profile Modal ─────────────────────────────── */
     .doc-overlay {
@@ -2665,26 +2799,40 @@
 
     .doc-modal-box {
       position: relative; background: #ffffff;
-      border-radius: 20px; max-width: 880px; width: 100%;
+      border-radius: 20px; width: min(1180px, 94vw);
       overflow: hidden;
-      display: grid; grid-template-columns: 320px 1fr;
+      display: grid; grid-template-columns: 42% 58%;
       align-items: stretch;
       box-shadow: 0 32px 80px rgba(0,0,0,0.38);
       transform: translateY(24px) scale(0.97);
       transition: transform 0.3s ease;
       flex-shrink: 0;
+      max-height: 90vh;
     }
     .doc-modal.open .doc-modal-box { transform: translateY(0) scale(1); }
 
+    /* Photo column */
     .doc-modal-photo-col {
       background: linear-gradient(160deg, #09193a 0%, #1055a8 100%);
       position: relative; overflow: hidden;
-      min-height: 500px;
+      min-height: 720px;
     }
+    /* headshot background — applied via JS class */
+    .doc-modal-photo-col.mode-headshot {
+      background: #e8edf4;
+    }
+
+    /* Portrait mode (default): fill the column, anchor to top */
     .doc-modal-img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: center top; display: block;
     }
+    /* Headshot mode: contain so nothing is cropped, light bg shows */
+    .doc-modal-img.mode-headshot {
+      object-fit: contain;
+      object-position: center top;
+    }
+
     .doc-modal-init {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
@@ -2700,9 +2848,15 @@
       color: #fff; font-size: 16px; z-index: 3; line-height: 1;
       transition: background 0.2s;
     }
+    .doc-modal-photo-col.mode-headshot .doc-modal-close { color: #0d2952; background: rgba(0,0,0,0.08); }
     .doc-modal-close:hover { background: rgba(255,255,255,0.3); }
 
-    .doc-modal-body { padding: 44px 38px 52px; }
+    /* Content column — scrolls internally on desktop when bio is long */
+    .doc-modal-body {
+      padding: 44px 38px 52px;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
     .doc-modal-exp-tag {
       display: inline-block;
       background: #fff0f0; color: #c0392b;
@@ -2734,59 +2888,122 @@
     }
     .doc-modal-cert { background: #e6f9ef; color: #1a6a40; }
 
-    @media (max-width: 680px) {
-      .doc-modal-box { grid-template-columns: 1fr; }
-      .doc-modal-photo-col { min-height: 260px; height: 260px; }
+    @media (max-width: 760px) {
+      .doc-modal { padding: 0; align-items: flex-end; }
+      .doc-modal-box {
+        grid-template-columns: 1fr;
+        width: 100%; border-radius: 20px 20px 0 0;
+        max-height: 92vh; overflow-y: auto;
+      }
+      .doc-modal-photo-col { min-height: 400px; height: 420px; }
+      .doc-modal-body { max-height: none; overflow-y: visible; }
       .doc-modal-init { font-size: 52px; }
       .doc-modal-body { padding: 24px 20px 36px; }
       .doc-modal-name { font-size: 19px; }
     }
-    /* ── Founder profile – premium executive ──────────────────── */
-    /* ── Founder – compact two-column executive profile ──────── */
-    /* ── Leadership Section ── */
-    .leadership-section { background: #f5f8fc; padding: 72px 0 80px; }
+    /* ── Founders / Leadership Section ──────────────────────────── */
+    .leadership-section { background: #f2f5fb; padding: 80px 0 88px; }
     .leadership-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 28px; max-width: 860px; margin: 0 auto;
+      gap: 32px; max-width: 920px; margin: 0 auto 48px;
     }
     .leader-card {
       background: #fff; border-radius: 20px; overflow: hidden;
       border: 1px solid rgba(21,101,200,.1);
-      box-shadow: 0 4px 28px rgba(4,17,31,.07);
+      box-shadow: 0 6px 32px rgba(4,17,31,.08);
       display: flex; flex-direction: column;
       cursor: pointer;
-      transition: box-shadow .3s, transform .3s;
+      transition: box-shadow .3s ease, transform .3s ease;
     }
-    .leader-card:hover { transform: translateY(-4px); box-shadow: 0 12px 48px rgba(4,17,31,.13); }
+    .leader-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 52px rgba(4,17,31,.12);
+    }
+
+    /* Portrait — primary visual, 62% of card */
     .leader-photo-wrap {
-      position: relative; height: 260px; overflow: hidden;
-      background: linear-gradient(160deg,#04111f,#0d2952);
+      position: relative; height: 320px; overflow: hidden;
+      background: linear-gradient(160deg,#0a1e3c,#1055a8);
+      flex-shrink: 0;
     }
     .leader-photo-wrap::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 3;
-      background: linear-gradient(90deg,#e02828,#1565c8);
+      background: linear-gradient(90deg,#e02828 0%,#1565c8 100%);
     }
-    .leader-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .leader-photo {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top; display: block;
+      transition: transform .45s ease;
+    }
+    .leader-card:hover .leader-photo { transform: scale(1.03); }
     .leader-photo-init {
       position: absolute; inset: 0; display: none;
       align-items: center; justify-content: center;
       font-family: var(--font-head); font-size: 64px; color: rgba(255,255,255,.2);
     }
-    .leader-body { padding: 22px 24px 22px; display: flex; flex-direction: column; flex: 1; }
+
+    /* Body */
+    .leader-body { padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1; }
     .leader-tag {
-      display: inline-block; font-family: var(--font-label); font-size: 8.5px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase; color: #e02828; margin-bottom: 7px;
+      display: inline-block;
+      font-family: "Inter", sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: #c0251b; margin-bottom: 10px;
     }
-    .leader-name { font-family: var(--font-head); font-size: 26px; letter-spacing: 1.5px; color: #04111f; line-height: 1.05; margin-bottom: 4px; }
-    .leader-role { font-family: var(--font-body); font-size: 12.5px; font-weight: 500; color: #1565c8; margin-bottom: 12px; }
-    .leader-bio { font-family: var(--font-body); font-size: 13px; line-height: 1.7; color: #3c5070; margin-bottom: 14px; flex: 1; }
-    .leader-creds { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .leader-name {
+      font-family: "Manrope", sans-serif; font-size: 26px; font-weight: 700;
+      color: #0a1e3c; line-height: 1.18; letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .leader-role {
+      font-family: "Inter", sans-serif; font-size: 14px; font-weight: 600;
+      color: #1251a8; line-height: 1.5; margin-bottom: 14px;
+    }
+    .leader-bio {
+      font-family: "Inter", sans-serif; font-size: 14px; line-height: 1.75;
+      color: #2c445e; margin-bottom: 16px; flex: 1;
+    }
+    .leader-creds { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+    .leader-chip {
+      font-family: "Inter", sans-serif; font-size: 12px; font-weight: 500;
+      color: #1e3a6e; background: #edf1f9;
+      padding: 5px 11px; border-radius: 8px; letter-spacing: 0;
+    }
+    .leader-chip-cert {
+      background: #e8f0fe; color: #1a4a8a;
+    }
     .leader-view-btn {
-      align-self: flex-start; font-family: var(--font-label); font-size: 9px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase; color: #1565c8;
-      background: none; border: none; cursor: pointer; padding: 0; transition: color .2s;
+      align-self: flex-start; margin-top: auto;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: "Inter", sans-serif; font-size: 13px; font-weight: 600;
+      color: #1251a8; background: none; border: none; cursor: pointer;
+      padding: 0; letter-spacing: 0; text-transform: none;
+      transition: color .2s ease, gap .2s ease;
     }
-    .leader-view-btn:hover { color: #e02828; }
+    .leader-view-btn .btn-arrow { display: inline-block; transition: transform .2s ease; }
+    .leader-view-btn:hover { color: #0a3580; gap: 10px; }
+    .leader-view-btn:hover .btn-arrow { transform: translateX(3px); }
+
+    /* Shared footer — statement + quote */
+    .ldr-footer {
+      max-width: 920px; margin: 0 auto; text-align: center;
+    }
+    .ldr-statement {
+      font-family: "Inter", sans-serif; font-size: 14px; font-weight: 500;
+      color: #5a7a9a; letter-spacing: 0.02em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .ldr-quote {
+      font-family: "Manrope", sans-serif; font-size: 20px; font-weight: 600;
+      color: #0a1e3c; line-height: 1.6; letter-spacing: -0.01em;
+      max-width: 680px; margin: 0 auto;
+      padding: 24px 32px;
+      border-left: 3px solid #e02828;
+      text-align: left;
+      background: #fff;
+      border-radius: 0 16px 16px 0;
+      box-shadow: 0 4px 24px rgba(4,17,31,.06);
+    }
 
     /* Leadership modal */
     /* ── Premium Executive Leader Modal ─────────────────────────────── */
@@ -2812,24 +3029,28 @@
 
     /* Photo panel */
     .lm-photo-wrap {
-      position: relative; flex: 0 0 320px; min-height: 100%;
+      position: relative; flex: 0 0 40%; min-height: 100%;
       overflow: hidden;
-      background-color: #04111f;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center 30%;
-      transition: background-size .75s cubic-bezier(.16,1,.3,1);
+      background-color: #e8edf4;
     }
-    .lm-photo { display: none; } /* photo shown as background on wrap */
-    .lm-photo-fade {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 230px;
-      background: linear-gradient(to top, #04111f 0%, transparent 100%);
-      z-index: 2; pointer-events: none;
+    /* Headshot mode — same neutral bg */
+    .lm-photo-wrap.mode-headshot { background-color: #e8edf4; }
+
+    /* Portrait image — fills the panel */
+    .lm-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
     }
-    .lm-photo-label {
-      position: absolute; bottom: 26px; left: 0; right: 0;
-      z-index: 3; padding: 0 22px; text-align: center;
+    /* Headshot: contain so nothing is cropped */
+    .lm-photo.mode-headshot {
+      object-fit: contain;
+      object-position: center top;
     }
+    /* Remove dark fade and specialty label — clean look matching doctor modals */
+    .lm-photo-fade { display: none; }
+    .lm-photo-label { display: none; }
     .lm-photo-label-eyebrow {
       display: block; font-family: var(--font-label); font-size: 7px;
       font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
@@ -2980,7 +3201,7 @@
     /* Tablet / mobile */
     @media (max-width: 768px) {
       .leader-modal { flex-direction: column; border-radius: 18px; overflow-y: auto; max-height: 92vh; }
-      .lm-photo-wrap { flex: none; height: 270px; min-height: unset; }
+      .lm-photo-wrap { flex: none; width: 100%; height: 320px; min-height: unset; }
       .lm-body { padding: 28px 26px 36px; opacity: 1 !important; transition: none !important; }
       .lm-name { font-size: 30px; }
       .lm-specialty { font-size: 14px; }
@@ -2990,8 +3211,7 @@
       .lm-signature { flex-wrap: wrap; gap: 10px; }
     }
     @media (max-width: 480px) {
-      .lm-photo-wrap { height: 230px; }
-      .lm-photo-fade { height: 140px; }
+      .lm-photo-wrap { height: 260px; }
       .lm-body { padding: 22px 18px 28px; }
       .lm-name { font-size: 26px; }
       .lm-quote-block { padding: 13px 16px; }
@@ -3001,13 +3221,18 @@
     @media (max-width: 920px) {
       .team-grid { grid-template-columns: 1fr 1fr; }
       .leadership-grid { gap: 20px; }
+      .ldr-quote { font-size: 18px; padding: 20px 24px; }
+    }
+    @media (max-width: 680px) {
+      .leadership-grid { grid-template-columns: 1fr; gap: 24px; }
+      .leader-photo-wrap { height: 360px; }
+      .ldr-quote { font-size: 17px; padding: 18px 20px; border-radius: 0 12px 12px 0; }
     }
     @media (max-width: 620px) {
       .team-grid { grid-template-columns: 1fr; }
       .team-section { padding: 64px 0 56px; }
       .advisor-card { grid-template-columns: 1fr !important; }
       .advisor-card img { height: 320px !important; }
-      .leadership-grid { grid-template-columns: 1fr; }
     }
 
     .partners-section {
@@ -3149,13 +3374,7 @@
 
       .footer-grid { grid-template-columns: 1fr; }
 
-      .hero { min-height: 75vh; padding: 90px 20px 70px; }
-      .hero-title { font-size: clamp(28px, 7.5vw, 42px); line-height: 1.15; }
-      .hero-sub { font-size: 15px; max-width: 100%; }
-      .hero-inner { padding: 0; }
-      .hero-slide { background-position: center center !important; }
-      .hero-crew { font-size: 13px; gap: 6px 12px; }
-      .hero-btn-quote, .hero-btn-call { font-size: 15px; padding: 13px 22px; }
+      .hero-btn-quote, .hero-btn-call { font-size: 14px; padding: 13px 20px; }
       .hero-actions { gap: 10px; }
       .stats-panel { padding-top: 24px; }
       .radar-wrap { display: none; }
@@ -3377,7 +3596,7 @@
     .partners-section .hosp-item { border-right-color: rgba(21,101,192,.12); }
 
     /* ── Services ───────────────────────────────────────────── */
-    #services                 { background: #f0f6ff; }
+    #services                 { background: var(--navy); }
     #services .eyebrow        { color: var(--skylt); }
     #services .section-title  { color: #1a2d4f; }
     #services .section-copy   { color: #3d5a7a; }
@@ -3570,7 +3789,7 @@
   <nav class="nav" id="nav">
     <div class="shell nav-inner">
       <a href="#top" class="brand" aria-label="REACT Air Ambulance home">
-        <img src="image copy.png" alt="REACT Air Ambulance" class="brand-logo" height="68">
+        <img src="image copy.png" alt="REACT Air Ambulance" class="brand-logo" height="68" loading="lazy">
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
@@ -3623,44 +3842,35 @@
     <!-- HERO -->
     <section class="hero">
 
-      <!-- Full-bleed photo slider -->
+      <!-- Four-slide background -->
       <div class="hero-slides" aria-hidden="true">
-        <div class="hero-slide active" style="background-image:url('hero-new.jpg'); background-size:cover; background-position:center center;"></div>
-        <div class="hero-slide" style="background-image:url('hero-react-fleet.jpg'); background-size:cover; background-position:center 60%;"></div>
-        <div class="hero-slide" style="background-image:url('hero-ai.jpg'); background-size:cover; background-position:center center;"></div>
+        <div class="hero-slide active" style="background-image:url('landing-1.png'); background-position:center center;"></div>
+        <div class="hero-slide" style="background-image:url('landing-2.png'); background-position:center center;"></div>
+        <div class="hero-slide" style="background-image:url('landing-3.png'); background-position:center center;"></div>
+        <div class="hero-slide" style="background-image:url('landing-4.png'); background-position:center center;"></div>
       </div>
 
-      <!-- Light overlay so content stays readable -->
+      <!-- Directional gradient — dark left, clear right -->
       <div class="hero-overlay" aria-hidden="true"></div>
 
-      <!-- Hero content -->
+      <!-- Hero content — left aligned -->
       <div class="hero-inner">
         <div class="hero-live-status">
           <span class="hero-live-dot"></span>
           <span class="hero-live-text">OPERATIONS ACTIVE &nbsp;·&nbsp; AIRCRAFT READY</span>
         </div>
-        <div class="hero-grid">
-          <h1 class="hero-title">When Every Second<br>Counts, We REACT</h1>
-          <p class="hero-sub">India's most trusted doctor-led air ambulance — ICU in the sky, from takeoff to bedside.</p>
-          <div class="hero-crew">
-            <span>Flying Doctors</span>
-            <span>Critical Care Physicians</span>
-            <span>Flight Paramedics</span>
-            <span>ECMO Specialists</span>
-          </div>
-        </div>
+        <h1 class="hero-title">When Every Second<br>Counts, We REACT</h1>
+        <p class="hero-sub">Doctor-led air ambulance and ICU-level patient transfer across India and internationally.</p>
         <div class="hero-actions">
           <a href="#contact-form" class="hero-btn-quote">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Get a Free Quote
           </a>
-          <span class="hero-or">or</span>
           <a href="tel:+919849994108" class="hero-btn-call">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-            +91 9849994108
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            Call Now
           </a>
         </div>
-        <!-- hero trust strip removed -->
       </div>
 
       <!-- Slide dots -->
@@ -3668,9 +3878,19 @@
         <button class="hero-dot active" aria-label="Slide 1" role="tab" aria-selected="true"></button>
         <button class="hero-dot" aria-label="Slide 2" role="tab" aria-selected="false"></button>
         <button class="hero-dot" aria-label="Slide 3" role="tab" aria-selected="false"></button>
+        <button class="hero-dot" aria-label="Slide 4" role="tab" aria-selected="false"></button>
       </div>
 
     </section>
+
+    <!-- Specialist trust strip below hero -->
+    <div class="hero-spec-strip" aria-label="Medical team specialisations">
+      <span>Flying Doctors</span>
+      <span>Critical Care Physicians</span>
+      <span>Flight Paramedics</span>
+      <span>ECMO Specialists</span>
+      <span>Neonatal Transport</span>
+    </div>
 
     <!-- STATS -->
     <section class="stats-panel" id="stats">
@@ -3757,7 +3977,7 @@
           </div>
           <div class="about-visual">
             <img class="about-main-photo"
-              src="hero-ai.jpg"
+              src="about-connecting-lives.jpg"
               alt="REACT air ambulance aircraft ready for mission" loading="lazy">
             <div class="about-cert-strip">
               <span class="about-cert-badge">Intensivists On Board</span>
@@ -3772,17 +3992,18 @@
     <!-- LEADERSHIP -->
     <section class="leadership-section" id="leadership">
       <div class="shell">
-        <div style="text-align:center; margin-bottom:44px;">
+        <div style="text-align:center; margin-bottom:48px;">
           <span class="eyebrow">Meet the Founders</span>
           <h2 class="section-title" style="color:#0d2952;">Our Leadership</h2>
         </div>
+
         <div class="leadership-grid">
 
           <!-- Dr. Neel Rohith Reddy -->
           <div class="leader-card" data-leader="neel">
             <div class="leader-photo-wrap">
               <img src="dr-founder.jpg" alt="Dr. Neel Rohith Reddy" class="leader-photo"
-                style="object-position:center 20%;"
+                style="object-position:center 12%;" loading="lazy"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="leader-photo-init">NR</div>
             </div>
@@ -3790,16 +4011,13 @@
               <span class="leader-tag">Founder</span>
               <div class="leader-name">Dr. Neel Rohith Reddy</div>
               <div class="leader-role">Founder &amp; Medical Director</div>
-              <p class="leader-bio">Emergency Physician and Aeromedical Intensivist with over a decade of critical care transport experience across India and internationally. Founded REACT to ensure every patient receives ICU-level care from the moment transport begins.</p>
+              <p class="leader-bio">Emergency Physician and Aeromedical Intensivist with over a decade of critical care transport experience across India and internationally. Founded REACT to deliver ICU-level care from the first moment of transport.</p>
               <div class="leader-creds">
-                <span class="team-skill team-cert">Emergency Medicine</span>
-                <span class="team-skill">Aeromedical Transport</span>
-                <span class="team-skill">Critical Care</span>
-                <span class="team-skill">ICU Transport</span>
-                <span class="team-skill team-cert">ACLS</span>
-                <span class="team-skill">Retrieval Medicine</span>
+                <span class="leader-chip leader-chip-cert">Emergency Medicine</span>
+                <span class="leader-chip">Aeromedical Transport</span>
+                <span class="leader-chip">Critical Care</span>
               </div>
-              <button class="leader-view-btn">View Full Profile →</button>
+              <button class="leader-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
             </div>
           </div>
 
@@ -3807,7 +4025,7 @@
           <div class="leader-card" data-leader="lavanya">
             <div class="leader-photo-wrap">
               <img src="dr-lavanya.jpg" alt="Dr. Y. Lavanya Reddy" class="leader-photo"
-                style="object-position:center 20%;"
+                style="object-position:center 15%;" loading="lazy"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="leader-photo-init">LR</div>
             </div>
@@ -3815,20 +4033,26 @@
               <span class="leader-tag">Co-Founder</span>
               <div class="leader-name">Dr. Y. Lavanya Reddy</div>
               <div class="leader-role">Co-Founder &amp; Director</div>
-              <p class="leader-bio">ENT Surgeon and Co-Founder of REACT, committed to compassionate, patient-centered care. Brings surgical expertise and a belief that every patient deserves dignity, reassurance, and continuity of care throughout their medical journey.</p>
+              <p class="leader-bio">ENT Surgeon and Co-Founder of REACT, committed to compassionate, patient-centred care. Brings surgical expertise and a conviction that every patient deserves dignity, reassurance, and continuity throughout their medical journey.</p>
               <div class="leader-creds">
-                <span class="team-skill">ENT Surgery</span>
-                <span class="team-skill team-cert">MS (ENT)</span>
-                <span class="team-skill">Surgical Care</span>
-                <span class="team-skill">Patient-Centered Care</span>
-                <span class="team-skill">Medical Transport</span>
-                <span class="team-skill">Clinical Excellence</span>
+                <span class="leader-chip leader-chip-cert">ENT Surgery</span>
+                <span class="leader-chip">Patient-Centred Care</span>
+                <span class="leader-chip">Clinical Leadership</span>
               </div>
-              <button class="leader-view-btn">View Full Profile →</button>
+              <button class="leader-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
             </div>
           </div>
 
         </div>
+
+        <!-- Shared statement + quote -->
+        <div class="ldr-footer">
+          <p class="ldr-statement">Built on clinical leadership, compassionate care, and accountable coordination.</p>
+          <blockquote class="ldr-quote">
+            "Every patient deserves coordinated, physician-led care from bedside to destination."
+          </blockquote>
+        </div>
+
       </div>
     </section>
 
@@ -3912,9 +4136,10 @@
         <div class="team-grid">
 
           <!-- Dr. Sujender Rao Arepally -->
+          <!-- 1. Dr. Sujender Rao Arepally -->
           <div class="team-card" data-doc="sujender">
             <div class="team-photo-wrap">
-              <img src="dr-sujender.jpg" alt="Dr. Sujender Rao Arepally" class="team-photo" style="object-position:center 10%" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <img src="dr-sujender.jpg" alt="Dr. Sujender Rao Arepally" class="team-photo" loading="lazy" style="object-position:center 10%" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="team-photo-init">SA</div>
             </div>
             <div class="team-card-body">
@@ -3929,97 +4154,36 @@
                 <span class="team-skill">International Retrieval</span>
                 <span class="team-skill">Maritime Medicine</span>
               </div>
-              <button class="team-view-btn">View Full Profile →</button>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
             </div>
           </div>
 
-          <!-- Dr. Tejasai -->
-          <div class="team-card" data-doc="tejasai">
+          <!-- 2. Dr. Hari Kishore -->
+          <div class="team-card" data-doc="harikishor">
             <div class="team-photo-wrap">
-              <img src="dr-tejasai.jpg" alt="Dr. Tejasai" class="team-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-              <div class="team-photo-init">TS</div>
-            </div>
-            <div class="team-card-body">
-              <div class="team-name">Dr. Tejasai</div>
-              <div class="team-title">Emergency Physician</div>
-              <span class="team-exp">6+ Years Experience</span>
-              <p class="team-bio">Emergency Physician specializing in Emergency Medicine, Critical Care, and Transport Medicine. Expert in rapid decision-making and evidence-based critical care across medical, surgical, and traumatic emergencies in aeromedical settings.</p>
-              <div class="team-skills">
-                <span class="team-skill team-cert">ACLS</span>
-                <span class="team-skill">Advanced Airway</span>
-                <span class="team-skill">Mechanical Ventilation</span>
-                <span class="team-skill">Bedside Ultrasound</span>
-              </div>
-              <button class="team-view-btn">View Full Profile →</button>
-            </div>
-          </div>
-
-          <!-- Dr. Hari Krishna Reddy -->
-          <div class="team-card" data-doc="harikrishna">
-            <div class="team-photo-wrap">
-              <img src="dr-harikrishna.jpg" alt="Dr. Hari Krishna Reddy" class="team-photo" style="object-position:center 20%" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <img src="dr-harikishor.jpg" alt="Dr. Hari Kishore" class="team-photo" loading="lazy" style="object-position:center 15%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="team-photo-init">HK</div>
             </div>
             <div class="team-card-body">
-              <div class="team-name">Dr. Hari Krishna Reddy</div>
-              <div class="team-title">Emergency Physician &amp; Former Head of ED</div>
-              <span class="team-exp">5+ Years Experience</span>
-              <p class="team-bio">Former Team Lead and Head of Emergency Department with expertise in multidisciplinary emergency management across medical, surgical, paediatric, and traumatic cases. Extensive experience in inter-facility critical care transfers and aeromedical evacuations.</p>
+              <div class="team-name">Dr. Hari Kishore</div>
+              <div class="team-title">Consultant – Emergency Medicine</div>
+              <span class="team-exp">13+ Years Experience</span>
+              <p class="team-bio">Emergency Physician with 13+ years of experience in trauma care, ACLS, advanced airway management, POCUS, and aeromedical retrieval across high-acuity emergency settings.</p>
               <div class="team-skills">
-                <span class="team-skill team-cert">ACLS</span>
+                <span class="team-skill team-cert">MBBS</span>
+                <span class="team-skill team-cert">MRCEM</span>
+                <span class="team-skill">ACLS</span>
                 <span class="team-skill">POCUS</span>
-                <span class="team-skill">Advanced Airway</span>
-                <span class="team-skill">Critical Care Transport</span>
+                <span class="team-skill">Aeromedical Retrieval</span>
               </div>
-              <button class="team-view-btn">View Full Profile →</button>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
             </div>
           </div>
 
-          <!-- Dr. Om Sagar -->
-          <div class="team-card" data-doc="omsagar">
-            <div class="team-photo-wrap">
-              <img src="dr-omsagar.jpg" alt="Dr. Om Sagar" class="team-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-              <div class="team-photo-init">OS</div>
-            </div>
-            <div class="team-card-body">
-              <div class="team-name">Dr. Om Sagar</div>
-              <div class="team-title">Emergency Physician</div>
-              <span class="team-exp">5+ Years Experience</span>
-              <p class="team-bio">Experienced Emergency Physician with expertise in Emergency Medicine, Critical Care, and Transport Medicine. Managed a broad spectrum of life-threatening emergencies with a strong emphasis on rapid decision-making and evidence-based critical care.</p>
-              <div class="team-skills">
-                <span class="team-skill team-cert">ACLS</span>
-                <span class="team-skill">Trauma Resuscitation</span>
-                <span class="team-skill">Procedural Sedation</span>
-                <span class="team-skill">Critical Care Transport</span>
-              </div>
-              <button class="team-view-btn">View Full Profile →</button>
-            </div>
-          </div>
-
-          <!-- Dr. Koppela Aravind Reddy -->
-          <div class="team-card" data-doc="aravind">
-            <div class="team-photo-wrap">
-              <img src="dr-aravind.jpg" alt="Dr. Koppela Aravind Reddy" class="team-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-              <div class="team-photo-init">KA</div>
-            </div>
-            <div class="team-card-body">
-              <div class="team-name">Dr. Koppela Aravind Reddy</div>
-              <div class="team-title">Emergency &amp; Critical Care Physician</div>
-              <span class="team-exp">5+ Years Experience</span>
-              <p class="team-bio">Emergency and Critical Care Physician with expertise in rapid assessment, resuscitation, and management of medical, cardiac, trauma, pediatric, and surgical emergencies in high-acuity settings.</p>
-              <div class="team-skills">
-                <span class="team-skill team-cert">ACLS</span>
-                <span class="team-skill">RSI</span>
-                <span class="team-skill">POCUS</span>
-                <span class="team-skill">Air &amp; Ground Retrieval</span>
-              </div>
-              <button class="team-view-btn">View Full Profile →</button>
-            </div>
-          </div>
-
+          <!-- 3. Dr. Rahul Vantaku -->
           <div class="team-card" data-doc="rahul">
             <div class="team-photo-wrap">
-              <img src="dr-rahul.jpg" alt="Dr. Rahul Vantaku" class="team-photo" style="object-position:center 35%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <img src="dr-rahul.jpg" alt="Dr. Rahul Vantaku" class="team-photo" loading="lazy" style="object-position:center 35%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="team-photo-init">RV</div>
             </div>
             <div class="team-card-body">
@@ -4033,14 +4197,14 @@
                 <span class="team-skill">Trauma Management</span>
                 <span class="team-skill">Pediatric Resuscitation</span>
               </div>
-              <button class="team-view-btn">View Full Profile →</button>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
             </div>
           </div>
 
-          <!-- Dr. Syed Thameez -->
+          <!-- 4. Dr. Syed Thameez -->
           <div class="team-card" data-doc="thameez">
             <div class="team-photo-wrap">
-              <img src="dr-thameez.jpg" alt="Dr. Syed Thameez" class="team-photo" style="object-position:center 15%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <img src="dr-thameez.jpg" alt="Dr. Syed Thameez" class="team-photo" loading="lazy" style="object-position:center 15%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="team-photo-init">ST</div>
             </div>
             <div class="team-card-body">
@@ -4054,14 +4218,35 @@
                 <span class="team-skill">Trauma Resuscitation</span>
                 <span class="team-skill">Critical Care Transport</span>
               </div>
-              <button class="team-view-btn">View Full Profile →</button>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
             </div>
           </div>
 
-          <!-- Dr. Ashok Kumar Surampalli -->
+          <!-- 5. Dr. Tejasai -->
+          <div class="team-card" data-doc="tejasai">
+            <div class="team-photo-wrap">
+              <img src="dr-tejasai.jpg" alt="Dr. Tejasai" class="team-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="team-photo-init">TS</div>
+            </div>
+            <div class="team-card-body">
+              <div class="team-name">Dr. Tejasai</div>
+              <div class="team-title">Emergency Physician</div>
+              <span class="team-exp">6+ Years Experience</span>
+              <p class="team-bio">Emergency Physician specializing in Emergency Medicine, Critical Care, and Transport Medicine. Expert in rapid decision-making and evidence-based critical care across medical, surgical, and traumatic emergencies in aeromedical settings.</p>
+              <div class="team-skills">
+                <span class="team-skill team-cert">ACLS</span>
+                <span class="team-skill">Advanced Airway</span>
+                <span class="team-skill">Mechanical Ventilation</span>
+                <span class="team-skill">Bedside Ultrasound</span>
+              </div>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
+            </div>
+          </div>
+
+          <!-- 6. Dr. Ashok Kumar Surampalli -->
           <div class="team-card" data-doc="ashok">
             <div class="team-photo-wrap">
-              <img src="dr-ashok.jpg" alt="Dr. Ashok Kumar Surampalli" class="team-photo" style="object-position:center 15%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <img src="dr-ashok.jpg" alt="Dr. Ashok Kumar Surampalli" class="team-photo" loading="lazy" style="object-position:center 15%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="team-photo-init">AK</div>
             </div>
             <div class="team-card-body">
@@ -4075,7 +4260,70 @@
                 <span class="team-skill">Advanced Airway &amp; RSI</span>
                 <span class="team-skill">Aero Medical Transport</span>
               </div>
-              <button class="team-view-btn">View Full Profile →</button>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
+            </div>
+          </div>
+
+          <!-- 7. Dr. Hari Krishna Reddy -->
+          <div class="team-card" data-doc="harikrishna">
+            <div class="team-photo-wrap">
+              <img src="dr-harikrishna.jpg" alt="Dr. Hari Krishna Reddy" class="team-photo" loading="lazy" style="object-position:center 20%" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="team-photo-init">HK</div>
+            </div>
+            <div class="team-card-body">
+              <div class="team-name">Dr. Hari Krishna Reddy</div>
+              <div class="team-title">Emergency Physician &amp; Former Head of ED</div>
+              <span class="team-exp">5+ Years Experience</span>
+              <p class="team-bio">Former Team Lead and Head of Emergency Department with expertise in multidisciplinary emergency management across medical, surgical, paediatric, and traumatic cases. Extensive experience in inter-facility critical care transfers and aeromedical evacuations.</p>
+              <div class="team-skills">
+                <span class="team-skill team-cert">ACLS</span>
+                <span class="team-skill">POCUS</span>
+                <span class="team-skill">Advanced Airway</span>
+                <span class="team-skill">Critical Care Transport</span>
+              </div>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
+            </div>
+          </div>
+
+          <!-- 8. Dr. Om Sagar -->
+          <div class="team-card" data-doc="omsagar">
+            <div class="team-photo-wrap">
+              <img src="dr-omsagar.jpg" alt="Dr. Om Sagar" class="team-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="team-photo-init">OS</div>
+            </div>
+            <div class="team-card-body">
+              <div class="team-name">Dr. Om Sagar</div>
+              <div class="team-title">Emergency Physician</div>
+              <span class="team-exp">5+ Years Experience</span>
+              <p class="team-bio">Experienced Emergency Physician with expertise in Emergency Medicine, Critical Care, and Transport Medicine. Managed a broad spectrum of life-threatening emergencies with a strong emphasis on rapid decision-making and evidence-based critical care.</p>
+              <div class="team-skills">
+                <span class="team-skill team-cert">ACLS</span>
+                <span class="team-skill">Trauma Resuscitation</span>
+                <span class="team-skill">Procedural Sedation</span>
+                <span class="team-skill">Critical Care Transport</span>
+              </div>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
+            </div>
+          </div>
+
+          <!-- 9. Dr. Koppela Aravind Reddy -->
+          <div class="team-card" data-doc="aravind">
+            <div class="team-photo-wrap">
+              <img src="dr-aravind.jpg" alt="Dr. Koppela Aravind Reddy" class="team-photo" loading="lazy" style="object-position:center 20%" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="team-photo-init">KA</div>
+            </div>
+            <div class="team-card-body">
+              <div class="team-name">Dr. Koppela Aravind Reddy</div>
+              <div class="team-title">Emergency &amp; Critical Care Physician</div>
+              <span class="team-exp">5+ Years Experience</span>
+              <p class="team-bio">Emergency and Critical Care Physician with expertise in rapid assessment, resuscitation, and management of medical, cardiac, trauma, pediatric, and surgical emergencies in high-acuity settings.</p>
+              <div class="team-skills">
+                <span class="team-skill team-cert">ACLS</span>
+                <span class="team-skill">RSI</span>
+                <span class="team-skill">POCUS</span>
+                <span class="team-skill">Air &amp; Ground Retrieval</span>
+              </div>
+              <button class="team-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
             </div>
           </div>
 
@@ -4093,7 +4341,7 @@
 
         <div class="advisor-card" style="display:grid; grid-template-columns:300px 1fr; gap:48px; align-items:center; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 4px 32px rgba(21,101,192,.10);">
           <!-- Photo -->
-          <img src="advisor-rohit.jpg" alt="Isaac Rohit Satyavarapu"
+          <img src="advisor-rohit.jpg" alt="Isaac Rohit Satyavarapu" loading="lazy"
             style="width:100%; height:400px; object-fit:cover; object-position:center 20%; display:block;">
           <!-- Info -->
           <div style="padding:36px 40px 36px 0;">
@@ -4109,7 +4357,7 @@
               <span class="team-skill">Charter Agreements</span>
               <span class="team-skill">Operational Risk</span>
             </div>
-            <button class="team-view-btn" onclick="document.querySelector('.team-card[data-doc=rohit]').click()">View Full Profile →</button>
+            <button class="team-view-btn" onclick="document.querySelector('.team-card[data-doc=rohit]').click()">View Full Profile <span class="btn-arrow">→</span></button>
           </div>
         </div>
 
@@ -4134,6 +4382,7 @@
           <span class="hosp-item" data-name="Medicover Hospitals"><img src="logo-medicover.png" alt="Medicover Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#e85d04;\'>Medicover<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
           <span class="hosp-item" data-name="Care Hospitals"><img src="logo-care.png" alt="Care Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#00695c;\'>Care<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
           <span class="hosp-item" data-name="Continental Hospitals"><img src="logo-continental.png" alt="Continental Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#1a7a6e;\'>Continental<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item" data-name="Lux Hospitals"><img src="logo-lux.png" alt="Lux Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#7b2d8b;\'>Lux<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
           <!-- Set 2 duplicate for seamless loop -->
           <span class="hosp-item" data-name="Apollo Hospitals"><img src="logo-apollo.png" alt="Apollo Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#9b1b30;\'>Apollo<span style=\'color:#c0392b;\'>Hospitals</span></span>'"></span>
           <span class="hosp-item" data-name="Yashoda Hospitals"><img src="https://upload.wikimedia.org/wikipedia/en/6/6c/Yashoda_Hospitals_logo.png" alt="Yashoda Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#1b5e20;\'>Yashoda<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
@@ -4142,16 +4391,55 @@
           <span class="hosp-item" data-name="Medicover Hospitals"><img src="logo-medicover.png" alt="Medicover Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#e85d04;\'>Medicover<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
           <span class="hosp-item" data-name="Care Hospitals"><img src="logo-care.png" alt="Care Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#00695c;\'>Care<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
           <span class="hosp-item" data-name="Continental Hospitals"><img src="logo-continental.png" alt="Continental Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#1a7a6e;\'>Continental<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
+          <span class="hosp-item" data-name="Lux Hospitals"><img src="logo-lux.png" alt="Lux Hospitals" loading="lazy" onerror="this.outerHTML='<span class=\'hosp-logo-text\' style=\'color:#7b2d8b;\'>Lux<span style=\'color:#6a8aaa;\'>Hospitals</span></span>'"></span>
         </div>
       </div>
     </section>
 
     <!-- SERVICES -->
     <section class="section" id="services">
+
+      <!-- Premium Hero -->
+      <div class="svc-hero" aria-hidden="true">
+        <img
+          class="svc-hero-img"
+          src="dedicated-ambulance.jpg"
+          srcset="dedicated-ambulance.jpg 1x, dedicated-ambulance.jpg 2x"
+          alt="REACT Air Ambulance aircraft on the tarmac with medical crew"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="svc-hero-gradient"></div>
+        <div class="svc-hero-content">
+          <div class="svc-hero-text">
+            <div class="svc-hero-eyebrow">Mission-Ready Medical Aviation</div>
+            <h2 class="svc-hero-title">Our <span>Services</span></h2>
+            <p class="svc-hero-desc">From flying ICUs to ECMO transport, organ airlift to disaster command — nine specialized services delivering critical care anywhere on earth.</p>
+            <div class="svc-hero-stats">
+              <div>
+                <div class="svc-hero-stat-num">9</div>
+                <div class="svc-hero-stat-lbl">Specialised Services</div>
+              </div>
+              <div class="svc-hero-divider"></div>
+              <div>
+                <div class="svc-hero-stat-num">24/7</div>
+                <div class="svc-hero-stat-lbl">Always On Call</div>
+              </div>
+              <div class="svc-hero-divider"></div>
+              <div>
+                <div class="svc-hero-stat-num">32+</div>
+                <div class="svc-hero-stat-lbl">Cities Covered</div>
+              </div>
+            </div>
+            <a href="tel:+919849994108" class="svc-hero-cta">
+              Emergency Activation <span class="svc-hero-cta-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div class="shell">
-        <div class="eyebrow">Mission-Ready Medical Aviation</div>
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-copy">From flying ICUs to ECMO transport, organ airlift to disaster command — nine specialized services delivering critical care anywhere on earth.</p>
         <!-- Tab Navigation -->
         <nav class="svc-tabs-nav" role="tablist" aria-label="Service categories">
 
@@ -4184,7 +4472,7 @@
 
               <article class="svc2" data-svc-id="svc-dedicated">
                 <div class="svc2-hd">
-                  <img src="https://images.unsplash.com/photo-1775795741493-4ce55b7c27f2?auto=format&fit=crop&w=700&q=75" alt="Dedicated air ambulance flying ICU aircraft" loading="lazy" onerror="this.style.opacity='0'">
+                  <img src="dedicated-ambulance.jpg" alt="REACT dedicated air ambulance crew transferring patient" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
                   <span class="svc2-ghost-num">01</span>
                   <div class="svc2-ico">
@@ -4226,7 +4514,7 @@
 
               <article class="svc2" data-svc-id="svc-hems">
                 <div class="svc2-hd">
-                  <img src="hems-helicopter.jpg" alt="REACT Air Ambulance HEMS helicopter on helipad" loading="lazy" onerror="this.style.opacity='0'">
+                  <img src="landing-4.png" alt="REACT Air Ambulance HEMS helicopter on helipad" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
                   <span class="svc2-ghost-num">03</span>
                   <div class="svc2-ico">
@@ -4247,7 +4535,7 @@
 
               <article class="svc2" data-svc-id="svc-stretcher">
                 <div class="svc2-hd">
-                  <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=75" alt="Commercial airline stretcher transfer service" loading="lazy" onerror="this.style.opacity='0'">
+                  <img src="stretcher-transfer.jpg" alt="Commercial airline stretcher transfer service" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
                   <span class="svc2-ghost-num">04</span>
                   <div class="svc2-ico">
@@ -4404,7 +4692,7 @@
 
           <!-- Large: air ambulance in flight -->
           <div class="gallery-item">
-            <img src="ops-helipad.jpg" alt="REACT air ambulance crew transferring patient on rooftop helipad" loading="lazy" onerror="this.style.opacity='0'" style="object-position:center 40%">
+            <img src="landing-2.png" alt="REACT air ambulance crew transferring patient to aircraft" loading="lazy" onerror="this.style.opacity='0'" style="object-position:center center">
             <div class="gallery-caption">
               <span class="cap-tag">Air Ambulance</span>
               <span class="cap-title">Rapid Deployment, Every Mission</span>
@@ -4413,19 +4701,10 @@
 
           <!-- Top-right 1: in-flight ICU care -->
           <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="In-flight ICU critical care monitoring" loading="lazy" onerror="this.style.opacity='0'">
+            <img src="airborne-critical-care.jpg" alt="In-flight ICU critical care monitoring" loading="lazy" onerror="this.style.opacity='0'">
             <div class="gallery-caption">
               <span class="cap-tag">In-Flight ICU</span>
               <span class="cap-title">Airborne Critical Care</span>
-            </div>
-          </div>
-
-          <!-- Top-right 2: medical escort -->
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=600&q=80" alt="Medical escort professional with patient on flight" loading="lazy" onerror="this.style.opacity='0'">
-            <div class="gallery-caption">
-              <span class="cap-tag">Medical Escort</span>
-              <span class="cap-title">Expert Pilots & Crew</span>
             </div>
           </div>
 
@@ -4440,7 +4719,7 @@
 
           <!-- Bottom-right 2: medical team -->
           <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=600&q=80" alt="Specialist medical team providing patient care" loading="lazy" onerror="this.style.opacity='0'">
+            <img src="specialist-crew.jpg" alt="Specialist medical team providing patient care" loading="lazy" onerror="this.style.opacity='0'">
             <div class="gallery-caption">
               <span class="cap-tag">Medical Team</span>
               <span class="cap-title">Specialist Crew On Board</span>
@@ -4486,8 +4765,8 @@
             <!-- <span class="equip-icu-corner-badge">REACT Airborne ICU</span> -->
           </div>
 
-          <!-- Right: Featured Ventilator Card -->
-          <div class="equip-feat">
+          <!-- Right: Featured Ventilator Card (hidden) -->
+          <div class="equip-feat" style="display:none">
             <!-- ECG inside card -->
             <div class="equip-feat-ecg-bg">
               <svg viewBox="0 0 400 55" fill="none">
@@ -4523,54 +4802,80 @@
 
         </div><!-- /equip-hero -->
 
-        <!-- Equipment Grid (6 remaining) -->
+        <!-- Equipment Grid -->
         <div class="equip-grid-new">
 
-          <!-- Cardiac Monitor -->
-          <div class="equip-card-new ecat-monitoring">
-            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Monitoring</div>
-            <div class="ec-icon">
-              <svg viewBox="0 0 24 24"><polyline points="2 12 6 4 9 16 12 8 14 12 16 10 18 12 22 12"/></svg>
+          <!-- ResMed Astral 150 Ventilator -->
+          <div class="equip-card-new ecat-respiratory" data-equip="astral150" style="cursor:pointer">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Respiratory</div>
+            <div class="ec-photo">
+              <img src="equip-ventilator.jpg" alt="ResMed Astral 150 Mechanical Ventilator" loading="lazy">
             </div>
-            <div class="ec-name">Cardiac Monitor<small>with IBP &amp; ETCO₂</small></div>
+            <div class="ec-name">ResMed Astral 150<small>Mechanical Ventilator</small></div>
             <ul class="ec-specs">
-              <li>12-Lead ECG + continuous vitals</li>
-              <li>Invasive Blood Pressure (IBP)</li>
-              <li>End-Tidal CO₂ monitoring</li>
+              <li>Invasive &amp; non-invasive ventilation</li>
+              <li>FiO₂ monitoring &amp; real-time waveforms</li>
+              <li>CPAP, ACV, SIMV, PS, iVAPS modes</li>
+              <li>Lightweight 3.2 kg — aeromedical ready</li>
+            </ul>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-icu">ICU Standard</span>
+              <span class="ec-badge ecb-dgca">Aviation-Certified</span>
+              <span class="ec-badge ecb-bat">Battery-Op</span>
+            </div>
+            <div class="ec-footer">
+              <span class="ec-mfr">ResMed</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
+          </div>
+
+          <!-- Cardiac Monitor -->
+          <div class="equip-card-new ecat-monitoring" data-equip="intellivuex3" style="cursor:pointer">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Monitoring</div>
+            <div class="ec-photo">
+              <img src="equip-cardiac-monitor.jpg" alt="Philips IntelliVue X3 Cardiac Monitor" loading="lazy">
+            </div>
+            <div class="ec-name">Philips IntelliVue X3<small>Transport Cardiac Monitor</small></div>
+            <ul class="ec-specs">
+              <li>ECG, SpO₂, NIBP &amp; respiration</li>
+              <li>Portable 1.4 kg — transport ready</li>
+              <li>Up to 5 hours battery life</li>
             </ul>
             <div class="ec-badges">
               <span class="ec-badge ecb-icu">12-Lead ECG</span>
               <span class="ec-badge ecb-icu">ICU Standard</span>
+              <span class="ec-badge ecb-bat">Battery-Op</span>
             </div>
             <div class="ec-footer">
-              <span class="ec-mfr">Philips · Zoll</span>
+              <span class="ec-mfr">Philips</span>
               <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
             </div>
           </div>
 
           <!-- Syringe Infusion Pumps -->
-          <div class="equip-card-new ecat-infusion">
+          <div class="equip-card-new ecat-infusion" data-equip="agiliasp" style="cursor:pointer">
             <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Infusion</div>
-            <div class="ec-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2L22 6"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a1 1 0 0 1-1.4 0l-2.6-2.6a1 1 0 0 1 0-1.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg>
+            <div class="ec-photo">
+              <img src="equip-syringe-pump.jpg" alt="Agilia SP MC WiFi Syringe Infusion Pump" loading="lazy">
             </div>
-            <div class="ec-name">Syringe Infusion Pumps<small>Precision IV Drug Delivery</small></div>
+            <div class="ec-name">Agilia SP MC WiFi<small>Syringe Infusion Pump</small></div>
             <ul class="ec-specs">
-              <li>Vasopressors, sedatives &amp; insulin</li>
-              <li>Multiple simultaneous infusion lines</li>
-              <li>Battery-operated, in-flight safe</li>
+              <li>Vasopressors, sedatives &amp; inotropes</li>
+              <li>Precise infusion rates for critical drugs</li>
+              <li>Battery backup — uninterrupted infusion</li>
             </ul>
             <div class="ec-badges">
               <span class="ec-badge ecb-icu">ICU Standard</span>
               <span class="ec-badge ecb-bat">Battery-Op</span>
+              <span class="ec-badge ecb-icu">WiFi</span>
             </div>
             <div class="ec-footer">
-              <span class="ec-mfr">B.Braun · BD</span>
+              <span class="ec-mfr">Fresenius Kabi</span>
               <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
             </div>
           </div>
 
-          <!-- Advanced Airway Devices -->
+          <!-- Advanced Airway Devices — hidden until photo available
           <div class="equip-card-new ecat-airway">
             <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Airway</div>
             <div class="ec-icon">
@@ -4591,52 +4896,55 @@
               <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
             </div>
           </div>
+          -->
 
-          <!-- Circulation / Defibrillator -->
-          <div class="equip-card-new ecat-circulation">
+          <!-- Philips HeartStart FRX AED -->
+          <div class="equip-card-new ecat-circulation" data-equip="heartstart" style="cursor:pointer">
             <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Circulation</div>
-            <div class="ec-icon">
-              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <div class="ec-photo">
+              <img src="equip-aed.jpg" alt="Philips HeartStart FRX AED" loading="lazy">
             </div>
-            <div class="ec-name">Defibrillator &amp; Circulation<small>AED + Manual Capability</small></div>
+            <div class="ec-name">Philips HeartStart FRX AED<small>Automated External Defibrillator</small></div>
             <ul class="ec-specs">
-              <li>AED + manual defibrillator</li>
-              <li>Transcutaneous pacing</li>
-              <li>IV / IO vascular access</li>
+              <li>Rapid defibrillation for cardiac arrest</li>
+              <li>Smart rhythm analysis &amp; voice guidance</li>
+              <li>Integrated CPR guidance</li>
             </ul>
             <div class="ec-badges">
-              <span class="ec-badge ecb-aed">AED + Manual</span>
+              <span class="ec-badge ecb-aed">AED</span>
               <span class="ec-badge ecb-aed">ACLS</span>
+              <span class="ec-badge ecb-bat">Portable</span>
             </div>
             <div class="ec-footer">
-              <span class="ec-mfr">Zoll · Philips</span>
+              <span class="ec-mfr">Philips</span>
               <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
             </div>
           </div>
 
-          <!-- Portable Suction Units -->
-          <div class="equip-card-new ecat-respiratory">
+          <!-- Spencers Ambujet Portable Suction -->
+          <div class="equip-card-new ecat-respiratory" data-equip="spencersuction" style="cursor:pointer">
             <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Respiratory</div>
-            <div class="ec-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+            <div class="ec-photo">
+              <img src="equip-suction.jpg" alt="Spencers Ambujet Portable Suction" loading="lazy">
             </div>
-            <div class="ec-name">Portable Suction Units<small>Airway Clearance System</small></div>
+            <div class="ec-name">Spencers Ambujet Portable Suction<small>Airway Clearance System</small></div>
             <ul class="ec-specs">
-              <li>Battery-operated &amp; portable</li>
-              <li>Clears blood &amp; secretions</li>
-              <li>Ground &amp; air compatible</li>
+              <li>Clears blood, vomitus &amp; secretions</li>
+              <li>High-performance portable suction</li>
+              <li>Ground &amp; air ambulance compatible</li>
             </ul>
             <div class="ec-badges">
               <span class="ec-badge ecb-bat">Battery-Op</span>
               <span class="ec-badge ecb-icu">Portable</span>
+              <span class="ec-badge ecb-icu">Airway</span>
             </div>
             <div class="ec-footer">
-              <span class="ec-mfr">Laerdal · DeVilbiss</span>
+              <span class="ec-mfr">Spencer</span>
               <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
             </div>
           </div>
 
-          <!-- Portable O2 Concentrators -->
+          <!-- Portable O2 Concentrators — hidden until photo available
           <div class="equip-card-new ecat-respiratory">
             <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Respiratory</div>
             <div class="ec-icon">
@@ -4657,22 +4965,55 @@
               <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
             </div>
           </div>
+          -->
+
+          <!-- CORPULS 3 Defibrillator -->
+          <div class="equip-card-new ecat-circulation" data-equip="corpuls3" style="cursor:pointer">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Circulation</div>
+            <div class="ec-photo">
+              <img src="equip-corpuls.jpg" alt="CORPULS 3 Advanced Cardiac Defibrillator" loading="lazy">
+            </div>
+            <div class="ec-name">CORPULS 3<small>Advanced Cardiac Defibrillator</small></div>
+            <ul class="ec-specs">
+              <li>ECG, SpO₂, NIBP, EtCO₂ &amp; temp</li>
+              <li>AED, manual defibrillation &amp; pacing</li>
+              <li>Wireless connectivity &amp; data recording</li>
+            </ul>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-aed">AED + Manual</span>
+              <span class="ec-badge ecb-icu">12-Lead ECG</span>
+              <span class="ec-badge ecb-bat">Extended Battery</span>
+            </div>
+            <div class="ec-footer">
+              <span class="ec-mfr">GS Elektromedizinische Geräte</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
+          </div>
+
+          <!-- ECMO System -->
+          <div class="equip-card-new ecat-circulation" data-equip="ecmosystem" style="cursor:pointer">
+            <div class="ec-cat-tag"><span class="ec-cat-dot"></span>Critical Care</div>
+            <div class="ec-photo">
+              <img src="equip-ecmo.jpg" alt="Mobile ECMO System" loading="lazy">
+            </div>
+            <div class="ec-name">Mobile ECMO System<small>Extracorporeal Life Support</small></div>
+            <ul class="ec-specs">
+              <li>Heart &amp; lung bypass during transport</li>
+              <li>Bridge to definitive ECMO centre</li>
+              <li>Multidisciplinary specialist team</li>
+            </ul>
+            <div class="ec-badges">
+              <span class="ec-badge ecb-icu">ICU Standard</span>
+              <span class="ec-badge ecb-aed">Life Support</span>
+              <span class="ec-badge ecb-icu">Air Compatible</span>
+            </div>
+            <div class="ec-footer">
+              <span class="ec-mfr">Maquet · LivaNova</span>
+              <span class="ec-arrow">Explore <span class="ec-arrow-icon">→</span></span>
+            </div>
+          </div>
 
         </div><!-- /equip-grid-new -->
-
-        <!-- Manufacturer Trust Strip -->
-        <div class="equip-mfr-strip">
-          <span class="equip-mfr-strip-label">Trusted Medical Partners</span>
-          <div class="equip-mfr-divider"></div>
-          <div class="equip-mfr-logos">
-            <span class="equip-mfr-item">Philips</span>
-            <span class="equip-mfr-item">Dräger</span>
-            <span class="equip-mfr-item">Zoll</span>
-            <span class="equip-mfr-item">Hamilton</span>
-            <span class="equip-mfr-item">Laerdal</span>
-            <span class="equip-mfr-item">B.Braun</span>
-          </div>
-        </div>
 
         <!-- Banner -->
         <div class="equip-banner-new">
@@ -5806,7 +6147,7 @@
       <div class="footer-grid">
         <div>
           <a href="#top" class="brand" aria-label="REACT Air Ambulance home">
-            <img src="image copy.png" alt="REACT Air Ambulance" class="brand-logo" height="68">
+            <img src="image copy.png" alt="REACT Air Ambulance" class="brand-logo" height="68" loading="lazy">
           </a>
           <p style="margin-top:18px; max-width:270px; line-height:1.7">ICU-equipped air ambulance command across India and internationally.</p>
           <span class="footer-dgca">Air Medical Service</span>
@@ -5861,7 +6202,7 @@
 
     <!-- WhatsApp -->
     <a href="https://wa.me/919849994108?text=Hi%20REACT%20Air%20Ambulance%2C%20I%20need%20assistance%20with%20medical%20air%20transport.%20Please%20contact%20me." class="fab-wa" aria-label="Send message via WhatsApp" data-tip="WhatsApp">
-      <img src="icon-wa-logo.png" alt="WhatsApp">
+      <img src="icon-wa-logo.png" alt="WhatsApp" loading="lazy">
     </a>
 
   </div>
@@ -5907,11 +6248,11 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
   <script>
     // ── Nav scroll + hamburger ──────────────────────────────
     const nav       = document.getElementById("nav");
@@ -6156,7 +6497,7 @@
         specialty: 'Emergency Physician & Aeromedical Intensivist',
         role: 'Founder & Medical Director · REACT',
         initials: 'NR',
-        photo: 'dr-founder.jpg', bgSize: 'cover', bgPos: 'center 15%',
+        photo: 'dr-founder.jpg', imageMode: 'portrait', photoPos: 'center top',
         quote: 'Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety — because we treat every patient with the same care we would want for our own loved ones.',
         sections: ['Founder\'s Note', 'Our Promise'],
         bios: [
@@ -6172,7 +6513,7 @@
         specialty: 'ENT Surgeon · MS (ENT)',
         role: 'Co-Founder & Director · REACT',
         initials: 'LR',
-        photo: 'dr-lavanya.jpg', bgSize: 'cover', bgPos: 'center 18%',
+        photo: 'dr-lavanya.jpg', imageMode: 'portrait', photoPos: 'center top',
         quote: 'Every medical journey is deeply personal — and every individual deserves to be cared for with compassion, dignity, and respect, whether inside the operating room or during a critical medical transfer.',
         sections: ['Co-Founder\'s Note', 'Our Philosophy'],
         bios: [
@@ -6192,16 +6533,28 @@
       function openLeader(id) {
         var d = LEADERS[id]; if (!d) return;
 
-        // Portrait — use background-image on the wrap for full positional control
+        // Portrait — use <img> element for precise object-fit / object-position control
         var photoWrap = overlay.querySelector('.lm-photo-wrap');
+        var img  = document.getElementById('lm-img');
         var init = document.getElementById('lm-init');
+        var headshot = d.imageMode === 'headshot';
+
+        // Apply / remove image mode classes
+        img.className      = 'lm-photo' + (headshot ? ' mode-headshot' : '');
+        photoWrap.className = 'lm-photo-wrap' + (headshot ? ' mode-headshot' : '');
+
+        // Clear legacy background-image (old approach)
+        photoWrap.style.backgroundImage = 'none';
+
         init.style.display = 'none';
         if (d.photo) {
-          photoWrap.style.backgroundImage = 'url(' + d.photo + ')';
-          photoWrap.style.backgroundSize  = d.bgSize || 'cover';
-          photoWrap.style.backgroundPosition = d.bgPos || 'center 30%';
+          img.src = d.photo;
+          img.alt = d.name;
+          img.style.display = 'block';
+          img.style.objectPosition = d.photoPos || 'center top';
+          img.onerror = function() { img.style.display = 'none'; init.style.display = 'flex'; };
         } else {
-          photoWrap.style.backgroundImage = 'none';
+          img.style.display = 'none';
           init.style.display = 'flex';
         }
         init.textContent = d.initials;
@@ -6698,20 +7051,21 @@
     var SVC_DATA = {
       'svc-dedicated': {
         num: '01', cat: 'Air Transport',
-        img: 'https://images.unsplash.com/photo-1775795741493-4ce55b7c27f2?auto=format&fit=crop&w=1200&q=80',
+        img: 'dedicated-ambulance.jpg',
         title: 'Dedicated Air Ambulance Services',
         desc: [
-          'REACT Air Ambulance provides fully equipped fixed-wing air ambulance aircraft designed for the safe transport of critically ill and injured patients across domestic and international destinations. Our aircraft function as flying intensive care units (ICUs), equipped with advanced life-support systems, ventilators, cardiac monitors, infusion pumps, suction devices, and emergency medications.',
-          'Each mission is staffed by highly trained aeromedical professionals, including critical care physicians, flight paramedics, and specialized nurses, ensuring uninterrupted medical care throughout the journey.'
+          'A dedicated air ambulance is a specially chartered aircraft equipped as a flying intensive care unit (ICU) for patients who require continuous medical support during transport. Unlike commercial flights, dedicated air ambulances provide complete flexibility in scheduling, routing, and medical equipment, making them suitable for critically ill or time-sensitive patients.',
+          'At REACT Air Ambulance, every mission is planned by our physician-led coordination team. From bedside pickup and critical care during flight to safe transfer at the destination, we manage every stage of the journey while maintaining the highest standards of medical care.',
+          'Whether transporting patients within India or across international borders, our focus is to provide safe, seamless, and compassionate medical transportation.'
         ],
         sections: [
-          { heading: 'Ideal For', items: ['Critically ill patients', 'Trauma cases', 'Stroke and cardiac emergencies', 'ICU-to-ICU transfers', 'Long-distance and international evacuations'] }
+          { heading: 'Ideal For', items: ['Patients on ventilator support with high oxygen requirement', 'ICU and critical care transfers', 'Neurological emergencies', 'Cardiac patients', 'Trauma patients', 'Post-surgical transfers', 'Patients requiring continuous monitoring', 'Long-distance domestic and international transfers'] }
         ],
         highlight: 'Available 24/7 for domestic and international missions. Call 9849994108 for immediate activation.'
       },
       'svc-domestic': {
         num: '01', cat: 'Air Transport',
-        img: 'https://images.unsplash.com/photo-1775795741493-4ce55b7c27f2?auto=format&fit=crop&w=1200&q=80',
+        img: 'dedicated-ambulance.jpg',
         title: 'Domestic Air Ambulance',
         desc: [
           'When every minute matters, our dedicated air ambulance service provides rapid and safe transportation for critically ill and injured patients across India. Staffed by experienced flight physicians, critical care nurses, and paramedics, we ensure uninterrupted hospital-grade critical care from bedside to destination.',
@@ -6752,82 +7106,87 @@
       },
       'svc-stretcher': {
         num: '04', cat: 'Air Transport',
-        img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
-        title: 'Affordable Commercial Airline Stretcher Transfer',
+        img: 'stretcher-transfer.jpg',
+        imgPos: 'center 55%',
+        title: 'Commercial Airline Stretcher Transfer',
         desc: [
-          'For medically stable patients who require continuous monitoring but do not require a dedicated air ambulance, REACT offers cost-effective stretcher transfer solutions aboard commercial airlines.',
-          'We coordinate airline medical approvals, stretcher installations, oxygen requirements, and onboard medical teams to ensure safe and comfortable transportation while significantly reducing costs compared to private air ambulances.'
+          'Commercial airline stretcher transfer offers a safe and cost-effective alternative to a dedicated air ambulance for patients who are medically stable enough to travel on a commercial aircraft but cannot sit upright throughout the journey.',
+          'Selected airlines can provide a dedicated space for an aeromedical stretcher by converting multiple economy seats at the tail end of an aircraft, allowing the patient to travel comfortably in a lying position under medical supervision. REACT coordinates the complete process, including medical assessment, airline medical clearance, stretcher booking, ground ambulance transfers, and physician or nurse escort when required.',
+          'Our team manages every detail from bedside to bedside, ensuring continuity of care throughout the journey.'
         ],
         sections: [
-          { heading: 'Benefits', items: ['Up to 70–80% lower cost than dedicated air ambulance', 'Suitable for long-haul international transfers', 'Continuous medical supervision', 'Bedside-to-bedside service available'] }
+          { heading: 'Ideal For', items: ['Patients requiring minimal oxygen support during travel', 'Stable patients unable to sit upright', 'Long-distance domestic transfers', 'International medical repatriation', 'Post-operative patients with orthopaedic injuries', 'Stroke rehabilitation', 'Oncology patients'] }
         ],
         highlight: 'A safe and affordable alternative for stable patients — we handle airline approvals, stretcher installation, oxygen, and medical escort end-to-end. Call 9849994108 to check eligibility.'
       },
       'svc-bizclass': {
         num: '05', cat: 'Air Transport',
         img: 'turbo-prop.jpg',
-        title: 'Business Class Medical Transfers',
+        title: 'Business Class Medical Escort',
         desc: [
-          'Designed for patients who are medically stable and do not require a dedicated air ambulance, but need additional comfort, privacy, and professional medical supervision during travel.',
-          'The patient travels in business class or premium economy with a medical escort alongside. The extra seat space allows easier monitoring, medication administration, and management of any in-flight discomfort — all without the cost of a chartered air ambulance.'
+          'Some patients are medically fit to travel on a commercial flight but require professional medical supervision throughout the journey. Our Business Class Medical Escort service provides physician-led or nurse-led accompaniment while the patient travels comfortably in a business class seat.',
+          'Before travel, REACT performs a detailed medical assessment, coordinates airline medical clearance if required, and plans every aspect of the transfer. During the flight, our medical escort monitors the patient\'s condition, administers medications, provides oxygen therapy when necessary, and responds to any medical concerns.',
+          'This service offers a practical and comfortable solution for patients who do not require a stretcher or dedicated air ambulance.'
         ],
         sections: [
-          { heading: 'Suitable For', items: ['Post-discharge patients travelling home', 'Orthopaedic patients with limited mobility', 'Oncology patients on active treatment', 'Elderly patients with chronic conditions', 'Patients with cardiac conditions requiring monitoring', 'High-value / executive patients requiring discreet medical support'] },
-          { heading: 'What Is Included', items: ['Medical fitness assessment before travel', 'Business class flight booking with extra seat arrangement', 'Dedicated medical escort (doctor / nurse / paramedic)', 'In-flight monitoring and medication management', 'Airport wheelchair and VIP assistance', 'Destination hospital or home handover'] }
+          { heading: 'Ideal For', items: ['Stable cardiac patients', 'Elderly travellers', 'Post-operative patients', 'Oncology patients', 'Neurological disorders', 'Patients requiring portable oxygen concentrator', 'High-risk travellers requiring medical supervision'] }
         ],
-        highlight: 'Business class medical transfers offer the ideal balance — professional clinical supervision at a fraction of the cost of a chartered aircraft. Recommended for patients who are stable but cannot travel unaccompanied.'
+        highlight: 'Business class medical escort offers the ideal balance — professional clinical supervision at a fraction of the cost of a chartered aircraft. Recommended for patients who are stable but cannot travel unaccompanied.'
       },
       'svc-neonatal': {
         num: '01', cat: 'Specialized Medical',
         img: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1200&q=80',
-        title: 'Neonatal & Pediatric Air Ambulance Services',
+        title: 'Neonatal & Paediatric Transfers',
         desc: [
-          'Transporting newborns and children requires specialized expertise and equipment. REACT provides dedicated neonatal and pediatric transport services staffed by professionals trained in neonatal intensive care and pediatric critical care.',
-          'Our neonatal transport systems include transport incubators, neonatal ventilators, specialized monitoring equipment, and temperature-controlled environments designed specifically for infants and children.'
+          'Critically ill newborns and children require specialized transport systems designed specifically for their age, physiology, and medical needs. REACT provides neonatal and paediatric transport with appropriately trained medical teams and age-specific equipment.',
+          'From neonatal incubators and paediatric ventilators to advanced monitoring systems, every aspect of the transfer is tailored to ensure safe transport for our youngest patients.',
+          'Our coordination team works closely with both referring and receiving hospitals to maintain continuity of care throughout the journey.'
         ],
         sections: [
-          { heading: 'Services Include', items: ['NICU transfers', 'Premature infant transport', 'Pediatric ICU transfers', 'Congenital heart disease transfers', 'International neonatal repatriation'] }
+          { heading: 'Ideal For', items: ['Paediatric ECMO', 'Premature newborns', 'NICU transfers', 'Congenital heart disease', 'Paediatric intensive care', 'Neonatal surgical referrals', 'Paediatric trauma'] }
         ],
         highlight: 'Every second counts for a critically ill newborn. Our team is activated 24/7 with hospital-grade neonatal equipment. Call 9849994108 the moment your paediatrician recommends a transfer.'
       },
       'svc-ecmo': {
         num: '02', cat: 'Specialized Medical',
-        img: 'https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&w=1200&q=80',
-        title: 'ECMO Initiation & Air Lift',
+        img: 'airborne-critical-care.jpg',
+        imgPos: 'center 38%',
+        title: 'ECMO Patient Transfer',
         desc: [
-          'REACT specializes in the initiation, stabilization, and transport of patients requiring Extracorporeal Membrane Oxygenation (ECMO) support. Our ECMO retrieval teams consist of experienced intensivists, perfusionists, ECMO specialists, and critical care transport personnel.',
-          'We can deploy to hospitals, initiate ECMO when clinically indicated, stabilize the patient, and transport them safely to specialized ECMO centers using fixed-wing aircraft or helicopters.'
+          'Transporting a patient supported on Extracorporeal Membrane Oxygenation (ECMO) is one of the most complex forms of critical care transport. These patients require uninterrupted life support, advanced monitoring, and highly specialized medical expertise throughout the transfer.',
+          'REACT coordinates ECMO transfers using dedicated air ambulances or other appropriate transport platforms with an experienced multidisciplinary team that may include ECMO specialists, intensivists, perfusionists, critical care nurses, and respiratory therapists.',
+          'Every transfer is individually planned to ensure patient safety from the referring hospital to the receiving ECMO centre.'
         ],
         sections: [
-          { heading: 'Suitable For', items: ['Severe respiratory failure', 'Advanced cardiac failure', 'Lung transplantation candidates', 'Cardiogenic shock', 'Complex ICU retrievals'] }
+          { heading: 'Ideal For', items: ['Severe respiratory failure', 'Severe cardiac failure', 'Lung transplant candidates', 'Cardiac surgery referrals', 'Advanced critical care transfers', 'Multi Organ Failure patients'] }
         ],
         highlight: 'ECMO transport is only possible with a team that has done it before. Our specialists deploy, initiate, and manage ECMO circuits in-flight — available nationally and internationally. Call 9849994108.'
       },
       'svc-organ': {
         num: '03', cat: 'Specialized Medical',
         img: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1200&q=80',
-        title: 'Organ Retrieval & Transplant Logistics',
+        title: 'Vital Organ Transportation',
         desc: [
-          'Organ transplantation is a race against time. The viability window for a retrieved organ — particularly heart (4–6 hours) and liver (12–24 hours) — demands flawless coordination between donor hospital, retrieval team, aircraft, and recipient surgical team.',
-          'REACT provides dedicated organ retrieval flights that operate on absolute priority. Our operations centre coordinates real-time with NOTTO/SOTTO, airport authorities, and transplant teams to ensure zero delay from procurement to implantation.'
+          'Successful organ transplantation depends on time. REACT provides rapid, coordinated transportation of donor organs while maintaining strict timelines and preservation protocols.',
+          'Our logistics team coordinates with transplant centres, retrieval teams, aviation providers, and ground ambulance services to ensure the organ reaches its destination safely and within the required ischemic time.',
+          'We understand that every minute matters.'
         ],
         sections: [
-          { heading: 'Organs Transported', items: ['Heart — 4 to 6 hour viability window', 'Liver — up to 24 hours', 'Kidney — up to 36 hours', 'Lungs — 6 to 8 hours', 'Pancreas and small bowel', 'Corneas and tissues'] },
-          { heading: 'Coordination Services', items: ['NOTTO / SOTTO liaison and documentation', 'Procurement team transport alongside organ', 'Police escort and green corridor coordination', 'Real-time flight tracking shared with recipient team', 'Airport fast-track clearances', 'Ground ambulance on priority standby at both ends'] }
+          { heading: 'We Transport', items: ['Heart', 'Liver', 'Kidney', 'Lungs', 'Pancreas', 'Tissue and graft materials'] }
         ],
         highlight: 'Organ retrieval flights operate on zero-delay protocols. Our operations centre is activated the moment procurement is confirmed — aircraft positioned, crew briefed, and ground coordination live before the organ leaves the donor.'
       },
       'svc-hems': {
         num: '04', cat: 'Specialized Medical',
-        img: 'hems-helicopter.jpg',
-        title: 'HEMS – Helicopter Emergency Medical Services',
+        img: 'landing-4.png',
+        imgPos: 'center 65%',
+        title: 'Helicopter Emergency Medical Services (HEMS)',
         desc: [
-          'REACT\'s Helicopter Emergency Medical Services (HEMS) provide rapid access to advanced medical care in situations where time is critical. Helicopters enable rapid patient evacuation from accident scenes, remote locations, islands, mountainous terrain, and congested urban areas.',
-          'HEMS significantly reduces transport times and allows critically ill patients to reach advanced medical facilities faster.'
+          'When rapid access is critical, helicopter emergency medical services provide fast transportation directly from accident scenes, remote locations, or hospitals to advanced medical centres.',
+          'HEMS significantly reduces transport time where road access is limited or delays could compromise patient outcomes. REACT coordinates helicopter transfers with experienced medical teams equipped to provide advanced life support throughout the flight.'
         ],
         sections: [
-          { heading: 'Ideal For', items: ['Road traffic accidents', 'Industrial emergencies', 'Remote area retrievals', 'Inter-hospital critical care transfers', 'Time-sensitive trauma cases'] },
-          { heading: 'On-Board Capabilities', items: ['Advanced trauma life support (ATLS)', 'RSI — rapid sequence intubation in field', 'Chest decompression and thoracostomy', 'Intraosseous access and blood product infusion', 'REBOA and haemorrhage control', 'In-flight ventilator management'] }
+          { heading: 'Ideal For', items: ['Road traffic accidents', 'Mountain rescue', 'Industrial accidents', 'Cardiac emergencies', 'Stroke', 'Remote area evacuations', 'Time-critical trauma'] }
         ],
         highlight: 'In trauma, the Golden Hour is not a guideline — it is the difference between full recovery and permanent disability. HEMS puts a doctor and flying ICU at the scene faster than any ground response.'
       },
@@ -6864,12 +7223,11 @@
         img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80',
         title: 'Disaster Response & Mass Casualty Support',
         desc: [
-          'Natural disasters, industrial explosions, building collapses, and mass casualty incidents demand a coordinated aeromedical response that goes beyond a single ambulance. REACT deploys rapid response medical teams trained in mass casualty incident (MCI) management, triage, and aeromedical evacuation.',
-          'Our disaster teams can deploy within hours to any location in India and internationally, bringing mobile medical infrastructure, triage capability, and air evacuation capacity to overwhelmed local health systems.'
+          'During natural disasters, industrial incidents, public emergencies, and mass casualty events, coordinated medical evacuation becomes essential. REACT supports government agencies, hospitals, emergency services, and humanitarian organizations by providing rapid medical transport coordination and deployment of specialized teams.',
+          'Our disaster response capabilities include patient evacuation, inter-hospital transfers, medical logistics, and coordination of aviation resources during large-scale emergencies.'
         ],
         sections: [
-          { heading: 'Response Capabilities', items: ['START triage and mass casualty management', 'Mobile medical unit deployment', 'Aeromedical evacuation of critical casualties', 'Helicopter extraction from inaccessible terrain', 'Multi-patient fixed-wing evacuation', 'Coordination with NDRF, state disaster authorities, and hospitals'] },
-          { heading: 'Humanitarian & Industrial', items: ['Earthquake, flood, and cyclone response', 'Industrial accident and chemical plant disasters', 'Building collapse and mine rescue medical support', 'Offshore and remote oil field evacuations', 'Military and paramilitary medical support operations'] }
+          { heading: 'Response Capabilities', items: ['Medical evacuation', 'Pre-hospital emergency airlifts', 'Disaster medical coordination', 'Aviation logistics', 'Emergency physician deployment', 'Multi-patient evacuation', 'Humanitarian missions'] }
         ],
         highlight: 'REACT can deploy a forward medical team with triage, stabilisation, and air evacuation capability to any major incident site in India within hours of activation. We operate alongside NDRF, state disaster response forces, and hospital systems.'
       },
@@ -6994,6 +7352,7 @@
         <span class="doc-modal-exp-tag" id="doc-modal-exp"></span>
         <div class="doc-modal-name" id="doc-modal-name"></div>
         <div class="doc-modal-title" id="doc-modal-title"></div>
+        <div class="doc-modal-location" id="doc-modal-location" style="font-family:var(--font-body);font-size:13px;color:var(--muted);margin-top:4px;margin-bottom:2px;"></div>
         <div class="doc-modal-section-label">About</div>
         <p class="doc-modal-bio" id="doc-modal-bio"></p>
         <div class="doc-modal-section-label">Certifications &amp; Skills</div>
@@ -7011,7 +7370,7 @@
           title: 'Senior Emergency Medicine Physician',
           exp: '15+ Years Experience',
           initials: 'SA',
-          photo: 'dr-sujender.jpg', photoPos: 'center 10%',
+          photo: 'dr-sujender.jpg', photoPos: 'center 10%', imageMode: 'portrait',
           bio: 'Dr. Sujender Rao Arepally is an experienced Emergency Medicine Physician with over 15 years of clinical experience, including more than 10 years in emergency medicine, critical care, and pre-hospital emergency services. He has extensive expertise in managing trauma, medical, surgical, pediatric, and cardiac emergencies, with a strong focus on rapid assessment, resuscitation, and evidence-based emergency care.\n\nHe has significant experience in air ambulance and retrieval medicine, having coordinated and accompanied numerous international and domestic transfers of critically ill patients. His expertise includes advanced critical care transport, ventilator management, hemodynamic stabilization, and ensuring safe continuity of care during long-distance fixed-wing and ground ambulance missions. He also served as a physician with Norwegian Cruise Line (NCL), independently managing medical emergencies, trauma, critical care stabilization, and medical evacuations in remote maritime environments.\n\nDr. Arepally is deeply committed to medical education and has trained numerous doctors, nurses, and healthcare professionals in emergency medicine and resuscitation. He is a certified Basic Life Support (BLS) and Advanced Cardiovascular Life Support (ACLS) Instructor, as well as an Advanced Trauma Life Support (ATLS) Provider and Pediatric Advanced Life Support (PALS) Provider. Recognized for his calm leadership, sound clinical judgment, and ability to perform under pressure, he brings expertise across hospital emergency departments, pre-hospital systems, aeromedical retrieval, and maritime medicine.',
           certs: ['ACLS Instructor','BLS Instructor','ATLS Provider','PALS Provider'],
           skills: ['International Air Retrieval','Maritime Medicine','Ventilator Management','Advanced Airway','Hemodynamic Stabilization','Trauma Resuscitation','Critical Care Transport','Medical Education']
@@ -7021,7 +7380,7 @@
           title: 'Emergency Physician',
           exp: '6+ Years Experience',
           initials: 'TS',
-          photo: 'dr-tejasai.jpg',
+          photo: 'dr-tejasai.jpg', photoPos: 'center top', imageMode: 'portrait',
           //bio: 'Emergency Physician specializing in Emergency Medicine, Critical Care, and Transport Medicine. Expert in rapid decision-making and evidence-based critical care across medical, surgical, and traumatic emergencies in aeromedical settings.',
           bio : 'Dr. Tejasai is an experienced Emergency Physician with more than 6years of expertise in Emergency Medicine, Critical Care, and Transport Medicine. He has managed a broad spectrum of life-threatening medical, surgical, and traumatic emergencies, with a strong emphasis on rapid decision-making and evidence-based critical care. His clinical expertise includes advanced cardiac life support (ACLS), trauma resuscitation, advanced airway management, mechanical ventilation, bedside ultrasound, procedural sedation, shock management, and the safe transport of critically ill patients. Passionate about delivering excellence in emergency care, Dr. Tejasai is committed to ensuring the highest standards of patient safety, clinical excellence, and continuity of care during aeromedical evacuations and inter-facility transfers.',
           certs: ['ACLS'],
@@ -7032,7 +7391,7 @@
           title: 'Emergency Physician & Former Head of ED',
           exp: '5+ Years Experience',
           initials: 'HK',
-          photo: 'dr-harikrishna.jpg', photoPos: 'center 20%',
+          photo: 'dr-harikrishna.jpg', photoPos: 'center 20%', imageMode: 'portrait',
           //bio: 'Former Team Lead and Head of Emergency Department with expertise in multidisciplinary emergency management across medical, surgical, paediatric, and traumatic cases. Extensive experience in inter-facility critical care transfers and aeromedical evacuations.',
           bio : 'Dr. Hari Krishna Reddy is an experienced Emergency Physician with over 5 years of expertise in Emergency Medicine, Critical Care, and Transport Medicine. As a former Team Lead and Head of the Emergency Department, he has led multidisciplinary teams in managing a broad spectrum of medical, surgical, pediatric, and traumatic emergencies, with a strong emphasis on rapid decision-making, evidence-based resuscitation, and high-quality patient care. His clinical expertise includes advanced cardiac life support (ACLS), trauma resuscitation, advanced airway management, mechanical ventilation, point-of-care ultrasound (POCUS), procedural sedation, shock management, and the stabilization and safe transfer of critically ill patients. He has extensive experience coordinating inter-facility transfers, ensuring seamless continuity of care, and maintaining the highest standards of patient safety during critical care transport. With a passion for emergency and retrieval medicine, Dr. Hari Krishna Reddy is committed to clinical excellence, effective team leadership, and delivering safe, timely, and compassionate care during aeromedical evacuations and ground critical care transfers.',
           certs: ['ACLS'],
@@ -7043,7 +7402,7 @@
           title: 'Emergency Physician',
           exp: '5+ Years Experience',
           initials: 'OS',
-          photo: 'dr-omsagar.jpg',
+          photo: 'dr-omsagar.jpg', photoPos: 'center top', imageMode: 'portrait',
           bio: 'Experienced Emergency Physician with expertise in Emergency Medicine, Critical Care, and Transport Medicine. Has managed a broad spectrum of life-threatening medical, surgical, and traumatic emergencies with a strong emphasis on rapid decision-making and evidence-based critical care. Committed to the highest standards of patient safety, clinical excellence, and continuity of care during aeromedical evacuations and inter-facility transfers.',
           certs: ['ACLS'],
           skills: ['Trauma Resuscitation','Advanced Airway','Mechanical Ventilation','Bedside Ultrasound','Procedural Sedation','Shock Management','Critical Care Transport']
@@ -7053,7 +7412,7 @@
           title: 'Emergency & Critical Care Physician',
           exp: '5+ Years Experience',
           initials: 'KA',
-          photo: 'dr-aravind.jpg',
+          photo: 'dr-aravind.jpg', photoPos: 'center 20%', imageMode: 'portrait',
           bio: 'Dr. Koppela Aravind Reddy is an Emergency and Critical Care Physician with over 5 years of clinical experience in Emergency Medicine, Critical Care, and the transport of critically ill patients. He has extensive expertise in the rapid assessment, resuscitation, stabilization, and management of medical, cardiac, trauma, pediatric, and surgical emergencies in high-acuity emergency and intensive care settings.\n\nHe is proficient in advanced airway management, rapid sequence intubation (RSI), mechanical ventilation, point-of-care ultrasound (POCUS), Advanced Cardiac Life Support (ACLS), trauma resuscitation, procedural sedation, hemodynamic monitoring, and the management of critically ill patients requiring advanced life support. He is experienced in coordinating and escorting critically ill patients during ground and air ambulance transfers, ensuring safe transport, continuity of critical care, and seamless communication throughout retrieval.\n\nPassionate about emergency retrieval medicine and aeromedical services, Dr. Aravind Reddy is committed to delivering safe, timely, evidence-based, and compassionate care while maintaining the highest standards of patient safety during critical care transport and aeromedical evacuations.',
           certs: ['ACLS'],
           skills: ['Advanced Airway Management','Rapid Sequence Intubation (RSI)','Mechanical Ventilation','POCUS','Trauma Resuscitation','Procedural Sedation','Hemodynamic Monitoring','Critical Care Transport','Ground & Air Retrieval']
@@ -7063,7 +7422,7 @@
           title: 'Pediatric Emergency Physician',
           exp: 'Pediatric Critical Care',
           initials: 'RV',
-          photo: 'dr-rahul.jpg', photoPos: 'center 35%',
+          photo: 'dr-rahul.jpg', photoPos: 'center 35%', imageMode: 'portrait',
           bio: 'Dr. Rahul Vantaku is a dedicated Pediatric Emergency Physician with specialized expertise in managing critically ill children and pediatric trauma. He brings a calm, systematic approach to the most high-pressure clinical environments, ensuring rapid and accurate assessment of every young patient.\n\nHis clinical strengths lie in pediatric resuscitation, critical care transport of children, trauma management, and advanced airway management tailored to pediatric anatomy. Dr. Rahul is known for his child-centered care philosophy — treating each patient with precision and empathy while maintaining clear communication with families during emergencies.\n\nAs part of the REACT air ambulance medical team, Dr. Rahul ensures that pediatric patients receive the highest standard of in-flight critical care, from initial stabilization through safe delivery to definitive care facilities.',
           certs: [],
           skills: ['Pediatric Emergency','Critical Care','Trauma Management','Rapid Assessment','Pediatric Resuscitation','Advanced Airway (Pediatric)','Critical Care Transport']
@@ -7073,17 +7432,28 @@
           title: 'Pediatric Emergency & ECMO Specialist',
           exp: 'Pediatric Critical Care',
           initials: 'ST',
-          photo: 'dr-thameez.jpg', photoPos: 'center 15%',
+          photo: 'dr-thameez.jpg', photoPos: 'center 15%', imageMode: 'portrait',
           bio: 'In pediatric emergencies, every second counts. Dr. Syed Thameez is known for his decisive clinical approach to critically ill children and trauma cases, managing emergencies with speed, precision, and responsibility.\n\nHis strength lies in rapid assessment, sound clinical judgment, and timely intervention. Dr. Thameez follows a focused, systematic approach to emergency pediatric care, ensuring that every child receives prompt evaluation and evidence-based treatment.\n\nAs a Pediatric ECMO specialist, he has expertise in managing children with severe heart and lung failure who require advanced life support. His experience with Extracorporeal Membrane Oxygenation (ECMO) enables him to provide highly specialised care for the most critically ill pediatric patients while coordinating seamlessly with multidisciplinary intensive care teams. He is widely trusted for staying calm under pressure while acting swiftly when a child\'s condition demands it — every child is closely monitored and treated promptly, with every decision driven by clinical evidence and compassionate care.',
           certs: [],
           skills: ['Pediatric ECMO','Pediatric Emergency Medicine','Trauma Resuscitation','Advanced Airway (Pediatric)','Rapid Clinical Assessment','Multidisciplinary ICU Coordination','Critical Care Transport']
+        },
+        harikishor: {
+          name: 'Dr. Hari Kishore',
+          title: 'Consultant – Emergency Medicine',
+          exp: '13+ Years Experience',
+          location: 'Nassau, Bahamas Islands 🇧🇸',
+          initials: 'HK',
+          photo: 'dr-harikishor.jpg', photoPos: 'center 18%', imageMode: 'portrait',
+          bio: 'Dr. Hari Kishore, MBBS, MRCEM, is a dedicated Emergency Physician with more than 13 years of experience in providing comprehensive emergency and critical care services. He has extensive experience in the assessment, stabilization, and management of critically ill and injured patients presenting with complex medical, surgical, and trauma-related emergencies.\n\nHis clinical practice encompasses trauma care, Advanced Cardiac Life Support (ACLS), advanced airway management, mechanical ventilation, point-of-care ultrasound (POCUS), procedural sedation, hemodynamic stabilization, and the management of patients in shock. He is also skilled in the retrieval and safe transfer of critically ill patients through ground and aeromedical transport, ensuring continuity of care throughout the transfer process.\n\nDr. Hari Kishore believes in delivering prompt, evidence-based, and patient-centered emergency care. His commitment to clinical excellence, teamwork, and patient safety enables him to provide high-quality care in fast-paced high-acuity emergency settings while maintaining the highest professional standards.',
+          certs: ['MBBS', 'MRCEM'],
+          skills: ['Emergency Medicine','Trauma Care','Advanced Cardiac Life Support (ACLS)','Advanced Airway Management','Mechanical Ventilation','Point-of-Care Ultrasound (POCUS)','Procedural Sedation','Hemodynamic Stabilization','Shock Management','Ground & Aeromedical Retrieval','Critical Care Transport']
         },
         ashok: {
           name: 'Dr. Ashok Kumar Surampalli',
           title: 'Emergency Physician',
           exp: '5+ Years Experience',
           initials: 'AK',
-          photo: 'dr-ashok.jpg', photoPos: 'center 15%',
+          photo: 'dr-ashok.jpg', photoPos: 'center top', imageMode: 'headshot',
           bio: 'Dr. Ashok Kumar Surampalli is a dedicated Emergency Physician with over 5 years of experience in Emergency Medicine and Critical Care across leading tertiary care centres and aeromedical transport. He is experienced in the comprehensive assessment, stabilisation, and management of adult and paediatric emergencies, trauma, and critically ill patients in high-acuity settings.\n\nHis clinical expertise spans advanced airway management and rapid sequence intubation (RSI), point-of-care ultrasound (POCUS), mechanical ventilation, trauma resuscitation, procedural sedation, central venous catheter insertion, arterial line cannulation, and advanced cardiac life support. He has extensive experience in aeromedical transport and the inter-facility transfer of critically ill patients, ensuring continuity of care and patient safety throughout every mission.\n\nDr. Ashok is committed to multidisciplinary emergency and critical care coordination, bringing precision, composure, and evidence-based practice to every case — from ground stabilisation to in-flight critical care.',
           certs: ['MBBS', 'Fellowship EM'],
           skills: ['Adult & Paediatric Emergency Medicine','Critical Care Management','Trauma Resuscitation','Advanced Airway & RSI','POCUS','Procedural Sedation & Analgesia','Central Line Insertion','Arterial Line Cannulation','Mechanical Ventilation','Advanced Cardiac Resuscitation','Aero Medical Transport','Inter-facility Critical Care Transfer','Multidisciplinary Care Coordination']
@@ -7093,7 +7463,7 @@
           title: 'Aviation Attorney & Legal Counsel',
           exp: 'Legal Counsel',
           initials: 'IR',
-          photo: 'advisor-rohit.jpg', photoPos: 'center top',
+          photo: 'advisor-rohit.jpg', photoPos: 'center top', imageMode: 'portrait',
           bio: 'Aviation Attorney based in India specializing in aviation law, regulatory compliance, and policy advisory for airlines, business aviation operators, helicopter services, air ambulance operators, aircraft owners, and aviation investors.\n\nHis practice covers DGCA regulatory compliance, AOC/NSOP establishment, aircraft acquisition, financing and leasing, aircraft registration and deregistration, aviation contracts, employment law for flight and ground crew, accident and incident legal support, and operational risk management. He also advises on charter agreements, wet and dry leasing, MRO, airport and ground handling contracts, and the establishment of aviation businesses in India.\n\nWith a strong understanding of Indian and international aviation regulations, Isaac provides practical legal and strategic solutions that help clients operate efficiently while maintaining full regulatory compliance.',
           certs: ['Aviation Regulatory & Policy','Business Aviation Advisor'],
           skills: ['DGCA Compliance','AOC / NSOP','Aircraft Acquisition & Leasing','Aviation Contracts','Operational Risk Management','Charter Agreements','MRO Contracts']
@@ -7109,8 +7479,15 @@
         if (!d) return;
 
         // Photo / initials
-        var img  = document.getElementById('doc-modal-img');
-        var init = document.getElementById('doc-modal-init');
+        var img      = document.getElementById('doc-modal-img');
+        var init     = document.getElementById('doc-modal-init');
+        var photoCol = document.querySelector('.doc-modal-photo-col');
+        var headshot = d.imageMode === 'headshot';
+
+        // Apply / remove image mode classes
+        img.className      = 'doc-modal-img' + (headshot ? ' mode-headshot' : '');
+        photoCol.className = 'doc-modal-photo-col' + (headshot ? ' mode-headshot' : '');
+
         img.src = d.photo;
         img.alt = d.name;
         img.style.display = 'block';
@@ -7119,10 +7496,11 @@
         img.onerror = function() { img.style.display = 'none'; init.style.display = 'flex'; };
         init.style.display = 'none';
 
-        document.getElementById('doc-modal-exp').textContent   = d.exp;
-        document.getElementById('doc-modal-name').textContent  = d.name;
-        document.getElementById('doc-modal-title').textContent = d.title;
-        document.getElementById('doc-modal-bio').textContent   = d.bio;
+        document.getElementById('doc-modal-exp').textContent      = d.exp;
+        document.getElementById('doc-modal-name').textContent     = d.name;
+        document.getElementById('doc-modal-title').textContent    = d.title;
+        document.getElementById('doc-modal-location').textContent = d.location || '';
+        document.getElementById('doc-modal-bio').textContent      = d.bio;
 
         var skillsEl = document.getElementById('doc-modal-skills');
         skillsEl.innerHTML = '';
@@ -7163,6 +7541,247 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeDoc();
       });
+    })();
+  </script>
+
+
+  <!-- ── Equipment Modal ── -->
+  <style>
+    .equip-modal-overlay {
+      position: fixed; inset: 0; z-index: 3000;
+      background: rgba(4,17,31,.72); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity .25s;
+    }
+    .equip-modal-overlay.is-open { opacity: 1; pointer-events: all; }
+    .equip-modal-box {
+      background: #fff; border-radius: 20px; overflow: hidden;
+      max-width: 720px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      display: grid; grid-template-columns: 280px 1fr;
+      box-shadow: 0 24px 80px rgba(0,0,0,.28);
+      transform: translateY(20px); transition: transform .28s;
+    }
+    .equip-modal-overlay.is-open .equip-modal-box { transform: translateY(0); }
+    .equip-modal-photo {
+      background: #f0f4fa; display: flex; align-items: center; justify-content: center;
+      padding: 32px 24px; position: relative;
+    }
+    .equip-modal-photo img { width: 100%; object-fit: contain; max-height: 260px; }
+    .equip-modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(0,0,0,.08); border: none; cursor: pointer;
+      font-size: 16px; color: #444; display: grid; place-items: center;
+      transition: background .2s;
+    }
+    .equip-modal-close:hover { background: rgba(0,0,0,.16); }
+    .equip-modal-body { padding: 32px 28px; }
+    .equip-modal-cat {
+      font-family: var(--font-label); font-size: 9px; letter-spacing: 2px;
+      text-transform: uppercase; color: #0d8a5e; margin-bottom: 6px;
+    }
+    .equip-modal-name {
+      font-family: var(--font-body); font-size: 22px; font-weight: 700;
+      color: #0d2952; line-height: 1.25; margin-bottom: 4px;
+    }
+    .equip-modal-sub {
+      font-family: var(--font-body); font-size: 13px; color: #5a7a9a; margin-bottom: 20px;
+    }
+    .equip-modal-highlights-label {
+      font-family: var(--font-label); font-size: 9px; letter-spacing: 2px;
+      text-transform: uppercase; color: #9ab0c8; margin-bottom: 12px;
+    }
+    .equip-modal-highlights { list-style: none; padding: 0; margin: 0 0 20px; display: flex; flex-direction: column; gap: 12px; }
+    .equip-modal-highlights li {
+      font-family: var(--font-body); font-size: 13.5px; color: #1a2d4f;
+      line-height: 1.5; padding-left: 16px; position: relative;
+    }
+    .equip-modal-highlights li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%; background: #0d8a5e;
+    }
+    .equip-modal-highlights li strong { color: #0d2952; }
+    .equip-modal-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .equip-modal-badge {
+      font-family: var(--font-label); font-size: 8px; letter-spacing: 1px;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 5px;
+      border: 1px solid rgba(21,101,200,.3); color: #1565c8;
+      background: rgba(21,101,200,.06);
+    }
+    @media (max-width: 600px) {
+      .equip-modal-box { grid-template-columns: 1fr; }
+      .equip-modal-photo { min-height: 200px; }
+    }
+  </style>
+
+  <div class="equip-modal-overlay" id="equip-overlay">
+    <div class="equip-modal-box" id="equip-modal">
+      <div class="equip-modal-photo">
+        <button class="equip-modal-close" id="equip-modal-close">&#x2715;</button>
+        <img id="equip-modal-img" src="" alt="">
+      </div>
+      <div class="equip-modal-body">
+        <div class="equip-modal-cat" id="equip-modal-cat"></div>
+        <div class="equip-modal-name" id="equip-modal-name"></div>
+        <div class="equip-modal-sub" id="equip-modal-sub"></div>
+        <div class="equip-modal-highlights-label">Key Highlights</div>
+        <ul class="equip-modal-highlights" id="equip-modal-highlights"></ul>
+        <div class="equip-modal-badges" id="equip-modal-badges"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var EQUIP_DATA = {
+        corpuls3: {
+          cat: 'Circulation',
+          name: 'CORPULS 3',
+          sub: 'Advanced Cardiac Defibrillator',
+          img: 'equip-corpuls.jpg',
+          highlights: [
+            { title: 'Comprehensive Patient Monitoring', desc: 'Real-time ECG, SpO₂, NIBP, EtCO₂, temperature, and respiration monitoring for critically ill patients.' },
+            { title: 'Compact, Modular & Portable', desc: 'Enables seamless use in ambulances, air ambulances, and emergency rescue operations with its lightweight modular design.' },
+            { title: 'Advanced Defibrillation & Pacing', desc: 'Supports rapid management of cardiac emergencies in the field with AED, manual defibrillation, and transcutaneous pacing.' },
+            { title: 'Data Recording & Wireless Connectivity', desc: 'Continuous data recording and wireless connectivity facilitate efficient patient handover and clinical decision-making.' },
+            { title: 'Rugged & Long Battery Life', desc: 'Reliable performance in demanding pre-hospital and transport environments with extended battery life and durable construction.' }
+          ],
+          badges: ['AED + Manual', '12-Lead ECG', 'EtCO₂', 'Extended Battery', 'Wireless']
+        },
+        ecmosystem: {
+          cat: 'Critical Care',
+          name: 'Mobile ECMO System',
+          sub: 'Extracorporeal Membrane Oxygenation',
+          img: 'equip-ecmo.jpg',
+          highlights: [
+            { title: 'Advanced Life Support', desc: 'Provides temporary heart and/or lung support by oxygenating blood and removing carbon dioxide when conventional therapy fails.' },
+            { title: 'Prehospital Rescue Capability', desc: 'Mobile ECMO systems can support patients with refractory cardiogenic shock, severe respiratory failure, or refractory cardiac arrest during transport.' },
+            { title: 'Bridge to Definitive Care', desc: 'Maintains vital organ perfusion and oxygenation while the patient is transferred to a specialized ECMO or tertiary care centre.' },
+            { title: 'Specialized Transport', desc: 'ECMO transport requires a highly trained multidisciplinary team, robust equipment, continuous monitoring, and comprehensive contingency planning.' },
+            { title: 'Critical PHEM Innovation', desc: 'Mobile ECMO expands access to advanced life support beyond hospital walls, enabling safe interfacility and air medical transport of critically ill patients.' }
+          ],
+          badges: ['ICU Standard', 'Life Support', 'Air Compatible', 'ECMO Certified', 'Multidisciplinary']
+        },
+        spencersuction: {
+          cat: 'Respiratory',
+          name: 'Spencers Ambujet Portable Suction',
+          sub: 'Airway Clearance System',
+          img: 'equip-suction.jpg',
+          highlights: [
+            { title: 'Rapid Airway Clearance', desc: 'Removes blood, vomitus, mucus, and secretions to maintain a patent airway during critical emergencies.' },
+            { title: 'Portable & Lightweight', desc: 'Compact design makes it ideal for ambulances, air ambulances, and emergency rescue operations.' },
+            { title: 'High-Performance Suction', desc: 'Delivers efficient aspiration in critical trauma and medical emergencies with strong, reliable suction power.' },
+            { title: 'Easy to Operate', desc: 'Durable construction with intuitive controls ensures reliable performance in demanding pre-hospital environments.' },
+            { title: 'Essential for Airway Management', desc: 'Supports effective ventilation and improves patient stabilization during transport by keeping the airway clear.' }
+          ],
+          badges: ['Battery-Op', 'Portable', 'Airway', 'Trauma Ready', 'Air Compatible']
+        },
+        heartstart: {
+          cat: 'Circulation',
+          name: 'Philips HeartStart FRX AED',
+          sub: 'Automated External Defibrillator',
+          img: 'equip-aed.jpg',
+          highlights: [
+            { title: 'Rapid Defibrillation', desc: 'Delivers rapid defibrillation for patients experiencing sudden cardiac arrest, improving survival outcomes.' },
+            { title: 'Voice-Guided Instructions', desc: 'Easy-to-use voice-guided instructions help both trained responders and first responders provide timely treatment.' },
+            { title: 'Smart Rhythm Analysis', desc: 'Automatically evaluates the patient\'s heart rhythm and delivers a shock only when clinically indicated.' },
+            { title: 'Compact & Rugged Design', desc: 'Lightweight and rugged construction makes it ideal for ambulances, air ambulances, and emergency response teams.' },
+            { title: 'Integrated CPR Guidance', desc: 'Supports early resuscitation with integrated CPR guidance, helping maintain high-quality chest compressions.' }
+          ],
+          badges: ['AED', 'ACLS', 'Portable', 'Voice-Guided', 'CPR Guidance']
+        },
+        agiliasp: {
+          cat: 'Infusion',
+          name: 'Agilia SP MC WiFi',
+          sub: 'Syringe Infusion Pump',
+          img: 'equip-syringe-pump.jpg',
+          highlights: [
+            { title: 'Accurate Medication Delivery', desc: 'Precise infusion rates for critical drugs during patient transport, ensuring consistent and safe drug administration.' },
+            { title: 'Compact & Lightweight Design', desc: 'Ideal for use in ambulances, air ambulances, and emergency response vehicles due to its small footprint and light weight.' },
+            { title: 'Reliable Battery Backup', desc: 'Ensures uninterrupted medication infusion during transfers and in areas without a power supply.' },
+            { title: 'User-Friendly Interface', desc: 'Clear display with audible and visual alarms for quick setup and enhanced patient safety in demanding environments.' },
+            { title: 'Life-Saving Medication Support', desc: 'Supports continuous infusion of vasopressors, sedatives, analgesics, and inotropes during pre-hospital stabilization.' }
+          ],
+          badges: ['ICU Standard', 'Battery-Op', 'WiFi', 'Vasopressors', 'In-Flight Safe']
+        },
+        intellivuex3: {
+          cat: 'Monitoring',
+          name: 'Philips IntelliVue X3',
+          sub: 'Transport Cardiac Monitor',
+          img: 'equip-cardiac-monitor.jpg',
+          highlights: [
+            { title: 'Compact & Lightweight', desc: 'A highly portable 1.4 kg transport monitor, ideal for ambulance and critical-care patient transfers.' },
+            { title: 'Continuous Multi-Parameter Monitoring', desc: 'Provides real-time ECG, SpO₂, respiration, and NIBP, with optional CO₂ and invasive pressure monitoring.' },
+            { title: 'Built for Patient Transport', desc: 'Designed to maintain monitoring continuity during bed-to-ambulance and ambulance-to-hospital transfers.' },
+            { title: 'Rugged & Reliable', desc: 'Built with a disinfectant-resistant surface and rugged construction suitable for demanding prehospital environments.' },
+            { title: 'Extended Battery Performance', desc: 'Offers up to 5 hours of battery life in basic configuration, supporting extended transport and transfer missions.' }
+          ],
+          badges: ['12-Lead ECG', 'ICU Standard', 'Battery-Op', 'SpO₂ & NIBP', 'Transport Ready']
+        },
+        astral150: {
+          cat: 'Respiratory',
+          name: 'ResMed Astral 150',
+          sub: 'Mechanical Ventilator',
+          img: 'equip-ventilator.jpg',
+          highlights: [
+            { title: 'Advanced Invasive & Non-Invasive Ventilation', desc: 'Provides comprehensive life-support ventilation for both invasive and non-invasive patient care.' },
+            { title: 'Versatile Circuit Compatibility', desc: 'Supports single-limb leak, single-limb valve, and double-limb circuits for flexible clinical use.' },
+            { title: 'Advanced Monitoring', desc: 'Features integrated FiO₂ monitoring, real-time pressure and flow waveforms, and comprehensive data tracking.' },
+            { title: 'Portable & Lightweight', desc: 'Weighing approximately 3.2 kg, it is highly suitable for critical care transport and aeromedical transfers.' },
+            { title: 'Multiple Advanced Therapy Modes', desc: 'Supports a wide range of ventilation modes, including CPAP, ACV, SIMV, PS, and iVAPS, enabling personalized respiratory support.' }
+          ],
+          badges: ['ICU Standard', 'Aviation-Certified', 'Battery-Op', 'DGCA Compatible', 'Adult / Ped / Neo']
+        }
+      };
+
+      var overlay  = document.getElementById('equip-overlay');
+      var modal    = document.getElementById('equip-modal');
+      var closeBtn = document.getElementById('equip-modal-close');
+
+      function openEquipModal(key) {
+        var d = EQUIP_DATA[key];
+        if (!d) return;
+        document.getElementById('equip-modal-img').src = d.img;
+        document.getElementById('equip-modal-img').alt = d.name;
+        document.getElementById('equip-modal-cat').textContent  = d.cat;
+        document.getElementById('equip-modal-name').textContent = d.name;
+        document.getElementById('equip-modal-sub').textContent  = d.sub;
+
+        var hl = document.getElementById('equip-modal-highlights');
+        hl.innerHTML = '';
+        d.highlights.forEach(function(h) {
+          var li = document.createElement('li');
+          li.innerHTML = '<strong>' + h.title + ':</strong> ' + h.desc;
+          hl.appendChild(li);
+        });
+
+        var bd = document.getElementById('equip-modal-badges');
+        bd.innerHTML = '';
+        d.badges.forEach(function(b) {
+          var sp = document.createElement('span');
+          sp.className = 'equip-modal-badge';
+          sp.textContent = b;
+          bd.appendChild(sp);
+        });
+
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeEquipModal() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('[data-equip]').forEach(function(card) {
+        card.addEventListener('click', function() { openEquipModal(card.dataset.equip); });
+      });
+
+      closeBtn.addEventListener('click', closeEquipModal);
+      overlay.addEventListener('click', function(e) { if (e.target === overlay) closeEquipModal(); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeEquipModal(); });
     })();
   </script>
 

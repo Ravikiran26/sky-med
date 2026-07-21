@@ -1168,7 +1168,7 @@
       fill: rgba(21,65,130,.22); stroke: rgba(74,158,255,.4);
       stroke-width: 1.4; stroke-linejoin: round;
     }
-    .vmap-grid-line { stroke: rgba(74,158,255,.04); stroke-width: 0.8; fill: none; }
+    .vmap-grid-line { stroke: rgba(255,255,255,.06); stroke-width: 0.8; fill: none; }
 
     /* Thin elegant routes — blue instead of red */
     .vmap-route {
@@ -1233,13 +1233,13 @@
     }
     .vmap-legend-title {
       font-family: 'Inter',sans-serif; font-size: 8px; font-weight: 600;
-      letter-spacing: 0.12em; color: rgba(74,158,255,.7); text-transform: uppercase;
+      letter-spacing: 0.12em; color: rgba(255,255,255,.9); text-transform: uppercase;
       margin-bottom: 12px;
     }
     .vmap-legend-row {
       display: flex; align-items: center; gap: 12px;
       font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 500;
-      letter-spacing: 0.06em; color: rgba(106,138,170,.85); text-transform: uppercase;
+      letter-spacing: 0.06em; color: rgba(255,255,255,.85); text-transform: uppercase;
       margin-bottom: 10px;
     }
     .vmap-legend-row:last-child { margin-bottom: 0; }
@@ -1296,15 +1296,15 @@
 
     /* ── International map landmasses ───────────────────────── */
     .vmap-intl-land {
-      fill: rgba(21,65,130,.28); stroke: rgba(74,158,255,.32);
+      fill: #4a7c59; stroke: #3a6347;
       stroke-width: 0.5; stroke-linejoin: round;
     }
     .vmap-intl-india {
-      fill: rgba(21,101,200,.50); stroke: rgba(74,158,255,.78);
+      fill: #c8a84b; stroke: #e0c060;
       stroke-width: 1.2; stroke-linejoin: round;
     }
     #vmap-intl { background: transparent; }
-    #world-ocean { fill: rgba(6,18,36,.5); }
+    #world-ocean { fill: #1a3d5c; }
 
     /* ── CTA ─────────────────────────────────────────────── */
     .cta {
@@ -2923,8 +2923,9 @@
       background: #e8edf4;
     }
 
-    /* Portrait mode (default): fill the column, anchor to top */
+    /* Portrait mode (default): fill the column absolutely so min-height doesn't cause gaps */
     .doc-modal-img {
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center top; display: block;
     }
@@ -4293,7 +4294,7 @@
             <div class="team-card-body">
               <div class="team-name">Dr. Rahul Vantaku</div>
               <div class="team-title">Pediatric Emergency Physician</div>
-              <span class="team-exp">Pediatric Critical Care</span>
+              <span class="team-exp">15+ Years Experience</span>
               <p class="team-bio">Pediatric Emergency Physician specializing in critically ill children and trauma. Known for rapid assessment, systematic approach, and calm leadership in high-pressure environments.</p>
               <div class="team-skills">
                 <span class="team-skill">Pediatric Emergency</span>
@@ -4314,7 +4315,7 @@
             <div class="team-card-body">
               <div class="team-name">Dr. Syed Thameez</div>
               <div class="team-title">Pediatric Emergency &amp; ECMO Specialist</div>
-              <span class="team-exp">Pediatric Critical Care</span>
+              <span class="team-exp">15+ Years Experience</span>
               <p class="team-bio">Decisive Pediatric Emergency Physician and ECMO Specialist known for managing critically ill children and trauma cases with speed, precision, and calm under pressure.</p>
               <div class="team-skills">
                 <span class="team-skill">Pediatric ECMO</span>
@@ -4399,7 +4400,7 @@
               <div class="team-name">Dr. Om Sagar</div>
               <div class="team-title">Emergency Physician</div>
               <span class="team-exp">5+ Years Experience</span>
-              <p class="team-bio">Experienced Emergency Physician with expertise in Emergency Medicine, Critical Care, and Transport Medicine. Managed a broad spectrum of life-threatening emergencies with a strong emphasis on rapid decision-making and evidence-based critical care.</p>
+              <p class="team-bio">Experienced Emergency Physician with more than 5 years of expertise in Emergency Medicine, Critical Care, and Transport Medicine — managing life-threatening emergencies with rapid decision-making and evidence-based critical care.</p>
               <div class="team-skills">
                 <span class="team-skill team-cert">ACLS</span>
                 <span class="team-skill">Trauma Resuscitation</span>
@@ -4443,7 +4444,7 @@
           <h2 class="section-title" style="color:#0d2952;">Our Legal Counsel</h2>
         </div>
 
-        <div class="advisor-card" style="display:grid; grid-template-columns:300px 1fr; gap:48px; align-items:center; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 4px 32px rgba(21,101,192,.10);">
+        <div class="advisor-card" onclick="document.querySelector('.team-card[data-doc=rohit]').click()" style="display:grid; grid-template-columns:300px 1fr; gap:48px; align-items:center; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 4px 32px rgba(21,101,192,.10); cursor:pointer; transition:box-shadow .2s ease;" onmouseenter="this.style.boxShadow='0 8px 48px rgba(21,101,192,.18)'" onmouseleave="this.style.boxShadow='0 4px 32px rgba(21,101,192,.10)'">
           <!-- Photo -->
           <img src="advisor-rohit.jpg" alt="Isaac Rohit Satyavarapu" loading="lazy"
             style="width:100%; height:400px; object-fit:cover; object-position:center 20%; display:block;">
@@ -5476,7 +5477,7 @@
               </div>
             </div>
 
-            <svg id="vmap" viewBox="0 0 760 580" xmlns="http://www.w3.org/2000/svg" aria-label="REACT Air Ambulance India route network map" style="display:none">
+            <svg id="vmap" viewBox="0 0 760 580" xmlns="http://www.w3.org/2000/svg" aria-label="REACT Air Ambulance India route network map" style="display:none;background:#1a3d5c;">
               <defs>
                 <filter id="vcityGlow" x="-120%" y="-120%" width="340%" height="340%">
                   <feGaussianBlur stdDeviation="3" result="blur"/>
@@ -5998,8 +5999,8 @@
             <!-- Compact stats — bottom left -->
             <div class="vmap-stats">
               <div class="vmap-stat-pill">
-                <div class="vmap-stat-val">32+</div>
-                <div class="vmap-stat-lbl">Domestic Coverage</div>
+                <div class="vmap-stat-val">25+</div>
+                <div class="vmap-stat-lbl">International Destinations</div>
               </div>
               <div class="vmap-stat-pill">
                 <div class="vmap-stat-val">Global</div>
@@ -7481,7 +7482,7 @@
           exp: '5+ Years Experience',
           initials: 'OS',
           photo: 'dr-omsagar.jpg', photoPos: 'center top', imageMode: 'portrait',
-          bio: 'Experienced Emergency Physician with expertise in Emergency Medicine, Critical Care, and Transport Medicine. Has managed a broad spectrum of life-threatening medical, surgical, and traumatic emergencies with a strong emphasis on rapid decision-making and evidence-based critical care. Committed to the highest standards of patient safety, clinical excellence, and continuity of care during aeromedical evacuations and inter-facility transfers.',
+          bio: 'Dr. Om Sagar is an experienced Emergency Physician with more than 5 years of expertise in Emergency Medicine, Critical Care, and Transport Medicine. He has managed a broad spectrum of life-threatening medical, surgical, and traumatic emergencies, with a strong emphasis on rapid decision-making and evidence-based critical care.\n\nHis clinical expertise includes advanced cardiac life support (ACLS), trauma resuscitation, advanced airway management, mechanical ventilation, bedside ultrasound, procedural sedation, shock management, and the safe transport of critically ill patients. Passionate about delivering excellence in emergency care, Dr. Om Sagar is committed to ensuring the highest standards of patient safety, clinical excellence, and continuity of care during aeromedical evacuations and inter-facility transfers.',
           certs: ['ACLS'],
           skills: ['Trauma Resuscitation','Advanced Airway','Mechanical Ventilation','Bedside Ultrasound','Procedural Sedation','Shock Management','Critical Care Transport']
         },
@@ -7498,9 +7499,9 @@
         rahul: {
           name: 'Dr. Rahul Vantaku',
           title: 'Pediatric Emergency Physician',
-          exp: 'Pediatric Critical Care',
+          exp: '15+ Years Experience',
           initials: 'RV',
-          photo: 'dr-rahul.jpg', photoPos: 'center 35%', imageMode: 'portrait',
+          photo: 'dr-rahul.jpg', photoPos: 'center 38%', imageMode: 'portrait',
           bio: 'Dr. Rahul Vantaku is a dedicated Pediatric Emergency Physician with specialized expertise in managing critically ill children and pediatric trauma. He brings a calm, systematic approach to the most high-pressure clinical environments, ensuring rapid and accurate assessment of every young patient.\n\nHis clinical strengths lie in pediatric resuscitation, critical care transport of children, trauma management, and advanced airway management tailored to pediatric anatomy. Dr. Rahul is known for his child-centered care philosophy — treating each patient with precision and empathy while maintaining clear communication with families during emergencies.\n\nAs part of the REACT air ambulance medical team, Dr. Rahul ensures that pediatric patients receive the highest standard of in-flight critical care, from initial stabilization through safe delivery to definitive care facilities.',
           certs: [],
           skills: ['Pediatric Emergency','Critical Care','Trauma Management','Rapid Assessment','Pediatric Resuscitation','Advanced Airway (Pediatric)','Critical Care Transport']
@@ -7508,7 +7509,7 @@
         thameez: {
           name: 'Dr. Syed Thameez',
           title: 'Pediatric Emergency & ECMO Specialist',
-          exp: 'Pediatric Critical Care',
+          exp: '15+ Years Experience',
           initials: 'ST',
           photo: 'dr-thameez.jpg', photoPos: 'center 15%', imageMode: 'portrait',
           bio: 'In pediatric emergencies, every second counts. Dr. Syed Thameez is known for his decisive clinical approach to critically ill children and trauma cases, managing emergencies with speed, precision, and responsibility.\n\nHis strength lies in rapid assessment, sound clinical judgment, and timely intervention. Dr. Thameez follows a focused, systematic approach to emergency pediatric care, ensuring that every child receives prompt evaluation and evidence-based treatment.\n\nAs a Pediatric ECMO specialist, he has expertise in managing children with severe heart and lung failure who require advanced life support. His experience with Extracorporeal Membrane Oxygenation (ECMO) enables him to provide highly specialised care for the most critically ill pediatric patients while coordinating seamlessly with multidisciplinary intensive care teams. He is widely trusted for staying calm under pressure while acting swiftly when a child\'s condition demands it — every child is closely monitored and treated promptly, with every decision driven by clinical evidence and compassionate care.',

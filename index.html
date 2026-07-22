@@ -944,11 +944,13 @@
       box-shadow: 0 0 24px rgba(30,58,110,.32);
     }
 
-    .timeline-row {
+    .timeline-line { display: none; } /* shown only on mobile */
+
+    .timeline-item {
       display: grid; grid-template-columns: 1fr 88px 1fr;
       align-items: center; margin-bottom: 32px;
     }
-    .timeline-row:last-child { margin-bottom: 0; }
+    .timeline-item:last-child { margin-bottom: 0; }
 
     .timeline-card {
       padding: 28px 30px; min-height: 158px;
@@ -959,7 +961,7 @@
     .timeline-card.left  { grid-column: 1; text-align: right; }
     .timeline-card.right { grid-column: 3; }
 
-    .node {
+    .timeline-marker {
       grid-column: 2; justify-self: center;
       width: 18px; height: 18px; border-radius: 50%;
       background: var(--red2);
@@ -3495,11 +3497,6 @@
       .stat:nth-child(odd) { border-left: 0; }
       .stat:nth-child(1), .stat:nth-child(2) { border-top: 0; }
 
-      .timeline::before { left: 8px; transform: none; }
-      .timeline-row { grid-template-columns: 18px 1fr; gap: 16px; align-items: start; }
-      .node { grid-column: 1; margin-top: 20px; }
-      .timeline-card.left, .timeline-card.right { grid-column: 2; text-align: left; }
-
       .vmap-legend { display: none; }
       .vmap-topbar-title { display: none; }
       .vmap-tab { padding: 6px 10px; font-size: 8px; }
@@ -3550,7 +3547,7 @@
 
       /* Cards — more breathing room */
       .fleet-card { padding: 24px 20px; }
-      .timeline-card, .coverage-copy { padding: 22px 18px; }
+      .coverage-copy { padding: 22px 18px; }
       .svc-body { padding: 28px 18px 18px; }
 
       /* Service cards on mobile — full width, tighter */
@@ -3813,6 +3810,85 @@
     .faq-a                { color: #3d5a7a; }
 
     /* Service detail page — light theme already set in component CSS */
+
+    /* ── MOBILE TIMELINE (≤768px) ───────────────────────────── */
+    @media (max-width: 768px) {
+      /* Section scroll offset so sticky nav doesn't cover heading */
+      #process { scroll-margin-top: 80px; }
+
+      /* Container */
+      .timeline {
+        position: relative;
+        padding-left: 48px;
+        padding-right: 16px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 40px;
+      }
+
+      /* Hide desktop ::before pseudo-line */
+      .timeline::before { display: none; }
+
+      /* Continuous gradient line */
+      .timeline-line {
+        display: block;
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--skylt), var(--red), var(--sky));
+        box-shadow: 0 0 24px rgba(30,58,110,.32);
+      }
+
+      /* Each step item */
+      .timeline-item {
+        display: block;
+        position: relative;
+        margin-bottom: 32px;
+      }
+      .timeline-item:last-child { margin-bottom: 0; }
+
+      /* Marker — positioned relative to its own item */
+      .timeline-marker {
+        position: absolute;
+        left: -37px;
+        top: 52px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--red2);
+        box-shadow: 0 0 0 6px rgba(224,40,40,.12), 0 0 18px rgba(255,68,68,.6);
+        z-index: 2;
+        /* Reset desktop grid properties */
+        grid-column: unset;
+        justify-self: unset;
+        flex-shrink: unset;
+      }
+
+      /* Cards — full width, same left edge */
+      .timeline-card.left,
+      .timeline-card.right {
+        grid-column: unset;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 28px 24px;
+        border-radius: 16px;
+        box-sizing: border-box;
+        min-height: unset;
+      }
+
+      /* Typography */
+      .timeline-item .step { font-size: 13px; }
+      .timeline-card h3 { font-size: clamp(25px, 7vw, 32px); }
+      .timeline-card p { font-size: 18px; line-height: 1.65; }
+
+      /* WhatsApp / call FABs — shrink and raise above keyboard/bar */
+      .fab-call, .fab-wa { width: 54px; height: 54px; }
+      .fab-wa img { width: 54px; height: 54px; }
+      .fab-wrap { right: 16px; bottom: 88px; }
+    }
   </style>
 
   <!-- Schema.org structured data — MedicalBusiness + EmergencyService -->
@@ -5227,18 +5303,19 @@
         <h2 class="section-title">From Your Call<br>To Safe Handover</h2>
         <p class="section-copy">Four coordinated steps — from your first call to patient handover at the receiving hospital bed.</p>
         <div class="timeline">
+          <div class="timeline-line"></div>
 
-          <div class="timeline-row">
+          <div class="timeline-item">
+            <span class="timeline-marker"></span>
             <article class="timeline-card left">
               <span class="step">Step 01</span>
               <h3>Emergency Call Received</h3>
               <p>Our 24/7 command centre triages your call, assesses patient condition, and activates the nearest aircraft — all within 60 seconds of connection.</p>
             </article>
-            <span class="node"></span>
           </div>
 
-          <div class="timeline-row">
-            <span class="node"></span>
+          <div class="timeline-item">
+            <span class="timeline-marker"></span>
             <article class="timeline-card right">
               <span class="step">Step 02</span>
               <h3>Aircraft &amp; Medical Team Deployed</h3>
@@ -5246,17 +5323,17 @@
             </article>
           </div>
 
-          <div class="timeline-row">
+          <div class="timeline-item">
+            <span class="timeline-marker"></span>
             <article class="timeline-card left">
               <span class="step">Step 03</span>
               <h3>In-Flight ICU Critical Care</h3>
               <p>Continuous hospital-grade monitoring, ventilation, and IV medication management throughout the flight — the aircraft is your patient's ICU.</p>
             </article>
-            <span class="node"></span>
           </div>
 
-          <div class="timeline-row">
-            <span class="node"></span>
+          <div class="timeline-item">
+            <span class="timeline-marker"></span>
             <article class="timeline-card right">
               <span class="step">Step 04</span>
               <h3>Bed to Bed Hospital Handover</h3>

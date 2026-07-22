@@ -3439,6 +3439,9 @@
         margin-top: 6px;
       }
       .nav-item.open .nav-dropdown { display: grid; }
+      /* Kill desktop translateX(-50%) that fires via :focus-within on iOS tap */
+      .nav-item:hover .nav-dropdown,
+      .nav-item:focus-within .nav-dropdown { transform: none; opacity: 1; pointer-events: auto; }
       .nav-item { flex-direction: column; align-items: flex-start; width: 100%; }
       .nav-item > a { width: 100%; justify-content: space-between; }
       .nav-item > a::after { display: none; }
@@ -6318,6 +6321,10 @@
     function _toggleMenu() {
       var open = nav.classList.toggle("open");
       hamburger.setAttribute("aria-expanded", String(open));
+      if (!open) {
+        var _ns = document.getElementById('navServices');
+        if (_ns) _ns.classList.remove('open');
+      }
     }
     hamburger.addEventListener("touchstart", function(e) {
       e.preventDefault(); // fire immediately, no 300ms delay
@@ -6372,12 +6379,22 @@
         });
       });
 
-      // Mobile: tap Services to toggle dropdown
+      // Mobile: tap Services to toggle dropdown (touchstart for instant iOS response)
       var navItem = document.getElementById('navServices');
       if (navItem) {
-        navItem.querySelector('a').addEventListener('click', function(e) {
+        var _svcTouched = 0;
+        var _svcLink = navItem.querySelector('a');
+        _svcLink.addEventListener('touchstart', function(e) {
           if (window.innerWidth <= 920) {
             e.preventDefault();
+            _svcTouched = Date.now();
+            navItem.classList.toggle('open');
+          }
+        }, { passive: false });
+        _svcLink.addEventListener('click', function(e) {
+          if (window.innerWidth <= 920) {
+            e.preventDefault();
+            if (Date.now() - _svcTouched < 600) return;
             navItem.classList.toggle('open');
           }
         });
@@ -7400,11 +7417,25 @@
 
       // Navbar dropdown — open modal directly when a service link is clicked
       document.querySelectorAll('[data-svc]').forEach(function(link) {
+        var _svcItemTouched = 0;
+        function _activateSvc(e) {
+          e.preventDefault();
+          _svcItemTouched = Date.now();
+          // close mobile nav + services dropdown
+          var navEl = document.getElementById('nav');
+          var hamEl = document.getElementById('hamburger');
+          var nsEl  = document.getElementById('navServices');
+          if (navEl) navEl.classList.remove('open');
+          if (hamEl) hamEl.setAttribute('aria-expanded', 'false');
+          if (nsEl)  nsEl.classList.remove('open');
+          var card = document.querySelector('.svc2[data-svc-id="' + link.dataset.svc + '"]');
+          if (card) openModal(card);
+        }
+        link.addEventListener('touchstart', function(e) { _activateSvc(e); }, { passive: false });
         link.addEventListener('click', function(e) {
           e.preventDefault();
-          var svcId = link.dataset.svc;
-          var card  = document.querySelector('.svc2[data-svc-id="' + svcId + '"]');
-          if (card) openModal(card);
+          if (Date.now() - _svcItemTouched < 600) return;
+          _activateSvc(e);
         });
       });
 

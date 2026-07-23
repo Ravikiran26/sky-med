@@ -1517,8 +1517,8 @@
     /* ── SERVICES TABS ──────────────────────────────────── */
     .svc-tabs-nav {
       display: flex; flex-wrap: nowrap; overflow-x: auto;
-      border-bottom: 2px solid rgba(255,255,255,.1);
-      gap: 0; margin-top: 52px;
+      border-bottom: none;
+      gap: 10px; margin-top: 52px; padding-bottom: 4px;
       scrollbar-width: none;
     }
     .svc-tabs-nav::-webkit-scrollbar { display: none; }
@@ -1526,32 +1526,39 @@
     .svc-tab {
       flex-shrink: 0;
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 22px;
+      padding: 11px 22px;
       font-family: var(--font-label); font-size: 11px;
-      letter-spacing: 2.2px; text-transform: uppercase;
-      color: var(--muted); background: transparent;
-      border: none; border-bottom: 3px solid transparent;
-      margin-bottom: -2px; cursor: pointer;
-      transition: color .22s, border-color .22s;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--muted); background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: color .22s, background .22s, border-color .22s, box-shadow .22s;
     }
-    .svc-tab:hover { color: var(--sky); }
-    .svc-tab.active {
+    .svc-tab:hover {
       color: var(--skylt);
-      border-bottom-color: var(--skylt);
+      background: rgba(74,158,255,.1);
+      border-color: rgba(74,158,255,.25);
+    }
+    .svc-tab.active {
+      color: #fff;
+      background: var(--sky);
+      border-color: var(--sky);
+      box-shadow: 0 4px 18px rgba(21,101,200,.35);
     }
 
-    .svc-tab svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .svc-tab svg { width: 15px; height: 15px; flex-shrink: 0; }
 
     .svc-tab-count {
       display: inline-flex; align-items: center; justify-content: center;
       width: 20px; height: 20px; border-radius: 50%;
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.12);
       font-size: 10px; letter-spacing: 0;
-      color: var(--muted);
+      color: inherit;
       transition: background .22s, color .22s;
     }
     .svc-tab.active .svc-tab-count {
-      background: rgba(33,150,243,.12); color: var(--skylt);
+      background: rgba(255,255,255,.25); color: #fff;
     }
 
     .svc-panels { margin-top: 0; }
@@ -1732,12 +1739,12 @@
       .svc-hero-desc { font-size: 13.5px; }
     }
 
-    #services .svc-tabs-nav  { border-bottom-color: rgba(255,255,255,.1); margin-top: 44px; }
-    #services .svc-tab       { color: var(--muted); }
-    #services .svc-tab:hover:not(.active) { color: var(--sky); }
-    #services .svc-tab.active { color: var(--sky); border-bottom-color: var(--sky); }
-    #services .svc-tab-count { background: rgba(255,255,255,.06); color: var(--muted); }
-    #services .svc-tab.active .svc-tab-count { background: rgba(74,158,255,.15); color: var(--sky); }
+    #services .svc-tabs-nav  { margin-top: 44px; }
+    #services .svc-tab       { color: var(--muted); background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.08); }
+    #services .svc-tab:hover:not(.active) { color: var(--skylt); background: rgba(74,158,255,.1); border-color: rgba(74,158,255,.25); }
+    #services .svc-tab.active { color: #fff; background: var(--sky); border-color: var(--sky); box-shadow: 0 4px 18px rgba(21,101,200,.35); }
+    #services .svc-tab-count { background: rgba(255,255,255,.1); color: var(--muted); }
+    #services .svc-tab.active .svc-tab-count { background: rgba(255,255,255,.25); color: #fff; }
 
     /* ── SVC2 CARD — classic two-tone ────────────────────── */
     .svc2 {
@@ -3704,12 +3711,11 @@
     #services .eyebrow        { color: var(--skylt); }
     #services .section-title  { color: #1a2d4f; }
     #services .section-copy   { color: #3d5a7a; }
-    #services .svc-tab        { color: #7a96b5; }
-    #services .svc-tab.active { color: var(--sky); border-bottom-color: var(--sky); }
-    #services .svc-tab:hover:not(.active) { color: var(--sky); }
-    #services .svc-tabs-nav   { border-bottom-color: rgba(21,101,192,.12); }
-    #services .svc-tab-count  { background: rgba(0,0,0,.06); color: #7a96b5; }
-    #services .svc-tab.active .svc-tab-count { background: rgba(21,101,192,.1); color: var(--sky); }
+    #services .svc-tab        { color: #5a7a9f; background: rgba(21,101,192,.06); border-color: rgba(21,101,192,.15); }
+    #services .svc-tab.active { color: #fff; background: var(--sky); border-color: var(--sky); box-shadow: 0 4px 18px rgba(21,101,200,.25); }
+    #services .svc-tab:hover:not(.active) { color: var(--sky); background: rgba(21,101,192,.12); border-color: rgba(21,101,192,.3); }
+    #services .svc-tab-count  { background: rgba(21,101,192,.12); color: #5a7a9f; }
+    #services .svc-tab.active .svc-tab-count { background: rgba(255,255,255,.25); color: #fff; }
 
     .svc2 {
       background: #ffffff;
@@ -4721,7 +4727,7 @@
 
               <article class="svc2" data-svc-id="svc-bizclass">
                 <div class="svc2-hd">
-                  <img src="turbo-prop.jpg" alt="Business class medical escort premium cabin" loading="lazy" onerror="this.style.opacity='0'">
+                  <img src="business-class-escort.png" alt="Business class medical escort premium cabin" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
                   <span class="svc2-ghost-num">03</span>
                   <div class="svc2-ico">
@@ -4770,7 +4776,7 @@
 
               <article class="svc2" data-svc-id="svc-neonatal">
                 <div class="svc2-hd">
-                  <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=700&q=75" alt="Neonatal and pediatric air ambulance transport" loading="lazy" onerror="this.style.opacity='0'">
+                  <img src="neonatal-pediatric.png" alt="Neonatal and pediatric air ambulance transport" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
                   <span class="svc2-ghost-num">02</span>
                   <div class="svc2-ico">
@@ -4839,7 +4845,8 @@
               </article>
 
               <article class="svc2" data-svc-id="svc-disaster">
-                <div class="svc2-hd" style="background:linear-gradient(135deg,#0a1a2e 0%,#0d2340 40%,#1a1a2e 100%);">
+                <div class="svc2-hd">
+                  <img src="disaster-command-center.png" alt="Disaster Response & Medical Command Center" loading="lazy" onerror="this.style.opacity='0'">
                   <div class="svc2-hd-overlay"></div>
                   <span class="svc2-ghost-num">02</span>
                   <div class="svc2-ico">
@@ -4946,7 +4953,7 @@
 
           <!-- Left: ICU infographic -->
           <div class="equip-icu-wrap">
-            <img src="icu-infographic.png" alt="REACT aircraft configured as a flying ICU — every aircraft carries ICU-grade life support" loading="lazy">
+            <img src="flying-icu-standard.png" alt="REACT aircraft configured as a flying ICU — every aircraft carries ICU-grade life support" loading="lazy">
             <!-- <span class="equip-icu-corner-badge">REACT Airborne ICU</span> -->
           </div>
 
@@ -5524,7 +5531,7 @@
     <section class="section" id="icu">
       <div class="shell">
         <div class="icu-infographic-wrap">
-          <img src="icu-infographic.png"
+          <img src="flying-icu-standard.png"
                alt="Every REACT aircraft is a flying ICU — 7 onboard medical stations including ventilator, cardiac monitor, IV drug pumps, defibrillator, oxygen supply, patient stretcher and medical team"
                class="icu-infographic-img" loading="lazy">
         </div>
@@ -7284,7 +7291,7 @@
       },
       'svc-bizclass': {
         num: '05', cat: 'Air Ambulance',
-        img: 'turbo-prop.jpg',
+        img: 'business-class-escort.png',
         title: 'Business Class Medical Escort',
         desc: [
           'Some patients are medically fit to travel on a commercial flight but require professional medical supervision throughout the journey. Our Business Class Medical Escort service provides physician-led or nurse-led accompaniment while the patient travels comfortably in a business class seat.',
@@ -7298,7 +7305,7 @@
       },
       'svc-neonatal': {
         num: '01', cat: 'Specialized Medical',
-        img: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1200&q=80',
+        img: 'neonatal-pediatric.png',
         title: 'Neonatal & Paediatric Transfers',
         desc: [
           'Critically ill newborns and children require specialized transport systems designed specifically for their age, physiology, and medical needs. REACT provides neonatal and paediatric transport with appropriately trained medical teams and age-specific equipment.',
@@ -7383,7 +7390,7 @@
       },
       'svc-disaster': {
         num: '03', cat: 'Ground & Response',
-        img: '',
+        img: 'disaster-command-center.png',
         title: 'Disaster Response & Mass Casualty Support',
         desc: [
           'During natural disasters, industrial incidents, public emergencies, and mass casualty events, coordinated medical evacuation becomes essential. REACT supports government agencies, hospitals, emergency services, and humanitarian organizations by providing rapid medical transport coordination and deployment of specialized teams.',

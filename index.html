@@ -52,6 +52,29 @@
     "sameAs": []
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is an Air Ambulance?","acceptedAnswer":{"@type":"Answer","text":"An air ambulance is a specially equipped aircraft designed to transport critically ill or injured patients who require continuous medical care while travelling. Unlike a standard passenger flight, an air ambulance functions as a flying intensive care unit (ICU), equipped with advanced medical devices such as ventilators, cardiac monitors, infusion pumps, oxygen delivery systems, suction equipment, defibrillators, and emergency medications. At REACT Air Ambulance, every mission begins with a detailed medical assessment — our doctors review the patient's condition, coordinate with the treating hospital, and recommend the safest mode of transport."}},
+      {"@type":"Question","name":"Why choose REACT Air Ambulance?","acceptedAnswer":{"@type":"Answer","text":"REACT Air Ambulance is built around one principle — providing safe, doctor-led medical transport with complete peace of mind for patients and families. We coordinate every aspect of the journey, including medical assessment, flight planning, airline approvals, ICU equipment, ground ambulances, airport coordination, and communication with the receiving hospital. Our experienced physicians and critical care paramedics remain with the patient throughout the transfer, ensuring uninterrupted monitoring and treatment."}},
+      {"@type":"Question","name":"What is the difference between a Dedicated Air Ambulance and a Commercial Airline Medical Stretcher?","acceptedAnswer":{"@type":"Answer","text":"A Dedicated Air Ambulance is a private aircraft configured as a flying ICU and is recommended for critically ill patients who require urgent transfer or advanced life support throughout the journey. A Commercial Airline Medical Stretcher is installed inside a scheduled commercial aircraft after airline approval — it offers continuous medical supervision at a significantly lower cost while remaining suitable for many stable patients who still require intensive monitoring. REACT evaluates every case individually to determine the safest and most cost-effective option."}},
+      {"@type":"Question","name":"How does a Commercial Airline Medical Stretcher work?","acceptedAnswer":{"@type":"Answer","text":"Commercial Airline Medical Stretchers are specially approved systems installed in the rear section of selected commercial aircraft. Passenger seats are removed or folded to accommodate the stretcher, and privacy curtains are installed around the patient. Our doctor-led medical team accompanies the patient with portable ICU equipment, monitors vital signs, administers medications, and responds immediately to any medical emergency."}},
+      {"@type":"Question","name":"Who can travel by Air Ambulance?","acceptedAnswer":{"@type":"Answer","text":"Air ambulance transport is suitable for patients suffering from stroke, trauma, spinal injuries, cardiac disease, respiratory failure, neurological disorders, cancer, post-operative complications, organ transplant requirements, neonatal emergencies, pediatric illnesses, and many other conditions. Patients requiring oxygen therapy, cardiac monitoring, or ventilator support may also be eligible after medical evaluation."}},
+      {"@type":"Question","name":"Can critically ill or ventilator-dependent patients travel safely?","acceptedAnswer":{"@type":"Answer","text":"Yes. Many critically ill patients can be transported safely when accompanied by an experienced critical care team using portable ventilators, advanced monitoring systems, oxygen therapy, infusion pumps, and emergency medications. Every mission is individually planned after reviewing the patient's clinical condition, ensuring appropriate equipment and personnel accompany the patient throughout the journey."}},
+      {"@type":"Question","name":"What is International Medical Repatriation and how does REACT manage it?","acceptedAnswer":{"@type":"Answer","text":"International Medical Repatriation refers to the medically supervised transfer of a patient from one country to another for continued treatment or to return home. REACT manages the complete process, including medical assessment, airline clearances, travel planning, ground ambulances, immigration coordination when required, airport logistics, and communication with the receiving hospital. Families receive a single point of contact from start to finish."}},
+      {"@type":"Question","name":"Do you provide complete Bed-to-Bed Patient Transfer Services?","acceptedAnswer":{"@type":"Answer","text":"Yes. REACT offers comprehensive Bed-to-Bed Patient Transfer Services. We arrange hospital pickup, ground ambulance transport, airport handling, flight coordination, medical escort, and transfer to the receiving hospital. Our operations team manages every stage of the journey so families do not have to coordinate multiple agencies."}},
+      {"@type":"Question","name":"What medical equipment and personnel accompany the patient?","acceptedAnswer":{"@type":"Answer","text":"Depending on the patient's needs, REACT deploys emergency physicians, critical care specialists, flight paramedics, nurses, and respiratory therapists. Equipment may include ventilators, multiparameter cardiac monitors, defibrillators, syringe pumps, suction machines, oxygen cylinders, airway devices, and emergency medications, allowing ICU-level care throughout the transfer."}},
+      {"@type":"Question","name":"How quickly can REACT arrange an emergency medical transfer?","acceptedAnswer":{"@type":"Answer","text":"Transfer timelines depend on the patient's condition, airline approvals, aircraft availability, visas, and destination. Commercial stretcher transfers are often organised within 24–72 hours, while dedicated air ambulance missions may be arranged much sooner for emergencies. Our operations team works 24×7 to expedite urgent cases."}},
+      {"@type":"Question","name":"Which countries does REACT Air Ambulance serve?","acceptedAnswer":{"@type":"Answer","text":"REACT coordinates patient transfers throughout India and internationally. We frequently assist patients travelling between India and the United States, Canada, the United Kingdom, Europe, the Middle East, Australia, Southeast Asia, and many other destinations through our global coordination network."}},
+      {"@type":"Question","name":"Can family members accompany the patient during transport?","acceptedAnswer":{"@type":"Answer","text":"In many cases, yes. Subject to airline policies, aircraft configuration, and seat availability, one or more family members can accompany the patient. Our coordinators guide families through documentation, travel arrangements, and any special requirements before departure."}},
+      {"@type":"Question","name":"How much does an Air Ambulance or Commercial Airline Medical Stretcher cost?","acceptedAnswer":{"@type":"Answer","text":"Costs vary depending on the patient's medical condition, travel distance, aircraft type, medical personnel, equipment required, airport charges, and ground ambulance services. Commercial Airline Medical Stretchers are generally more economical than Dedicated Air Ambulances. REACT provides transparent, customised quotations after reviewing the patient's medical records."}},
+      {"@type":"Question","name":"How do I book a patient transfer with REACT Air Ambulance?","acceptedAnswer":{"@type":"Answer","text":"Booking is simple. Contact our team and share the patient's medical summary, current location, destination hospital, recent doctor's report, and investigation results if available. Our physicians review the case, recommend the safest transport option, explain the process, and provide a detailed quotation before arrangements begin."}},
+      {"@type":"Question","name":"Why do families, hospitals, and insurance providers trust REACT Air Ambulance?","acceptedAnswer":{"@type":"Answer","text":"REACT is committed to clinical excellence, transparent communication, and compassionate patient care. Our doctor-led approach, ICU-grade equipment, complete bed-to-bed coordination, international experience, and 24×7 emergency support enable us to deliver safe and seamless medical transport. Every mission is individually planned to meet the patient's unique needs."}}
+    ]
+  }
+  </script>
 
   <!-- Preload above-the-fold images for faster LCP -->
   <link rel="preload" as="image" href="landing-1.png">
@@ -992,7 +1015,7 @@
     .fleet-grid-2 { grid-template-columns: repeat(2,1fr); max-width: 740px; }
     .fleet-grid-3 { grid-template-columns: repeat(3,1fr); }
 
-    .fleet-group { }
+    .fleet-group { display: block; }
     .fleet-group-label {
       display: flex; align-items: center; gap: 14px;
       margin-bottom: 24px;
@@ -2621,43 +2644,169 @@
       color: var(--muted); font-size: 12px;
     }
 
-    /* ── FAQ ─────────────────────────────────────────────── */
-    .faq-section {
-      padding: 112px 0;
-      background: var(--panel);
+    /* ── FAQ PREMIUM ─────────────────────────────────────── */
+    .faq-section { padding: 112px 0 80px; background: var(--panel); }
+
+    .faq-hdr {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 48px; margin-bottom: 48px;
     }
-    .faq-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px; margin-top: 52px; align-items: start;
+    .faq-hdr-left { flex: 1; max-width: 620px; }
+    .faq-hdr-title {
+      font-family: var(--font-head); font-size: clamp(38px,5vw,60px);
+      line-height: 1.0; color: var(--white); margin: 8px 0 16px;
     }
-    .faq-item {
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 6px;
-      overflow: hidden;
-      transition: border-color .25s;
+    .faq-hdr-sub {
+      font-family: var(--font-body); font-size: 16px; line-height: 1.7;
+      color: var(--muted); max-width: 480px;
     }
-    .faq-item[open] { border-color: rgba(224,40,40,.35); }
-    .faq-q {
-      padding: 20px 24px;
-      font-family: var(--font-label); font-size: 11px;
+    .faq-hdr-stat {
+      flex-shrink: 0; text-align: center; padding: 22px 28px;
+      background: rgba(224,40,40,.07); border: 1px solid rgba(224,40,40,.18);
+      border-radius: 12px;
+    }
+    .faq-hdr-stat-num {
+      font-family: var(--font-head); font-size: 52px; color: var(--red);
+      display: block; line-height: 1;
+    }
+    .faq-hdr-stat-lbl {
+      font-family: var(--font-label); font-size: 10px;
       letter-spacing: 1.8px; text-transform: uppercase;
-      color: var(--white); cursor: pointer;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      list-style: none; user-select: none;
-      transition: color .2s, background .2s;
+      color: var(--muted); display: block; margin-top: 6px;
     }
-    .faq-q::-webkit-details-marker { display: none; }
-    .faq-q::after {
-      content: '+'; flex-shrink: 0;
-      font-family: var(--font-head); font-size: 22px;
-      color: var(--red); transition: transform .3s;
+
+    /* Category tabs */
+    .faq-cats {
+      display: flex; flex-wrap: nowrap; overflow-x: auto;
+      gap: 8px; margin-bottom: 40px; padding-bottom: 2px;
+      scrollbar-width: none;
     }
-    .faq-item[open] .faq-q::after { transform: rotate(45deg); }
-    .faq-item[open] .faq-q { color: var(--red2); background: rgba(224,40,40,.05); }
-    .faq-a {
-      padding: 0 24px 22px;
-      color: var(--muted); font-size: 15px; line-height: 1.75;
+    .faq-cats::-webkit-scrollbar { display: none; }
+    .faq-cat {
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: 100px;
+      font-family: var(--font-body); font-size: 13.5px; font-weight: 500;
+      color: var(--muted); background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1); cursor: pointer;
+      transition: all .22s;
     }
+    .faq-cat:hover { color: var(--skylt); background: rgba(74,158,255,.08); border-color: rgba(74,158,255,.22); }
+    .faq-cat.active { color: #fff; background: var(--sky); border-color: var(--sky); box-shadow: 0 3px 14px rgba(21,101,200,.3); }
+    .faq-cat-n {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 18px; height: 18px; border-radius: 9px; padding: 0 4px;
+      font-size: 10px; font-family: var(--font-label);
+      background: rgba(255,255,255,.12); color: inherit;
+    }
+    .faq-cat.active .faq-cat-n { background: rgba(255,255,255,.28); }
+
+    /* FAQ list */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; max-width: 860px; margin: 0 auto; }
+
+    /* FAQ card */
+    .faq-card {
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px; overflow: hidden;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .faq-card:hover { border-color: rgba(74,158,255,.22); }
+    .faq-card.open { border-color: rgba(21,101,200,.45); box-shadow: 0 6px 28px rgba(0,0,0,.16); }
+
+    .faq-card-q {
+      width: 100%; display: flex; align-items: center; gap: 16px;
+      padding: 22px 22px; background: none; border: none;
+      cursor: pointer; text-align: left;
+    }
+    .faq-card-num {
+      font-family: var(--font-label); font-size: 10px; letter-spacing: 1.5px;
+      color: var(--muted); flex-shrink: 0; width: 22px; transition: color .25s;
+    }
+    .faq-card.open .faq-card-num { color: var(--skylt); }
+    .faq-card-text {
+      flex: 1; font-family: var(--font-body); font-size: 16px; font-weight: 500;
+      color: var(--white); line-height: 1.4;
+    }
+    .faq-card-icon {
+      flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1;
+      transition: transform .38s cubic-bezier(.4,0,.2,1), border-color .25s, background .25s, color .25s;
+    }
+    .faq-card.open .faq-card-icon {
+      transform: rotate(45deg);
+      border-color: rgba(224,40,40,.4); color: var(--red); background: rgba(224,40,40,.07);
+    }
+
+    .faq-card-preview {
+      padding: 0 22px 18px 60px;
+      font-size: 14px; color: var(--muted); line-height: 1.65;
+      display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .faq-card.open .faq-card-preview { display: none; }
+
+    .faq-card-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height .48s cubic-bezier(.4,0,.2,1), opacity .35s;
+      opacity: 0;
+    }
+    .faq-card.open .faq-card-body { max-height: 900px; opacity: 1; }
+
+    .faq-card-answer {
+      padding: 4px 22px 24px 60px;
+      font-size: 15px; color: var(--muted); line-height: 1.82;
+    }
+    .faq-card-answer p { margin-bottom: 10px; }
+    .faq-card-answer p:last-child { margin-bottom: 0; }
+
+    /* Inline CTA inside answer */
+    .faq-ans-cta {
+      margin-top: 18px; padding: 14px 18px;
+      background: rgba(21,101,192,.08); border: 1px solid rgba(21,101,192,.2);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    }
+    .faq-ans-cta-text { font-size: 13.5px; font-weight: 500; color: var(--white); }
+    .faq-ans-cta-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+    .faq-ans-btn {
+      padding: 8px 16px; border-radius: 5px; font-size: 11.5px; font-weight: 600;
+      font-family: var(--font-label); letter-spacing: 0.6px; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s;
+    }
+    .faq-ans-btn.red { background: var(--red); color: #fff; border: none; }
+    .faq-ans-btn.red:hover { background: #c51e1e; }
+    .faq-ans-btn.ghost { background: transparent; color: var(--skylt); border: 1px solid rgba(74,158,255,.3); }
+    .faq-ans-btn.ghost:hover { background: rgba(74,158,255,.1); }
+
+    /* CTA break card */
+    .faq-break {
+      border-radius: 10px;
+      background: linear-gradient(135deg,#071628 0%,#091e36 60%,#0d2340 100%);
+      border: 1px solid rgba(21,101,192,.22); padding: 28px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; transition: border-color .25s;
+    }
+    .faq-break:hover { border-color: rgba(21,101,192,.38); }
+    .faq-break-left { display: flex; align-items: center; gap: 16px; }
+    .faq-break-icon {
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(224,40,40,.12); border: 1px solid rgba(224,40,40,.22);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .faq-break-icon svg { width: 18px; height: 18px; stroke: var(--red); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .faq-break-h { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .faq-break-p { font-size: 13px; color: var(--muted); }
+    .faq-break-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .faq-break-btn {
+      padding: 10px 22px; border-radius: 6px;
+      font-family: var(--font-label); font-size: 11px; letter-spacing: 1.2px;
+      text-transform: uppercase; font-weight: 700;
+      cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s;
+    }
+    .faq-break-btn.red { background: var(--red); color: #fff; border: none; }
+    .faq-break-btn.red:hover { background: #c51e1e; }
+    .faq-break-btn.ghost { background: transparent; color: var(--skylt); border: 1px solid rgba(74,158,255,.28); }
+    .faq-break-btn.ghost:hover { background: rgba(74,158,255,.08); }
 
     /* ── CONTACT FORM ────────────────────────────────────── */
     /* ── CONTACT SECTION ─────────────────────────────────── */
@@ -3327,6 +3476,21 @@
       .lm-name { font-size: 26px; }
       .lm-quote-block { padding: 13px 16px; }
       .lm-close { top: 12px; right: 12px; width: 36px; height: 36px; }
+
+      /* FAQ small-screen fixes */
+      .faq-section { padding: 72px 0 56px; }
+      .faq-hdr-stat { display: none; }
+      .faq-hdr-title { font-size: 36px; }
+      .faq-cat { padding: 9px 14px; font-size: 13px; }
+      .faq-card-q { padding: 16px 14px; gap: 10px; }
+      .faq-card-num { display: none; }
+      .faq-card-preview, .faq-card-answer { padding-left: 14px; padding-right: 14px; }
+      .faq-break { flex-direction: column; gap: 16px; padding: 18px; }
+      .faq-break-btns { width: 100%; }
+      .faq-break-btn { flex: 1; text-align: center; padding: 12px 10px; }
+      .faq-ans-cta { flex-direction: column; align-items: flex-start; }
+      .faq-ans-cta-btns { width: 100%; }
+      .faq-ans-btn { flex: 1; text-align: center; }
     }
 
     @media (max-width: 920px) {
@@ -3520,7 +3684,12 @@
       .why-grid { grid-template-columns: repeat(3, 1fr); }
       .about-grid { grid-template-columns: 1fr; gap: 44px; }
       .testi-grid { grid-template-columns: 1fr 1fr; }
-      .faq-grid { grid-template-columns: 1fr; }
+      .faq-card-preview, .faq-card-answer { padding-left: 38px; }
+      .faq-hdr { flex-direction: column; gap: 20px; }
+      .faq-hdr-stat { align-self: flex-start; padding: 16px 22px; }
+      .faq-hdr-stat-num { font-size: 38px; }
+      .faq-break { padding: 20px; }
+      .faq-card-q { padding: 18px 16px; gap: 12px; }
       .contact-shell { grid-template-columns: 1fr; gap: 48px; }
       .contact-form-card { padding: 32px 24px; }
       .form-row { grid-template-columns: 1fr; }
@@ -3801,19 +3970,37 @@
 
     /* ── Coverage — kept dark (vintage map) ─────────────────── */
 
-    /* ── FAQ ────────────────────────────────────────────────── */
+    /* ── FAQ light overrides ────────────────────────────────── */
     .faq-section          { background: #ffffff; }
-    .faq-section .eyebrow { color: var(--skylt); }
-    .faq-section .section-title { color: #1a2d4f; }
-    .faq-section .section-copy  { color: #3d5a7a; }
-    .faq-item {
-      background: #ffffff;
-      border: 1px solid rgba(21,101,192,.1);
-    }
-    .faq-item[open]       { border-color: rgba(21,101,192,.3); }
-    .faq-q                { color: #1a2d4f; }
-    .faq-item[open] .faq-q { color: var(--sky); background: rgba(21,101,192,.05); }
-    .faq-a                { color: #3d5a7a; }
+    .faq-hdr-title        { color: #1a2d4f; }
+    .faq-hdr-sub          { color: #4a6a8a; }
+    .faq-hdr-stat         { background: rgba(224,40,40,.05); border-color: rgba(224,40,40,.15); }
+    .faq-cat              { color: #5a7a9f; background: rgba(21,101,192,.05); border-color: rgba(21,101,192,.12); }
+    .faq-cat:hover        { color: var(--sky); background: rgba(21,101,192,.1); border-color: rgba(21,101,192,.28); }
+    .faq-cat.active       { color: #fff; background: var(--sky); border-color: var(--sky); }
+    .faq-cat-n            { background: rgba(21,101,192,.14); }
+    .faq-cat.active .faq-cat-n { background: rgba(255,255,255,.28); }
+    .faq-card             { background: #fff; border-color: rgba(21,101,192,.1); box-shadow: 0 1px 6px rgba(0,0,0,.04); }
+    .faq-card:hover       { border-color: rgba(21,101,192,.22); box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+    .faq-card.open        { border-color: rgba(21,101,200,.32); box-shadow: 0 8px 32px rgba(21,101,192,.1); }
+    .faq-card-num         { color: #8aa4bf; }
+    .faq-card.open .faq-card-num { color: var(--sky); }
+    .faq-card-text        { color: #1a2d4f; }
+    .faq-card-icon        { border-color: rgba(21,101,192,.22); color: rgba(21,101,192,.45); }
+    .faq-card.open .faq-card-icon { border-color: rgba(224,40,40,.3); color: var(--red); background: rgba(224,40,40,.05); }
+    .faq-card-preview     { color: #6a8aaa; }
+    .faq-card-answer      { color: #3d5a7a; }
+    .faq-ans-cta          { background: rgba(21,101,192,.05); border-color: rgba(21,101,192,.15); }
+    .faq-ans-cta-text     { color: #1a2d4f; }
+    .faq-ans-btn.ghost    { color: var(--sky); border-color: rgba(21,101,192,.3); }
+    .faq-ans-btn.ghost:hover { background: rgba(21,101,192,.07); }
+    .faq-break            { background: linear-gradient(135deg,#f0f6ff 0%,#e8f0ff 100%); border-color: rgba(21,101,192,.18); }
+    .faq-break:hover      { border-color: rgba(21,101,192,.32); }
+    .faq-break-h          { color: #1a2d4f; }
+    .faq-break-p          { color: #5a7a9f; }
+    .faq-break-icon       { background: rgba(224,40,40,.08); border-color: rgba(224,40,40,.18); }
+    .faq-break-btn.ghost  { color: var(--sky); border-color: rgba(21,101,192,.28); }
+    .faq-break-btn.ghost:hover { background: rgba(21,101,192,.06); }
 
     /* Service detail page — light theme already set in component CSS */
 
@@ -4201,11 +4388,13 @@
               <span class="leader-tag">Founder</span>
               <div class="leader-name">Dr. Neel Rohith Reddy</div>
               <div class="leader-role">Founder &amp; Medical Director</div>
-              <p class="leader-bio">Emergency Physician and Aeromedical Intensivist with over a decade of critical care transport experience across India and internationally. Founded REACT to deliver ICU-level care from the first moment of transport.</p>
+              <p class="leader-bio">MBBS, FEM (RLA-UK), MEM (SEMI), MRCEM · Fellowship in Aviation Medicine (UK) · Prehospital Emergency Consultant &amp; Aeromedical Intensivist with over a decade of critical care transport experience across India and internationally.</p>
               <div class="leader-creds">
-                <span class="leader-chip leader-chip-cert">Emergency Medicine</span>
-                <span class="leader-chip">Aeromedical Transport</span>
-                <span class="leader-chip">Critical Care</span>
+                <span class="leader-chip leader-chip-cert">FEM · RLA-UK</span>
+                <span class="leader-chip">MEM · SEMI</span>
+                <span class="leader-chip">MRCEM</span>
+                <span class="leader-chip">Aviation Medicine</span>
+                <span class="leader-chip">Aeromedical Intensivist</span>
               </div>
               <button class="leader-view-btn">View Full Profile <span class="btn-arrow">→</span></button>
             </div>
@@ -4893,7 +5082,7 @@
 
           <!-- Top-right 1: in-flight ICU care -->
           <div class="gallery-item">
-            <img src="airborne-critical-care.jpg" alt="In-flight ICU critical care monitoring" loading="lazy" onerror="this.style.opacity='0'">
+            <img src="airborne-critical-care-new.png" alt="REACT medical crew loading critically ill patient into air ambulance jet" loading="lazy" onerror="this.style.opacity='0'" style="object-position:center 30%">
             <div class="gallery-caption">
               <span class="cap-tag">In-Flight ICU</span>
               <span class="cap-title">Airborne Critical Care</span>
@@ -4902,7 +5091,7 @@
 
           <!-- Bottom-right 1: ground ambulance -->
           <div class="gallery-item">
-            <img src="ground-transfer.jpg" alt="REACT Air Ambulance ground transfer team loading patient at emergency entrance" loading="lazy" onerror="this.style.opacity='0'" style="object-position:center 40%">
+            <img src="bed-to-bed-transfer.png" alt="REACT Air Ambulance ground transfer team at emergency entrance" loading="lazy" onerror="this.style.opacity='0'" style="object-position:center 30%">
             <div class="gallery-caption">
               <span class="cap-tag">Ground Transfer</span>
               <span class="cap-title">Bed-to-Bed Continuity</span>
@@ -4915,6 +5104,15 @@
             <div class="gallery-caption">
               <span class="cap-tag">Medical Team</span>
               <span class="cap-title">Specialist Crew On Board</span>
+            </div>
+          </div>
+
+          <!-- Bottom-right 3: rapid deployment -->
+          <div class="gallery-item">
+            <img src="dedicated-ambulance.jpg" alt="REACT crew rapid deployment to aircraft" loading="lazy" onerror="this.style.opacity='0'" style="object-position:center 30%">
+            <div class="gallery-caption">
+              <span class="cap-tag">24/7 Operations</span>
+              <span class="cap-title">Always Mission Ready</span>
             </div>
           </div>
 
@@ -6113,49 +6311,349 @@
     </section>
 
     <!-- FAQ -->
-    <section class="faq-section" id="faq">
+    <section class="faq-section" id="faq" aria-labelledby="faq-heading">
       <div class="shell">
-        <div class="eyebrow">Common Questions</div>
-        <h2 class="section-title">Frequently Asked<br>Questions</h2>
-        <p class="section-copy">Everything you need to know before making the call.</p>
-        <div class="faq-grid">
-
-          <details class="faq-item">
-            <summary class="faq-q">How quickly can REACT deploy an aircraft?</summary>
-            <div class="faq-a">Our average deployment time is 18 minutes from call confirmation to aircraft wheels-up. Our 24/7 command centre triages every call immediately and scrambles the nearest available aircraft with the right medical crew for your patient's condition.</div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">What medical conditions can be transported?</summary>
-            <div class="faq-a">We transport all critical care conditions including cardiac emergencies, stroke, multi-trauma, respiratory failure, neonatal and pediatric critical illness, post-surgical transfers, and patients requiring ECMO support. Our medical directors assess each case individually.</div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">What cities and regions does REACT cover?</summary>
-            <div class="faq-a">We cover 32+ cities across India including Delhi, Mumbai, Bengaluru, Chennai, Kolkata, Hyderabad, Pune, Ahmedabad, and all major Tier-2 cities. International operations are available on request for repatriation to and from any country.</div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">What medical staff are on board?</summary>
-            <div class="faq-a">Every REACT mission is staffed with a minimum of one flight physician and one flight nurse or paramedic. For specialist transfers (neonatal, ECMO, organ retrieval), we deploy condition-specific teams including neonatologists, perfusionists, and retrieval surgeons.</div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">How do I request an air ambulance?</summary>
-            <div class="faq-a">Call our 24/7 emergency line: +91 9849994108. Have ready: patient name, current location, diagnosis/condition, receiving hospital if known. Our team handles everything else — aircraft, crew, ground ambulances, documentation, and hospital coordination.</div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">What equipment is on board every aircraft?</summary>
-            <div class="faq-a">All REACT aircraft carry: ICU-grade ventilator, 12-lead cardiac monitor and defibrillator, IV infusion pumps, portable oxygen, suction unit, full drug kit, and trauma supplies. Specialist equipment (neonatal incubator, ECMO circuit, portable ultrasound) is added based on the clinical requirement.</div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">Can REACT assist with non-emergency medical travel?</summary>
-            <div class="faq-a">Yes. Through our Concierge Medical Travel service, we assist with hospital selection, specialist appointments, premium medical transport, accommodation, visa coordination, and post-treatment repatriation — a complete end-to-end service for planned medical journeys.</div>
-          </details>
-
+        <div class="faq-hdr">
+          <div class="faq-hdr-left">
+            <div class="eyebrow">Common Questions</div>
+            <h2 class="faq-hdr-title" id="faq-heading">Frequently Asked<br>Questions</h2>
+            <p class="faq-hdr-sub">Everything families, hospitals, and insurance providers need to know about REACT Air Ambulance — answered by our medical team.</p>
+          </div>
+          <div class="faq-hdr-stat" aria-hidden="true">
+            <span class="faq-hdr-stat-num">15</span>
+            <span class="faq-hdr-stat-lbl">Questions Answered</span>
+          </div>
         </div>
+
+        <nav class="faq-cats" role="tablist" aria-label="FAQ categories">
+          <button class="faq-cat active" role="tab" aria-selected="true" data-cat="all">All Questions <span class="faq-cat-n">15</span></button>
+          <button class="faq-cat" role="tab" aria-selected="false" data-cat="general">General <span class="faq-cat-n">5</span></button>
+          <button class="faq-cat" role="tab" aria-selected="false" data-cat="medical">Medical Care <span class="faq-cat-n">3</span></button>
+          <button class="faq-cat" role="tab" aria-selected="false" data-cat="aircraft">Air Ambulance <span class="faq-cat-n">3</span></button>
+          <button class="faq-cat" role="tab" aria-selected="false" data-cat="international">International <span class="faq-cat-n">2</span></button>
+          <button class="faq-cat" role="tab" aria-selected="false" data-cat="pricing">Pricing &amp; Booking <span class="faq-cat-n">3</span></button>
+        </nav>
+        <div class="faq-list" id="faq-list" role="list">
+
+          <!-- Q01 -->
+          <article class="faq-card" id="faq-what-is-air-ambulance" data-cats="general aircraft" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-01">
+              <span class="faq-card-num">01</span>
+              <span class="faq-card-text">What is an Air Ambulance?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">An air ambulance is a specially equipped aircraft that transports critically ill patients requiring continuous medical care — functioning as a flying ICU with ventilators, cardiac monitors, and emergency medications.</p>
+            <div class="faq-card-body" id="faq-body-01" role="region">
+              <div class="faq-card-answer">
+                <p>An air ambulance is a specially equipped aircraft designed to transport critically ill or injured patients who require continuous medical care while travelling. Unlike a standard passenger flight, an air ambulance functions as a flying intensive care unit (ICU), equipped with advanced medical devices such as ventilators, cardiac monitors, infusion pumps, oxygen delivery systems, suction equipment, defibrillators, and emergency medications.</p>
+                <p>Depending on the patient's condition, air medical transport may be provided using a Dedicated Air Ambulance, a Commercial Airline Medical Stretcher, or a Doctor-Led Medical Escort. At REACT Air Ambulance, every mission begins with a detailed medical assessment — our doctors review the patient's condition, coordinate with the treating hospital, and recommend the safest mode of transport.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q02 -->
+          <article class="faq-card" id="faq-why-choose-react" data-cats="general" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-02">
+              <span class="faq-card-num">02</span>
+              <span class="faq-card-text">Why choose REACT Air Ambulance?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">REACT is built around one principle — safe, doctor-led medical transport with complete peace of mind for patients and families. We coordinate every aspect from medical assessment to receiving hospital handover.</p>
+            <div class="faq-card-body" id="faq-body-02" role="region">
+              <div class="faq-card-answer">
+                <p>REACT Air Ambulance is built around one principle — providing safe, doctor-led medical transport with complete peace of mind for patients and families. We coordinate every aspect of the journey, including medical assessment, flight planning, airline approvals, ICU equipment, ground ambulances, airport coordination, and communication with the receiving hospital.</p>
+                <p>Our experienced physicians and critical care paramedics remain with the patient throughout the transfer, ensuring uninterrupted monitoring and treatment. We believe every patient deserves personalised care rather than a one-size-fits-all approach, and our team recommends the most appropriate transport option based on the patient's condition, urgency, and budget.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q03 -->
+          <article class="faq-card" id="faq-dedicated-vs-commercial" data-cats="aircraft" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-03">
+              <span class="faq-card-num">03</span>
+              <span class="faq-card-text">What is the difference between a Dedicated Air Ambulance and a Commercial Airline Medical Stretcher?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">A Dedicated Air Ambulance is a private flying ICU for critically ill patients. A Commercial Airline Medical Stretcher offers supervised care at lower cost for stable patients on scheduled flights.</p>
+            <div class="faq-card-body" id="faq-body-03" role="region">
+              <div class="faq-card-answer">
+                <p>A Dedicated Air Ambulance is a private aircraft configured as a flying ICU and is recommended for critically ill patients who require urgent transfer or advanced life support throughout the journey.</p>
+                <p>A Commercial Airline Medical Stretcher, on the other hand, is installed inside a scheduled commercial aircraft after airline approval. It offers continuous medical supervision at a significantly lower cost while remaining suitable for many stable patients who still require intensive monitoring.</p>
+                <p>REACT evaluates every case individually to determine the safest and most cost-effective option.</p>
+                <div class="faq-ans-cta">
+                  <span class="faq-ans-cta-text">Not sure which option suits your patient?</span>
+                  <div class="faq-ans-cta-btns">
+                    <a href="tel:+919849994108" class="faq-ans-btn red">Call Now</a>
+                    <a href="#contact-form" class="faq-ans-btn ghost">Request Quote</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q04 -->
+          <article class="faq-card" id="faq-commercial-stretcher" data-cats="aircraft" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-04">
+              <span class="faq-card-num">04</span>
+              <span class="faq-card-text">How does a Commercial Airline Medical Stretcher work?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">Stretchers are installed in the rear of commercial aircraft with privacy curtains. A doctor-led team monitors the patient with portable ICU equipment throughout — combining hospital-level care with scheduled airline affordability.</p>
+            <div class="faq-card-body" id="faq-body-04" role="region">
+              <div class="faq-card-answer">
+                <p>Commercial Airline Medical Stretchers are specially approved systems installed in the rear section of selected commercial aircraft. Passenger seats are removed or folded to accommodate the stretcher, and privacy curtains are installed around the patient.</p>
+                <p>Our doctor-led medical team accompanies the patient with portable ICU equipment, monitors vital signs, administers medications, and responds immediately to any medical emergency. This service is ideal for international medical repatriation because it combines hospital-level care with the affordability of scheduled airline travel.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CTA Break 1 -->
+          <div class="faq-break" data-break="1">
+            <div class="faq-break-left">
+              <div class="faq-break-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <p class="faq-break-h">Still have questions about transport options?</p>
+                <p class="faq-break-p">Our medical coordination team is available 24×7 to assess your patient's condition and recommend the right service.</p>
+              </div>
+            </div>
+            <div class="faq-break-btns">
+              <a href="tel:+919849994108" class="faq-break-btn red">+91 9849994108</a>
+              <a href="#contact-form" class="faq-break-btn ghost">Request Quote</a>
+            </div>
+          </div>
+
+          <!-- Q05 -->
+          <article class="faq-card" id="faq-who-can-travel" data-cats="medical" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-05">
+              <span class="faq-card-num">05</span>
+              <span class="faq-card-text">Who can travel by Air Ambulance?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">Air ambulance transport is suitable for stroke, trauma, cardiac disease, respiratory failure, neonatal emergencies, and many other conditions — including patients requiring oxygen, cardiac monitoring, or ventilator support.</p>
+            <div class="faq-card-body" id="faq-body-05" role="region">
+              <div class="faq-card-answer">
+                <p>Air ambulance transport is suitable for patients suffering from stroke, trauma, spinal injuries, cardiac disease, respiratory failure, neurological disorders, cancer, post-operative complications, organ transplant requirements, neonatal emergencies, pediatric illnesses, and many other conditions.</p>
+                <p>Patients requiring oxygen therapy, cardiac monitoring, or ventilator support may also be eligible after medical evaluation. Our physicians conduct a clinical assessment before every mission to confirm suitability and plan the safest transfer.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q06 -->
+          <article class="faq-card" id="faq-critically-ill" data-cats="medical" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-06">
+              <span class="faq-card-num">06</span>
+              <span class="faq-card-text">Can critically ill or ventilator-dependent patients travel safely?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">Yes. Many critically ill patients travel safely with an experienced critical care team using portable ventilators, advanced monitoring, and emergency medications. Every mission is individually planned after reviewing the patient's condition.</p>
+            <div class="faq-card-body" id="faq-body-06" role="region">
+              <div class="faq-card-answer">
+                <p>Yes. Many critically ill patients can be transported safely when accompanied by an experienced critical care team using portable ventilators, advanced monitoring systems, oxygen therapy, infusion pumps, and emergency medications.</p>
+                <p>Every mission is individually planned after reviewing the patient's clinical condition, ensuring appropriate equipment and personnel accompany the patient throughout the journey. REACT's medical directors assess each case before departure to confirm clinical stability for transport.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q07 -->
+          <article class="faq-card" id="faq-international-repatriation" data-cats="international" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-07">
+              <span class="faq-card-num">07</span>
+              <span class="faq-card-text">What is International Medical Repatriation and how does REACT manage it?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">International Medical Repatriation is the medically supervised transfer of a patient between countries. REACT manages the complete process — medical assessment, airline clearances, ground ambulances, immigration coordination, and hospital handover.</p>
+            <div class="faq-card-body" id="faq-body-07" role="region">
+              <div class="faq-card-answer">
+                <p>International Medical Repatriation refers to the medically supervised transfer of a patient from one country to another for continued treatment or to return home. REACT manages the complete process, including medical assessment, airline clearances, travel planning, ground ambulances, immigration coordination when required, airport logistics, and communication with the receiving hospital.</p>
+                <p>Families receive a single point of contact from start to finish — no need to coordinate airlines, hospitals, and ground transport separately.</p>
+                <div class="faq-ans-cta">
+                  <span class="faq-ans-cta-text">Need international patient repatriation?</span>
+                  <div class="faq-ans-cta-btns">
+                    <a href="tel:+919849994108" class="faq-ans-btn red">Call Now</a>
+                    <a href="#contact-form" class="faq-ans-btn ghost">Get a Quote</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q08 -->
+          <article class="faq-card" id="faq-bed-to-bed" data-cats="general" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-08">
+              <span class="faq-card-num">08</span>
+              <span class="faq-card-text">Do you provide complete Bed-to-Bed Patient Transfer Services?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">Yes. REACT arranges hospital pickup, ground ambulance, airport handling, flight coordination, medical escort, and transfer to the receiving hospital — families don't need to coordinate multiple agencies.</p>
+            <div class="faq-card-body" id="faq-body-08" role="region">
+              <div class="faq-card-answer">
+                <p>Yes. REACT offers comprehensive Bed-to-Bed Patient Transfer Services. We arrange hospital pickup, ground ambulance transport, airport handling, flight coordination, medical escort, and transfer to the receiving hospital.</p>
+                <p>Our operations team manages every stage of the journey so families do not have to coordinate multiple agencies. A single operations coordinator is assigned to every case and remains reachable throughout the transfer.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CTA Break 2 -->
+          <div class="faq-break" data-break="2">
+            <div class="faq-break-left">
+              <div class="faq-break-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <p class="faq-break-h">Our medical team is available 24×7</p>
+                <p class="faq-break-p">Every case is reviewed by a physician before any arrangement is made. Call us to discuss your patient's specific needs.</p>
+              </div>
+            </div>
+            <div class="faq-break-btns">
+              <a href="tel:+919849994108" class="faq-break-btn red">Call Now</a>
+              <a href="https://wa.me/918006426779" class="faq-break-btn ghost">WhatsApp</a>
+            </div>
+          </div>
+
+          <!-- Q09 -->
+          <article class="faq-card" id="faq-equipment-personnel" data-cats="medical" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-09">
+              <span class="faq-card-num">09</span>
+              <span class="faq-card-text">What medical equipment and personnel accompany the patient?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">REACT deploys emergency physicians, critical care specialists, flight paramedics, nurses, and respiratory therapists — with ventilators, cardiac monitors, defibrillators, syringe pumps, oxygen, and emergency medications.</p>
+            <div class="faq-card-body" id="faq-body-09" role="region">
+              <div class="faq-card-answer">
+                <p>Depending on the patient's needs, REACT deploys emergency physicians, critical care specialists, flight paramedics, nurses, and respiratory therapists.</p>
+                <p>Equipment may include ventilators, multiparameter cardiac monitors, defibrillators, syringe pumps, suction machines, oxygen cylinders, airway devices, and emergency medications — allowing ICU-level care throughout the transfer. Specialist equipment such as neonatal incubators, ECMO circuits, or portable ultrasound is added based on the clinical requirement.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q10 -->
+          <article class="faq-card" id="faq-how-quickly" data-cats="general pricing" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-10">
+              <span class="faq-card-num">10</span>
+              <span class="faq-card-text">How quickly can REACT arrange an emergency medical transfer?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">Commercial stretcher transfers are often organised within 24–72 hours. Dedicated air ambulance missions can be arranged much sooner for emergencies. Our operations team works 24×7 to expedite urgent cases.</p>
+            <div class="faq-card-body" id="faq-body-10" role="region">
+              <div class="faq-card-answer">
+                <p>Transfer timelines depend on the patient's condition, airline approvals, aircraft availability, visas, and destination. Commercial stretcher transfers are often organised within 24–72 hours, while dedicated air ambulance missions may be arranged much sooner for emergencies.</p>
+                <p>Our operations team works 24×7 to expedite urgent cases. Contact us immediately with the patient's details and we will begin coordination within minutes of your call.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q11 -->
+          <article class="faq-card" id="faq-countries-served" data-cats="international" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-11">
+              <span class="faq-card-num">11</span>
+              <span class="faq-card-text">Which countries does REACT Air Ambulance serve?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">REACT serves all of India and internationally — including the United States, United Kingdom, Europe, Middle East, Australia, and Southeast Asia through our global coordination network.</p>
+            <div class="faq-card-body" id="faq-body-11" role="region">
+              <div class="faq-card-answer">
+                <p>REACT coordinates patient transfers throughout India and internationally. We frequently assist patients travelling between India and the United States, Canada, the United Kingdom, Europe, the Middle East, Australia, Southeast Asia, and many other destinations through our global coordination network.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q12 -->
+          <article class="faq-card" id="faq-family-members" data-cats="general" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-12">
+              <span class="faq-card-num">12</span>
+              <span class="faq-card-text">Can family members accompany the patient during transport?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">In many cases, yes. Subject to airline policies and seat availability, one or more family members can accompany the patient. Our coordinators guide families through all documentation and arrangements.</p>
+            <div class="faq-card-body" id="faq-body-12" role="region">
+              <div class="faq-card-answer">
+                <p>In many cases, yes. Subject to airline policies, aircraft configuration, and seat availability, one or more family members can accompany the patient. Our coordinators guide families through documentation, travel arrangements, and any special requirements before departure.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CTA Break 3 -->
+          <div class="faq-break" data-break="3">
+            <div class="faq-break-left">
+              <div class="faq-break-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+              </div>
+              <div>
+                <p class="faq-break-h">Get a personalised quote for your patient</p>
+                <p class="faq-break-p">Share the patient's medical summary and our team will assess the case and provide a transparent quotation within the hour.</p>
+              </div>
+            </div>
+            <div class="faq-break-btns">
+              <a href="tel:+919849994108" class="faq-break-btn red">Call Now</a>
+              <a href="#contact-form" class="faq-break-btn ghost">Request Quote</a>
+            </div>
+          </div>
+
+          <!-- Q13 -->
+          <article class="faq-card" id="faq-cost-pricing" data-cats="pricing" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-13">
+              <span class="faq-card-num">13</span>
+              <span class="faq-card-text">How much does an Air Ambulance or Commercial Airline Medical Stretcher cost?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">Costs vary by distance, aircraft type, medical personnel, and equipment required. Commercial Airline Stretchers are generally more economical than Dedicated Air Ambulances. REACT provides transparent, customised quotations.</p>
+            <div class="faq-card-body" id="faq-body-13" role="region">
+              <div class="faq-card-answer">
+                <p>Costs vary depending on the patient's medical condition, travel distance, aircraft type, medical personnel, equipment required, airport charges, and ground ambulance services. Commercial Airline Medical Stretchers are generally more economical than Dedicated Air Ambulances.</p>
+                <p>REACT provides transparent, customised quotations after reviewing the patient's medical records. There are no hidden charges — every cost is explained before arrangements begin.</p>
+                <div class="faq-ans-cta">
+                  <span class="faq-ans-cta-text">Request a transparent, no-obligation quote.</span>
+                  <div class="faq-ans-cta-btns">
+                    <a href="tel:+919849994108" class="faq-ans-btn red">Call Now</a>
+                    <a href="#contact-form" class="faq-ans-btn ghost">Get Quote</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q14 -->
+          <article class="faq-card" id="faq-how-to-book" data-cats="pricing" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-14">
+              <span class="faq-card-num">14</span>
+              <span class="faq-card-text">How do I book a patient transfer with REACT Air Ambulance?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">Contact our team and share the patient's medical summary, current location, and destination hospital. Our physicians review the case, recommend the safest option, and provide a quotation before arrangements begin.</p>
+            <div class="faq-card-body" id="faq-body-14" role="region">
+              <div class="faq-card-answer">
+                <p>Booking is simple. Contact our team and share the patient's medical summary, current location, destination hospital, recent doctor's report, and investigation results if available.</p>
+                <p>Our physicians review the case, recommend the safest transport option, explain the process, and provide a detailed quotation before arrangements begin. You can reach us by phone, WhatsApp, or the contact form on this page.</p>
+                <div class="faq-ans-cta">
+                  <span class="faq-ans-cta-text">Ready to arrange a transfer?</span>
+                  <div class="faq-ans-cta-btns">
+                    <a href="tel:+919849994108" class="faq-ans-btn red">+91 9849994108</a>
+                    <a href="https://wa.me/918006426779" class="faq-ans-btn ghost">WhatsApp</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Q15 -->
+          <article class="faq-card" id="faq-why-trust-react" data-cats="general" role="listitem">
+            <button class="faq-card-q" aria-expanded="false" aria-controls="faq-body-15">
+              <span class="faq-card-num">15</span>
+              <span class="faq-card-text">Why do families, hospitals, and insurance providers trust REACT Air Ambulance?</span>
+              <span class="faq-card-icon" aria-hidden="true">+</span>
+            </button>
+            <p class="faq-card-preview">REACT is committed to clinical excellence, transparent communication, and compassionate care — with doctor-led teams, ICU-grade equipment, bed-to-bed coordination, and 24×7 emergency support.</p>
+            <div class="faq-card-body" id="faq-body-15" role="region">
+              <div class="faq-card-answer">
+                <p>REACT is committed to clinical excellence, transparent communication, and compassionate patient care. Our doctor-led approach, ICU-grade equipment, complete bed-to-bed coordination, international experience, and 24×7 emergency support enable us to deliver safe and seamless medical transport.</p>
+                <p>Every mission is individually planned to meet the patient's unique needs — because at REACT, we believe every journey deserves the highest standard of care.</p>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /.faq-list -->
       </div>
     </section>
 
@@ -6656,8 +7154,8 @@
       neel: {
         tag: 'Founder',
         name: 'Dr. Neel Rohith Reddy',
-        specialty: 'Emergency Physician & Aeromedical Intensivist',
-        role: 'Founder & Medical Director · REACT',
+        specialty: 'MBBS, FEM (RLA-UK), MEM (SEMI), MRCEM · Fellowship in Aviation Medicine (UK)',
+        role: 'Prehospital Emergency Consultant & Aeromedical Intensivist · Founder & Medical Director, REACT',
         initials: 'NR',
         photo: 'dr-founder.jpg', imageMode: 'portrait', photoPos: 'center top',
         quote: 'Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety — because we treat every patient with the same care we would want for our own loved ones.',
@@ -6666,8 +7164,8 @@
           'As an Emergency Physician, I have had the privilege of caring for patients and supporting families during some of the most difficult moments of their lives. Through my experience in aeromedical transport and critical care transfers, I have witnessed how crucial timely access to the right medical care can be — and how overwhelming it is for families when a loved one needs urgent transportation.\n\nREACT was founded with a simple purpose: to bridge this gap by providing safe, dependable, and medically coordinated patient transportation services. We believe that families deserve more than just a transfer service — they deserve reassurance, clear communication, and a team they can trust during life\'s most critical moments.',
           'Every mission we undertake is guided by compassion, clinical excellence, and an unwavering commitment to patient safety. We treat every patient with the same dignity, respect, and care that we would want for our own loved ones. When every second counts, we REACT.'
         ],
-        sigCred: 'MD · Emergency Physician · Aeromedical Transport',
-        creds: ['Emergency Medicine','Aeromedical Transport','Critical Care','ICU Transport','ACLS','Retrieval Medicine']
+        sigCred: 'MBBS · FEM (RLA-UK) · MEM (SEMI) · MRCEM · Fellowship in Aviation Medicine (UK)',
+        creds: ['Prehospital Emergency Medicine','Aeromedical Intensivist','Fellowship Aviation Medicine','FEM · RLA-UK','MEM · SEMI','MRCEM','Critical Care Transport','Retrieval Medicine']
       },
       lavanya: {
         tag: 'Co-Founder',
@@ -7976,6 +8474,62 @@
       closeBtn.addEventListener('click', closeEquipModal);
       overlay.addEventListener('click', function(e) { if (e.target === overlay) closeEquipModal(); });
       document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeEquipModal(); });
+    })();
+  </script>
+
+  <script>
+    /* ── FAQ: Category filter + Accordion ── */
+    (function() {
+      var cards = document.querySelectorAll('.faq-card');
+      var breaks = document.querySelectorAll('.faq-break');
+      var catBtns = document.querySelectorAll('.faq-cat');
+
+      /* Category filter */
+      catBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var cat = btn.dataset.cat;
+          catBtns.forEach(function(b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          var visibleCount = 0;
+          cards.forEach(function(card) {
+            var cats = (card.dataset.cats || '').split(' ');
+            var show = cat === 'all' || cats.indexOf(cat) !== -1;
+            card.style.display = show ? '' : 'none';
+            if (show) visibleCount++;
+          });
+
+          /* Only show CTA breaks in "all" view or when 6+ results */
+          breaks.forEach(function(b) {
+            b.style.display = (cat === 'all' || visibleCount >= 6) ? '' : 'none';
+          });
+        });
+      });
+
+      /* Accordion */
+      cards.forEach(function(card) {
+        var btn = card.querySelector('.faq-card-q');
+        if (!btn) return;
+        btn.addEventListener('click', function() {
+          var isOpen = card.classList.contains('open');
+          /* Close all */
+          cards.forEach(function(c) {
+            c.classList.remove('open');
+            var b = c.querySelector('.faq-card-q');
+            if (b) b.setAttribute('aria-expanded', 'false');
+          });
+          /* Open clicked if it was closed */
+          if (!isOpen) {
+            card.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+        /* Keyboard: Enter/Space already trigger click on button */
+      });
     })();
   </script>
 

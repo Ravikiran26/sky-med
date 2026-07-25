@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://reactairambulance.com/sitemap.xml

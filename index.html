@@ -3750,6 +3750,23 @@
       .vmap-tab { padding: 6px 10px; font-size: 8px; }
       .vmap-wrap { margin-top: 28px; }
 
+      .vmap-stats {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        padding: 12px 14px;
+        border-top: 1px solid rgba(74,158,255,.07);
+        background: rgba(3,10,22,.55);
+      }
+      .vmap-stat-pill {
+        min-width: 0;
+        border-radius: 8px;
+        padding: 10px 10px;
+      }
+      .vmap-stat-val { font-size: 14px; }
+      .vmap-stat-lbl { font-size: 7.5px; }
+
       .fleet-grid, .fleet-grid-2, .fleet-grid-3 { grid-template-columns: 1fr; }
       .fleet-grid-2 { max-width: 100%; }
       .card-inner { min-height: 380px; }

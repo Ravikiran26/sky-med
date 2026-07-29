@@ -6174,6 +6174,11 @@
             <svg id="vmap-intl" viewBox="0 100 760 460" xmlns="http://www.w3.org/2000/svg"
                  aria-label="REACT international route network" style="display:block;width:100%">
               <defs>
+                <!-- Self-contained glow filter so it works even when #vmap is display:none -->
+                <filter id="vcityGlowIntl" x="-120%" y="-120%" width="340%" height="340%">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
                 <!-- Plane motion paths — projection: equirectangular scale=120 center=[0,20] translate=[380,290] -->
                 <!-- x = 380 + 2.094*lng  |  y = 290 - 2.094*(lat-20) -->
                 <path id="vpi-w1" d="M 542,272 Q 461,178 380,224"/><!-- Delhi→London -->
@@ -6239,77 +6244,77 @@
 
               <!-- Destinations -->
               <!-- London 380,224 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="380" cy="224" r="7"/>
                 <circle class="vmap-city-inner" cx="380" cy="224" r="2.5"/>
               </g>
               <text class="vmap-label" text-anchor="middle" x="380" y="213">LONDON</text>
 
               <!-- Istanbul 441,246 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="441" cy="246" r="7"/>
                 <circle class="vmap-city-inner" cx="441" cy="246" r="2.5"/>
               </g>
               <text class="vmap-label" text-anchor="middle" x="441" y="236">ISTANBUL</text>
 
               <!-- New York 225,247 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="225" cy="247" r="7"/>
                 <circle class="vmap-city-inner" cx="225" cy="247" r="2.5"/>
               </g>
               <text class="vmap-label" text-anchor="middle" x="225" y="237">NEW YORK</text>
 
               <!-- Los Angeles 132,261 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="132" cy="261" r="7"/>
                 <circle class="vmap-city-inner" cx="132" cy="261" r="2.5"/>
               </g>
               <text class="vmap-label" text-anchor="middle" x="132" y="251">LOS ANGELES</text>
 
               <!-- Dubai 496,279 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="496" cy="279" r="7"/>
                 <circle class="vmap-city-inner" cx="496" cy="279" r="2.5"/>
               </g>
               <text class="vmap-label" text-anchor="end" x="488" y="293">DUBAI</text>
 
               <!-- Bangkok 591,303 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="591" cy="303" r="7"/>
                 <circle class="vmap-city-inner" cx="591" cy="303" r="2.5"/>
               </g>
               <text class="vmap-label" x="601" y="300">BANGKOK</text>
 
               <!-- Singapore 597,329 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="597" cy="329" r="7"/>
                 <circle class="vmap-city-inner" cx="597" cy="329" r="2.5"/>
               </g>
               <text class="vmap-label" x="607" y="326">SINGAPORE</text>
 
               <!-- Tokyo 673,257 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="673" cy="257" r="7"/>
                 <circle class="vmap-city-inner" cx="673" cy="257" r="2.5"/>
               </g>
               <text class="vmap-label" text-anchor="middle" x="673" y="247">TOKYO</text>
 
               <!-- Sydney 697,403 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="697" cy="403" r="7"/>
                 <circle class="vmap-city-inner" cx="697" cy="403" r="2.5"/>
               </g>
               <text class="vmap-label" text-anchor="middle" x="697" y="416">SYDNEY</text>
 
               <!-- Nairobi 457,335 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="457" cy="335" r="7"/>
                 <circle class="vmap-city-inner" cx="457" cy="335" r="2.5"/>
               </g>
               <text class="vmap-label" text-anchor="end" x="449" y="349">NAIROBI</text>
 
               <!-- Malé 534,323 -->
-              <g filter="url(#vcityGlow)">
+              <g filter="url(#vcityGlowIntl)">
                 <circle class="vmap-city-outer" cx="534" cy="323" r="7"/>
                 <circle class="vmap-city-inner" cx="534" cy="323" r="2.5"/>
               </g>
@@ -6329,7 +6334,7 @@
               </g>
 
               <!-- 5 elegant silver aircraft with subtle blue glow -->
-              <g filter="url(#vcityGlow)" opacity="0.82">
+              <g filter="url(#vcityGlowIntl)" opacity="0.82">
                 <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w1"/></animateMotion>
                 <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
@@ -6338,7 +6343,7 @@
                   <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)" opacity="0.82">
+              <g filter="url(#vcityGlowIntl)" opacity="0.82">
                 <animateMotion dur="18s" begin="4s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w2"/></animateMotion>
                 <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
@@ -6347,7 +6352,7 @@
                   <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)" opacity="0.82">
+              <g filter="url(#vcityGlowIntl)" opacity="0.82">
                 <animateMotion dur="10s" begin="2s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w3"/></animateMotion>
                 <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
@@ -6356,7 +6361,7 @@
                   <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)" opacity="0.82">
+              <g filter="url(#vcityGlowIntl)" opacity="0.82">
                 <animateMotion dur="8s" begin="6s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w5"/></animateMotion>
                 <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
@@ -6365,7 +6370,7 @@
                   <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)" opacity="0.82">
+              <g filter="url(#vcityGlowIntl)" opacity="0.82">
                 <animateMotion dur="11s" begin="1s" repeatCount="indefinite" rotate="auto"><mpath href="#vpi-w8"/></animateMotion>
                 <g fill="rgba(195,215,245,0.88)" filter="drop-shadow(0 0 2px rgba(74,158,255,0.5))">
                   <path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/>
@@ -6374,10 +6379,10 @@
                   <path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/>
                 </g>
               </g>
-              <g filter="url(#vcityGlow)"><animateMotion dur="5s" begin="3.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w5"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
-              <g filter="url(#vcityGlow)"><animateMotion dur="6s" begin="4s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w6"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
-              <g filter="url(#vcityGlow)"><animateMotion dur="7s" begin="1s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w7"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
-              <g filter="url(#vcityGlow)"><animateMotion dur="7s" begin="0s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w8"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlowIntl)"><animateMotion dur="5s" begin="3.5s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w5"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlowIntl)"><animateMotion dur="6s" begin="4s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w6"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlowIntl)"><animateMotion dur="7s" begin="1s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w7"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
+              <g filter="url(#vcityGlowIntl)"><animateMotion dur="7s" begin="0s" repeatCount="indefinite" rotate="auto-reverse" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#vpi-w8"/></animateMotion><g fill="rgba(255,255,255,0.95)"><path d="M10,0 C7,0.5 3,0.8 -1,0.9 L-6,0.9 L-8.5,0.5 L-9.5,0 L-8.5,-0.5 L-6,-0.9 L-1,-0.9 C3,-0.8 7,-0.5 10,0Z"/><path d="M0,-0.9 L-5,-11 L-6.5,-10 L-2.5,-0.9Z"/><path d="M0,0.9 L-5,11 L-6.5,10 L-2.5,0.9Z"/><path d="M-4.5,-1.5 L-4.2,-2.8 L-7.5,-2.8 L-7.5,-1.5Z"/><path d="M-4.5,1.5 L-4.2,2.8 L-7.5,2.8 L-7.5,1.5Z"/><path d="M-8,-0.9 L-9,-5.5 L-10,-5 L-9,-0.9Z"/><path d="M-8,0.9 L-9,5.5 L-10,5 L-9,0.9Z"/></g></g>
 
             </svg>
 

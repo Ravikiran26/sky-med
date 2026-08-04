@@ -3302,6 +3302,67 @@
       box-shadow: 0 4px 24px rgba(4,17,31,.06);
     }
 
+    /* ── Business & Operations Head Profile ─────────────────────── */
+    .boh-section { background: #f2f5fb; padding: 80px 0 88px; }
+    .boh-card {
+      max-width: 460px; margin: 0 auto;
+      background: #fff;
+      border: 1px solid rgba(21,101,200,.1);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 6px 32px rgba(4,17,31,.08);
+      display: flex; flex-direction: column;
+    }
+    .boh-photo-wrap {
+      position: relative; height: 480px; overflow: hidden;
+      background: #c8c8c8;
+      flex-shrink: 0;
+    }
+    .boh-photo-wrap::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 3;
+      background: linear-gradient(90deg,#e02828 0%,#1565c8 100%);
+    }
+    .boh-photo {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top; display: block;
+      transition: transform .45s ease;
+    }
+    .boh-card:hover .boh-photo { transform: scale(1.03); }
+    .boh-photo-init {
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: rgba(255,255,255,.2);
+    }
+    .boh-body { padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1; }
+    .boh-eyebrow {
+      display: inline-block;
+      font-family: "Inter", sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: #c0251b; margin-bottom: 10px;
+    }
+    .boh-name {
+      font-family: "Manrope", sans-serif; font-size: 26px; font-weight: 700;
+      color: #0a1e3c; line-height: 1.18; letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .boh-title {
+      font-family: "Inter", sans-serif; font-size: 14px; font-weight: 600;
+      color: #1251a8; line-height: 1.5; margin-bottom: 14px;
+    }
+    .boh-bio {
+      font-family: "Inter", sans-serif; font-size: 14px; line-height: 1.75;
+      color: #2c445e; margin-bottom: 16px; flex: 1;
+    }
+    .boh-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .boh-chip {
+      font-family: "Inter", sans-serif; font-size: 12px; font-weight: 500;
+      color: #1e3a6e; background: #edf1f9;
+      padding: 5px 11px; border-radius: 8px;
+    }
+    @media (max-width: 680px) {
+      .boh-card { max-width: 100%; }
+      .boh-photo-wrap { height: 400px; }
+    }
+
     /* Leadership modal */
     /* ── Premium Executive Leader Modal ─────────────────────────────── */
     .leader-overlay {
@@ -3936,6 +3997,56 @@
       --lt-card:   #ffffff;
       --lt-bg-alt: #f0f6ff;
     }
+
+    /* ── Medical Tourism Section ────────────────────────────── */
+    .medtour-section {
+      background: #ffffff;
+      padding: 88px 0 96px;
+      --lt-head: #1a2d4f; --lt-body: #3d5a7a; --lt-muted: #7a96b5;
+      --lt-border: rgba(21,101,192,.12); --lt-card: #fff; --lt-bg-alt: #f0f6ff;
+    }
+    .medtour-section .eyebrow { color: #1565c8; }
+    .medtour-section .section-title { color: #1a2d4f; }
+    .medtour-intro {
+      max-width: 720px; margin: 0 auto 56px;
+      font-family: "Inter", sans-serif; font-size: 16px; line-height: 1.8;
+      color: #3d5a7a; text-align: center;
+    }
+    .medtour-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .medtour-item {
+      background: #f7faff;
+      border: 1px solid rgba(21,101,192,.12);
+      border-radius: 14px;
+      padding: 24px 22px 22px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+    }
+    .medtour-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(21,101,192,.1);
+      border-color: rgba(21,101,192,.28);
+    }
+    .medtour-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(21,101,192,.09);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .medtour-icon svg { width: 20px; height: 20px; }
+    .medtour-item-title {
+      font-family: "Inter", sans-serif; font-size: 14px; font-weight: 700;
+      color: #1a2d4f; line-height: 1.3;
+    }
+    .medtour-item-desc {
+      font-family: "Inter", sans-serif; font-size: 13px; line-height: 1.7;
+      color: #5a7a9a; flex: 1;
+    }
+    @media (max-width: 920px) { .medtour-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .medtour-grid { grid-template-columns: 1fr; } .medtour-section { padding: 64px 0 72px; } }
 
     /* ── About ──────────────────────────────────────────────── */
     #about { background: #ffffff; }
@@ -4603,6 +4714,37 @@
       </div>
     </div>
 
+    <!-- BUSINESS & OPERATIONS HEAD -->
+    <section class="boh-section">
+      <div class="shell">
+        <div style="text-align:center; margin-bottom:48px;">
+          <span class="eyebrow">Operations & Strategy</span>
+          <h2 class="section-title">Business &amp; Operations<br>Leadership</h2>
+        </div>
+        <div class="boh-card">
+          <div class="boh-photo-wrap">
+            <img src="dr-vineela.png" alt="Dr. Yannamreddy Vineela Reddy" class="boh-photo" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="boh-photo-init">VR</div>
+          </div>
+          <div class="boh-body">
+            <span class="boh-eyebrow">Business &amp; Operations Head</span>
+            <div class="boh-name">Dr. Yannamreddy Vineela Reddy</div>
+            <div class="boh-title">PhD · Biomedical Informatics &amp; Business Development</div>
+            <p class="boh-bio">Leads REACT's strategic growth and end-to-end operational execution, ensuring every patient transfer is delivered safely, efficiently, and compassionately. With a PhD in Biomedical Informatics and expertise in healthcare operations, aviation coordination, and business development, integrates clinical systems knowledge, data-driven decision-making, and operational excellence to oversee mission planning, hospital and aviation partnerships, financial operations, and international patient transfers.</p>
+            <div class="boh-chips">
+              <span class="boh-chip">Biomedical Informatics</span>
+              <span class="boh-chip">Healthcare Operations</span>
+              <span class="boh-chip">Aviation Coordination</span>
+              <span class="boh-chip">Business Development</span>
+              <span class="boh-chip">Mission Planning</span>
+              <span class="boh-chip">Intl. Patient Transfers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- MEDICAL TEAM -->
     <section class="team-section" id="team">
       <div class="shell">
@@ -5158,6 +5300,120 @@
           </div>
 
         </div><!-- /.svc-panels -->
+      </div>
+    </section>
+
+    <!-- MEDICAL TOURISM & INTERNATIONAL PATIENT SERVICES -->
+    <section class="medtour-section" id="medical-tourism">
+      <div class="shell">
+        <div style="text-align:center; margin-bottom:20px;">
+          <span class="eyebrow">Global Patient Care</span>
+          <h2 class="section-title">Medical Tourism &amp;<br>International Patient Services</h2>
+        </div>
+        <p class="medtour-intro">At REACT Air Ambulance, we understand that accessing the right medical care often extends beyond geographical boundaries. Our dedicated team coordinates every aspect of your medical journey — ensuring comfort, safety, and peace of mind for both patients and their families, from the moment you contact us until your safe return.</p>
+
+        <div class="medtour-grid">
+
+          <!-- 1 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="medtour-item-title">Hospital &amp; Specialist Coordination</div>
+            <p class="medtour-item-desc">Assistance in identifying and connecting with leading hospitals and experienced specialists across India.</p>
+          </div>
+
+          <!-- 2 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="medtour-item-title">Medical Appointment &amp; Treatment Planning</div>
+            <p class="medtour-item-desc">Coordination of consultations, diagnostics, and comprehensive treatment planning tailored to each patient's needs.</p>
+          </div>
+
+          <!-- 3 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="medtour-item-title">Travel &amp; Accommodation Coordination</div>
+            <p class="medtour-item-desc">Support in arranging flights, hotel accommodations, and local transportation for patients and accompanying family members.</p>
+          </div>
+
+          <!-- 4 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <div class="medtour-item-title">Airport Assistance</div>
+            <p class="medtour-item-desc">Meet-and-assist services, wheelchair support, and seamless airport coordination for arriving and departing patients.</p>
+          </div>
+
+          <!-- 5 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div class="medtour-item-title">Ground Medical Transportation</div>
+            <p class="medtour-item-desc">Safe transfers between airports, hotels, and hospitals using medically equipped ambulances when required.</p>
+          </div>
+
+          <!-- 6 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="medtour-item-title">Medical Escort Services</div>
+            <p class="medtour-item-desc">Doctor, nurse, or paramedic escorts for patients requiring medical supervision during travel.</p>
+          </div>
+
+          <!-- 7 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 7.17 2 2 0 014.99 5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.9 12.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="medtour-item-title">Commercial Airline Stretcher Transfers</div>
+            <p class="medtour-item-desc">Complete coordination for patients who require stretcher travel on scheduled commercial flights.</p>
+          </div>
+
+          <!-- 8 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="medtour-item-title">Dedicated Air Ambulance Services</div>
+            <p class="medtour-item-desc">Rapid critical care air transfers for patients requiring intensive medical support during transport.</p>
+          </div>
+
+          <!-- 9 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div class="medtour-item-title">Language &amp; Care Coordination</div>
+            <p class="medtour-item-desc">Continuous communication between patients, families, hospitals, and healthcare providers throughout the treatment journey.</p>
+          </div>
+
+          <!-- 10 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div class="medtour-item-title">Discharge &amp; Return Travel Planning</div>
+            <p class="medtour-item-desc">Assistance with discharge documentation, medical clearance, medications, and safe return travel arrangements.</p>
+          </div>
+
+          <!-- 11 -->
+          <div class="medtour-item">
+            <div class="medtour-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1565c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div class="medtour-item-title">International Medical Repatriation</div>
+            <p class="medtour-item-desc">Comprehensive coordination for patients returning to their home country after treatment or requiring transfer for continued medical care.</p>
+          </div>
+
+        </div><!-- /.medtour-grid -->
       </div>
     </section>
 

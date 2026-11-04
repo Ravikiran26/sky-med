@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /blog.html
+Disallow: /reviews.html
+Disallow: /client-requirements.html
+
 Sitemap: https://reactairambulance.com/sitemap.xml
